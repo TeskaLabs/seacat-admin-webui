@@ -1,0 +1,29 @@
+.description-row {
+	.data-table-td:last-child {
+		p {
+			overflow: hidden;
+			width: calc(80%);
+			text-overflow: ellipsis;
+		}
+	}
+}
+
+@media screen and (max-width: 1097px) {
+	.description-row {
+		.data-table-td:last-child {
+			p {
+				width: 400px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.description-row {
+		.data-table-td:last-child {
+			p {
+				width: 240px;
+			}
+		}
+	}
+}

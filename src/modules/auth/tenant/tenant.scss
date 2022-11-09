@@ -1,0 +1,68 @@
+.tenant-detail-container {
+	display: grid;
+	gap: 1rem;
+	grid-template-areas:
+		"a b"
+		"c c";
+	 grid-template-columns: 1fr 1fr;
+
+	.tenant-detail-info {
+		grid-area: a;
+		grid-template-areas:
+			"i"
+			"q";
+		gap: 1rem;
+
+		.tenant-general-info {
+			grid-area: i;
+		}
+	}
+
+	.custom-data-card {
+		margin-top: 1rem;
+
+		.card-body {
+			height: 100%;
+			overflow-y: auto;
+		}
+	}
+
+	.credentials-card {
+		display: inline-block;
+		grid-area: b;
+		& .row {
+			height: auto !important;
+		}
+
+		.card-header-dropdown {
+			border-radius: 0 8px 0 0;
+		}
+
+		.assign-credential-list-dropdown {
+			max-height: 20em;
+			overflow-y: auto;
+		}
+
+		.disabled-link {
+			cursor: default;
+			pointer-events: none;
+			text-decoration: none;
+		}
+	}
+
+	.adv-card {
+		grid-area: c;
+	}
+}
+
+
+@media (max-width: 994px) {
+	.tenant-detail-container {
+		grid-template-areas:
+			"a"
+			"b"
+			"c"
+		;
+		grid-template-columns: 1fr;
+	}
+}

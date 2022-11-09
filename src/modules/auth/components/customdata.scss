@@ -1,0 +1,41 @@
+.input-group .input-group-append{
+    margin-left: "0";
+}
+
+.custom-data {
+    &-key {
+        width: 30%;
+        margin-left: 0.25rem;
+    }
+    &-value {
+        width: 60%;
+        margin-left: 0.25rem;
+    }
+    &-remove-button {
+        margin: 2px 0px 1px 1px;
+    }
+}
+
+.custom-data-card {
+	grid-area: q;
+}
+
+@media (max-width: 576px) {
+    .custom-data {
+        &-key {
+            width: 100%;
+        }
+        &-value {
+            width: 100%;
+        }
+        &-headers {
+            display: none;
+        }
+        &-row {
+            margin-bottom: 0.25rem;
+        }
+        &-remove-button {
+            margin-left: 0.25rem;
+        }
+    }
+}
