@@ -7,7 +7,7 @@
 		"build": "node ./asab-webui/script/build.js"
 	},
 	"author": "TeskaLabs Ltd.",
-	"license": "GPL",
+	"license": "GPL-3.0",
 	"description": "Web UI for a SeaCat administration",
 	"browserslist": [
 		"defaults"
