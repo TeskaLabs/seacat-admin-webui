@@ -243,8 +243,8 @@
 	},
 	"HomeContainer": {
 		"Welcome!": "Vítejte!",
-		"This is TeskaLabs SeaCat, cyber-security tool": "Toto je TeskaLabs SeaCat, nástroj pro správu kybernetické bezpečnosti",
-		"SeaCat is a comphrehensive security and event management tool": "SeaCat je nástroj pro komplexní zabezpečení, organizaci a správu dat. Umožňuje vytváření a správu uživatelů, jejich přístupů a práv, správu přístupových klíčů, certifikátů a identit",
+		"This is TeskaLabs SeaCat Admin, cyber-security tool": "Toto je TeskaLabs SeaCat Admin, nástroj pro správu kybernetické bezpečnosti",
+		"SeaCat Admin is a comphrehensive security management tool": "SeaCat Admin je nástroj pro komplexní zabezpečení, organizaci a správu dat.",
 		"Please continue to desired agenda by navigating in the menu on the left": "Pokračujte prosím do požadované sekce pomocí nabídky na levé straně."
 	},
 	"ResetPasswordContainer": {

@@ -242,8 +242,8 @@
 	},
 	"HomeContainer": {
 		"Welcome!": "Welcome!",
-		"This is TeskaLabs SeaCat, cyber-security tool": "This is TeskaLabs SeaCat, cyber-security tool",
-		"SeaCat is a comphrehensive security and event management tool": "SeaCat is a comphrehensive security and event management tool where you can establish and maintain user's rights & accesses, keys, certificates and identities",
+		"This is TeskaLabs SeaCat Admin, cyber-security tool": "This is TeskaLabs SeaCat Admin, cyber-security tool",
+		"SeaCat Admin is a comphrehensive security management tool": "SeaCat Admin is a comphrehensive security management tool.",
 		"Please continue to desired agenda by navigating in the menu on the left": "Please continue to desired agenda by navigating in the menu on the left."
 	},
 	"ResetPasswordContainer": {
