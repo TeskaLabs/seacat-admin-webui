@@ -1,0 +1,107 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+import { Container } from 'reactstrap';
+
+import { DataTable, ButtonWithAuthz } from 'asab-webui';
+
+function TenantListContainer(props) {
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+
+	const { t } = useTranslation();
+
+	const [page, setPage] = useState(1);
+	const [data, setData] = useState([]);
+	const [count, setCount] = useState(0);
+	const [loading, setLoading] = useState(true);
+	const [show, setShow] = useState(false);
+	const [limit, setLimit] = useState(0);
+	const [height, setHeight] = useState(0);
+	const ref = useRef(null);
+
+	const resources = useSelector(state => state.auth?.resources);
+
+	const headers = [
+		{
+			name: t("Name"),
+			key: "_id",
+			link: {
+				key: "_id",
+				pathname: "/auth/tenant/"
+			}
+		},
+		{
+			name: t("Created at"),
+			key: "_c",
+			datetime: true
+		}
+	];
+
+	useEffect(() => {
+		setHeight(ref.current.clientHeight);
+	}, []);
+
+	useEffect(() => {
+		setShow(false);
+		if (data.length === 0) {
+			// Timeout delays appearance of content loader in DataTable. This measure prevents 'flickering effect' during fast fetch of data, where content loader appears just for a split second.
+			setTimeout(() => setShow(true), 500);
+		};
+		if (limit > 0) {
+			retrieveData();
+		}
+	}, [page, limit]);
+
+	const retrieveData = async () => {
+		try {
+			let response = await SeaCatAuthAPI.get("/tenants", {params: {p:page, i:limit}});
+			setData(response.data.data);
+			setCount(response.data.count);
+			setLoading(false);
+		} catch(e) {
+			console.error(e);
+			setLoading(false);
+			props.app.addAlert("warning", t("TenantListContainer|Failed to fetch tenants"));
+		}
+	}
+
+	const createTenantComponent = (
+		<ButtonWithAuthz
+			title={t("TenantDetailContainer|New tenant")}
+			color="primary"
+			onClick={() => redirectToCreate()}
+			resource="authz:superuser"
+			resources={resources}
+		>
+			{t("TenantListContainer|New tenant")}
+		</ButtonWithAuthz>
+	)
+
+	const redirectToCreate = () => {
+		props.history.push('/auth/tenant/!create');
+	}
+
+	return (
+		<div className="h-100" ref={ref}>
+			<Container>
+				<DataTable
+					title={{ text: t("TenantListContainer|Tenants"), icon: "cil-apps" }}
+					headers={headers}
+					data={data}
+					count={count}
+					limit={limit}
+					setLimit={setLimit}
+					currentPage={page}
+					setPage={setPage}
+					customComponent={createTenantComponent}
+					isLoading={loading}
+					contentLoader={show}
+					height={height}
+				/>
+			</Container>
+		</div>
+	);
+}
+
+export default TenantListContainer;

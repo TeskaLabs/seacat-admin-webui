@@ -1,0 +1,53 @@
+@import "~asab-webui/styles/constants/index.scss";
+
+:root[data-theme="light"] {
+	--close-button: var(--dark-black);
+	--svg-arrow: #6A6A6A;
+}
+:root[data-theme="dark"] {
+	--close-button: var(--night-blue);
+	--svg-arrow: var(--light-dream-blue);
+}
+
+$close-button: var(--close-button);
+$svg-arrow: var(--svg-arrow);
+
+.multiselect-input-wrapper {
+	& input {
+		cursor: default;
+	}
+	.custom-dropdown-btn {
+		background-color: transparent;
+		position: absolute;
+		right: 6px;
+		top: 15px;
+		border: solid $svg-arrow;
+		border-width: 0 2.5px 2.5px 0;
+		border-radius: 0 1px 1px 0;
+		display: inline-block;
+		padding: 2px;
+		transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+	}
+}
+
+.selected-item {
+	& [class^="cil-"] {
+		cursor: pointer;
+		padding-left: 2px;
+		color: $close-button;
+		&:hover {
+			color: $danger;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.client-name-column {
+		display: block;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		max-width: 15ch;
+		white-space: nowrap;
+	}
+}
