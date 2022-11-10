@@ -2,6 +2,30 @@
 
 SeaCat Admin WebUI provides a self-care portal for administration as a superstructure for [SeaCat Auth](https://github.com/TeskaLabs/seacat-auth).
 
+## Credentials administration
+
+![Credentials administration](./doc/images/credentials.gif "Credentials administration")
+
+## Tenants administration
+
+![Tenants administration](./doc/images/tenants.gif "Tenants administration")
+
+## Sessions administration
+
+![Sessions administration](./doc/images/sessions.gif "Sessions administration")
+
+## Roles administration
+
+![Roles administration](./doc/images/roles.gif "Roles administration")
+
+## Resources administration
+
+![Resources administration](./doc/images/resources.gif "Resources administration")
+
+## Clients administration
+
+![Clients administration](./doc/images/clients.gif "Clients administration")
+
 ## Dependencies
 
 ### SeaCat Auth service
