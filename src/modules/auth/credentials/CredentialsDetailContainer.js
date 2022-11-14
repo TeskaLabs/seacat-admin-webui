@@ -382,6 +382,16 @@ function CredentialsInfoCard(props) {
 	// Update user
 	const onSubmit = async (values) => {
 		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+
+		// If one of the fields (phone or email) is not met, it will be sent 'null' to the body
+		if (values.phone === "") {
+			values.phone = null;
+		}
+
+		if (values.email === "") {
+			values.email = null;
+		}
+
 		let response;
 		try {
 			response = await SeaCatAuthAPI.put(`credentials/${props.credentials_id}`,
