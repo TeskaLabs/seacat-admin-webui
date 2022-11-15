@@ -96,6 +96,15 @@ function CredentialsCreateContainer(props) {
 			}
 		})
 
+		// If one of the fields (phone or email) is not met, it will not be sent to the body
+		if (values.phone === "") {
+			delete values.phone;
+		}
+
+		if (values.email === "") {
+			delete values.email;
+		}
+
 		let response;
 		try {
 			response = await SeaCatAuthAPI.post(`/credentials/${provider}`,
