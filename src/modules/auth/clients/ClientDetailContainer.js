@@ -161,17 +161,17 @@ const ClientDetailContainer = (props) =>  {
 								</div>
 							</CardHeader>
 
-							<CardBody>
+							<CardBody className="card-body-client">
 								{client?.client_name ?
 									<Row className="card-body-row">
 										<Col md={4}>{t("ClientDetailContainer|Client name")}</Col>
 										{editMode ?
-											<Col>
+											<Col className="client-name">
 												<TextInput name="client_name" register={register}/>
 											</Col>
 
 										:
-											<Col>{client?.client_name}</Col>
+											<Col className="client-name">{client?.client_name}</Col>
 										}
 									</Row>
 								:
@@ -244,7 +244,7 @@ const ClientDetailContainer = (props) =>  {
 								</Row>
 								<Row className="mt-3 card-body-row">
 									<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
-									<Col title="redirect_uris">
+									<Col title="redirect_uris" className="redirect_uris">
 										{editMode ?
 											<>
 												<URiInput control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={t("ClientDetailContainer|Redirect URIs")}/>
