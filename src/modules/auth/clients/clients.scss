@@ -51,9 +51,10 @@ $svg-arrow: var(--svg-arrow);
 		height: 40px;
 	}
 	.redirect_uris {
-		min-height: 105px;
+		min-height: 125px;
 	}
 }
+
 
 @media (max-width: 768px) {
 	.client-name-column {
