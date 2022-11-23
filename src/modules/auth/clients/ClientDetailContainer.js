@@ -18,6 +18,7 @@ const ClientDetailContainer = (props) =>  {
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const [client, setClient] = useState(null);
 	const [editMode, setEditMode] = useState(false);
+	const [disabled, setDisabled] = useState(false);
 	const { client_id } = props.match.params;
 
 	const resource = "authz:superuser";
@@ -55,11 +56,14 @@ const ClientDetailContainer = (props) =>  {
 
 	}, [client]);
 
-	const getClientDetail = async () => {
+	const getClientDetail = async (successResponse) => {
 		try {
 			let response = await SeaCatAuthAPI.get(`client/${client_id}`);
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to get client details");
+			} else if ((response.statusText == 'OK') && (successResponse == true)) {
+				setEditMode(false);
+				setDisabled(false);
 			}
 			setClient(response.data);
 		} catch (e) {
@@ -108,22 +112,32 @@ const ClientDetailContainer = (props) =>  {
 			body.client_name = "";
 		}
 
+		setDisabled(true);
+
 		try {
 			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, {
 				redirect_uris:  body?.redirect_uris,
 				client_name: body?.client_name
 			});
+			let successResponse;
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
+				setEditMode(true);
+				setDisabled(false);
+			} else if (response.statusText == 'OK') {
+				successResponse = true
+				getClientDetail(successResponse);
+				props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
 			}
-			props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
-			setEditMode(false);
-			getClientDetail();
+
 		} catch (e) {
+			setDisabled(false);
 			console.error(e);
 			props.app.addAlert("warning", t("ClientDetailContainer|Something went wrong, failed to update client"));
 		}
 	}
+
+
 
 	// Set delete client dialog
 	const removeClientConfirm = () => {
@@ -167,7 +181,7 @@ const ClientDetailContainer = (props) =>  {
 										<Col md={4}>{t("ClientDetailContainer|Client name")}</Col>
 										{editMode ?
 											<Col className="client-name">
-												<TextInput name="client_name" register={register}/>
+												<TextInput name="client_name" register={register} disabled={disabled}/>
 											</Col>
 
 										:
@@ -244,14 +258,15 @@ const ClientDetailContainer = (props) =>  {
 								</Row>
 								<Row className="mt-3 card-body-row">
 									<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
-									<Col title="redirect_uris" className="redirect_uris">
+									<Col title="redirect_uris" className={"redirect_uris" + (editMode ? "" : " edit")}>
 										{editMode ?
 											<>
-												<URiInput control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={t("ClientDetailContainer|Redirect URIs")}/>
+												<URiInput disabled={disabled} control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={t("ClientDetailContainer|Redirect URIs")}/>
 												<FormText>{t("ClientDetailContainer|Redirect URI must be in absolute format without a fragment component.")}</FormText>
 											</>
 										:
-											client?.redirect_uris.map((item, idx) => <div key={idx}>{item}</div>)
+											client?.redirect_uris.map((item, idx) => (
+												<div key={idx} className="redirect-uris-item">{item}</div>))
 										}
 									</Col>
 								</Row>

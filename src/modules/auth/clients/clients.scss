@@ -51,7 +51,12 @@ $svg-arrow: var(--svg-arrow);
 		height: 40px;
 	}
 	.redirect_uris {
-		min-height: 125px;
+		&.edit {
+			padding-bottom: 61px; // Here it is necessary to leave exactly 61 pixels, otherwise the screen will change height by this pixel when adding 'Redirect uris'
+		}
+		.redirect-uris-item {
+			height: 42px;
+		}
 	}
 }
 
