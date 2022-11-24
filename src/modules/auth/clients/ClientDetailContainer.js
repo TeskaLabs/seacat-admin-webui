@@ -50,20 +50,16 @@ const ClientDetailContainer = (props) =>  {
 		reset(client);
 		if (client && client.redirect_uris) {
 			client.redirect_uris.map((item, idx) => {
-				setValue(`redirect_uris[${idx}].text`, item)
+				setValue(`redirect_uris[${idx}].text`, item);
 			})
 		}
-
 	}, [client]);
 
-	const getClientDetail = async (successResponse) => {
+	const getClientDetail = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`client/${client_id}`);
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to get client details");
-			} else if ((response.statusText == 'OK') && (successResponse == true)) {
-				setEditMode(false);
-				setDisabled(false);
 			}
 			setClient(response.data);
 		} catch (e) {
@@ -119,19 +115,20 @@ const ClientDetailContainer = (props) =>  {
 				redirect_uris:  body?.redirect_uris,
 				client_name: body?.client_name
 			});
-			let successResponse;
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
-				setEditMode(true);
-				setDisabled(false);
-			} else if (response.statusText == 'OK') {
-				successResponse = true
-				getClientDetail(successResponse);
-				props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
 			}
+			setClient((prevState) => {
+				return {...prevState, redirect_uris: uri}
+			});
+			setEditMode(false);
+			setDisabled(false);
+			getClientDetail();
+			props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
 
 		} catch (e) {
 			setDisabled(false);
+			setEditMode(true);
 			console.error(e);
 			props.app.addAlert("warning", t("ClientDetailContainer|Something went wrong, failed to update client"));
 		}
@@ -174,7 +171,6 @@ const ClientDetailContainer = (props) =>  {
 									{t("ClientDetailContainer|Client")}
 								</div>
 							</CardHeader>
-
 							<CardBody className="card-body-client">
 								{client?.client_name ?
 									<Row className="card-body-row">
