@@ -118,9 +118,7 @@ const ClientDetailContainer = (props) =>  {
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
 			}
-			setClient((prevState) => {
-				return {...prevState, redirect_uris: uri}
-			});
+			setClient({...client, redirect_uris: uri});
 			setEditMode(false);
 			setDisabled(false);
 			getClientDetail();
