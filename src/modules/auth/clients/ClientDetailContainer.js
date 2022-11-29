@@ -18,6 +18,7 @@ const ClientDetailContainer = (props) =>  {
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const [client, setClient] = useState(null);
 	const [editMode, setEditMode] = useState(false);
+	const [disabled, setDisabled] = useState(false);
 	const { client_id } = props.match.params;
 
 	const resource = "authz:superuser";
@@ -49,10 +50,9 @@ const ClientDetailContainer = (props) =>  {
 		reset(client);
 		if (client && client.redirect_uris) {
 			client.redirect_uris.map((item, idx) => {
-				setValue(`redirect_uris[${idx}].text`, item)
+				setValue(`redirect_uris[${idx}].text`, item);
 			})
 		}
-
 	}, [client]);
 
 	const getClientDetail = async () => {
@@ -90,6 +90,8 @@ const ClientDetailContainer = (props) =>  {
 	}
 
 	const onSubmit = async (values) => {
+		setDisabled(true);
+
 		let body = {}
 		let uri = []
 		// Refactor object "redirect_uris" to array
@@ -116,14 +118,20 @@ const ClientDetailContainer = (props) =>  {
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
 			}
-			props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
+			setClient({...client, redirect_uris: uri});
 			setEditMode(false);
+			setDisabled(false);
 			getClientDetail();
+			props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
+
 		} catch (e) {
+			setDisabled(false);
+			setEditMode(true);
 			console.error(e);
 			props.app.addAlert("warning", t("ClientDetailContainer|Something went wrong, failed to update client"));
 		}
 	}
+
 
 	// Set delete client dialog
 	const removeClientConfirm = () => {
@@ -160,18 +168,17 @@ const ClientDetailContainer = (props) =>  {
 									{t("ClientDetailContainer|Client")}
 								</div>
 							</CardHeader>
-
-							<CardBody>
+							<CardBody className="card-body-client">
 								{client?.client_name ?
 									<Row className="card-body-row">
 										<Col md={4}>{t("ClientDetailContainer|Client name")}</Col>
 										{editMode ?
-											<Col>
-												<TextInput name="client_name" register={register}/>
+											<Col className="client-name">
+												<TextInput name="client_name" register={register} disabled={disabled}/>
 											</Col>
 
 										:
-											<Col>{client?.client_name}</Col>
+											<Col className="client-name">{client?.client_name}</Col>
 										}
 									</Row>
 								:
@@ -244,14 +251,15 @@ const ClientDetailContainer = (props) =>  {
 								</Row>
 								<Row className="mt-3 card-body-row">
 									<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
-									<Col title="redirect_uris">
+									<Col title="redirect_uris" className={"redirect_uris" + (editMode ? "" : " edit")}>
 										{editMode ?
 											<>
-												<URiInput control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={t("ClientDetailContainer|Redirect URIs")}/>
+												<URiInput disabled={disabled} control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={t("ClientDetailContainer|Redirect URIs")}/>
 												<FormText>{t("ClientDetailContainer|Redirect URI must be in absolute format without a fragment component.")}</FormText>
 											</>
 										:
-											client?.redirect_uris.map((item, idx) => <div key={idx}>{item}</div>)
+											client?.redirect_uris.map((item, idx) => (
+												<div key={idx} className="redirect-uris-item">{item}</div>))
 										}
 									</Col>
 								</Row>
