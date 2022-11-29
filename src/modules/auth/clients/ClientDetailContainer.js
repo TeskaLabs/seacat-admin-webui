@@ -90,6 +90,8 @@ const ClientDetailContainer = (props) =>  {
 	}
 
 	const onSubmit = async (values) => {
+		setDisabled(true);
+
 		let body = {}
 		let uri = []
 		// Refactor object "redirect_uris" to array
@@ -107,8 +109,6 @@ const ClientDetailContainer = (props) =>  {
 		if (body.client_name == undefined) {
 			body.client_name = "";
 		}
-
-		setDisabled(true);
 
 		try {
 			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, {
