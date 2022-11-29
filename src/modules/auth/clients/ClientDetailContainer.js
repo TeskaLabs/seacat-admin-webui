@@ -133,7 +133,6 @@ const ClientDetailContainer = (props) =>  {
 	}
 
 
-
 	// Set delete client dialog
 	const removeClientConfirm = () => {
 		let r = confirm(t('ClientDetailContainer|Do you want to remove this client?'));
