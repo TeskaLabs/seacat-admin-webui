@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
 
 // The usual text input
-export function TextInput ({ name, register, labelName }) {
+export function TextInput ({ name, register, labelName, disabled }) {
 	const { t } = useTranslation();
 	const reg = register(name);
 	return (
@@ -17,6 +17,7 @@ export function TextInput ({ name, register, labelName }) {
 				id={name}
 				name={name}
 				type="text"
+				disabled={disabled}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
@@ -53,7 +54,7 @@ export function SelectInput ({ name, register, value, labelName }) {
 }
 
 // Dynamic form that can be added and removed. You can to control your fields.
-export function URiInput ({ name, control, errors, append, remove, fields, labelName }) {
+export function URiInput ({ name, control, errors, append, remove, fields, labelName, disabled }) {
 	const { t } = useTranslation();
 
 	return (
@@ -64,7 +65,7 @@ export function URiInput ({ name, control, errors, append, remove, fields, label
 					return (
 						<InputGroup key={item.id} className="mb-1">
 							<Controller
-								render={({field}) => <Input {...field} invalid={errors.redirect_uris?.[idx]?.text}/>}
+								render={({field}) => <Input {...field} invalid={errors.redirect_uris?.[idx]?.text} disabled={disabled}/>}
 								name={`redirect_uris[${idx}].text`}
 								control={control}
 								rules={{

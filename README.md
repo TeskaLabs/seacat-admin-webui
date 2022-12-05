@@ -95,6 +95,6 @@ This module serves the purpose of displaying the basic information about SeaCat 
 
 Credentials without `authz:superuser` or `seacat:access` resource are not able to display any data if they enter the application. Administrator's `Auth` module will not be displayed in the Sidebar of the application as well.
 
-## Custom branding and styling customization
+## Branding and styling customization
 
 For custom branding and styling customization, please follow a guidline on [docs.teskalabs.com](https://docs.teskalabs.com/logman.io/configuration/branding)
