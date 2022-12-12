@@ -97,6 +97,7 @@
 		"Create new client": "Vytvořit nového klienta",
 		"Template": "Šablona",
 		"Client name": "Název klienta",
+		"Preferred client ID": "Preferované ID klienta",
 		"Client URI": "URI klienta",
 		"Response types": "Typy odpovědí",
 		"Grant types": "Typy grantů",
@@ -133,6 +134,7 @@
 	"ClientFormField": {
 		"Add new input": "Přidat pole",
 		"Remove input": "Odstranit pole",
+		"Invalid format, should have minimum of 8 characters": "Nesprávný formát, musí mít minimálně 8 znaků",
 		"URI can't be empty": "URI nemůže být prázdný",
 		"URI have to start with https": "URI musí začínat https",
 		"URL hash have to be empty": "URL hash musí být prázdný",
