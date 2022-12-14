@@ -137,7 +137,7 @@ function CredentialsDetailContainer(props) {
 		}
 	}
 
-
+	// Suspend user
 	const suspendUser = async (suspend) => {
 		if (suspended === false || suspended === undefined) {
 			setSuspended(true);
@@ -162,8 +162,27 @@ function CredentialsDetailContainer(props) {
 		}
 	}
 
+	// Reset password
 	const resetPwd = () => {
 		props.history.push(`/auth/credentials/${credentials_id}/passwordreset`);
+	}
+
+	// Resend invitation
+	const resendInvitation = async () => {
+		// TODO: what should be in the body??
+		try {
+			let response = await SeaCatAuthAPI.post(`/invite/${credentials_id}`,
+				{},
+				{ headers:
+					{
+						'Content-Type': 'application/json'
+					}
+				});
+			props.app.addAlert("success", t('CredentialsDetailContainer|Invitation has been send successfully'));
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to resend invitation'));
+		}
 	}
 
 	return (
@@ -249,6 +268,14 @@ function CredentialsDetailContainer(props) {
 									onClick={() => { resetPwd() }}
 								>
 									{t('CredentialsDetailContainer|Reset password')}
+								</ButtonWithAuthz>
+								<ButtonWithAuthz
+									color="outline-primary"
+									resource={resources}
+									resources={resources}
+									onClick={() => { resendInvitation() }}
+								>
+									{t('CredentialsDetailContainer|Resend invitation')}
 								</ButtonWithAuthz>
 							</ButtonGroup>
 						</CardFooter>
