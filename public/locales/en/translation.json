@@ -97,6 +97,7 @@
 		"Create new client": "Create new client",
 		"Template": "Template",
 		"Client name": "Client name",
+		"Preferred client ID": "Preferred client ID",
 		"Client URI": "Client URI",
 		"Response types": "Response types",
 		"Grant types": "Grant types",
@@ -133,6 +134,7 @@
 	"ClientFormField": {
 		"Add new input": "Add new input",
 		"Remove input": "Remove input",
+		"Invalid format, input should have minimum of 8 characters": "Invalid format, input should have minimum of 8 characters",
 		"URI can't be empty": "URI can't be empty",
 		"URI have to start with https": "URI have to start with https",
 		"URL hash have to be empty": "URL hash have to be empty",

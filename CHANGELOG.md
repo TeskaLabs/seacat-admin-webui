@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Add new input `preferred_client_id` to ClientCreateContainer (INDIGO Sprint 221209, [!7](https://github.com/TeskaLabs/seacat-admin-webui/pull/7))
+
 ## v22.48
 
 ### Compatibility
