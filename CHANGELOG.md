@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[0cebc91](https://github.com/TeskaLabs/asab-webui/commit/0cebc913e72115f539d99584c835efb2f6224c8d)] commit (INDIGO Sprint 221209, [!9](https://github.com/TeskaLabs/seacat-admin-webui/pull/9))
+
 ### Refactoring
 
 - Add new input `preferred_client_id` to ClientCreateContainer (INDIGO Sprint 221209, [!7](https://github.com/TeskaLabs/seacat-admin-webui/pull/7))
