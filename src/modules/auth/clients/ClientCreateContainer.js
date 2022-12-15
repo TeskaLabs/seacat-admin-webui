@@ -108,7 +108,7 @@ const ClientCreateContainer = (props) => {
 			body.client_name = "";
 		}
 
-		if (body.preferred_client_id == "") {
+		if (body.preferred_client_id == "" || body.preferred_client_id == undefined) {
 			delete body.preferred_client_id;
 		}
 
