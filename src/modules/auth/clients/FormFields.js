@@ -13,9 +13,9 @@ export function TextInput ({ name, register, errors, labelName, disabled }) {
 		name,
 		(name == "preferred_client_id") && {
 			validate: {
-				validation: value => (/^[-_a-zA-Z0-9]{8,64}$|^$/).test(value) || t("ClientFormField|Invalid format, should have minimum of 8 characters"),
+				validation: value => (/^[-_a-zA-Z0-9]{8,64}$|^$/).test(value) || t("ClientFormField|Invalid format, input should have minimum of 8 characters"),
 			}
-		},
+		}
 	);
 	return (
 		<FormGroup key={name}>
@@ -29,9 +29,9 @@ export function TextInput ({ name, register, errors, labelName, disabled }) {
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
-				invalid={(errors?.preferred_client_id) && errors.preferred_client_id}
+				invalid={errors?.preferred_client_id && errors.preferred_client_id}
 			/>
-			{(errors?.preferred_client_id) && <FormFeedback>{errors.preferred_client_id?.message}</FormFeedback>}
+			{errors?.preferred_client_id && <FormFeedback>{errors.preferred_client_id.message}</FormFeedback>}
 		</FormGroup>
 	)
 }
