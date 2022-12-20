@@ -221,6 +221,17 @@ function CredentialsDetailContainer(props) {
 										<span className="credential-status credential-suspended-status">{t('CredentialsDetailContainer|Suspended')}</span>
 									}
 									<br />
+									{(data?.registered == false) ?
+									<ButtonWithAuthz
+										style={{padding: 0, borderWidth: 0, marginTop: "8px"}}
+										onClick={() => { resendInvitation() }}
+										color="link"
+										resource={resourceManageCredentials}
+										resources={resources}
+									>
+										{t('CredentialsDetailContainer|Resend invitation')}
+									</ButtonWithAuthz>
+									:
 									<ButtonWithAuthz
 										style={{padding: 0, borderWidth: 0, marginTop: "8px"}}
 										onClick={(e) => { e.preventDefault(); suspendUserForm((suspended === false) || (suspended === undefined)) }}
@@ -234,6 +245,7 @@ function CredentialsDetailContainer(props) {
 											t('CredentialsDetailContainer|Activate user')
 										}
 									</ButtonWithAuthz>
+									}
 								</Col>
 							</Row>
 
@@ -268,14 +280,6 @@ function CredentialsDetailContainer(props) {
 									onClick={() => { resetPwd() }}
 								>
 									{t('CredentialsDetailContainer|Reset password')}
-								</ButtonWithAuthz>
-								<ButtonWithAuthz
-									color="outline-primary"
-									resource={resources}
-									resources={resources}
-									onClick={() => { resendInvitation() }}
-								>
-									{t('CredentialsDetailContainer|Resend invitation')}
 								</ButtonWithAuthz>
 							</ButtonGroup>
 						</CardFooter>
