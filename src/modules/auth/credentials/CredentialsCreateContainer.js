@@ -163,7 +163,7 @@ function CredentialsCreateContainer(props) {
 			props.history.push(`/auth/credentials/${response.data.credentials_id}`);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsCreateContainer|Something went wrong, failed to send invitation"));
+			props.app.addAlert("warning", t(`CredentialsCreateContainer|Something went wrong, failed to send invitation: ${e?.response?.data?.message}`));
 		}
 	}
 
