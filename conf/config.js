@@ -7,8 +7,8 @@ module.exports = {
 	devConfig: {
 		MOCK_USERINFO: { // Simulate userinfo
 			"email": "dev@dev.de",
-			"phone_number": "123456789",
-			"preferred_username": "Dev",
+			"phone": "123456789",
+			"username": "Dev",
 			"resources": ["seacat:access", "authz:superuser"],
 			"roles": ["default/Admin"],
 			"sub": "devdb:dev:1abc2def3456",
