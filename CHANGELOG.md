@@ -10,6 +10,8 @@
 
 - Add new input `preferred_client_id` to ClientCreateContainer (INDIGO Sprint 221209, [!7](https://github.com/TeskaLabs/seacat-admin-webui/pull/7))
 
+- Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!10](https://github.com/TeskaLabs/seacat-admin-webui/pull/10))
+
 ## v22.48
 
 ### Compatibility
