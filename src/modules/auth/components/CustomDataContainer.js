@@ -73,8 +73,12 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 	const onSave = async (data) => {
 		// first, transform data to appropirate format for api request and skip pairs with empty key field
 		let objToSubmit = await prepForRequest(data);
+		// second, check if uri is in the right format to prevend invalid address
+		let address;
+		uri.charAt(0) === '/' ? address = uri.substring(1, uri.length)
+		:	address = uri;
 		try {
-			let response = await SeaCatAuthAPI.put(`/${uri}`, {"data": objToSubmit});
+			let response = await SeaCatAuthAPI.put(`/${address}`, {"data": objToSubmit});
 			if (response.data.result !== "OK") {
 				throw new Error(t("CustomDataContainer|Something went wrong, failed to update data"));
 			};
