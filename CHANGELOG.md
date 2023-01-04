@@ -4,11 +4,13 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[0cebc91](https://github.com/TeskaLabs/asab-webui/commit/0cebc913e72115f539d99584c835efb2f6224c8d)] commit (INDIGO Sprint 221209, [!9](https://github.com/TeskaLabs/seacat-admin-webui/pull/9))
+- ASAB WebUI submodule version bump [[98343e2](https://github.com/TeskaLabs/asab-webui/commit/98343e2ce799fc923d8ec2dd5eb67b19e2df5d93)] commit (INDIGO Sprint 221209, [!10](https://github.com/TeskaLabs/seacat-admin-webui/pull/10))
 
 ### Refactoring
 
 - Add new input `preferred_client_id` to ClientCreateContainer (INDIGO Sprint 221209, [!7](https://github.com/TeskaLabs/seacat-admin-webui/pull/7))
+
+- Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!10](https://github.com/TeskaLabs/seacat-admin-webui/pull/10))
 
 ## v22.48
 
