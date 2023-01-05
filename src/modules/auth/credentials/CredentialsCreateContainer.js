@@ -129,14 +129,14 @@ function CredentialsCreateContainer(props) {
 		}
 	}
 
+	// Invite user
 	const onInvite = async (values) => {
-		// TODO: remove console.log
-		console.log(values, "VALUES on invite")
-
 		let body = {};
 		let credentials = {};
-		let expiration = 999999999; // TODO: enable to set expiration by user and use differerent default
+		// TODO: Allow setting up the expiration by admin and use differerent default
+		let expiration = 999999999;
 
+		// Fill credentials key with filled values
 		Promise.all(Object.keys(values).map((key, i) => {
 			if ((values[key] != undefined) && (values[key].length != 0)) {
 				credentials[key] = values[key];
@@ -145,9 +145,6 @@ function CredentialsCreateContainer(props) {
 
 		body["credentials"] = credentials;
 		body["expiration"] = expiration;
-
-		// TODO: remove console.log
-		console.log(body, "BODY")
 
 		let response;
 		try {
