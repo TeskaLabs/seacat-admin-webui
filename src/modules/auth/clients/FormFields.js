@@ -7,9 +7,16 @@ import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
 
 // The usual text input
-export function TextInput ({ name, register, labelName, disabled }) {
+export function TextInput ({ name, register, errors, labelName, disabled }) {
 	const { t } = useTranslation();
-	const reg = register(name);
+	const reg = register(
+		name,
+		(name == "preferred_client_id") && {
+			validate: {
+				validation: value => (/^[-_a-zA-Z0-9]{8,64}$|^$/).test(value) || t("ClientFormField|Invalid format, input should have minimum of 8 characters"),
+			}
+		}
+	);
 	return (
 		<FormGroup key={name}>
 			{labelName && <Label for={name}>{labelName}</Label>}
@@ -18,11 +25,13 @@ export function TextInput ({ name, register, labelName, disabled }) {
 				name={name}
 				type="text"
 				disabled={disabled}
+				required={name == "client_name" ? true : false}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
-
+				invalid={errors?.preferred_client_id && errors.preferred_client_id}
 			/>
+			{errors?.preferred_client_id && <FormFeedback>{errors.preferred_client_id.message}</FormFeedback>}
 		</FormGroup>
 	)
 }
@@ -65,7 +74,7 @@ export function URiInput ({ name, control, errors, append, remove, fields, label
 					return (
 						<InputGroup key={item.id} className="mb-1">
 							<Controller
-								render={({field}) => <Input {...field} invalid={errors.redirect_uris?.[idx]?.text} disabled={disabled}/>}
+								render={({field}) => <Input {...field} required={true} invalid={errors.redirect_uris?.[idx]?.text} disabled={disabled}/>}
 								name={`redirect_uris[${idx}].text`}
 								control={control}
 								rules={{
