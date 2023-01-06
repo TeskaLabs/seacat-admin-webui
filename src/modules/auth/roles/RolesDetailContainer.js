@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
+import { useForm } from 'react-hook-form';
 
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardBody, CardFooter,
 	DropdownToggle, DropdownMenu,
-	DropdownItem, Dropdown, Input
+	DropdownItem, Dropdown, Input, Form, FormGroup, ButtonGroup, Button
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';
@@ -20,6 +21,7 @@ const RolesDetailContainer = (props) =>  {
 	const [role, setRole] = useState(null);
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const { role_name, tenant_id } = props.match.params;
+	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
 
 	const [credentialsList, setCredentialsList] = useState([]);
 	const [assignedCredentialsDropdown, setAssignedCredentialsDropdown] = useState([]);
@@ -38,6 +40,10 @@ const RolesDetailContainer = (props) =>  {
 
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 	const limit = 10;
+
+	const registerDescription = register("role_description");
+	const [ editMode, setEditMode ] = useState(false);
+	const [ onUpdate, setOnUpdate ] = useState(false);
 
 	const headers = [
 		{
@@ -117,11 +123,17 @@ const RolesDetailContainer = (props) =>  {
 		getRoleDetail();
 	}, []);
 
+	if (role != null && onUpdate === false) {
+		setValue("role_description", role.description);
+		setOnUpdate(true);
+	}
+
 
 	const getRoleDetail = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`role/${tenant_id}/${role_name}`);
 			setRole(response.data);
+			console.log(response.data)
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, failed to fetch role detail"));
@@ -228,6 +240,24 @@ const RolesDetailContainer = (props) =>  {
 		}
 	}
 
+	// Update description
+	const onSubmit = async (values) => {
+		console.log(' we here', values)
+		try {
+			await SeaCatAuthAPI.put(`/role/${role._id}`,
+				{
+					description:  values.role_description
+				});
+			props.app.addAlert("success", t("RoleDetailContainer|Role updated successfully"));
+			setEditMode(false);
+			setOnUpdate(true);
+			getRoleDetail();
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", t("RoleDetailContainer|Role failed to update"));
+		}
+	}
+
 	const assignNewCredentials = (
 		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
 			<DropdownToggle caret outline className="card-header-dropdown" color="primary">
@@ -278,6 +308,7 @@ const RolesDetailContainer = (props) =>  {
 			<div className="role-detail-info">
 					<Row className="justify-content-md-center ml-0 mr-0">
 						<Card className="w-100">
+						<Form onSubmit={handleSubmit(onSubmit)}>
 							<CardHeader className="border-bottom">
 								<div className="card-header-title">
 									<i className="cil-user pr-2"></i>
@@ -297,20 +328,60 @@ const RolesDetailContainer = (props) =>  {
 									<Col md={3}>{t("Modified at")}</Col>
 									<Col><DateTime value={role._m} /></Col>
 								</Row>
+
+								<FormGroup row className="mt-3">
+										<Col sm={3}>{t("Description")}</Col>
+										<Col sm={6} style={{minHeight: "90px"}}>
+											{editMode ?
+												<Input
+													id="role_description"
+													name="role_description"
+													type="textarea"
+													rows={3}
+													autoComplete="off"
+													onChange={registerDescription.onChange}
+													onBlur={registerDescription.onBlur}
+													innerRef={registerDescription.ref}
+												/>
+											: role.description }
+										</Col>
+									</FormGroup>
 							</CardBody>
 							<CardFooter>
-								<ButtonWithAuthz
-									className="mr-3"
-									title={t("RolesDetailContainer|Remove role")}
-									color="danger"
-									outline
-									onClick={removeRoleForm}
-									resource={resource}
-									resources={resources}
-								>
-									{t("RolesDetailContainer|Remove role")}
-								</ButtonWithAuthz>
+								<ButtonGroup>
+									{editMode ?
+										<>
+											<Button color="primary" type="submit" >{t("Save")}</Button>
+											<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+										</>
+									:
+									<>
+										<ButtonWithAuthz
+											className="mr-3"
+											title={t("RolesDetailContainer|Remove role")}
+											color="danger"
+											outline
+											onClick={removeRoleForm}
+											resource={resource}
+											resources={resources}
+										>
+											{t("RolesDetailContainer|Remove role")}
+										</ButtonWithAuthz>
+										<ButtonWithAuthz
+											color="primary"
+											outline
+											type="button"
+											onClick={(e) => (e.preventDefault(), setEditMode(true))}
+											resources={resources}
+											resource="authz:superuser"
+										>
+											{t("Edit")}
+										</ButtonWithAuthz>
+									</>
+									}
+								</ButtonGroup>
 							</CardFooter>
+							</Form>
 						</Card>
 					</Row>
 					<div className="role-resource-card-area">
