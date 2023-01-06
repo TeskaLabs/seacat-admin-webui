@@ -18,6 +18,8 @@ At the moment works ONLY with `apiPath='seacat_auth'`
 
 
 props:
+
+
     - `app`
 
     - `resources`: array, of credential's resources - used for ButtonWithAuthz granting option to edit Custom data
