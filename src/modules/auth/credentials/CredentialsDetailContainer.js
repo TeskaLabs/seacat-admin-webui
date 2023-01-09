@@ -69,7 +69,7 @@ function CredentialsDetailContainer(props) {
 			setLoadingCustomData(false);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsDetailContainer|Something went wrong, failed to fetch user details"));
+			props.app.addAlert("warning", t("CredentialsDetailContainer|Something went wrong, failed to fetch user details", {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -85,7 +85,7 @@ function CredentialsDetailContainer(props) {
 			}
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsDetailContainer|Something went wrong, failed to fetch provider data"));
+			props.app.addAlert("warning", t("CredentialsDetailContainer|Something went wrong, failed to fetch provider data", {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -97,7 +97,7 @@ function CredentialsDetailContainer(props) {
 			setSessions(response.data.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("SessionListContainer|Something went wrong, failed to fetch user sessions"));
+			props.app.addAlert("warning", t("SessionListContainer|Something went wrong, failed to fetch user sessions", {error: e?.response?.data?.message}), 30);
 		}
 	}
 
@@ -119,7 +119,7 @@ function CredentialsDetailContainer(props) {
 			props.history.push("/auth/credentials");
 		} catch(e) {
 			console.error(e); // log the error to the browser's console
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to remove user'));
+			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to remove user', {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -158,7 +158,7 @@ function CredentialsDetailContainer(props) {
 			retrieveData();
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to update user'));
+			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to update user', {error: e?.response?.data?.message}), 30);
 		}
 	}
 
@@ -169,7 +169,7 @@ function CredentialsDetailContainer(props) {
 
 	// Resend invitation
 	const resendInvitation = async () => {
-		// TODO: what should be in the body??
+		// Body should be empty
 		try {
 			let response = await SeaCatAuthAPI.post(`/invite/${credentials_id}`,
 				{},
@@ -178,10 +178,10 @@ function CredentialsDetailContainer(props) {
 						'Content-Type': 'application/json'
 					}
 				});
-			props.app.addAlert("success", t('CredentialsDetailContainer|Invitation has been send successfully'));
+			props.app.addAlert("success", t('CredentialsDetailContainer|Invitation sent successfully'));
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to resend invitation'));
+			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to resend invitation', {error: e?.response?.data?.message}), 30);
 		}
 	}
 
@@ -444,16 +444,16 @@ function CredentialsInfoCard(props) {
 			if (e.response.status === 400) {
 				if (e.response.data.result.key === "phone" && e.response.data.result.error === "ALREADY-IN-USE") {
 					console.error(t("CredentialsDetailContainer|Phone number already in use"));
-					props.app.addAlert("warning", t("CredentialsDetailContainer|Phone number already in use"));
+					props.app.addAlert("warning", t("CredentialsDetailContainer|Phone number already in use"), 30);
 					return;
 				} else if (e.response.data.result.key === "email" && e.response.data.result.error === "ALREADY-IN-USE") {
 					console.error(t("CredentialsDetailContainer|Email address already in use"));
-					props.app.addAlert("warning", t("CredentialsDetailContainer|Email address already in use"));
+					props.app.addAlert("warning", t("CredentialsDetailContainer|Email address already in use"), 30);
 					return;
 				}
 			}
 			console.error(e);
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to update user'));
+			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to update user', {error: e?.response?.data?.message}), 30);
 			return;
 		}
 	}

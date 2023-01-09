@@ -145,11 +145,13 @@
 		"Provider": "Provider",
 		"Create credentials": "Create credentials",
 		"Credentials have been created successfully": "Credentials have been created successfully",
-		"Something went wrong, failed to create credentials": "Something went wrong, failed to create credentials",
-		"Something went wrong, failed to fetch providers": "Something went wrong, failed to fetch providers",
+		"Something went wrong, failed to create credentials": "Something went wrong, failed to create credentials: {{error}}",
+		"Something went wrong, failed to fetch providers": "Something went wrong, failed to fetch providers: {{error}}",
 		"Create": "Create",
 		"Invite": "Invite",
-		"Invite user": "Invite user"
+		"Invite user": "Invite user",
+		"Invitation sent successfully": "Invitation sent successfully",
+		"Something went wrong, failed to send invitation": "Something went wrong, failed to send invitation: {{error}}"
 	},
 	"CredentialsDetailContainer": {
 		"Credentials": "Credentials",
@@ -171,18 +173,20 @@
 		"Do you want to remove this user?": "Do you want to remove this user?",
 		"Do you want to suspend this user?": "Do you want to suspend this user?",
 		"Do you want to activate this user?": "Do you want to activate this user?",
-		"Something went wrong, failed to fetch user details": "Something went wrong, failed to fetch user details",
-		"Something went wrong, failed to fetch user sessions": "Something went wrong, failed to fetch user sessions",
-		"Something went wrong, failed to remove user": "Something went wrong, failed to remove user",
+		"Something went wrong, failed to fetch user details": "Something went wrong, failed to fetch user details: {{error}}",
+		"Something went wrong, failed to fetch user sessions": "Something went wrong, failed to fetch user sessions: {{error}}",
+		"Something went wrong, failed to remove user": "Something went wrong, failed to remove user: {{error}}",
 		"User removed successfully": "User removed successfully",
-		"Something went wrong, failed to update user": "Something went wrong, failed to update user",
+		"Something went wrong, failed to update user": "Something went wrong, failed to update user: {{error}}",
 		"User has been updated successfully": "User has been updated successfully",
 		"Phone number already in use": "Phone number already in use",
 		"Email address already in use": "Email address already in use",
-		"Something went wrong, failed to fetch provider data": "Something went wrong, failed to fetch provider data",
+		"Something went wrong, failed to fetch provider data": "Something went wrong, failed to fetch provider data: {{error}}",
 		"Information editing is not allowed within this credentials": "Information editing is not allowed within this credentials",
 		"Invited": "Invited",
-		"Resend invitation": "Resend invitation"
+		"Resend invitation": "Resend invitation",
+		"Something went wrong, failed to resend invitation": "Something went wrong, failed to resend invitation: {{error}}",
+		"Invitation sent successfully": "Invitation sent successfully"
 	},
 	"CredentialsRolesCard": {
 		"Assigned roles": "Assigned roles",

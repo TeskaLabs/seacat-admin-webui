@@ -145,11 +145,13 @@
 		"Provider": "Provider",
 		"Create credentials": "Vytvořit údaje",
 		"Credentials have been created successfully": "Údaje byly úspěšně vytvořeny",
-		"Something went wrong, failed to create credentials": "Něco je špatně, údaje nebyly vytvořeny",
-		"Something went wrong, failed to fetch providers": "Něco je špatně, získání providerů selhalo",
+		"Something went wrong, failed to create credentials": "Něco je špatně, údaje nebyly vytvořeny: {{error}}",
+		"Something went wrong, failed to fetch providers": "Něco je špatně, získání providerů selhalo: {{error}}",
 		"Create": "Vytvořit",
 		"Invite": "Pozvat",
-		"Invite user": "Pozvat uživatele"
+		"Invite user": "Pozvat uživatele",
+		"Invitation sent successfully": "Pozvánka úspěšně odeslána",
+		"Something went wrong, failed to send invitation": "Něco je špatně, pozvánka nebyla odeslána: {{error}}"
 	},
 	"CredentialsDetailContainer": {
 		"Credentials": "Uživatelské údaje",
@@ -182,7 +184,9 @@
 		"Something went wrong, failed to fetch provider data": "Něco je špatně, nepodařilo se získat data provideru",
 		"Information editing is not allowed within this credentials": "V rámci těchto uživatelských údajů není povolena úprava informací",
 		"Invited": "Pozván",
-		"Resend invitation": "Přeposlat pozvánku"
+		"Resend invitation": "Přeposlat pozvánku",
+		"Something went wrong, failed to resend invitation": "Něco je špatně, pozvánka nebyla odeslána: {{error}}",
+		"Invitation sent successfully": "Pozvánka úspěšně odeslána"
 	},
 	"CredentialsRolesCard": {
 		"Assigned roles": "Přiřazené role",
