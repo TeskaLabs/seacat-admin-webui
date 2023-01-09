@@ -227,7 +227,7 @@
 		"Search": "Search",
 		"Tenants": "Tenants",
 		"Roles": "Roles",
-		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",
+		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data: {{error}}",
 		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
 		"Credentials invited": "Credentials invited"
 	},

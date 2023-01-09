@@ -228,7 +228,7 @@
 		"Search": "Hledat",
 		"Tenants": "Tenanti",
 		"Roles": "Role",
-		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",
+		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data: {{error}}",
 		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
 		"Credentials invited": "Uživatel pozván"
 	},
