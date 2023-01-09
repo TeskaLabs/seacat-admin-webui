@@ -180,6 +180,7 @@
 		"Information editing is not allowed within this credentials": "Information editing is not allowed within this credentials"
 	},
 	"CredentialsRolesCard": {
+		"More": "More...",
 		"Assigned roles": "Assigned roles",
 		"Assign a new role": "Assign a new role",
 		"Select role to assign ...": "Select role to assign ...",

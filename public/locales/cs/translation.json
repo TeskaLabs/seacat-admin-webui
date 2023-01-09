@@ -180,6 +180,7 @@
 		"Information editing is not allowed within this credentials": "V rámci těchto uživatelských údajů není povolena úprava informací"
 	},
 	"CredentialsRolesCard": {
+		"More": "Více ...",
 		"Assigned roles": "Přiřazené role",
 		"Assign a new role": "Přidat novou roli",
 		"Select role to assign ...": "Vyberte roli k přiřazení ...",
