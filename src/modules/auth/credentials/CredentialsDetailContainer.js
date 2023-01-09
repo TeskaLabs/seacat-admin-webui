@@ -215,10 +215,12 @@ function CredentialsDetailContainer(props) {
 							<Row className="card-body-row">
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Status')}</Col>
 								<Col>
-									{(data.suspended === false) || (data.suspended === undefined) ?
+									{(data.suspended === false) || (data.suspended == undefined) ?
 										<span className="credential-status credential-active-status">{t('CredentialsDetailContainer|Active')}</span>
 									:
-										<span className="credential-status credential-suspended-status">{t('CredentialsDetailContainer|Suspended')}</span>
+										<span className={`credential-status ${(data?.registered == false) ? "credential-invited-status" : "credential-suspended-status"}`}>
+											{(data?.registered == false) ? t('CredentialsDetailContainer|Invited') : t('CredentialsDetailContainer|Suspended')}
+										</span>
 									}
 									<br />
 									{(data?.registered == false) ?
