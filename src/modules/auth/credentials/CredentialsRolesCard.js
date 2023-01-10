@@ -161,7 +161,7 @@ function CredentialsRolesCard(props) {
 											toggleAddRole();
 										}}
 									>
-										{t("CredentialsRolesCard|More roles...")}
+										{t("CredentialsRolesCard|More")}
 									</DropdownItem>
 								</>
 								:
