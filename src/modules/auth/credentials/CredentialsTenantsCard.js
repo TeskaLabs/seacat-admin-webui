@@ -207,7 +207,7 @@ function CredentialsTenantsCard(props) {
 										<DropdownItem
 											onClick={() => {
 												setLimit(limit + 5);
-												toggleDropdown(true);
+												toggleDropdown();
 											}}
 										>
 											{t("CredentialsTenantsCard|More")}
