@@ -84,16 +84,16 @@
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
-		"Failed to fetch clients": "Failed to fetch clients",
+		"Failed to fetch clients": "Failed to fetch clients. {{error}}",
 		"Client name": "Client name",
 		"New client": "New client",
 		"Clients": "Clients",
 		"Search": "Search"
 	},
 	"ClientCreateContainer": {
-		"Something went wrong, failed to fetch clients": "Something went wrong, failed to fetch clients",
+		"Something went wrong, failed to fetch clients": "Something went wrong, failed to fetch clients. {{error}}",
 		"Client has been created": "Client has been created",
-		"Something went wrong, client has not been created": "Something went wrong, client has not been created",
+		"Something went wrong, client has not been created": "Something went wrong, client has not been created. {{error}}",
 		"Create new client": "Create new client",
 		"Template": "Template",
 		"Client name": "Client name",
@@ -108,15 +108,15 @@
 		"Unknown item": "Unknown item"
 	},
 	"ClientDetailContainer": {
-		"Something went wrong, failed to fetch client details": "Something went wrong, failed to fetch client details",
+		"Something went wrong, failed to fetch client details": "Something went wrong, failed to fetch client details. {{error}}",
 		"Secret has been reset successfully": "Secret has been reset successfully",
-		"Something went wrong, failed to reset secret": "Something went wrong, failed to reset secret",
+		"Something went wrong, failed to reset secret": "Something went wrong, failed to reset secret. {{error}}",
 		"Do you want to reset this secret?": "Do you want to reset this secret?",
-		"Something went wrong, failed to update client": "Something went wrong, failed to update client",
+		"Something went wrong, failed to update client": "Something went wrong, failed to update client. {{error}}",
 		"Do you want to remove this client?": "Do you want to remove this client?",
 		"Client removed successfully": "Client removed successfully",
 		"Client updated successfully": "Client updated successfully",
-		"Something went wrong, failed to remove client": "Something went wrong, failed to remove client",
+		"Something went wrong, failed to remove client": "Something went wrong, failed to remove client. {{error}}",
 		"Client": "Client",
 		"Client name": "Client name",
 		"Client ID": "Client ID",
@@ -145,13 +145,13 @@
 		"Provider": "Provider",
 		"Create credentials": "Create credentials",
 		"Credentials have been created successfully": "Credentials have been created successfully",
-		"Something went wrong, failed to create credentials": "Something went wrong, failed to create credentials: {{error}}",
-		"Something went wrong, failed to fetch providers": "Something went wrong, failed to fetch providers: {{error}}",
+		"Something went wrong, failed to create credentials": "Something went wrong, failed to create credentials. {{error}}",
+		"Something went wrong, failed to fetch providers": "Something went wrong, failed to fetch providers. {{error}}",
 		"Create": "Create",
 		"Invite": "Invite",
 		"Invite user": "Invite user",
 		"Invitation sent successfully": "Invitation sent successfully",
-		"Something went wrong, failed to send invitation": "Something went wrong, failed to send invitation: {{error}}"
+		"Something went wrong, failed to send invitation": "Something went wrong, failed to send invitation. {{error}}"
 	},
 	"CredentialsDetailContainer": {
 		"Credentials": "Credentials",
@@ -173,19 +173,19 @@
 		"Do you want to remove this user?": "Do you want to remove this user?",
 		"Do you want to suspend this user?": "Do you want to suspend this user?",
 		"Do you want to activate this user?": "Do you want to activate this user?",
-		"Something went wrong, failed to fetch user details": "Something went wrong, failed to fetch user details: {{error}}",
-		"Something went wrong, failed to fetch user sessions": "Something went wrong, failed to fetch user sessions: {{error}}",
-		"Something went wrong, failed to remove user": "Something went wrong, failed to remove user: {{error}}",
+		"Something went wrong, failed to fetch user details": "Something went wrong, failed to fetch user details. {{error}}",
+		"Something went wrong, failed to fetch user sessions": "Something went wrong, failed to fetch user sessions. {{error}}",
+		"Something went wrong, failed to remove user": "Something went wrong, failed to remove user. {{error}}",
 		"User removed successfully": "User removed successfully",
-		"Something went wrong, failed to update user": "Something went wrong, failed to update user: {{error}}",
+		"Something went wrong, failed to update user": "Something went wrong, failed to update user. {{error}}",
 		"User has been updated successfully": "User has been updated successfully",
 		"Phone number already in use": "Phone number already in use",
 		"Email address already in use": "Email address already in use",
-		"Something went wrong, failed to fetch provider data": "Something went wrong, failed to fetch provider data: {{error}}",
+		"Something went wrong, failed to fetch provider data": "Something went wrong, failed to fetch provider data. {{error}}",
 		"Information editing is not allowed within this credentials": "Information editing is not allowed within this credentials",
 		"Invited": "Invited",
 		"Resend invitation": "Resend invitation",
-		"Something went wrong, failed to resend invitation": "Something went wrong, failed to resend invitation: {{error}}",
+		"Something went wrong, failed to resend invitation": "Something went wrong, failed to resend invitation. {{error}}",
 		"Invitation sent successfully": "Invitation sent successfully"
 	},
 	"CredentialsRolesCard": {
@@ -193,18 +193,18 @@
 		"Assign a new role": "Assign a new role",
 		"Select role to assign ...": "Select role to assign ...",
 		"Roles updated successfully": "Roles updated successfully",
-		"Failed to update roles": "Failed to update roles",
-		"Something went wrong, failed to fetch roles": "Something went wrong, failed to fetch roles",
-		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles"
+		"Failed to update roles": "Failed to update roles. {{error}}",
+		"Something went wrong, failed to fetch roles": "Something went wrong, failed to fetch roles. {{error}}",
+		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles. {{error}}"
 	},
 	"CredentialsTenantsCard": {
 		"Tenants": "Tenants",
 		"Assign a tenant": "Assign a tenant",
 		"Search": "Search",
 		"Tenants updated successfully": "Tenants updated successfully",
-		"Failed to update tenants": "Failed to update tenants",
-		"Something went wrong, failed to fetch tenants": "Something went wrong, failed to fetch tenants",
-		"Something went wrong, failed to fetch assigned tenants": "Something went wrong, failed to fetch assigned tenants",
+		"Failed to update tenants": "Failed to update tenants. {{error}}",
+		"Something went wrong, failed to fetch tenants": "Something went wrong, failed to fetch tenants. {{error}}",
+		"Something went wrong, failed to fetch assigned tenants": "Something went wrong, failed to fetch assigned tenants. {{error}}",
 		"No match": "No match"
 	},
 	"CredentialsSessionCard": {
@@ -215,7 +215,7 @@
 		"Do you want to terminate user sessions?": "Do you want to terminate user sessions?",
 		"Sessions successfully terminated": "Sessions successfully terminated",
 		"Something went wrong when terminating sessions": "Something went wrong when terminating sessions",
-		"Failed to terminate sessions": "Failed to terminate sessions"
+		"Failed to terminate sessions": "Failed to terminate sessions. {{error}}"
 	},
 	"CredentialsListContainer": {
 		"Credentials": "Credentials",
@@ -227,7 +227,7 @@
 		"Search": "Search",
 		"Tenants": "Tenants",
 		"Roles": "Roles",
-		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data: {{error}}",
+		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data. {{error}}",
 		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
 		"Credentials invited": "Credentials invited"
 	},
@@ -262,31 +262,31 @@
 		"Username": "Username",
 		"ID": "ID",
 		"Password has been reset": "Password has been reset",
-		"Something went wrong, failed to reset user's password": "Something went wrong, failed to reset user's password",
+		"Something went wrong, failed to reset user's password": "Something went wrong, failed to reset user's password. {{error}}",
 		"Reset password": "Reset password",
 		"Specify password": "Specify password",
 		"New password": "New password",
 		"Password cannot be empty!": "Password cannot be empty!",
 		"Do you want to reset password for this user?": "Do you want to reset password for this user?",
-		"Something went wrong, failed to fetch user details": "Something went wrong, failed to fetch user details"
+		"Something went wrong, failed to fetch user details": "Something went wrong, failed to fetch user details. {{error}}"
 	},
 	"RolesListContainer": {
 		"Roles overview": "Roles overview",
 		"Create role": "Create role",
 		"Role": "Role",
-		"Something went wrong, failed to fetch roles": "Something went wrong, failed to fetch roles"
+		"Something went wrong, failed to fetch roles": "Something went wrong, failed to fetch roles. {{error}}"
 	},
 	"RolesDetailContainer": {
 		"Role removed successfully": "Role removed successfully",
-		"Failed to remove the role": "Failed to remove the role",
+		"Failed to remove the role": "Failed to remove the role. {{error}}",
 		"Role": "Role",
 		"Remove role": "Remove role",
 		"Do you want to remove the role?": "Do you want to remove the role?",
-		"Something went wrong, failed to fetch role detail": "Something went wrong, failed to fetch role detail",
-		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",
+		"Something went wrong, failed to fetch role detail": "Something went wrong, failed to fetch role detail. {{error}}",
+		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data. {{error}}",
 		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
-		"Something went wrong, the credentials cannot be assigned": "Something went wrong, the credentials cannot be assigned",
-		"Something went wrong, the credentials cannot be unassigned": "Something went wrong, the credentials cannot be unassigned",
+		"Something went wrong, the credentials cannot be assigned": "Something went wrong, the credentials cannot be assigned. {{error}}",
+		"Something went wrong, the credentials cannot be unassigned": "Something went wrong, the credentials cannot be unassigned. {{error}}",
 		"The selected credential has already been assigned": "The selected credential has already been assigned",
 		"Unable to assign credentials": "Unable to assign credentials",
 		"Unable to unassign credentials": "Unable to unassign credentials",
@@ -297,7 +297,7 @@
 		"Unassign credentials": "Unassign credentials",
 		"Do you want to unassign these credentials?": "Do you want to unassign these credentials?",
 		"Credentials suspended": "Credentials suspended",
-		"Something went wrong, failed to fetch assigned credentials": "Something went wrong, failed to fetch assigned credentials",
+		"Something went wrong, failed to fetch assigned credentials": "Something went wrong, failed to fetch assigned credentials. {{error}}",
 		"Assign credentials": "Assign credentials",
 		"Assigned credentials": "Assigned credentials"
 	},
@@ -313,13 +313,13 @@
 		"Invalid format, only letters, numbers, dash and underscore are allowed": "Invalid format, only letters, numbers, dash and underscore are allowed",
 		"Invalid format": "Invalid format:",
 		"Only letters, numbers, dash and underscore are allowed": "Only letters, numbers, dash and underscore are allowed",
-		"Something went wrong, role has not been created": "Something went wrong, role has not been created"
+		"Something went wrong, role has not been created": "Something went wrong, role has not been created. {{error}}"
 	},
 	"RolesResourcesCard": {
-		"Fetch of all resources failed": "Failed to fetch all resources",
-		"Fetch of assigned resources failed": "Failed to fetch assigned resources",
+		"Fetch of all resources failed": "Failed to fetch all resources. {{error}}",
+		"Fetch of assigned resources failed": "Failed to fetch assigned resources. {{error}}",
 		"Role has been updated successfully": "Role has been updated successfully",
-		"Update of the role has failed": "Update of the role has failed",
+		"Update of the role has failed": "Update of the role has failed. {{error}}",
 		"Assigned resources": "Assigned resources",
 		"Add resource": "Add resource",
 		"Select resource": "Select resource",
@@ -341,45 +341,44 @@
 		"Invalid format, resource cannot start with a underscore": "Invalid format, resource cannot start with a underscore",
 		"Invalid format, only letters, numbers, dash and underscore are allowed": "Invalid format, only letters, numbers, dash and underscore are allowed",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
-		"Something went wrong, failed to create resource": "Something went wrong, failed to create resource"
+		"Something went wrong, failed to create resource": "Something went wrong, failed to create resource. {{error}}"
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Resource",
 		"Resource updated successfully": "Resource updated successfully",
-		"Something went wrong, can't fetch resource details": "Something went wrong, can't fetch resource details",
-		"Something went wrong, failed to update resource": "Something went wrong, failed to update resource"
+		"Something went wrong, can't fetch resource details": "Something went wrong, can't fetch resource details. {{error}}",
+		"Something went wrong, failed to update resource": "Something went wrong, failed to update resource. {{error}}"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Resources list",
 		"Create resource": "Create resource",
-		"Something went wrong, failed to load resources": "Something went wrong, failed to load resources"
+		"Something went wrong, failed to load resources": "Something went wrong, failed to load resources. {{error}}"
 	},
 	"SessionListContainer": {
 		"Credentials": "Credentials",
-		"Failed to fetch the object": "Failed to fetch the object.",
+		"Failed to fetch the object": "Failed to fetch the object. {{error}}",
 		"Sessions": "Sessions",
 		"Expected expiration": "Expected expiration",
 		"Terminate session": "Terminate session",
 		"Do you want to terminate this session?": "Do you want to terminate this session?",
 		"Session successfully terminated": "Session successfully terminated",
 		"Something went wrong when terminating session": "Something went wrong when terminating session",
-		"Failed to terminate the session": "Failed to terminate the session",
+		"Failed to terminate the session": "Failed to terminate the session. {{error}}",
 		"Terminate all sessions": "Terminate all sessions",
 		"Terminate all": "Terminate all",
 		"Do you want to terminate all sessions?": "Do you want to terminate all sessions?",
 		"All sessions successfully terminated": "All sessions successfully terminated",
 		"Something went wrong when terminating all sessions": "Something went wrong when terminating all sessions",
-		"Failed to terminate all sessions": "Failed to terminate all sessions",
+		"Failed to terminate all sessions": "Failed to terminate all sessions. {{error}}",
 		"Access denied, you do not have a right to perform this action": "Access denied, you do not have a right to perform this action",
 		"Session": "Session"
 	},
 	"SessionDetailContainer": {
-		"Something went wrong when fetching details": "Something went wrong when fetching details",
-		"Failed to fetch details": "Failed to fetch details",
+		"Failed to fetch details": "Failed to fetch details. {{error}}",
 		"Do you want to terminate this session?": "Do you want to terminate this session?",
 		"Session successfully terminated": "Session successfully terminated",
 		"Something went wrong when terminating session": "Something went wrong when terminating session",
-		"Failed to terminate the session": "Failed to terminate the session",
+		"Failed to terminate the session": "Failed to terminate the session. {{error}}",
 		"Session": "Session",
 		"Terminate session": "Terminate session",
 		"Session ID": "Session ID",
@@ -392,7 +391,7 @@
 		"Authorization": "Authorization"
 	},
 	"TenantListContainer": {
-		"Failed to fetch tenants": "Failed to fetch tenants",
+		"Failed to fetch tenants": "Failed to fetch tenants. {{error}}",
 		"Tenants": "Tenants",
 		"New tenant": "New tenant"
 	},
@@ -406,7 +405,7 @@
 		"No changes were made": "No changes were made",
 		"Remove input": "Remove input",
 		"Nothing to remove": "Nothing to remove",
-		"Something went wrong, failed to update data": "Something went wrong, failed to update data",
+		"Something went wrong, failed to update data": "Something went wrong, failed to update data. {{error}}",
 		"Data updated successfully": "Data updated successfully",
 		"Changes have not been saved. Discard and continue?": "Changes have not been saved. Discard and continue?",
 		"Name": "Name",
@@ -417,14 +416,13 @@
 	"TenantDetailContainer": {
 		"Tenant": "Tenant",
 		"Custom data": "Custom Data",
-		"Something went wrong, failed to fetch tenant detail": "Something went wrong, failed to fetch tenant detail",
+		"Something went wrong, failed to fetch tenant detail": "Something went wrong, failed to fetch tenant detail. {{error}}",
 		"Assigned credentials": "Assigned credentials",
 		"Assign credentials": "Assign credentials",
-		"Something went wrong, failed to fetch assigned credentials": "Something went wrong, failed to fetch assigned credentials",
-		"Something went wrong, failed to update credentials": "Something went wrong, failed to update credentials",
-		"Something went wrong, the credentials cannot be assigned": "Something went wrong, the credentials cannot be assigned",
-		"Something went wrong, the credentials cannot be unassigned": "Something went wrong, the credentials cannot be unassigned",
-		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",
+		"Something went wrong, failed to fetch assigned credentials": "Something went wrong, failed to fetch assigned credentials. {{error}}",
+		"Something went wrong, the credentials cannot be assigned": "Something went wrong, the credentials cannot be assigned. {{error}}",
+		"Something went wrong, the credentials cannot be unassigned": "Something went wrong, the credentials cannot be unassigned. {{error}}",
+		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data. {{error}}",
 		"The selected credential has already been assigned": "The selected credential has already been assigned",
 		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
 		"Unable to unassign credentials": "Unable to unassign credentials",
@@ -438,7 +436,7 @@
 		"Unassign credentials": "Unassign credentials",
 		"Do you want to remove the tenant?": "Do you want to remove the tenant?",
 		"Do you want to unassign these credentials?": "Do you want to unassign these credentials?",
-		"Failed to remove the tenant": "Failed to remove the tenant",
+		"Failed to remove the tenant": "Failed to remove the tenant. {{error}}",
 		"Tenant removed successfully": "Tenant removed successfully",
 		"Tenant data updated successfully": "Tenant data updated successfully"
 	},
@@ -457,8 +455,8 @@
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Invalid format, only lower-case letters, numbers, dash and underscore are allowed",
 		"Invalid format": "Invalid format:",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
-		"Something went wrong, failed to create tenant": "Something went wrong, failed to create tenant",
-		"Something went wrong, can't propose tenant name": "Something went wrong, can't propose tenant name"
+		"Something went wrong, failed to create tenant": "Something went wrong, failed to create tenant. {{error}}",
+		"Something went wrong, can't propose tenant name": "Something went wrong, can't propose tenant name. {{error}}"
 	},
 	"UserInterfaceCard": {
 		"User interface": "User interface",

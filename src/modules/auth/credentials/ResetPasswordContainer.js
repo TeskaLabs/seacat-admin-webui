@@ -38,7 +38,7 @@ function ResetPasswordContainer(props) {
 			setData(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ResetPasswordContainer|Something went wrong, failed to fetch user details"));
+			props.app.addAlert("warning", t("ResetPasswordContainer|Something went wrong, failed to fetch user details", {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -59,7 +59,7 @@ function ResetPasswordContainer(props) {
 						'Content-Type': 'application/json'
 				}});
 			if (response.data.result !== true) {
-				props.app.addAlert("warning", t("ResetPasswordContainer|Something went wrong, failed to reset user's password"));
+				props.app.addAlert("warning", t("ResetPasswordContainer|Something went wrong, failed to reset user's password"), 30);
 				return;
 			}
 			props.app.addAlert("success", t("ResetPasswordContainer|Password has been reset"));
@@ -67,7 +67,7 @@ function ResetPasswordContainer(props) {
 			props.history.push(`/auth/credentials/${credentials_id}`)
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ResetPasswordContainer|Something went wrong, failed to reset user's password"));
+			props.app.addAlert("warning", t("ResetPasswordContainer|Something went wrong, failed to reset user's password", {error: e?.response?.data?.message}), 30);
 		}
 	}
 

@@ -46,7 +46,7 @@ const ResourceCreateContainer = (props) => {
 			props.history.push("/auth/resources");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ResourcesCreateContainer|Something went wrong, failed to create resource"));
+			props.app.addAlert("warning", t("ResourcesCreateContainer|Something went wrong, failed to create resource", {error: e?.response?.data?.message}), 30);
 		}
 	}
 
