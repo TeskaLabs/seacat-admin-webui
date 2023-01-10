@@ -180,6 +180,7 @@
 		"Information editing is not allowed within this credentials": "V rámci těchto uživatelských údajů není povolena úprava informací"
 	},
 	"CredentialsRolesCard": {
+		"More": "Více ...",
 		"Assigned roles": "Přiřazené role",
 		"Assign a new role": "Přidat novou roli",
 		"Select role to assign ...": "Vyberte roli k přiřazení ...",
@@ -189,6 +190,7 @@
 		"Something went wrong, failed to fetch assigned roles": "Něco je špatně, nepodařilo se získat přiřazené role"
 	},
 	"CredentialsTenantsCard": {
+		"More": "Více ...",
 		"Tenants": "Tenanti",
 		"Assign a tenant": "Přiřadit tenanta",
 		"Search": "Vyhledat",
