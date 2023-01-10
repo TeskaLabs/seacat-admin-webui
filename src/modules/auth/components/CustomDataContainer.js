@@ -74,7 +74,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 		// first, transform data to appropirate format for api request and skip pairs with empty key field
 		let objToSubmit = await prepForRequest(data);
 		try {
-			let response = await SeaCatAuthAPI.put(`/${uri}`, {"data": objToSubmit});
+			let response = await SeaCatAuthAPI.put(`/${uri.replace(/^\//g, "")}`, {"data": objToSubmit});
 			if (response.data.result !== "OK") {
 				throw new Error(t("CustomDataContainer|Something went wrong, failed to update data"));
 			};
