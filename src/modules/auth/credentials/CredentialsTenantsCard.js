@@ -210,7 +210,7 @@ function CredentialsTenantsCard(props) {
 												toggleDropdown(true);
 											}}
 										>
-											{t("CredentialsRolesCard|More")}
+											{t("CredentialsTenantsCard|More")}
 										</DropdownItem>
 									</>
 									:
