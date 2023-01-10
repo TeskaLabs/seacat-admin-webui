@@ -12,6 +12,8 @@
 
 - Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!10](https://github.com/TeskaLabs/seacat-admin-webui/pull/10))
 
+- Dropdown menu used to assign `tenants` nad `roles` to specific `Credentials` has been refactored to offer more data than the initial limit, upon clicking the 'More ...' button. (INDIGO Sprint 230106, [!11](https://github.com/TeskaLabs/seacat-admin-webui/pull/11))
+
 ## v22.48
 
 ### Compatibility
