@@ -190,6 +190,7 @@
 		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles"
 	},
 	"CredentialsTenantsCard": {
+		"More": "More...",
 		"Tenants": "Tenants",
 		"Assign a tenant": "Assign a tenant",
 		"Search": "Search",

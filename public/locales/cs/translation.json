@@ -190,6 +190,7 @@
 		"Something went wrong, failed to fetch assigned roles": "Něco je špatně, nepodařilo se získat přiřazené role"
 	},
 	"CredentialsTenantsCard": {
+		"More": "Více ...",
 		"Tenants": "Tenanti",
 		"Assign a tenant": "Přiřadit tenanta",
 		"Search": "Vyhledat",
