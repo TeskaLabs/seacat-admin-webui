@@ -39,7 +39,7 @@ const RolesCreateContainer = (props) => {
 			props.history.push(`/auth/roles/${tenant}/${values.roleName}`);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("RolesCreateContainer|Something went wrong, role has not been created"));
+			props.app.addAlert("warning", t("RolesCreateContainer|Something went wrong, role has not been created", {error: e?.response?.data?.message}), 30);
 		}
 	}
 

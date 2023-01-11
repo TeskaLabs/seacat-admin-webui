@@ -124,7 +124,7 @@ const RolesDetailContainer = (props) =>  {
 			setRole(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, failed to fetch role detail"));
+			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, failed to fetch role detail", {error: e?.response?.data?.message}), 30);
 		}
 	}
 
@@ -135,7 +135,7 @@ const RolesDetailContainer = (props) =>  {
 			props.history.push("/auth/roles");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("RolesDetailContainer|Failed to remove the role"))
+			props.app.addAlert("warning", t("RolesDetailContainer|Failed to remove the role", {error: e?.response?.data?.message}), 30);
 		}
 	}
 
@@ -161,7 +161,7 @@ const RolesDetailContainer = (props) =>  {
 		} catch(e) {
 			console.error(e);
 			setLoading(false);
-			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, failed to fetch assigned credentials"));
+			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, failed to fetch assigned credentials", {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -179,10 +179,10 @@ const RolesDetailContainer = (props) =>  {
 			console.error(e);
 			setLoading(false);
 			if (e.response.status === 401) {
-				props.app.addAlert("warning", t("RolesDetailContainer|Can't fetch the data, you don't have rights to display it"));
+				props.app.addAlert("warning", t("RolesDetailContainer|Can't fetch the data, you don't have rights to display it"), 30);
 				return;
 			}
-			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, failed to fetch data"));
+			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, failed to fetch data", {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -197,10 +197,10 @@ const RolesDetailContainer = (props) =>  {
 			retrieveAssignedCredentials();
 		} catch(e) {
 			if (e.response?.data?.result === "ALREADY-EXISTS") {
-				props.app.addAlert("warning", t("RolesDetailContainer|The selected credential has already been assigned"));
+				props.app.addAlert("warning", t("RolesDetailContainer|The selected credential has already been assigned"), 30);
 			} else {
 				console.error(e);
-				props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, the credentials cannot be assigned"));
+				props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, the credentials cannot be assigned", {error: e?.response?.data?.message}), 30);
 			}
 		}
 	};
@@ -217,7 +217,7 @@ const RolesDetailContainer = (props) =>  {
 
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, the credentials cannot be unassigned"));
+			props.app.addAlert("warning", t("RolesDetailContainer|Something went wrong, the credentials cannot be unassigned", {error: e?.response?.data?.message}), 30);
 		}
 	};
 

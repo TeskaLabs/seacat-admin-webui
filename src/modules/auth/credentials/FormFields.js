@@ -95,9 +95,9 @@ export function UserNameField(props) {
 		"username",
 		{
 			validate: {
-				emptyInput: value => (value && value.toString().length !== 0) || t("FormFields|Username cannot be empty!"),
+				emptyInput: value => (value && value.toString().length !== 0) || (props.required == false) || t("FormFields|Username cannot be empty!"),
 				startWithNumber: value => !(/^\d/).test(value) || t("FormFields|Invalid format, username cannot start with a number"),
-				vlidation: value => (/^[a-z_][a-z0-9_-]{0,31}$/).test(value) || t("FormFields|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
+				validation: value => (/^[a-z_][a-z0-9_-]{0,31}$|^$/).test(value) || t("FormFields|Invalid format, only lower-case letters, numbers, dash and underscore are allowed"),
 			}
 		}
 	);

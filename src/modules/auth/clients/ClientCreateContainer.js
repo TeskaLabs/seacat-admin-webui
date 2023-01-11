@@ -85,7 +85,7 @@ const ClientCreateContainer = (props) => {
 			setTemplate(response.data["templates"]);
 		} catch (e) {
 			console.error("Failed to retrieve providers from server: ", e);
-			props.app.addAlert("warning", t("ClientCreateContainer|Something went wrong, failed to fetch clients"));
+			props.app.addAlert("warning", t("ClientCreateContainer|Something went wrong, failed to fetch clients", {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -124,7 +124,7 @@ const ClientCreateContainer = (props) => {
 
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ClientCreateContainer|Something went wrong, client has not been created"));
+			props.app.addAlert("warning", t("ClientCreateContainer|Something went wrong, client has not been created", {error: e?.response?.data?.message}), 30);
 		}
 	};
 

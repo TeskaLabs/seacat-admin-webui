@@ -60,7 +60,7 @@ function CredentialsTenantsCard(props) {
 			setPrevAssignedTenants(response.data)
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsTenantsCard|Something went wrong, failed to fetch assigned tenants"));
+			props.app.addAlert("warning", t("CredentialsTenantsCard|Something went wrong, failed to fetch assigned tenants", {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -92,7 +92,7 @@ function CredentialsTenantsCard(props) {
 			setAllTenants(eligibleTenants);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsTenantsCard|Something went wrong, failed to fetch tenants"));
+			props.app.addAlert("warning", t("CredentialsTenantsCard|Something went wrong, failed to fetch tenants", {error: e?.response?.data?.message}), 30);
 		}
 	};
 
@@ -106,7 +106,7 @@ function CredentialsTenantsCard(props) {
 			props.setRolesRefresh(prev => !prev);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsRolesCard|Failed to update tenants"));
+			props.app.addAlert("warning", t("CredentialsRolesCard|Failed to update tenants", {error: e?.response?.data?.message}), 30);
 		}
 	}
 
