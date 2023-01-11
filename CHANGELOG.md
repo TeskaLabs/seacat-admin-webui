@@ -16,6 +16,8 @@
 
 - Update alert responses with full message from the service and prolong the time of the error message to 30s (INDIGO Sprint 230106, [!8](https://github.com/TeskaLabs/seacat-admin-webui/pull/8))
 
+- Refactorization of CustomDataContainer to prevent passing invalid format of `uri` prop. Added documentation. (INDIGO Sprint 221209, [!11](https://github.com/TeskaLabs/seacat-admin-webui/pull/11))
+
 ## v22.48
 
 ### Compatibility
