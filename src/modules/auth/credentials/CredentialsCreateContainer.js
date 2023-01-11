@@ -132,8 +132,8 @@ function CredentialsCreateContainer(props) {
 	const onInvite = async (values) => {
 		let body = {};
 		let credentials = {};
-		// TODO: Allow setting up the expiration by admin and use differerent default
-		let expiration = 999999999;
+		// TODO: Allow setting up the expiration by admin (default is defined within service config)
+		// let expiration = 999999999;
 
 		// Fill credentials key with filled values
 		Promise.all(Object.keys(values).map((key, i) => {
@@ -143,7 +143,8 @@ function CredentialsCreateContainer(props) {
 		}))
 
 		body["credentials"] = credentials;
-		body["expiration"] = expiration;
+		// TODO: Allow setting up the expiration by admin
+		// body["expiration"] = expiration;
 
 		let response;
 		try {
