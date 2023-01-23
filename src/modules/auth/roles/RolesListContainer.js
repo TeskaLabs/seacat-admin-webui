@@ -82,7 +82,7 @@ const RolesListcontainer = (props) => {
 		} catch(e) {
 			console.error(e);
 			setLoading(false);
-			props.app.addAlert("warning", t("RolesListContainer|Something went wrong, failed to fetch roles", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("RolesListContainer|Something went wrong, failed to fetch roles")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

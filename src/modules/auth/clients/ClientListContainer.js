@@ -86,7 +86,7 @@ function ClientListContainer(props) {
 		} catch (e) {
 			console.error(e);
 			setLoading(false);
-			props.app.addAlert("warning", t("ClientListContainer|Failed to fetch clients", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("ClientListContainer|Failed to fetch clients")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

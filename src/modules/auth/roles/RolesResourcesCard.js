@@ -31,7 +31,7 @@ const RolesResourcesCard = (props) => {
 				const assignedResources = res.data.resources;
 				setAssignedResources(assignedResources);
 			})
-			.catch((e) => props.app.addAlert("warning", t("RolesResourcesCard|Fetch of assigned resources failed", {error: e?.response?.data?.message}), 30));
+			.catch((e) => props.app.addAlert("warning", `${t("RolesResourcesCard|Fetch of assigned resources failed")}. ${e?.response?.data?.message}`, 30));
 		if (editMode) setEditMode(false);
 	}
 
@@ -46,7 +46,7 @@ const RolesResourcesCard = (props) => {
 				}
 				setUnassignedResources(unassignedResources);
 			})
-			.catch((e) => props.app.addAlert("warning", t("RolesResourcesCard|Fetch of all resources failed", {error: e?.response?.data?.message}), 30));
+			.catch((e) => props.app.addAlert("warning", `${t("RolesResourcesCard|Fetch of all resources failed")}. ${e?.response?.data?.message}`, 30));
 	}
 
 	const assignResource = (resource) => {
@@ -66,7 +66,7 @@ const RolesResourcesCard = (props) => {
 			setEditMode(false);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("RolesResourcesCard|Update of the role has failed", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("RolesResourcesCard|Update of the role has failed")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

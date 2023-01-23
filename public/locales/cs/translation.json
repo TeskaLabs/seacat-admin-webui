@@ -84,16 +84,16 @@
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",
-		"Failed to fetch clients": "Nepodařilo se načíst klienty. {{error}}",
+		"Failed to fetch clients": "Nepodařilo se načíst klienty",
 		"Client name": "Název klienta",
 		"New client": "Nový klient",
 		"Clients": "Klienti",
 		"Search": "Vyhledat"
 	},
 	"ClientCreateContainer": {
-		"Something went wrong, failed to fetch clients": "Něco je špatně, nepodařilo se získat klienty. {{error}}",
+		"Something went wrong, failed to fetch clients": "Něco je špatně, nepodařilo se získat klienty",
 		"Client has been created": "Klient byl vytvořen",
-		"Something went wrong, client has not been created": "Něco je špatně, klient nebyl vytvořen. {{error}}",
+		"Something went wrong, client has not been created": "Něco je špatně, klient nebyl vytvořen",
 		"Create new client": "Vytvořit nového klienta",
 		"Template": "Šablona",
 		"Client name": "Název klienta",
@@ -108,15 +108,15 @@
 		"Unknown item": "Neznámá položka"
 	},
 	"ClientDetailContainer": {
-		"Something went wrong, failed to fetch client details": "Něco je špatně, nepodařilo se získat detail klienta. {{error}}",
+		"Something went wrong, failed to fetch client details": "Něco je špatně, nepodařilo se získat detail klienta",
 		"Secret has been reset successfully": "Heslo bylo úspěšně resetováno",
-		"Something went wrong, failed to reset secret": "Reset hesla se nezdařil. {{error}}",
+		"Something went wrong, failed to reset secret": "Reset hesla se nezdařil",
 		"Do you want to reset this secret?": "Přejete si resetovat toto heslo?",
-		"Something went wrong, failed to update client": "Něco je špatně, nepodařilo se aktualizovat klienta. {{error}}",
+		"Something went wrong, failed to update client": "Něco je špatně, nepodařilo se aktualizovat klienta",
 		"Do you want to remove this client?": "Chcete odstranit tohoto klienta?",
 		"Client removed successfully": "Klient úspěšně odstraněn",
 		"Client updated successfully": "Klient úspěšně aktualizován",
-		"Something went wrong, failed to remove client": "Něco je špatně, nepodařilo se odstranit klienta. {{error}}",
+		"Something went wrong, failed to remove client": "Něco je špatně, nepodařilo se odstranit klienta",
 		"Client": "Klient",
 		"Client name": "Název klienta",
 		"Client ID": "ID klienta",
@@ -145,13 +145,13 @@
 		"Provider": "Provider",
 		"Create credentials": "Vytvořit údaje",
 		"Credentials have been created successfully": "Údaje byly úspěšně vytvořeny",
-		"Something went wrong, failed to create credentials": "Něco je špatně, údaje nebyly vytvořeny. {{error}}",
-		"Something went wrong, failed to fetch providers": "Něco je špatně, získání providerů selhalo. {{error}}",
+		"Something went wrong, failed to create credentials": "Něco je špatně, údaje nebyly vytvořeny",
+		"Something went wrong, failed to fetch providers": "Něco je špatně, získání providerů selhalo",
 		"Create": "Vytvořit",
 		"Invite": "Pozvat",
 		"Invite user": "Pozvat uživatele",
 		"Invitation sent successfully": "Pozvánka úspěšně odeslána",
-		"Something went wrong, failed to send invitation": "Něco je špatně, pozvánka nebyla odeslána. {{error}}"
+		"Something went wrong, failed to send invitation": "Něco je špatně, pozvánka nebyla odeslána"
 	},
 	"CredentialsDetailContainer": {
 		"Credentials": "Uživatelské údaje",
@@ -173,19 +173,19 @@
 		"Do you want to remove this user?": "Opravdu chcete odstranit tohoto uživatele?",
 		"Do you want to suspend this user?": "Opravdu chcete suspendovat tohoto uživatele?",
 		"Do you want to activate this user?": "Opravdu chcete aktivovat tohoto uživatele?",
-		"Something went wrong, failed to fetch user details": "Něco je špatně, nepodařilo se získat detaily uživatele. {{error}}",
-		"Something went wrong, failed to fetch user sessions": "Něco je špatně, nepodařilo se získat relace uživatele. {{error}}",
-		"Something went wrong, failed to remove user": "Něco je špatně, nepodařilo se odstranit uživatele. {{error}}",
+		"Something went wrong, failed to fetch user details": "Něco je špatně, nepodařilo se získat detaily uživatele",
+		"Something went wrong, failed to fetch user sessions": "Něco je špatně, nepodařilo se získat relace uživatele",
+		"Something went wrong, failed to remove user": "Něco je špatně, nepodařilo se odstranit uživatele",
 		"User removed successfully": "Uživatel úspěšně odstraněn",
-		"Something went wrong, failed to update user": "Něco je špatně, nepodařilo se aktualizovat uživatele. {{error}}",
+		"Something went wrong, failed to update user": "Něco je špatně, nepodařilo se aktualizovat uživatele",
 		"User has been updated successfully": "Uživatel úspěšně aktualizován",
 		"Phone number already in use": "Telefonní číslo je již použito",
 		"Email address already in use": "Emailová adresa je již použita",
-		"Something went wrong, failed to fetch provider data": "Něco je špatně, nepodařilo se získat data provideru. {{error}}",
+		"Something went wrong, failed to fetch provider data": "Něco je špatně, nepodařilo se získat data provideru",
 		"Information editing is not allowed within this credentials": "V rámci těchto uživatelských údajů není povolena úprava informací",
 		"Invited": "Pozván",
 		"Resend invitation": "Přeposlat pozvánku",
-		"Something went wrong, failed to resend invitation": "Něco je špatně, pozvánka nebyla odeslána. {{error}}",
+		"Something went wrong, failed to resend invitation": "Něco je špatně, pozvánka nebyla odeslána",
 		"Invitation sent successfully": "Pozvánka úspěšně odeslána"
 	},
 	"CredentialsRolesCard": {
@@ -193,18 +193,18 @@
 		"Assign a new role": "Přidat novou roli",
 		"Select role to assign ...": "Vyberte roli k přiřazení ...",
 		"Roles updated successfully": "Role úspěšně aktualizované",
-		"Failed to update roles": "Role se nepodařilo aktualizovat. {{error}}",
-		"Something went wrong, failed to fetch roles": "Něco je špatně, nepodařilo se získat role. {{error}}",
-		"Something went wrong, failed to fetch assigned roles": "Něco je špatně, nepodařilo se získat přiřazené role. {{error}}"
+		"Failed to update roles": "Role se nepodařilo aktualizovat",
+		"Something went wrong, failed to fetch roles": "Něco je špatně, nepodařilo se získat role",
+		"Something went wrong, failed to fetch assigned roles": "Něco je špatně, nepodařilo se získat přiřazené role"
 	},
 	"CredentialsTenantsCard": {
 		"Tenants": "Tenanti",
 		"Assign a tenant": "Přiřadit tenanta",
 		"Search": "Vyhledat",
 		"Tenants updated successfully": "Tenanti úspěšně aktualizováni",
-		"Failed to update tenants": "Tenanty se nepodařilo aktualizovat. {{error}}",
-		"Something went wrong, failed to fetch tenants": "Něco je špatně, nepodařilo se získat tenanty. {{error}}",
-		"Something went wrong, failed to fetch assigned tenants": "Něco je špatně, nepodařilo se získat přiřazené tenanty. {{error}}",
+		"Failed to update tenants": "Tenanty se nepodařilo aktualizovat",
+		"Something went wrong, failed to fetch tenants": "Něco je špatně, nepodařilo se získat tenanty",
+		"Something went wrong, failed to fetch assigned tenants": "Něco je špatně, nepodařilo se získat přiřazené tenanty",
 		"No match": "Shoda nenalezena"
 	},
 	"CredentialsSessionCard": {
@@ -215,7 +215,7 @@
 		"Do you want to terminate user sessions?": "Opravdu chcete ukončit relace uživatele?",
 		"Sessions successfully terminated": "Relace úspěšně ukončeny",
 		"Something went wrong when terminating sessions": "Něco se pokazilo při ukončování relací",
-		"Failed to terminate sessions": "Nepodařilo se ukončit relace. {{error}}"
+		"Failed to terminate sessions": "Nepodařilo se ukončit relace"
 	},
 	"CredentialsListContainer": {
 		"Credentials": "Uživatelské údaje",
@@ -227,7 +227,7 @@
 		"Search": "Hledat",
 		"Tenants": "Tenanti",
 		"Roles": "Role",
-		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data. {{error}}",
+		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",
 		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
 		"Credentials invited": "Uživatel pozván"
 	},
@@ -263,30 +263,30 @@
 		"Username": "Uživatelské jméno",
 		"ID": "ID",
 		"Password has been reset": "Heslo bylo obnoveno",
-		"Something went wrong, failed to reset user's password": "Něco je špatně, nepodařilo se obnovit heslo. {{error}}",
+		"Something went wrong, failed to reset user's password": "Něco je špatně, nepodařilo se obnovit heslo",
 		"Specify password": "Specifikovat heslo",
 		"New password": "Nové heslo",
 		"Password cannot be empty!": "Heslo nemůže být prázdné!",
 		"Do you want to reset password for this user?": "Opravdu chcete obnovit heslo pro tohoto uživatele?",
-		"Something went wrong, failed to fetch user details": "Něco je špatně, nepodařilo se získat data uživatele. {{error}}"
+		"Something went wrong, failed to fetch user details": "Něco je špatně, nepodařilo se získat data uživatele"
 	},
 	"RolesListContainer": {
 		"Roles overview": "Přehled rolí",
 		"Create role": "Vytvořit roli",
 		"Role": "Role",
-		"Something went wrong, failed to fetch roles": "Něco je špatně, nepodařilo se získat role. {{error}}"
+		"Something went wrong, failed to fetch roles": "Něco je špatně, nepodařilo se získat role"
 	},
 	"RolesDetailContainer": {
 		"Role removed successfully": "Role úspěšně odstraněna",
-		"Failed to remove the role": "Nepodařilo se odstranit roli. {{error}}",
+		"Failed to remove the role": "Nepodařilo se odstranit roli",
 		"Role": "Role",
 		"Remove role": "Odstranit roli",
 		"Do you want to remove the role?": "Chcete tuto roli odebrat?",
-		"Something went wrong, failed to fetch role detail": "Něco je špatně, nepodařilo se získat detail role. {{error}}",
-		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data. {{error}}",
+		"Something went wrong, failed to fetch role detail": "Něco je špatně, nepodařilo se získat detail role",
+		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",
 		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
-		"Something went wrong, the credentials cannot be assigned": "Něco je špatně, nepodařilo se přiřadit uživatele. {{error}}",
-		"Something went wrong, the credentials cannot be unassigned": "Něco je špatně, nepodařilo se odebrat uživatele. {{error}}",
+		"Something went wrong, the credentials cannot be assigned": "Něco je špatně, nepodařilo se přiřadit uživatele",
+		"Something went wrong, the credentials cannot be unassigned": "Něco je špatně, nepodařilo se odebrat uživatele",
 		"The selected credential has already been assigned": "Vybraný uživatel byl již přiřazen",
 		"Unable to assign credentials": "Nepodařilo se přiřadit uživatele",
 		"Unable to unassign credentials": "Nepodařilo se odebrat uživatele",
@@ -297,7 +297,7 @@
 		"Unassign credentials": "Odebrat uživatele",
 		"Do you want to unassign these credentials?": "Opravdu chcete odebrat uživatele?",
 		"Credentials suspended": "Uživatel suspendován",
-		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se získat přiřazené uživatelské údaje. {{error}}",
+		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se získat přiřazené uživatelské údaje",
 		"Assign credentials": "Přiřadit uživatelské údaje",
 		"Assigned credentials": "Přiřazené uživatelské údaje"
 	},
@@ -313,13 +313,13 @@
 		"Invalid format, only letters, numbers, dash and underscore are allowed": "Nesprávný formát, pouze písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Invalid format": "Nesprávný formát:",
 		"Only letters, numbers, dash and underscore are allowed": "Pouze písmena, číslice, pomlčka a podtržítko jsou povoleny",
-		"Something went wrong, role has not been created": "Něco je špatně, role nebyla vytvořena. {{error}}"
+		"Something went wrong, role has not been created": "Něco je špatně, role nebyla vytvořena"
 	},
 	"RolesResourcesCard": {
-		"Fetch of all resources failed": "Nepodařilo se načíst všechny zdroje. {{error}}",
-		"Fetch of assigned resources failed": "Nepodařilo se načíst přiřazené zdroje. {{error}}",
+		"Fetch of all resources failed": "Nepodařilo se načíst všechny zdroje",
+		"Fetch of assigned resources failed": "Nepodařilo se načíst přiřazené zdroje",
 		"Role has been updated successfully": "Aktualizace role proběhla úspěšně",
-		"Update of the role has failed": "Aktualizace role se nezdařila. {{error}}",
+		"Update of the role has failed": "Aktualizace role se nezdařila",
 		"Assigned resources": "Přiřazené zdroje",
 		"Add resource": "Přidat zdroj",
 		"Select resource": "Vyberte zdroj",
@@ -341,44 +341,44 @@
 		"Invalid format, resource cannot start with a underscore": "Nesprávný formát, zdroj nemůže začínat podtržítkem",
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Nesprávný formát, pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
-		"Something went wrong, failed to create resource": "Něco je špatně, nepodařilo se vytvořit zdroj. {{error}}"
+		"Something went wrong, failed to create resource": "Něco je špatně, nepodařilo se vytvořit zdroj"
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Zdroj",
 		"Resource updated successfully": "Zdroj byl úspěšně aktualizován",
-		"Something went wrong, can't fetch resource details": "Něco je špatně, nepodařilo se načíst zdroj. {{error}}",
-		"Something went wrong, failed to update resource": "Něco je špatně, aktualizace zdroje se nezdařila. {{error}}"
+		"Something went wrong, can't fetch resource details": "Něco je špatně, nepodařilo se načíst zdroj",
+		"Something went wrong, failed to update resource": "Něco je špatně, aktualizace zdroje se nezdařila"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Seznam zdrojů",
 		"Create resource": "Vytvořit zdroj",
-		"Something went wrong, failed to load resources": "Něco je špatně, nepodařilo se načíst zdroje. {{error}}"
+		"Something went wrong, failed to load resources": "Něco je špatně, nepodařilo se načíst zdroje"
 	},
 	"SessionListContainer": {
 		"Credentials": "Uživ. Identifikace",
-		"Failed to fetch the object": "Nepodařilo se načíst objekt. {{error}}",
+		"Failed to fetch the object": "Nepodařilo se načíst objekt",
 		"Sessions": "Relace",
 		"Expected expiration": "Očekávané vypršení platnosti",
 		"Terminate session": "Ukončit relaci",
 		"Do you want to terminate this session?": "Opravdu chcete ukončit tuto relaci?",
 		"Session successfully terminated": "Relace úspěšně ukončena",
 		"Something went wrong when terminating session": "Něco se pokazilo při ukončování relace",
-		"Failed to terminate the session": "Nepodařilo se ukončit relaci. {{error}}",
+		"Failed to terminate the session": "Nepodařilo se ukončit relaci",
 		"Terminate all sessions": "Ukončit všechny relace",
 		"Terminate all": "Ukončit vše",
 		"Do you want to terminate all sessions?": "Opravdu chcete ukončit všechny relace?",
 		"All sessions successfully terminated": "Všechny relace úspěšně ukončeny",
 		"Something went wrong when terminating all sessions": "Něco se pokazilo při ukončování všech relací",
-		"Failed to terminate all sessions": "Nepodařilo se ukončit všechny relace. {{error}}",
+		"Failed to terminate all sessions": "Nepodařilo se ukončit všechny relace",
 		"Access denied, you do not have a right to perform this action": "Přístup odepřen, nemáte dostatečná oprávnění",
 		"Session": "Relace"
 	},
 	"SessionDetailContainer": {
-		"Failed to fetch details": "Nepodařilo se načíst relace. {{error}}",
+		"Failed to fetch details": "Nepodařilo se načíst relace",
 		"Do you want to terminate this session?": "Opravdu chcete ukončit tuto relaci?",
 		"Session successfully terminated": "Relace úspěšně ukončena",
 		"Something went wrong when terminating session": "Něco se pokazilo při ukončování relace",
-		"Failed to terminate the session": "Nepodařilo se ukončit relaci. {{error}}",
+		"Failed to terminate the session": "Nepodařilo se ukončit relaci",
 		"Session": "Relace",
 		"Terminate session": "Ukončit relaci",
 		"Session ID": "ID relace",
@@ -391,7 +391,7 @@
 		"Authorization": "Autorizace"
 	},
 	"TenantListContainer": {
-		"Failed to fetch tenants": "Nepodařilo se načíst tenanty. {{error}}",
+		"Failed to fetch tenants": "Nepodařilo se načíst tenanty",
 		"Tenants": "Tenanti",
 		"New tenant": "Nový tenant"
 	},
@@ -405,7 +405,7 @@
 		"No changes were made": "Nebyly provedeny žádné změny",
 		"Remove input": "Odstranit pole",
 		"Nothing to remove": "Žádná data k vymazání",
-		"Something went wrong, failed to update data": "Něco je špatně, nepodařilo se upravit vlastní data. {{error}}",
+		"Something went wrong, failed to update data": "Něco je špatně, nepodařilo se upravit vlastní data",
 		"Data updated successfully": "Vlastní data úspěšně aktualizována",
 		"Changes have not been saved. Discard and continue?": "Provedené změny nebyly uloženy. Chcete je zahodit a pokračovat?",
 		"Name": "Název",
@@ -416,13 +416,13 @@
 	"TenantDetailContainer": {
 		"Tenant": "Tenant",
 		"Custom data": "Vlastní data",
-		"Something went wrong, failed to fetch tenant detail": "Něco je špatně, nepodařilo se získat detail tenanta. {{error}}",
+		"Something went wrong, failed to fetch tenant detail": "Něco je špatně, nepodařilo se získat detail tenanta",
 		"Assigned credentials": "Přiřazené uživatelské údaje",
 		"Assign credentials": "Přiřadit uživatelské údaje",
-		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se načíst přiřazené uživatelské údaje. {{error}}",
-		"Something went wrong, the credentials cannot be assigned": "Něco je špatně, nepodařilo se přiřadit uživatele. {{error}}",
-		"Something went wrong, the credentials cannot be unassigned": "Něco je špatně, nepodařilo se odebrat uživatele. {{error}}",
-		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data. {{error}}",
+		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se načíst přiřazené uživatelské údaje",
+		"Something went wrong, the credentials cannot be assigned": "Něco je špatně, nepodařilo se přiřadit uživatele",
+		"Something went wrong, the credentials cannot be unassigned": "Něco je špatně, nepodařilo se odebrat uživatele",
+		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",
 		"The selected credential has already been assigned": "Vybraný uživatel byl již přiřazen",
 		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
 		"Unable to unassign credentials": "Nepodařilo se odebrat uživatele",
@@ -436,7 +436,7 @@
 		"Unassign credentials": "Odebrat uživatele",
 		"Do you want to remove the tenant?": "Opravdu chcete odstranit tenanta?",
 		"Do you want to unassign these credentials?": "Opravdu chcete odebrat uživatele?",
-		"Failed to remove the tenant": "Nepodařilo se odstranit tenanta. {{error}}",
+		"Failed to remove the tenant": "Nepodařilo se odstranit tenanta",
 		"Tenant removed successfully": "Tenant úspěšně odstraněn",
 		"Tenant data updated successfully": "Tenant úspěšně aktualizován"
 	},
@@ -454,8 +454,8 @@
 		"Tenant name is too short, minimum is 3 characters": "Název tenanta je příliš krátký, nutné jsou alespoň 3 znaky",
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Nesprávný formát, pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
-		"Something went wrong, failed to create tenant": "Něco je špatně, nepodařilo se vytvořit tenanta. {{error}}",
-		"Something went wrong, can't propose tenant name": "Něco je špatně, není možné navrhnout jméno tenanta. {{error}}"
+		"Something went wrong, failed to create tenant": "Něco je špatně, nepodařilo se vytvořit tenanta",
+		"Something went wrong, can't propose tenant name": "Něco je špatně, není možné navrhnout jméno tenanta"
 	},
 	"UserInterfaceCard": {
 		"User interface": "Uživatelské rozhraní",

@@ -163,7 +163,7 @@ function CredentialsListContainer(props) {
 				props.app.addAlert("warning", t("CredentialsListContainer|Can't fetch the data, you don't have rights to display it"), 30);
 				return;
 			}
-			props.app.addAlert("warning", t("CredentialsListContainer|Something went wrong, failed to fetch data", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsListContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -179,7 +179,7 @@ function CredentialsListContainer(props) {
 
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsListContainer|Something went wrong, failed to fetch data", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsListContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -195,7 +195,7 @@ function CredentialsListContainer(props) {
 
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsListContainer|Something went wrong, failed to fetch data", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsListContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

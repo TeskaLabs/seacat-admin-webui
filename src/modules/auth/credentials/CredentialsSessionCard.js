@@ -33,7 +33,7 @@ function CredentialsSessionCard(props) {
 			props.retrieveSessions();
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsSessionCard|Failed to terminate sessions", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsSessionCard|Failed to terminate sessions")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

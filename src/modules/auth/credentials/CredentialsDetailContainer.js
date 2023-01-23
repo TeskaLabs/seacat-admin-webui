@@ -69,7 +69,7 @@ function CredentialsDetailContainer(props) {
 			setLoadingCustomData(false);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsDetailContainer|Something went wrong, failed to fetch user details", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -85,7 +85,7 @@ function CredentialsDetailContainer(props) {
 			}
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsDetailContainer|Something went wrong, failed to fetch provider data", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to fetch provider data")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -97,7 +97,7 @@ function CredentialsDetailContainer(props) {
 			setSessions(response.data.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("SessionListContainer|Something went wrong, failed to fetch user sessions", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("SessionListContainer|Something went wrong, failed to fetch user sessions")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -119,7 +119,7 @@ function CredentialsDetailContainer(props) {
 			props.history.push("/auth/credentials");
 		} catch(e) {
 			console.error(e); // log the error to the browser's console
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to remove user', {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to remove user")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -158,7 +158,7 @@ function CredentialsDetailContainer(props) {
 			retrieveData();
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to update user', {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to update user")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -181,7 +181,7 @@ function CredentialsDetailContainer(props) {
 			props.app.addAlert("success", t('CredentialsDetailContainer|Invitation sent successfully'));
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to resend invitation', {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to resend invitation")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -453,7 +453,7 @@ function CredentialsInfoCard(props) {
 				}
 			}
 			console.error(e);
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to update user', {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to update user")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 	}

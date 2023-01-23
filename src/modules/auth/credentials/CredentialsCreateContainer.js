@@ -74,7 +74,7 @@ function CredentialsCreateContainer(props) {
 			setProviders(reg_conf);
 		} catch (e) {
 			console.error("Failed to retrieve providers from server: ", e);
-			props.app.addAlert("warning", t("CredentialsCreateContainer|Something went wrong, failed to fetch providers", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsCreateContainer|Something went wrong, failed to fetch providers")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -124,7 +124,7 @@ function CredentialsCreateContainer(props) {
 			props.history.push("/auth/credentials/" + response.data._id);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsCreateContainer|Something went wrong, failed to create credentials", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsCreateContainer|Something went wrong, failed to create credentials")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -160,7 +160,7 @@ function CredentialsCreateContainer(props) {
 			props.history.push(`/auth/credentials/${response.data.credentials_id}`);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsCreateContainer|Something went wrong, failed to send invitation", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("CredentialsCreateContainer|Something went wrong, failed to send invitation")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

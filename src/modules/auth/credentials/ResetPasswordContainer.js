@@ -38,7 +38,7 @@ function ResetPasswordContainer(props) {
 			setData(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ResetPasswordContainer|Something went wrong, failed to fetch user details", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("ResetPasswordContainer|Something went wrong, failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -67,7 +67,7 @@ function ResetPasswordContainer(props) {
 			props.history.push(`/auth/credentials/${credentials_id}`)
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ResetPasswordContainer|Something went wrong, failed to reset user's password", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("ResetPasswordContainer|Something went wrong, failed to reset user's password")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

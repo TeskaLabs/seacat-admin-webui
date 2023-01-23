@@ -62,7 +62,7 @@ function TenantListContainer(props) {
 		} catch(e) {
 			console.error(e);
 			setLoading(false);
-			props.app.addAlert("warning", t("TenantListContainer|Failed to fetch tenants", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("TenantListContainer|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

@@ -65,7 +65,7 @@ function ResourcesListContainer(props) {
 		} catch(e) {
 			console.error(e);
 			setLoading(false);
-			props.app.addAlert("warning", t("ResourcesListContainer|Something went wrong, failed to load resources", {error: e?.response?.data?.message}), 30);
+			props.app.addAlert("warning", `${t("ResourcesListContainer|Something went wrong, failed to load resources")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
