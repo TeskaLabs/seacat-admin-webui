@@ -132,7 +132,9 @@
 		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
 		"Redirect URI must be in absolute format without a fragment component.": "Redirect URI must be in absolute format without a fragment component.",
-		"Remove client": "Remove client"
+		"Remove client": "Remove client",
+		"Save changes": "Save changes",
+		"No changes were made": "No changes were made"
 	},
 	"ClientFormField": {
 		"Add new input": "Add new input",

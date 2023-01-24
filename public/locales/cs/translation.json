@@ -132,7 +132,9 @@
 		"Cookie domain": "Cookie doména",
 		"Redirect URIs": "URIs k přesměrování",
 		"Redirect URI must be in absolute format without a fragment component.": "URI k přesměrování musí být v absolutním formátu a bez fragment komponenty.",
-		"Remove client": "Odstranit klienta"
+		"Remove client": "Odstranit klienta",
+		"Save changes": "Uložit změny",
+		"No changes were made": "Nebyly provedeny žádné změny"
 	},
 	"ClientFormField": {
 		"Add new input": "Přidat pole",
