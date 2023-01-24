@@ -27,7 +27,7 @@ const ClientDetailContainer = (props) =>  {
 	const advmode = useSelector(state => state.advmode.enabled);
 
 
-	const { handleSubmit, formState: { errors }, control, setValue, reset, register } = useForm({
+	const { handleSubmit, formState: { errors, isSubmitting, isDirty }, control, setValue, reset, register } = useForm({
 		defaultValues: {
 			redirect_uris:  [{ text: ""}],
 		}
@@ -123,7 +123,6 @@ const ClientDetailContainer = (props) =>  {
 			setDisabled(false);
 			getClientDetail();
 			props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
-
 		} catch (e) {
 			setDisabled(false);
 			setEditMode(true);
@@ -195,7 +194,7 @@ const ClientDetailContainer = (props) =>  {
 								{client?.client_uri &&
 									<Row className="card-body-row">
 										<Col md={4}>{t("ClientDetailContainer|Client URI")}</Col>
-										<Col>{client?.client_uri}</Col>
+										<Col>{client.client_uri}</Col>
 									</Row>
 								}
 								{client?.client_secret &&
@@ -249,6 +248,12 @@ const ClientDetailContainer = (props) =>  {
 									<Col md={4} title="token_endpoint_auth_method">{t("ClientDetailContainer|Token endpoint auth. method")}</Col>
 									<Col title="token_endpoint_auth_method">{client?.token_endpoint_auth_method}</Col>
 								</Row>
+								{client?.cookie_domain &&
+									<Row className="card-body-row">
+										<Col md={4} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
+										<Col title="cookie_domain">{client.cookie_domain}</Col>
+									</Row>
+								}
 								<Row className="mt-3 card-body-row">
 									<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
 									<Col title="redirect_uris" className={"redirect_uris" + (editMode ? "" : " edit")}>
@@ -269,8 +274,22 @@ const ClientDetailContainer = (props) =>  {
 								<ButtonGroup>
 									{editMode ?
 										<>
-											<Button color="primary" type="submit" >{t("Save")}</Button>
-											<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false))}>{t("Cancel")}</Button>
+											<Button
+												color="primary"
+												type="submit"
+												title={isDirty ? t("ClientDetailContainer|Save changes") : t("ClientDetailContainer|No changes were made")}
+												disabled={!isDirty || isSubmitting}
+											>
+												{t("Save")}
+											</Button>
+											<Button
+												color="outline-primary"
+												type="button"
+												disabled={isSubmitting}
+												onClick={(e) => (setEditMode(false))}
+											>
+												{t("Cancel")}
+											</Button>
 										</>
 										:
 										<>
