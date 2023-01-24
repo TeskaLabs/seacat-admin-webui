@@ -103,9 +103,11 @@
 		"Grant types": "Grant types",
 		"Application type": "Application type",
 		"Token endpoint authentication method": "Token endpoint authentication method",
+		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
 		"Create client": "Create client",
-		"Unknown item": "Unknown item"
+		"Unknown item": "Unknown item",
+		"Required": "Required"
 	},
 	"ClientDetailContainer": {
 		"Something went wrong, failed to fetch client details": "Something went wrong, failed to fetch client details",
@@ -127,6 +129,7 @@
 		"Response types": "Response types",
 		"Grant types": "Grant types",
 		"Token endpoint auth. method": "Token endpoint auth. method",
+		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
 		"Redirect URI must be in absolute format without a fragment component.": "Redirect URI must be in absolute format without a fragment component.",
 		"Remove client": "Remove client"
@@ -135,6 +138,7 @@
 		"Add new input": "Add new input",
 		"Remove input": "Remove input",
 		"Invalid format, input should have minimum of 8 characters": "Invalid format, input should have minimum of 8 characters",
+		"Invalid format, cookie_domain should have format www.example.com, www.example or example.com": "Invalid format, cookie_domain should have format www.example.com, www.example or example.com",
 		"URI can't be empty": "URI can't be empty",
 		"URI have to start with https": "URI have to start with https",
 		"URL hash have to be empty": "URL hash have to be empty",

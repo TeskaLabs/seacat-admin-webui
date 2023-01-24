@@ -103,9 +103,11 @@
 		"Grant types": "Typy grantů",
 		"Application type": "Typ aplikace",
 		"Token endpoint authentication method": "Způsob autentikace pro získání tokenu",
+		"Cookie domain": "Cookie doména",
 		"Redirect URIs": "URIs k přesměrování",
 		"Create client": "Vytvořit klienta",
-		"Unknown item": "Neznámá položka"
+		"Unknown item": "Neznámá položka",
+		"Required": "Povinné"
 	},
 	"ClientDetailContainer": {
 		"Something went wrong, failed to fetch client details": "Něco je špatně, nepodařilo se získat detail klienta",
@@ -127,6 +129,7 @@
 		"Response types": "Typy odpovědí",
 		"Grant types": "Typy grantů",
 		"Token endpoint auth. method": "Způsob autentikace pro získání tokenu",
+		"Cookie domain": "Cookie doména",
 		"Redirect URIs": "URIs k přesměrování",
 		"Redirect URI must be in absolute format without a fragment component.": "URI k přesměrování musí být v absolutním formátu a bez fragment komponenty.",
 		"Remove client": "Odstranit klienta"
@@ -135,6 +138,7 @@
 		"Add new input": "Přidat pole",
 		"Remove input": "Odstranit pole",
 		"Invalid format, input should have minimum of 8 characters": "Nesprávný formát, pole musí mít minimálně 8 znaků",
+		"Invalid format, cookie_domain should have format www.example.com, www.example or example.com": "Nesprávný formát, cookie_domain musí mít formát www.example.com, www.example nebo example.com",
 		"URI can't be empty": "URI nemůže být prázdný",
 		"URI have to start with https": "URI musí začínat https",
 		"URL hash have to be empty": "URL hash musí být prázdný",
