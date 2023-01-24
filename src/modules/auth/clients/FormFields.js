@@ -7,31 +7,47 @@ import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
 
 // The usual text input
-export function TextInput ({ name, register, errors, labelName, disabled }) {
+export function TextInput ({ name, register, errors, labelName, disabled, title }) {
 	const { t } = useTranslation();
 	const reg = register(
 		name,
-		(name == "preferred_client_id") && {
+		(name == "preferred_client_id") ? {
 			validate: {
 				validation: value => (/^[-_a-zA-Z0-9]{8,64}$|^$/).test(value) || t("ClientFormField|Invalid format, input should have minimum of 8 characters"),
 			}
 		}
+		:
+		(name == "cookie_domain") && {
+			validate: {
+				validation: value => (/^[a-z0-9\.-]{1,61}\.[a-z]{2,}$|^$/).test(value) || t("ClientFormField|Invalid format, cookie_domain should have format www.example.com, www.example or example.com"),
+			}
+		}
 	);
+	const isInvalid = (name) => {
+		if (name == "preferred_client_id" && (errors[name] != undefined)) {
+			return true;
+		} else if (name == "cookie_domain" && (errors[name] != undefined)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	return (
 		<FormGroup key={name}>
-			{labelName && <Label for={name}>{labelName}</Label>}
+			{labelName && <Label for={name} title={title && title}>{labelName}{title && "*"}</Label>}
 			<Input
 				id={name}
 				name={name}
 				type="text"
 				disabled={disabled}
-				required={name == "client_name" ? true : false}
+				required={title ? true : false}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
-				invalid={errors?.preferred_client_id && errors.preferred_client_id}
+				invalid={isInvalid(name)}
 			/>
-			{errors?.preferred_client_id && <FormFeedback>{errors.preferred_client_id.message}</FormFeedback>}
+			{name == "preferred_client_id" && (errors[name] != undefined && <FormFeedback>{errors[name].message}</FormFeedback>)}
+			{name == "cookie_domain" && (errors[name] != undefined && <FormFeedback>{errors[name].message}</FormFeedback>)}
 		</FormGroup>
 	)
 }
@@ -63,13 +79,13 @@ export function SelectInput ({ name, register, value, labelName }) {
 }
 
 // Dynamic form that can be added and removed. You can to control your fields.
-export function URiInput ({ name, control, errors, append, remove, fields, labelName, disabled }) {
+export function URiInput ({ name, control, errors, append, remove, fields, labelName, disabled, title }) {
 	const { t } = useTranslation();
 
 	return (
 		<FormGroup title={name}>
 			{(labelName && name) &&
-				<Label for={name} title={name}>{labelName}</Label>}
+				<Label for={name} title={title ? title : name}>{labelName}{title && "*"}</Label>}
 				{fields && fields.map((item, idx) => {
 					return (
 						<InputGroup key={item.id} className="mb-1">
