@@ -64,7 +64,7 @@ const ClientDetailContainer = (props) =>  {
 			setClient(response.data);
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ClientDetailContainer|Something went wrong, failed to fetch client details"));
+			props.app.addAlert("warning", `${t("ClientDetailContainer|Something went wrong, failed to fetch client details")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -78,7 +78,7 @@ const ClientDetailContainer = (props) =>  {
 			getClientDetail();
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t('ClientDetailContainer|Something went wrong, failed to reset secret'));
+			props.app.addAlert("warning", `${t("ClientDetailContainer|Something went wrong, failed to reset secret")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -128,7 +128,7 @@ const ClientDetailContainer = (props) =>  {
 			setDisabled(false);
 			setEditMode(true);
 			console.error(e);
-			props.app.addAlert("warning", t("ClientDetailContainer|Something went wrong, failed to update client"));
+			props.app.addAlert("warning", `${t("ClientDetailContainer|Something went wrong, failed to update client")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -152,7 +152,7 @@ const ClientDetailContainer = (props) =>  {
 			props.history.push("/auth/clients"); // Redirect to the Client list page
 		} catch(e) {
 			console.error(e); // log the error to the browser's console
-			props.app.addAlert("warning", t('ClientDetailContainer|Something went wrong, failed to remove client'));
+			props.app.addAlert("warning", `${t("ClientDetailContainer|Something went wrong, failed to remove client")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 

@@ -42,7 +42,7 @@ function CredentialsListContainer(props) {
 							marginBottom: 0}}
 					>
 						{obj.suspended === true ?
-							<span className="cil-user-unfollow text-muted mr-1" title={t("CredentialsListContainer|Credentials suspended")}/>
+							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("CredentialsListContainer|Credentials invited") : t("CredentialsListContainer|Credentials suspended")}/>
 							: <span className="cil-user mr-1" />}
 						<Link
 							style={{color: obj.suspended === true && '#73818f'}}
@@ -160,10 +160,10 @@ function CredentialsListContainer(props) {
 			console.error(e);
 			setLoading(false);
 			if (e.response.status === 401) {
-				props.app.addAlert("warning", t("CredentialsListContainer|Can't fetch the data, you don't have rights to display it"));
+				props.app.addAlert("warning", t("CredentialsListContainer|Can't fetch the data, you don't have rights to display it"), 30);
 				return;
 			}
-			props.app.addAlert("warning", t("CredentialsListContainer|Something went wrong, failed to fetch data"));
+			props.app.addAlert("warning", `${t("CredentialsListContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -179,7 +179,7 @@ function CredentialsListContainer(props) {
 
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsListContainer|Something went wrong, failed to fetch data"));
+			props.app.addAlert("warning", `${t("CredentialsListContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -195,7 +195,7 @@ function CredentialsListContainer(props) {
 
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsListContainer|Something went wrong, failed to fetch data"));
+			props.app.addAlert("warning", `${t("CredentialsListContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

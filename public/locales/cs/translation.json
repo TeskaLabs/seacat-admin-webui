@@ -146,7 +146,12 @@
 		"Create credentials": "Vytvořit údaje",
 		"Credentials have been created successfully": "Údaje byly úspěšně vytvořeny",
 		"Something went wrong, failed to create credentials": "Něco je špatně, údaje nebyly vytvořeny",
-		"Something went wrong, failed to fetch providers": "Něco je špatně, získání providerů selhalo"
+		"Something went wrong, failed to fetch providers": "Něco je špatně, získání providerů selhalo",
+		"Create": "Vytvořit",
+		"Invite": "Pozvat",
+		"Invite user": "Pozvat uživatele",
+		"Invitation sent successfully": "Pozvánka úspěšně odeslána",
+		"Something went wrong, failed to send invitation": "Něco je špatně, pozvánka nebyla odeslána"
 	},
 	"CredentialsDetailContainer": {
 		"Credentials": "Uživatelské údaje",
@@ -177,7 +182,11 @@
 		"Phone number already in use": "Telefonní číslo je již použito",
 		"Email address already in use": "Emailová adresa je již použita",
 		"Something went wrong, failed to fetch provider data": "Něco je špatně, nepodařilo se získat data provideru",
-		"Information editing is not allowed within this credentials": "V rámci těchto uživatelských údajů není povolena úprava informací"
+		"Information editing is not allowed within this credentials": "V rámci těchto uživatelských údajů není povolena úprava informací",
+		"Invited": "Pozván",
+		"Resend invitation": "Přeposlat pozvánku",
+		"Something went wrong, failed to resend invitation": "Něco je špatně, pozvánka nebyla odeslána",
+		"Invitation sent successfully": "Pozvánka úspěšně odeslána"
 	},
 	"CredentialsRolesCard": {
 		"Assigned roles": "Přiřazené role",
@@ -200,7 +209,6 @@
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Relace",
-		"User sessions": "Relace uživatele",
 		"No active sessions": "Žádné aktivní relace",
 		"Terminate user sessions": "Ukončit relace uživatele",
 		"Terminate sessions": "Ukončit relace",
@@ -220,7 +228,8 @@
 		"Tenants": "Tenanti",
 		"Roles": "Role",
 		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",
-		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení"
+		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
+		"Credentials invited": "Uživatel pozván"
 	},
 	"FormFields": {
 		"Phone": "Telefon",
@@ -347,7 +356,7 @@
 	},
 	"SessionListContainer": {
 		"Credentials": "Uživ. Identifikace",
-		"Failed to fetch the object": "Nepodařilo se načíst objekt.",
+		"Failed to fetch the object": "Nepodařilo se načíst objekt",
 		"Sessions": "Relace",
 		"Expected expiration": "Očekávané vypršení platnosti",
 		"Terminate session": "Ukončit relaci",
@@ -365,7 +374,6 @@
 		"Session": "Relace"
 	},
 	"SessionDetailContainer": {
-		"Something went wrong when fetching details": "Něco se pokazilo při načítání detailu relace",
 		"Failed to fetch details": "Nepodařilo se načíst relace",
 		"Do you want to terminate this session?": "Opravdu chcete ukončit tuto relaci?",
 		"Session successfully terminated": "Relace úspěšně ukončena",
@@ -411,8 +419,7 @@
 		"Something went wrong, failed to fetch tenant detail": "Něco je špatně, nepodařilo se získat detail tenanta",
 		"Assigned credentials": "Přiřazené uživatelské údaje",
 		"Assign credentials": "Přiřadit uživatelské údaje",
-		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se získat přiřazené uživatelské údaje",
-		"Something went wrong, failed to update credentials": "Něco je špatně, nepodařilo se upravit uživatelské údaje",
+		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se načíst přiřazené uživatelské údaje",
 		"Something went wrong, the credentials cannot be assigned": "Něco je špatně, nepodařilo se přiřadit uživatele",
 		"Something went wrong, the credentials cannot be unassigned": "Něco je špatně, nepodařilo se odebrat uživatele",
 		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",

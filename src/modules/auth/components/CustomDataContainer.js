@@ -83,7 +83,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 			setEdit(false);
 			app.addAlert("success", t("CustomDataContainer|Data updated successfully"));
 		} catch (e) {
-			app.addAlert("warning", t("CustomDataContainer|Something went wrong, failed to update data"));
+			app.addAlert("warning", `${t("CustomDataContainer|Something went wrong, failed to update data")}. ${e?.response?.data?.message}`, 30);
 			console.error(e);
 		}
 	}
