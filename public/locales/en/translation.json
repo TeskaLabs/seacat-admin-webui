@@ -140,7 +140,7 @@
 		"Add new input": "Add new input",
 		"Remove input": "Remove input",
 		"Invalid format, input should have minimum of 8 characters": "Invalid format, input should have minimum of 8 characters",
-		"Invalid format, cookie_domain should have format www.example.com, www.example or example.com": "Invalid format, cookie_domain should have format www.example.com, www.example or example.com",
+		"Invalid format for cookie_domain": "Invalid format for cookie_domain",
 		"URI can't be empty": "URI can't be empty",
 		"URI have to start with https": "URI have to start with https",
 		"URL hash have to be empty": "URL hash have to be empty",

@@ -100,7 +100,9 @@ const ClientDetailContainer = (props) =>  {
 				await Promise.all(Object.values(values[key]).map((item, index) => {
 					uri.push(item.text)
 				}))
-			} else {
+			} else if (key == "client_name") {
+				body[key] = values[key];
+			} else if (key == "cookie_domain") {
 				body[key] = values[key];
 			}
 		}))
@@ -111,10 +113,7 @@ const ClientDetailContainer = (props) =>  {
 		}
 
 		try {
-			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, {
-				redirect_uris:  body?.redirect_uris,
-				client_name: body?.client_name
-			});
+			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, body);
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
 			}
@@ -168,38 +167,27 @@ const ClientDetailContainer = (props) =>  {
 								</div>
 							</CardHeader>
 							<CardBody className="card-body-client">
-								{client?.client_name ?
-									<Row className="card-body-row">
-										<Col md={4}>{t("ClientDetailContainer|Client name")}</Col>
-										{editMode ?
-											<Col className="client-name">
-												<TextInput name="client_name" register={register} disabled={disabled}/>
-											</Col>
-
-										:
-											<Col className="client-name">{client?.client_name}</Col>
-										}
-									</Row>
-								:
-									editMode &&
-									<Row className="card-body-row">
-										<Col md={4}>{t("ClientDetailContainer|Client name")}</Col>
-										<TextInput name="client_name" register={register}/>
-									</Row>
-								}
 								<Row className="card-body-row">
-									<Col md={4}>{t("ClientDetailContainer|Client ID")}</Col>
+									<Col md={4} title="client_name">{t("ClientDetailContainer|Client name")}</Col>
+									{editMode ?
+										<Col className="client-edit">
+											<TextInput name="client_name" register={register} disabled={disabled}/>
+										</Col>
+										:
+										<Col className="client-edit" title="client_name">{client?.client_name ? client.client_name : "N/A"}</Col>
+									}
+								</Row>
+								<Row className="card-body-row">
+									<Col md={4} title="client_id">{t("ClientDetailContainer|Client ID")}</Col>
 									<Col><code>{client?.client_id}</code></Col>
 								</Row>
-								{client?.client_uri &&
-									<Row className="card-body-row">
-										<Col md={4}>{t("ClientDetailContainer|Client URI")}</Col>
-										<Col>{client.client_uri}</Col>
-									</Row>
-								}
+								<Row className="card-body-row">
+									<Col md={4} title="client_uri">{t("ClientDetailContainer|Client URI")}</Col>
+									<Col>{client?.client_uri ? client.client_uri : "N/A"}</Col>
+								</Row>
 								{client?.client_secret &&
 									<Row className="card-body-row">
-										<Col md={4}>{t("ClientDetailContainer|Client secret")}</Col>
+										<Col md={4} title="client_secret">{t("ClientDetailContainer|Client secret")}</Col>
 										<Col>
 											<code>{client?.client_secret}</code>
 											<Button
@@ -213,11 +201,11 @@ const ClientDetailContainer = (props) =>  {
 									</Row>
 								}
 								<Row className="mt-2 card-body-row">
-									<Col md={4}>{t("Created at")}</Col>
+									<Col md={4} title="created_at">{t("Created at")}</Col>
 									<Col><DateTime value={client?._c} /></Col>
 								</Row>
 								<Row className="card-body-row">
-									<Col md={4}>{t("Modified at")}</Col>
+									<Col md={4} title="modified_at">{t("Modified at")}</Col>
 									<Col><DateTime value={client?._m} /></Col>
 								</Row>
 								<Row className="card-body-row">
@@ -248,12 +236,16 @@ const ClientDetailContainer = (props) =>  {
 									<Col md={4} title="token_endpoint_auth_method">{t("ClientDetailContainer|Token endpoint auth. method")}</Col>
 									<Col title="token_endpoint_auth_method">{client?.token_endpoint_auth_method}</Col>
 								</Row>
-								{client?.cookie_domain &&
-									<Row className="card-body-row">
-										<Col md={4} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
-										<Col title="cookie_domain">{client.cookie_domain}</Col>
-									</Row>
-								}
+								<Row className="card-body-row">
+									<Col md={4} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
+									{editMode ?
+										<Col className="client-edit">
+											<TextInput name="cookie_domain" register={register} errors={errors} disabled={disabled}/>
+										</Col>
+									:
+										<Col className="client-edit" title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
+									}
+								</Row>
 								<Row className="mt-3 card-body-row">
 									<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
 									<Col title="redirect_uris" className={"redirect_uris" + (editMode ? "" : " edit")}>
@@ -291,7 +283,7 @@ const ClientDetailContainer = (props) =>  {
 												{t("Cancel")}
 											</Button>
 										</>
-										:
+									:
 										<>
 											<ButtonWithAuthz
 												title={t("Edit")}

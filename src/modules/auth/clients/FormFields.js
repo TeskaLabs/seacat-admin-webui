@@ -11,22 +11,22 @@ export function TextInput ({ name, register, errors, labelName, disabled, title 
 	const { t } = useTranslation();
 	const reg = register(
 		name,
-		(name == "preferred_client_id") ? {
+		(name === "preferred_client_id") ? {
 			validate: {
 				validation: value => (/^[-_a-zA-Z0-9]{8,64}$|^$/).test(value) || t("ClientFormField|Invalid format, input should have minimum of 8 characters"),
 			}
 		}
 		:
-		(name == "cookie_domain") && {
+		(name === "cookie_domain") && {
 			validate: {
-				validation: value => (/^[a-z0-9\.-]{1,61}\.[a-z]{2,}$|^$/).test(value) || t("ClientFormField|Invalid format, cookie_domain should have format www.example.com, www.example or example.com"),
+				validation: value => (/^[a-z0-9\.-]{1,61}\.[a-z]{2,}$|^$/).test(value) || t("ClientFormField|Invalid format for cookie_domain"),
 			}
 		}
 	);
 	const isInvalid = (name) => {
-		if (name == "preferred_client_id" && (errors[name] != undefined)) {
+		if (name === "preferred_client_id" && (errors[name] != undefined)) {
 			return true;
-		} else if (name == "cookie_domain" && (errors[name] != undefined)) {
+		} else if (name === "cookie_domain" && (errors[name] != undefined)) {
 			return true;
 		} else {
 			return false;
@@ -46,8 +46,8 @@ export function TextInput ({ name, register, errors, labelName, disabled, title 
 				innerRef={reg.ref}
 				invalid={isInvalid(name)}
 			/>
-			{name == "preferred_client_id" && (errors[name] != undefined && <FormFeedback>{errors[name].message}</FormFeedback>)}
-			{name == "cookie_domain" && (errors[name] != undefined && <FormFeedback>{errors[name].message}</FormFeedback>)}
+			{name === "preferred_client_id" && (errors.preferred_client_id != undefined && <FormFeedback>{errors.preferred_client_id?.message}</FormFeedback>)}
+			{name === "cookie_domain" && (errors?.cookie_domain && <FormFeedback>{errors.cookie_domain?.message}</FormFeedback>)}
 		</FormGroup>
 	)
 }

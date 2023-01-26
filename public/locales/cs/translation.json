@@ -140,7 +140,7 @@
 		"Add new input": "Přidat pole",
 		"Remove input": "Odstranit pole",
 		"Invalid format, input should have minimum of 8 characters": "Nesprávný formát, pole musí mít minimálně 8 znaků",
-		"Invalid format, cookie_domain should have format www.example.com, www.example or example.com": "Nesprávný formát, cookie_domain musí mít formát www.example.com, www.example nebo example.com",
+		"Invalid format for cookie_domain": "Nesprávný formát pro cookie_domain",
 		"URI can't be empty": "URI nemůže být prázdný",
 		"URI have to start with https": "URI musí začínat https",
 		"URL hash have to be empty": "URL hash musí být prázdný",
