@@ -106,8 +106,7 @@
 		"Cookie domain": "Cookie doména",
 		"Redirect URIs": "URIs k přesměrování",
 		"Create client": "Vytvořit klienta",
-		"Unknown item": "Neznámá položka",
-		"Required": "Povinné"
+		"Unknown item": "Neznámá položka"
 	},
 	"ClientDetailContainer": {
 		"Something went wrong, failed to fetch client details": "Něco je špatně, nepodařilo se získat detail klienta",
@@ -144,7 +143,8 @@
 		"URI can't be empty": "URI nemůže být prázdný",
 		"URI have to start with https": "URI musí začínat https",
 		"URL hash have to be empty": "URL hash musí být prázdný",
-		"Choose an option": "Zvolte možnost"
+		"Choose an option": "Zvolte možnost",
+		"Required field": "Povinný údaj"
 	},
 	"CredentialsCreateContainer": {
 		"Create new credentials": "Vytvořit nové údaje",

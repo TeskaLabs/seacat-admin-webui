@@ -106,8 +106,7 @@
 		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
 		"Create client": "Create client",
-		"Unknown item": "Unknown item",
-		"Required": "Required"
+		"Unknown item": "Unknown item"
 	},
 	"ClientDetailContainer": {
 		"Something went wrong, failed to fetch client details": "Something went wrong, failed to fetch client details",
@@ -144,7 +143,8 @@
 		"URI can't be empty": "URI can't be empty",
 		"URI have to start with https": "URI have to start with https",
 		"URL hash have to be empty": "URL hash have to be empty",
-		"Choose an option": "Choose an option"
+		"Choose an option": "Choose an option",
+		"Required field": "Required field"
 	},
 	"CredentialsCreateContainer": {
 		"Create new credentials": "Create new credentials",

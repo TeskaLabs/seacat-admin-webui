@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
 
 // The usual text input
-export function TextInput ({ name, register, errors, labelName, disabled, title }) {
+export function TextInput ({ name, register, errors, labelName, disabled }) {
 	const { t } = useTranslation();
 	const reg = register(
 		name,
@@ -34,13 +34,13 @@ export function TextInput ({ name, register, errors, labelName, disabled, title 
 	}
 	return (
 		<FormGroup key={name}>
-			{labelName && <Label for={name} title={title && title}>{labelName}{title && "*"}</Label>}
+			{labelName && <Label for={name} title={(name === "client_name") && t("ClientFormField|Required field")}>{labelName}</Label>}
 			<Input
 				id={name}
 				name={name}
 				type="text"
 				disabled={disabled}
-				required={title ? true : false}
+				required={(name === "client_name") ? true : false}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
@@ -79,13 +79,13 @@ export function SelectInput ({ name, register, value, labelName }) {
 }
 
 // Dynamic form that can be added and removed. You can to control your fields.
-export function URiInput ({ name, control, errors, append, remove, fields, labelName, disabled, title }) {
+export function URiInput ({ name, control, errors, append, remove, fields, labelName, disabled }) {
 	const { t } = useTranslation();
 
 	return (
 		<FormGroup title={name}>
 			{(labelName && name) &&
-				<Label for={name} title={title ? title : name}>{labelName}{title && "*"}</Label>}
+				<Label for={name} title={t("ClientFormField|Required field")}>{labelName}</Label>}
 				{fields && fields.map((item, idx) => {
 					return (
 						<InputGroup key={item.id} className="mb-1">
