@@ -14,6 +14,8 @@
 
 - Refactorization of CustomDataContainer to prevent passing invalid format of `uri` prop. Added documentation. (INDIGO Sprint 221209, [!11](https://github.com/TeskaLabs/seacat-admin-webui/pull/11))
 
+- Add new input `cookie_domain` to Clients. Fix min-max height styles for CustomComponent (INDIGO Sprint 230120, [!15](https://github.com/TeskaLabs/seacat-admin-webui/pull/15))
+
 ## v22.48
 
 ### Compatibility
