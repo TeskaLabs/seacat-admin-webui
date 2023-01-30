@@ -23,14 +23,12 @@ export function TextInput ({ name, register, errors, labelName, disabled }) {
 			}
 		}
 	);
+
 	const isInvalid = (name) => {
-		if (name === "preferred_client_id" && (errors[name] != undefined)) {
+		if (((name === "preferred_client_id") || (name === "cookie_domain")) && (errors[name] != undefined)) {
 			return true;
-		} else if (name === "cookie_domain" && (errors[name] != undefined)) {
-			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 	return (
 		<FormGroup key={name}>
