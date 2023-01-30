@@ -195,8 +195,8 @@ const ClientCreateContainer = (props) => {
 								</FormGroup>
 								{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
 									switch(key) {
-										case 'redirect_uris': return(<URiInput key={key} name={key} control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={t("ClientCreateContainer|Redirect URIs") + "*"}/>)
-										case 'client_name': return(<TextInput key={key} name={key} register={register} labelName={t('ClientCreateContainer|Client name') + "*"}/>)
+										case 'redirect_uris': return(<URiInput key={key} name={key} control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}/>)
+										case 'client_name': return(<TextInput key={key} name={key} register={register} labelName={`${t("ClientCreateContainer|Client name")}*`}/>)
 										case 'client_uri': return(<TextInput key={key} name={key} register={register} labelName={t('ClientCreateContainer|Client URI')}/>)
 										case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 										case 'preferred_client_id': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
