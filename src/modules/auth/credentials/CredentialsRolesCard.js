@@ -43,7 +43,7 @@ function CredentialsRolesCard(props) {
 			setPrevAssignedRoles(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsRolesCard|Something went wrong, failed to fetch assigned roles"));
+			props.app.addAlert("warning", `${t("CredentialsRolesCard|Something went wrong, failed to fetch assigned roles")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -57,7 +57,7 @@ function CredentialsRolesCard(props) {
 			setRolesLookup(roles);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsRolesCard|Something went wrong, failed to fetch roles"));
+			props.app.addAlert("warning", `${t("CredentialsRolesCard|Something went wrong, failed to fetch roles")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -86,7 +86,7 @@ function CredentialsRolesCard(props) {
 			setEditMode(false);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsRolesCard|Failed to update roles"));
+			props.app.addAlert("warning", `${t("CredentialsRolesCard|Failed to update roles")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

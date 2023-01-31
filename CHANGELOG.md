@@ -2,15 +2,28 @@
 
 ## Release Candidate
 
+## v23.4
+
+### Compatibility
+
+- [x] **SeaCat Auth UI `v23.4` or newer**
+- [x] **SeaCat Auth `v23.3` or newer**
+
+⚠️ Due to implementation of new features, invitation will not work with SeaCat Auth service versions older than `v23.3`
+
 ### Features
 
-- ASAB WebUI submodule version bump [[0b97139](https://github.com/TeskaLabs/asab-webui/commit/0b97139df1c2dc0e4e82dd97fd5593334efc5d38)] commit (INDIGO Sprint 230106, [!13](https://github.com/TeskaLabs/seacat-admin-webui/pull/13))
+- ASAB WebUI submodule version bump [[25d5a5c](https://github.com/TeskaLabs/asab-webui/commit/25d5a5ce97c6f2286525127cc3a31531b03312f3)] commit (INDIGO Sprint 230106, [!8](https://github.com/TeskaLabs/seacat-admin-webui/pull/8))
+
+- Create invitation components (INDIGO Sprint 230106, [!8](https://github.com/TeskaLabs/seacat-admin-webui/pull/8))
 
 ### Refactoring
 
 - Add new input `preferred_client_id` to ClientCreateContainer (INDIGO Sprint 221209, [!7](https://github.com/TeskaLabs/seacat-admin-webui/pull/7))
 
 - Replace `phone_number` with `phone` and `preferred_username` with `username` (INDIGO Sprint 221209, [!10](https://github.com/TeskaLabs/seacat-admin-webui/pull/10))
+
+- Update alert responses with full message from the service and prolong the time of the error message to 30s (INDIGO Sprint 230106, [!8](https://github.com/TeskaLabs/seacat-admin-webui/pull/8))
 
 - Refactorization of CustomDataContainer to prevent passing invalid format of `uri` prop. Added documentation. (INDIGO Sprint 221209, [!11](https://github.com/TeskaLabs/seacat-admin-webui/pull/11))
 

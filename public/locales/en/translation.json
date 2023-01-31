@@ -152,7 +152,12 @@
 		"Create credentials": "Create credentials",
 		"Credentials have been created successfully": "Credentials have been created successfully",
 		"Something went wrong, failed to create credentials": "Something went wrong, failed to create credentials",
-		"Something went wrong, failed to fetch providers": "Something went wrong, failed to fetch providers"
+		"Something went wrong, failed to fetch providers": "Something went wrong, failed to fetch providers",
+		"Create": "Create",
+		"Invite": "Invite",
+		"Invite user": "Invite user",
+		"Invitation sent successfully": "Invitation sent successfully",
+		"Something went wrong, failed to send invitation": "Something went wrong, failed to send invitation"
 	},
 	"CredentialsDetailContainer": {
 		"Credentials": "Credentials",
@@ -183,7 +188,11 @@
 		"Phone number already in use": "Phone number already in use",
 		"Email address already in use": "Email address already in use",
 		"Something went wrong, failed to fetch provider data": "Something went wrong, failed to fetch provider data",
-		"Information editing is not allowed within this credentials": "Information editing is not allowed within this credentials"
+		"Information editing is not allowed within this credentials": "Information editing is not allowed within this credentials",
+		"Invited": "Invited",
+		"Resend invitation": "Resend invitation",
+		"Something went wrong, failed to resend invitation": "Something went wrong, failed to resend invitation",
+		"Invitation sent successfully": "Invitation sent successfully"
 	},
 	"CredentialsRolesCard": {
 		"Assigned roles": "Assigned roles",
@@ -225,7 +234,8 @@
 		"Tenants": "Tenants",
 		"Roles": "Roles",
 		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",
-		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it"
+		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
+		"Credentials invited": "Credentials invited"
 	},
 	"FormFields": {
 		"Phone": "Phone",
@@ -352,7 +362,7 @@
 	},
 	"SessionListContainer": {
 		"Credentials": "Credentials",
-		"Failed to fetch the object": "Failed to fetch the object.",
+		"Failed to fetch the object": "Failed to fetch the object",
 		"Sessions": "Sessions",
 		"Expected expiration": "Expected expiration",
 		"Terminate session": "Terminate session",
@@ -370,7 +380,6 @@
 		"Session": "Session"
 	},
 	"SessionDetailContainer": {
-		"Something went wrong when fetching details": "Something went wrong when fetching details",
 		"Failed to fetch details": "Failed to fetch details",
 		"Do you want to terminate this session?": "Do you want to terminate this session?",
 		"Session successfully terminated": "Session successfully terminated",
@@ -417,7 +426,6 @@
 		"Assigned credentials": "Assigned credentials",
 		"Assign credentials": "Assign credentials",
 		"Something went wrong, failed to fetch assigned credentials": "Something went wrong, failed to fetch assigned credentials",
-		"Something went wrong, failed to update credentials": "Something went wrong, failed to update credentials",
 		"Something went wrong, the credentials cannot be assigned": "Something went wrong, the credentials cannot be assigned",
 		"Something went wrong, the credentials cannot be unassigned": "Something went wrong, the credentials cannot be unassigned",
 		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",
