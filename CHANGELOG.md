@@ -2,6 +2,16 @@
 
 ## Release Candidate
 
+## v23.5
+
+### Features
+
+- ASAB WebUI submodule version bump [[186b907](https://github.com/TeskaLabs/asab-webui/commit/186b907f3b1adef77d8664dbc5d68e3ee9d84ac2)] commit (INDIGO Sprint 230120, [!17](https://github.com/TeskaLabs/seacat-admin-webui/pull/17))
+
+### Refactoring
+
+- Add new input `cookie_domain` to Clients. Fix min-max height styles for CustomComponent (INDIGO Sprint 230120, [!15](https://github.com/TeskaLabs/seacat-admin-webui/pull/15))
+
 ## v23.4
 
 ### Compatibility
@@ -27,7 +37,6 @@
 
 - Refactorization of CustomDataContainer to prevent passing invalid format of `uri` prop. Added documentation. (INDIGO Sprint 221209, [!11](https://github.com/TeskaLabs/seacat-admin-webui/pull/11))
 
-- Add new input `cookie_domain` to Clients. Fix min-max height styles for CustomComponent (INDIGO Sprint 230120, [!15](https://github.com/TeskaLabs/seacat-admin-webui/pull/15))
 
 ## v22.48
 
