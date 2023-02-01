@@ -97,7 +97,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 				</div>
 			</CardHeader>
 
-			<Form onSubmit={handleSubmit((values) => {onSave(values)})}>
+			<Form className="d-flex flex-column justify-content-between h-100" onSubmit={handleSubmit((values) => {onSave(values)})}>
 				<CardBody className="card-body-scroll-sm " >
 					{loading ?
 						<CellContentLoader cols={2} rows={5} />

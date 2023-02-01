@@ -103,6 +103,7 @@
 		"Grant types": "Grant types",
 		"Application type": "Application type",
 		"Token endpoint authentication method": "Token endpoint authentication method",
+		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
 		"Create client": "Create client",
 		"Unknown item": "Unknown item"
@@ -127,18 +128,23 @@
 		"Response types": "Response types",
 		"Grant types": "Grant types",
 		"Token endpoint auth. method": "Token endpoint auth. method",
+		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
 		"Redirect URI must be in absolute format without a fragment component.": "Redirect URI must be in absolute format without a fragment component.",
-		"Remove client": "Remove client"
+		"Remove client": "Remove client",
+		"Save changes": "Save changes",
+		"No changes were made": "No changes were made"
 	},
 	"ClientFormField": {
 		"Add new input": "Add new input",
 		"Remove input": "Remove input",
 		"Invalid format, input should have minimum of 8 characters": "Invalid format, input should have minimum of 8 characters",
+		"Invalid format for cookie_domain": "Invalid format for cookie_domain",
 		"URI can't be empty": "URI can't be empty",
 		"URI have to start with https": "URI have to start with https",
 		"URL hash have to be empty": "URL hash have to be empty",
-		"Choose an option": "Choose an option"
+		"Choose an option": "Choose an option",
+		"Required field": "Required field"
 	},
 	"CredentialsCreateContainer": {
 		"Create new credentials": "Create new credentials",

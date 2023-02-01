@@ -11,27 +11,41 @@ export function TextInput ({ name, register, errors, labelName, disabled }) {
 	const { t } = useTranslation();
 	const reg = register(
 		name,
-		(name == "preferred_client_id") && {
+		(name === "preferred_client_id") ? {
 			validate: {
 				validation: value => (/^[-_a-zA-Z0-9]{8,64}$|^$/).test(value) || t("ClientFormField|Invalid format, input should have minimum of 8 characters"),
 			}
 		}
+		:
+		(name === "cookie_domain") && {
+			validate: {
+				validation: value => (/^[a-z0-9\.-]{1,61}\.[a-z]{2,}$|^$/).test(value) || t("ClientFormField|Invalid format for cookie_domain"),
+			}
+		}
 	);
+
+	const isInvalid = (name) => {
+		if (((name === "preferred_client_id") || (name === "cookie_domain")) && (errors[name] != undefined)) {
+			return true;
+		}
+		return false;
+	}
 	return (
 		<FormGroup key={name}>
-			{labelName && <Label for={name}>{labelName}</Label>}
+			{labelName && <Label for={name} title={(name === "client_name") && t("ClientFormField|Required field")}>{labelName}</Label>}
 			<Input
 				id={name}
 				name={name}
 				type="text"
 				disabled={disabled}
-				required={name == "client_name" ? true : false}
+				required={(name === "client_name") ? true : false}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
-				invalid={errors?.preferred_client_id && errors.preferred_client_id}
+				invalid={isInvalid(name)}
 			/>
-			{errors?.preferred_client_id && <FormFeedback>{errors.preferred_client_id.message}</FormFeedback>}
+			{name === "preferred_client_id" && (errors.preferred_client_id != undefined && <FormFeedback>{errors.preferred_client_id?.message}</FormFeedback>)}
+			{name === "cookie_domain" && (errors?.cookie_domain && <FormFeedback>{errors.cookie_domain?.message}</FormFeedback>)}
 		</FormGroup>
 	)
 }
@@ -69,7 +83,7 @@ export function URiInput ({ name, control, errors, append, remove, fields, label
 	return (
 		<FormGroup title={name}>
 			{(labelName && name) &&
-				<Label for={name} title={name}>{labelName}</Label>}
+				<Label for={name} title={t("ClientFormField|Required field")}>{labelName}</Label>}
 				{fields && fields.map((item, idx) => {
 					return (
 						<InputGroup key={item.id} className="mb-1">
