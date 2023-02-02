@@ -27,14 +27,19 @@ const ClientDetailContainer = (props) =>  {
 	const advmode = useSelector(state => state.advmode.enabled);
 
 
-	const { handleSubmit, formState: { errors, isSubmitting, isDirty }, control, setValue, reset, register } = useForm({
-		defaultValues: {
-			redirect_uris:  [{ text: ""}],
-		}
-	});
-	const { fields, append, remove } = useFieldArray({
+	const { handleSubmit, formState: { errors, isSubmitting, isDirty }, control, setValue, register } = useForm();
+
+	const { fields, append, remove, update } = useFieldArray({
 		control,
 		name: "redirect_uris"
+	});
+
+	const regRedirectUrisMain = register("redirect_uris_main", {
+		validate: {
+			emptyInput: value => (value && value.toString().length !== 0) || t("ClientDetailContainer|URI can't be empty"),
+			startWith: value => (/(https:\/\/)/).test(value) || t("ClientDetailContainer|URI have to start with https"),
+			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientDetailContainer|URL hash have to be empty"),
+		}
 	});
 
 	useEffect(() => {
@@ -47,11 +52,15 @@ const ClientDetailContainer = (props) =>  {
 		These values will be updated if the data in the 'client' state changes
 	 */
 	useEffect(() => {
-		reset(client);
+		let arrUris = []; // copy array
 		if (client && client.redirect_uris) {
-			client.redirect_uris.map((item, idx) => {
-				setValue(`redirect_uris[${idx}].text`, item);
-			})
+			arrUris = [...client.redirect_uris];
+			setValue("redirect_uris_main", arrUris[0]);
+			arrUris.splice(0, 1);
+			arrUris.map((item, idx) => {
+				update(idx, item);
+				setValue(`redirect_uris[${idx}].value`, item);
+			});
 		}
 	}, [client]);
 
@@ -96,10 +105,17 @@ const ClientDetailContainer = (props) =>  {
 		let uri = []
 		// Refactor object "redirect_uris" to array
 		await Promise.all(Object.keys(values).map(async (key, idx) => {
-			if (key.includes("redirect_uris")) {
-				await Promise.all(Object.values(values[key]).map((item, index) => {
-					uri.push(item.text)
-				}))
+			if (key === "redirect_uris_main") {
+				if (values[key] != "") {
+					uri.push(values[key]);
+				}
+			} else if (key === "redirect_uris") {
+				values["redirect_uris"] && values["redirect_uris"].map(item => {
+					// Don't append empty redirect_uris's
+					if (item.value) {
+						uri.push(item.value);
+					}
+				})
 			} else if (key == "client_name") {
 				body[key] = values[key];
 			} else if (key == "cookie_domain") {
@@ -113,6 +129,7 @@ const ClientDetailContainer = (props) =>  {
 		}
 
 		try {
+			console.log(body)
 			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, body);
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
@@ -173,7 +190,7 @@ const ClientDetailContainer = (props) =>  {
 										<Col className="client-edit">
 											<TextInput name="client_name" register={register} disabled={disabled}/>
 										</Col>
-										:
+									:
 										<Col className="client-edit" title="client_name">{client?.client_name ? client.client_name : "N/A"}</Col>
 									}
 								</Row>
@@ -251,7 +268,7 @@ const ClientDetailContainer = (props) =>  {
 									<Col title="redirect_uris" className={"redirect_uris" + (editMode ? "" : " edit")}>
 										{editMode ?
 											<>
-												<URiInput disabled={disabled} control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={t("ClientDetailContainer|Redirect URIs")}/>
+												<URiInput name="redirect_uris_main" invalid={errors?.redirect_uris_main && true} mailTemplateName="redirect_uris" errors={errors} append={append} remove={remove} fields={fields} register={register} reg={regRedirectUrisMain} disabled={disabled} labelName={t("ClientDetailContainer|Redirect URIs")}/>
 												<FormText>{t("ClientDetailContainer|Redirect URI must be in absolute format without a fragment component.")}</FormText>
 											</>
 										:

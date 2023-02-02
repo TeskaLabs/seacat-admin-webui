@@ -106,7 +106,10 @@
 		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
 		"Create client": "Create client",
-		"Unknown item": "Unknown item"
+		"Unknown item": "Unknown item",
+		"URL hash have to be empty": "URL hash have to be empty",
+		"Choose an option": "Choose an option",
+		"Required field": "Required field"
 	},
 	"ClientDetailContainer": {
 		"Something went wrong, failed to fetch client details": "Something went wrong, failed to fetch client details",

@@ -106,7 +106,10 @@
 		"Cookie domain": "Cookie doména",
 		"Redirect URIs": "URIs k přesměrování",
 		"Create client": "Vytvořit klienta",
-		"Unknown item": "Neznámá položka"
+		"Unknown item": "Neznámá položka",
+		"URI can't be empty": "URI nemůže být prázdný",
+		"URI have to start with https": "URI musí začínat https",
+		"URL hash have to be empty": "URL hash musí být prázdný"
 	},
 	"ClientDetailContainer": {
 		"Something went wrong, failed to fetch client details": "Něco je špatně, nepodařilo se získat detail klienta",

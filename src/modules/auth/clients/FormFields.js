@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
 
 // The usual text input
-export function TextInput ({ name, register, errors, labelName, disabled }) {
+export function TextInput ({ name, register, errors, labelName, disabled, required }) {
 	const { t } = useTranslation();
 	const reg = register(
 		name,
@@ -38,7 +38,7 @@ export function TextInput ({ name, register, errors, labelName, disabled }) {
 				name={name}
 				type="text"
 				disabled={disabled}
-				required={(name === "client_name") ? true : false}
+				required={required}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
@@ -77,58 +77,76 @@ export function SelectInput ({ name, register, value, labelName }) {
 }
 
 // Dynamic form that can be added and removed. You can to control your fields.
-export function URiInput ({ name, control, errors, append, remove, fields, labelName, disabled }) {
+export function URiInput ({name, errors, append, remove, fields, labelName, reg, invalid, register, mailTemplateName, disabled}) {
 	const { t } = useTranslation();
 
 	return (
-		<FormGroup title={name}>
-			{(labelName && name) &&
-				<Label for={name} title={t("ClientFormField|Required field")}>{labelName}</Label>}
-				{fields && fields.map((item, idx) => {
-					return (
-						<InputGroup key={item.id} className="mb-1">
-							<Controller
-								render={({field}) => <Input {...field} required={true} invalid={errors.redirect_uris?.[idx]?.text} disabled={disabled}/>}
-								name={`redirect_uris[${idx}].text`}
-								control={control}
-								rules={{
-									validate: {
-										emptyInput: value => (value && value.toString().length !== 0) || t("ClientFormField|URI can't be empty"),
-										startWith: value => (/(https:\/\/)/).test(value) || t("ClientFormField|URI have to start with https"),
-										urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientFormField|URL hash have to be empty"),
-									}
-								}}
-							/>
-							<InputGroupAddon addonType="append" style={{marginLeft: "0"}}>
-								<Button
-									outline
-									size="sm"
-									color="danger"
-									title={t("ClientFormField|Remove input")}
-									disabled={(fields.length  === 1) && true}
-									onClick={() => remove(idx)}
-								>
-									<span className="cil-minus" />
-								</Button>
-							</InputGroupAddon>
-							{errors.redirect_uris?.[idx]?.text && <FormFeedback>{errors.redirect_uris?.[idx]?.text?.message}</FormFeedback>}
-						</InputGroup>
-					);
-				})}
-			<Button
-				outline
-				size="sm"
-				color="primary"
-				className="mt-2"
-				title={t("ClientFormField|Add new input")}
-				type="button"
-				onClick={() => {
-					append({ text: "" });
-				}}
-			>
-				<span className="cil-plus" />
-			</Button>
+		<FormGroup>
+			<Label title={t("ExportFormField|Required field")} for={name}>{labelName}</Label>
+			<InputGroup>
+				<Input
+					id={name}
+					name={name}
+					type="text"
+					onChange={reg.onChange}
+					onBlur={reg.onBlur}
+					innerRef={reg.ref}
+					invalid={invalid}
+					disabled={disabled}
+				/>
+				<InputGroupAddon addonType="append" className="ml-0">
+					<Button
+						outline
+						color="primary"
+						size="sm"
+						onClick={() => append({ value: ""})}
+					>
+						<span className="cil-plus" />
+					</Button>
+				</InputGroupAddon>
+				{errors && errors[name] && <FormFeedback>{errors[name].message}</FormFeedback>}
+			</InputGroup>
+			{fields && fields.map((item, i) => (
+				<InputTemplate
+					key={item.id}
+					index={i}
+					errors={errors}
+					remove={remove}
+					register={register}
+					name={mailTemplateName}
+				/>
+			))}
 		</FormGroup>
+	)
+}
+
+function InputTemplate({index, errors, remove, register, name}){
+	const { t } = useTranslation();
+	const regMail = register(`${name}[${index}].value`, {
+		validate: {
+			emptyInput: value => (value && value.toString().length !== 0) || t("ClientFormField|URI can't be empty"),
+			startWith: value => (/(https:\/\/)/).test(value) || t("ClientFormField|URI have to start with https"),
+			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientFormField|URL hash have to be empty"),
+		}
+	});
+	return(
+		<InputGroup className="pt-1">
+			<Input
+				type="text"
+				id={`${name}[${index}].value`}
+				name={`${name}[${index}].value`}
+				onChange={regMail.onChange}
+				onBlur={regMail.onBlur}
+				innerRef={regMail.ref}
+				invalid={errors[name]?.[index]?.value && true}
+			/>
+			<InputGroupAddon addonType="append" className="ml-0">
+				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)}>
+					<span className="cil-minus" />
+				</Button>
+			</InputGroupAddon>
+			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}
+		</InputGroup>
 	)
 }
 

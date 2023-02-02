@@ -26,9 +26,16 @@ const ClientCreateContainer = (props) => {
 
 	const { handleSubmit, register, formState: { errors, isSubmitting }, control, setValue, resetField} = useForm({
 		defaultValues: {
-			redirect_uris: [{ text: ""}],
 			response_types: [],
 			grant_types: [],
+		}
+	});
+
+	const regRedirectUrisMain = register("redirect_uris_main", {
+		validate: {
+			emptyInput: value => (value && value.toString().length !== 0) || t("ClientCreateContainer|URI can't be empty"),
+			startWith: value => (/(https:\/\/)/).test(value) || t("ClientCreateContainer|URI have to start with https"),
+			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientCreateContainer|URL hash have to be empty"),
 		}
 	});
 
@@ -40,7 +47,6 @@ const ClientCreateContainer = (props) => {
 	useEffect(() => {
 		retrieveClientFeatures();
 	}, []);
-
 
 	/*
 		Set the 'selectedTemplate' when the page is loaded
@@ -92,12 +98,19 @@ const ClientCreateContainer = (props) => {
 	const onSubmit = async (values) => {
 		let body = {}
 		let uri = []
-		// Refactor object "redirect_uris" to array
+		// Refactor "redirect_uris" and "redirect_uris_main" to array
 		await Promise.all(Object.keys(values).map(async (key, idx) => {
-			if (key.includes("redirect_uris")) {
-				await Promise.all(Object.values(values[key]).map((item, index) => {
-					uri.push(item.text)
-				}))
+			if (key === "redirect_uris_main") {
+				if (values[key] != "") {
+					uri.push(values[key]);
+				}
+			} else if (key === "redirect_uris") {
+				values["redirect_uris"] && values["redirect_uris"].map(item => {
+					// Don't append empty redirect_uris's
+					if (item.value) {
+						uri.push(item.value);
+					}
+				})
 			} else {
 				body[key] = values[key];
 			}
@@ -195,8 +208,8 @@ const ClientCreateContainer = (props) => {
 								</FormGroup>
 								{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
 									switch(key) {
-										case 'redirect_uris': return(<URiInput key={key} name={key} control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}/>)
-										case 'client_name': return(<TextInput key={key} name={key} register={register} labelName={`${t("ClientCreateContainer|Client name")}*`}/>)
+										case 'redirect_uris': return(<URiInput key={key} name="redirect_uris_main" invalid={errors?.redirect_uris_main && true} mailTemplateName="redirect_uris" errors={errors} append={append} remove={remove} fields={fields} register={register} reg={regRedirectUrisMain} labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}/>)
+										case 'client_name': return(<TextInput key={key} name={key} register={register} required={true} labelName={`${t("ClientCreateContainer|Client name")}*`}/>)
 										case 'client_uri': return(<TextInput key={key} name={key} register={register} labelName={t('ClientCreateContainer|Client URI')}/>)
 										case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 										case 'preferred_client_id': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
