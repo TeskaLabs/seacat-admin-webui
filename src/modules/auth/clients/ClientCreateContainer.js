@@ -85,7 +85,7 @@ const ClientCreateContainer = (props) => {
 			setTemplate(response.data["templates"]);
 		} catch (e) {
 			console.error("Failed to retrieve providers from server: ", e);
-			props.app.addAlert("warning", t("ClientCreateContainer|Something went wrong, failed to fetch clients"));
+			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, failed to fetch clients")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -112,6 +112,14 @@ const ClientCreateContainer = (props) => {
 			delete body.preferred_client_id;
 		}
 
+		if (body.client_uri == "") {
+			delete body.client_uri;
+		}
+
+		if (body.cookie_domain == "") {
+			delete body.cookie_domain;
+		}
+
 		try {
 			let response = await SeaCatAuthAPI.post(`/client`, body);
 			if (response.statusText != 'OK') {
@@ -124,7 +132,7 @@ const ClientCreateContainer = (props) => {
 
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ClientCreateContainer|Something went wrong, client has not been created"));
+			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, client has not been created")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -187,9 +195,10 @@ const ClientCreateContainer = (props) => {
 								</FormGroup>
 								{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
 									switch(key) {
-										case 'redirect_uris': return(<URiInput key={key} name={key} control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={t("ClientCreateContainer|Redirect URIs")}/>)
-										case 'client_name': return(<TextInput key={key} name={key} register={register} labelName={t('ClientCreateContainer|Client name')}/>)
+										case 'redirect_uris': return(<URiInput key={key} name={key} control={control} errors={errors} append={append} remove={remove} fields={fields} labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}/>)
+										case 'client_name': return(<TextInput key={key} name={key} register={register} labelName={`${t("ClientCreateContainer|Client name")}*`}/>)
 										case 'client_uri': return(<TextInput key={key} name={key} register={register} labelName={t('ClientCreateContainer|Client URI')}/>)
+										case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 										case 'preferred_client_id': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
 										case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} setValue={setValue} labelName={t('ClientCreateContainer|Response types')}/>)
 										case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} setValue={setValue} labelName={t('ClientCreateContainer|Grant types')}/>)

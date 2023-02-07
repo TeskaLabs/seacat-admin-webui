@@ -69,7 +69,7 @@ function CredentialsDetailContainer(props) {
 			setLoadingCustomData(false);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsDetailContainer|Something went wrong, failed to fetch user details"));
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -85,7 +85,7 @@ function CredentialsDetailContainer(props) {
 			}
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsDetailContainer|Something went wrong, failed to fetch provider data"));
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to fetch provider data")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -97,7 +97,7 @@ function CredentialsDetailContainer(props) {
 			setSessions(response.data.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("SessionListContainer|Something went wrong, failed to fetch user sessions"));
+			props.app.addAlert("warning", `${t("SessionListContainer|Something went wrong, failed to fetch user sessions")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -119,7 +119,7 @@ function CredentialsDetailContainer(props) {
 			props.history.push("/auth/credentials");
 		} catch(e) {
 			console.error(e); // log the error to the browser's console
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to remove user'));
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to remove user")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -137,7 +137,7 @@ function CredentialsDetailContainer(props) {
 		}
 	}
 
-
+	// Suspend user
 	const suspendUser = async (suspend) => {
 		if (suspended === false || suspended === undefined) {
 			setSuspended(true);
@@ -158,12 +158,31 @@ function CredentialsDetailContainer(props) {
 			retrieveData();
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to update user'));
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to update user")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
+	// Reset password
 	const resetPwd = () => {
 		props.history.push(`/auth/credentials/${credentials_id}/passwordreset`);
+	}
+
+	// Resend invitation
+	const resendInvitation = async () => {
+		// Body should be empty
+		try {
+			let response = await SeaCatAuthAPI.post(`/invite/${credentials_id}`,
+				{},
+				{ headers:
+					{
+						'Content-Type': 'application/json'
+					}
+				});
+			props.app.addAlert("success", t('CredentialsDetailContainer|Invitation sent successfully'));
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to resend invitation")}. ${e?.response?.data?.message}`, 30);
+		}
 	}
 
 	return (
@@ -196,12 +215,25 @@ function CredentialsDetailContainer(props) {
 							<Row className="card-body-row">
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Status')}</Col>
 								<Col>
-									{(data.suspended === false) || (data.suspended === undefined) ?
+									{(data.suspended === false) || (data.suspended == undefined) ?
 										<span className="credential-status credential-active-status">{t('CredentialsDetailContainer|Active')}</span>
 									:
-										<span className="credential-status credential-suspended-status">{t('CredentialsDetailContainer|Suspended')}</span>
+										<span className={`credential-status ${(data?.registered == false) ? "credential-invited-status" : "credential-suspended-status"}`}>
+											{(data?.registered == false) ? t('CredentialsDetailContainer|Invited') : t('CredentialsDetailContainer|Suspended')}
+										</span>
 									}
 									<br />
+									{(data?.registered == false) ?
+									<ButtonWithAuthz
+										style={{padding: 0, borderWidth: 0, marginTop: "8px"}}
+										onClick={() => { resendInvitation() }}
+										color="link"
+										resource={resourceManageCredentials}
+										resources={resources}
+									>
+										{t('CredentialsDetailContainer|Resend invitation')}
+									</ButtonWithAuthz>
+									:
 									<ButtonWithAuthz
 										style={{padding: 0, borderWidth: 0, marginTop: "8px"}}
 										onClick={(e) => { e.preventDefault(); suspendUserForm((suspended === false) || (suspended === undefined)) }}
@@ -215,6 +247,7 @@ function CredentialsDetailContainer(props) {
 											t('CredentialsDetailContainer|Activate user')
 										}
 									</ButtonWithAuthz>
+									}
 								</Col>
 							</Row>
 
@@ -411,16 +444,16 @@ function CredentialsInfoCard(props) {
 			if (e.response.status === 400) {
 				if (e.response.data.result.key === "phone" && e.response.data.result.error === "ALREADY-IN-USE") {
 					console.error(t("CredentialsDetailContainer|Phone number already in use"));
-					props.app.addAlert("warning", t("CredentialsDetailContainer|Phone number already in use"));
+					props.app.addAlert("warning", t("CredentialsDetailContainer|Phone number already in use"), 30);
 					return;
 				} else if (e.response.data.result.key === "email" && e.response.data.result.error === "ALREADY-IN-USE") {
 					console.error(t("CredentialsDetailContainer|Email address already in use"));
-					props.app.addAlert("warning", t("CredentialsDetailContainer|Email address already in use"));
+					props.app.addAlert("warning", t("CredentialsDetailContainer|Email address already in use"), 30);
 					return;
 				}
 			}
 			console.error(e);
-			props.app.addAlert("warning", t('CredentialsDetailContainer|Something went wrong, failed to update user'));
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to update user")}. ${e?.response?.data?.message}`, 30);
 			return;
 		}
 	}
