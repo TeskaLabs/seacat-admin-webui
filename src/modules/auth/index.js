@@ -165,6 +165,13 @@ export default class SeaCatAuthModule extends Module {
 			component: ClientDetailContainer
 		});
 
+		app.Router.addRoute({
+			path: '/auth/clients/:client_id/edit',
+			exact: true,
+			name: 'Edit',
+			component: ClientCreateContainer
+		});
+
 		// Navigation
 		app.Navigation.addItem({
 			name: 'Auth',
