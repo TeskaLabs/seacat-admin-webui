@@ -18,6 +18,8 @@ function CredentialsRolesCard(props) {
 	const [assignedRoles, setAssignedRoles] = useState([]);
 	const [prevAssignedRoles, setPrevAssignedRoles] = useState([]);
 	const [rolesLookup, setRolesLookup] = useState([]);
+	const [limit, setLimit] = useState(10);
+	const [count, setCount] = useState(0);
 
 	const [dropdownAddRoleOpen, setDropdownAddRoleOpen] = useState(false);
 	const toggleAddRole = () => setDropdownAddRoleOpen(prevState => !prevState);
@@ -33,7 +35,7 @@ function CredentialsRolesCard(props) {
 
 	useEffect(() => {
 		editMode && retrieveRolesLookup();
-	}, [editMode])
+	}, [editMode, limit])
 
 
 	const retrieveAssignedRoles = async () => {
@@ -49,12 +51,13 @@ function CredentialsRolesCard(props) {
 
 	const retrieveRolesLookup = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/role/${tenant}`);
+			let response = await SeaCatAuthAPI.get(`/role/${tenant}`, {params: {i: limit}});
 			let roles = response.data.data;
 			if (!resources.includes("authz:superuser")) {
 				roles = roles.filter(item => !item._id.startsWith('*'))
 			}
 			setRolesLookup(roles);
+			setCount(response.data.count);
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("CredentialsRolesCard|Something went wrong, failed to fetch roles")}. ${e?.response?.data?.message}`, 30);
@@ -149,6 +152,21 @@ function CredentialsRolesCard(props) {
 									)
 								} else { return null }
 							})}
+							{count > limit ?
+								<>
+									<DropdownItem divider />
+									<DropdownItem
+										onClick={() => {
+											setLimit(limit + 5);
+											toggleAddRole();
+										}}
+									>
+										{t("CredentialsRolesCard|More")}
+									</DropdownItem>
+								</>
+								:
+								null
+							}
 						</DropdownMenu>
 					</Dropdown>
 				</>

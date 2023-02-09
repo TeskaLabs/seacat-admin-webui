@@ -195,6 +195,7 @@
 		"Invitation sent successfully": "Invitation sent successfully"
 	},
 	"CredentialsRolesCard": {
+		"More": "More...",
 		"Assigned roles": "Assigned roles",
 		"Assign a new role": "Assign a new role",
 		"Select role to assign ...": "Select role to assign ...",
@@ -204,6 +205,7 @@
 		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles"
 	},
 	"CredentialsTenantsCard": {
+		"More": "More...",
 		"Tenants": "Tenants",
 		"Assign a tenant": "Assign a tenant",
 		"Search": "Search",
