@@ -41,7 +41,7 @@ function TenantCreateContainer(props) {
 			props.history.push("/auth/tenant");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("TenantCreateContainer|Something went wrong, failed to create tenant"));
+			props.app.addAlert("warning", `${t("TenantCreateContainer|Something went wrong, failed to create tenant")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -51,7 +51,7 @@ function TenantCreateContainer(props) {
 			setValue('id', response.data.tenant_id);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("TenantCreateContainer|Something went wrong, can't propose tenant name"));
+			props.app.addAlert("warning", `${t("TenantCreateContainer|Something went wrong, can't propose tenant name")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

@@ -136,7 +136,7 @@ function TenantDetailContainer(props) {
 		} catch (e) {
 			console.error(e);
 			setLoadingCustomData(false);
-			props.app.addAlert("warning", t("TenantDetailContainer|Something went wrong, failed to fetch tenant detail"));
+			props.app.addAlert("warning", `${t("TenantDetailContainer|Something went wrong, failed to fetch tenant detail")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -149,7 +149,7 @@ function TenantDetailContainer(props) {
 			setUsername(response.data.data[data.created_by]);
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", t("TenantDetailContainer|Something went wrong, failed to fetch assigned credentials"));
+			props.app.addAlert("warning", `${t("TenantDetailContainer|Something went wrong, failed to fetch assigned credentials")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -170,7 +170,7 @@ function TenantDetailContainer(props) {
 		} catch (e) {
 			console.error(e);
 			setLoading(false);
-			props.app.addAlert("warning", t("TenantDetailContainer|Something went wrong, failed to fetch assigned credentials"));
+			props.app.addAlert("warning", `${t("TenantDetailContainer|Something went wrong, failed to fetch assigned credentials")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -184,7 +184,7 @@ function TenantDetailContainer(props) {
 			props.history.push("/auth/tenant");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("TenantDetailContainer|Failed to remove the tenant"));
+			props.app.addAlert("warning", `${t("TenantDetailContainer|Failed to remove the tenant")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -202,10 +202,10 @@ function TenantDetailContainer(props) {
 			console.error(e);
 			setLoading(false);
 			if (e.response.status === 401) {
-				props.app.addAlert("warning", t("TenantDetailContainer|Can't fetch the data, you don't have rights to display it"));
+				props.app.addAlert("warning", t("TenantDetailContainer|Can't fetch the data, you don't have rights to display it"), 30);
 				return;
 			}
-			props.app.addAlert("warning", t("TenantDetailContainer|Something went wrong, failed to fetch data"));
+			props.app.addAlert("warning", `${t("TenantDetailContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -222,10 +222,10 @@ function TenantDetailContainer(props) {
 
 		} catch(e) {
 			if (e.response?.data?.result === "ALREADY-EXISTS") {
-				props.app.addAlert("warning", t("TenantDetailContainer|The selected credential has already been assigned"));
+				props.app.addAlert("warning", t("TenantDetailContainer|The selected credential has already been assigned"), 30);
 			} else {
 				console.error(e);
-				props.app.addAlert("warning", t("TenantDetailContainer|Something went wrong, the credentials cannot be assigned"));
+				props.app.addAlert("warning", `${t("TenantDetailContainer|Something went wrong, the credentials cannot be assigned")}. ${e?.response?.data?.message}`, 30);
 			}
 		}
 	};
@@ -242,7 +242,7 @@ function TenantDetailContainer(props) {
 
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("TenantDetailContainer|Something went wrong, the credentials cannot be unassigned"));
+			props.app.addAlert("warning", `${t("TenantDetailContainer|Something went wrong, the credentials cannot be unassigned")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 

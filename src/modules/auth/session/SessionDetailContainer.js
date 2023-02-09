@@ -77,7 +77,7 @@ function SessionDetailContainer(props) {
 			setData(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("SessionDetailContainer|Failed to fetch details"));
+			props.app.addAlert("warning", `${t("SessionDetailContainer|Failed to fetch details")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -100,7 +100,7 @@ function SessionDetailContainer(props) {
 			history.goBack();
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("SessionDetailContainer|Failed to terminate the session"));
+			props.app.addAlert("warning", `${t("SessionDetailContainer|Failed to terminate the session")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

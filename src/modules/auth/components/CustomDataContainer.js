@@ -74,7 +74,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 		// first, transform data to appropirate format for api request and skip pairs with empty key field
 		let objToSubmit = await prepForRequest(data);
 		try {
-			let response = await SeaCatAuthAPI.put(`/${uri}`, {"data": objToSubmit});
+			let response = await SeaCatAuthAPI.put(`/${uri.replace(/^\//g, "")}`, {"data": objToSubmit});
 			if (response.data.result !== "OK") {
 				throw new Error(t("CustomDataContainer|Something went wrong, failed to update data"));
 			};
@@ -83,7 +83,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 			setEdit(false);
 			app.addAlert("success", t("CustomDataContainer|Data updated successfully"));
 		} catch (e) {
-			app.addAlert("warning", t("CustomDataContainer|Something went wrong, failed to update data"));
+			app.addAlert("warning", `${t("CustomDataContainer|Something went wrong, failed to update data")}. ${e?.response?.data?.message}`, 30);
 			console.error(e);
 		}
 	}
@@ -97,7 +97,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 				</div>
 			</CardHeader>
 
-			<Form onSubmit={handleSubmit((values) => {onSave(values)})}>
+			<Form className="d-flex flex-column justify-content-between h-100" onSubmit={handleSubmit((values) => {onSave(values)})}>
 				<CardBody className="card-body-scroll-sm " >
 					{loading ?
 						<CellContentLoader cols={2} rows={5} />

@@ -19,10 +19,10 @@ function CredentialsTenantsCard(props) {
 	const [prevAssignedTenants, setPrevAssignedTenants] = useState([]);
 	const [allTenants, setAllTenants] = useState([]);
 	const [filter, setFilter] = useState('');
+	const [count, setCount] = useState(0);
+	const [limit, setLimit] = useState(10);
 
 	const tenant = useSelector(state => state.tenant?.current);
-
-	const limit = 10;
 
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
@@ -40,7 +40,7 @@ function CredentialsTenantsCard(props) {
 
 	useEffect(() => {
 		editMode && retrieveAllTenants();
-	}, [editMode]);
+	}, [editMode, limit]);
 
 	//sets 0.5s delay before triggering the search call when filtering through tennants
 	useEffect(() => {
@@ -60,7 +60,7 @@ function CredentialsTenantsCard(props) {
 			setPrevAssignedTenants(response.data)
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsTenantsCard|Something went wrong, failed to fetch assigned tenants"));
+			props.app.addAlert("warning", `${t("CredentialsTenantsCard|Something went wrong, failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -90,9 +90,10 @@ function CredentialsTenantsCard(props) {
 				eligibleTenants.push(filteredTenant[0]);
 			}
 			setAllTenants(eligibleTenants);
+			setCount(response.data.count);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsTenantsCard|Something went wrong, failed to fetch tenants"));
+			props.app.addAlert("warning", `${t("CredentialsTenantsCard|Something went wrong, failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -106,7 +107,7 @@ function CredentialsTenantsCard(props) {
 			props.setRolesRefresh(prev => !prev);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("CredentialsRolesCard|Failed to update tenants"));
+			props.app.addAlert("warning", `${t("CredentialsRolesCard|Failed to update tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -200,6 +201,21 @@ function CredentialsTenantsCard(props) {
 										)
 									} else { return null }
 								})}
+								{(count > limit) ?
+									<>
+										<DropdownItem divider />
+										<DropdownItem
+											onClick={() => {
+												setLimit(limit + 5);
+												toggleDropdown();
+											}}
+										>
+											{t("CredentialsTenantsCard|More")}
+										</DropdownItem>
+									</>
+									:
+									null
+								}
 								{allTenants.length == 0 && <DropdownItem>
 										<span>
 											{t("CredentialsTenantsCard|No match")}
