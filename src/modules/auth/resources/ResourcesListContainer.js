@@ -38,6 +38,27 @@ function ResourcesListContainer(props) {
 		{
 			name: t("Description"),
 			key: 'description'
+		},
+		{
+			name: " ",
+			customComponent: {
+				generate: (resource) => (
+					<div className="d-flex justify-content-end">
+						<ButtonWithAuthz
+							title={t("ResourceListContainer|Delete resource")}
+							id={resource._id}
+							size="sm"
+							color="danger"
+							outline
+							onClick={() => {terminateResourceForm(resource._id)}}
+							resource="authz:tenant:admin"
+							resources={credentialsResources}
+						>
+							<i className="cil-x"></i>
+						</ButtonWithAuthz>
+					</div>
+				)
+			}
 		}
 	];
 
@@ -66,6 +87,28 @@ function ResourcesListContainer(props) {
 			console.error(e);
 			setLoading(false);
 			props.app.addAlert("warning", `${t("ResourcesListContainer|Something went wrong, failed to load resources")}. ${e?.response?.data?.message}`, 30);
+		}
+	}
+	// Set terminate resource dialog
+	const terminateResourceForm = (resourceId) => {
+		var r = confirm(t('ResourcesListContainer|Do you want to delete this resource?'));
+		if (r == true) {
+			deleteResource(resourceId);
+		}
+	}
+
+	// Terminate the resource
+	const deleteResource = async (resourceId) => {
+		try {
+			let response = await SeaCatAuthAPI.delete(`/resource/${resourceId}`);
+			if (response.data.result !== "OK") {
+				throw new Error(t("ResourcesListContainer|Something went wrong when terminating resource"));
+			}
+			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully terminated"));
+			getResources();
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to terminate the resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

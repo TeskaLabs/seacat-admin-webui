@@ -25,10 +25,11 @@ const ResourceDetailContainer = (props) =>  {
 	const theme = useSelector(state => state.theme);
 
 	const registerDescription = register("resource_description");
+	const registerName = register("resource_name");
 
-	const getResourceDetail = async () => {
+	const getResourceDetail = async (res) => {
 		try {
-			let response = await SeaCatAuthAPI.get(`resource/${resource_id}`);
+			let response = await SeaCatAuthAPI.get(`resource/${res}`);
 			setResource(response.data);
 		} catch(e) {
 			console.error(e);
@@ -37,30 +38,56 @@ const ResourceDetailContainer = (props) =>  {
 	}
 
 	useEffect(() => {
-		getResourceDetail();
+		getResourceDetail(resource_id);
 	}, []);
 
 	if (!resource) return null;
 
 	if (resource != null && onUpdate === false) {
 		setValue("resource_description", resource.description);
+		setValue("resource_name", resource._id);
 		setOnUpdate(true);
 	}
 
 	// Update description
 	const onSubmit = async (values) => {
+		console.log('values.resource_name: ',  values.resource_name)
 		try {
 			await SeaCatAuthAPI.put(`/resource/${resource_id}`,
 				{
-					description:  values.resource_description
+					description:  values.resource_description,
+					name: values.resource_name
 				});
 			props.app.addAlert("success", t("ResourcesDetailContainer|Resource updated successfully"));
 			setEditMode(false);
 			setOnUpdate(true);
-			getResourceDetail();
+			getResourceDetail(values.resource_name);
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Something went wrong, failed to update resource")}. ${e?.response?.data?.message}`, 30);
+		}
+	}
+
+	// Set terminate resource dialog
+	const terminateResourceForm = (resourceId) => {
+		var r = confirm(t('ResourcesListContainer|Do you want to delete this resource?'));
+		if (r == true) {
+			deleteResource(resourceId);
+		}
+	}
+
+	// Terminate the resource
+	const deleteResource = async (resourceId) => {
+		try {
+			let response = await SeaCatAuthAPI.delete(`/resource/${resourceId}`);
+			if (response.data.result !== "OK") {
+				throw new Error(t("ResourcesListContainer|Something went wrong when terminating resource"));
+			}
+			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully terminated"));
+			retrieveData();
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to terminate the resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -80,7 +107,21 @@ const ResourceDetailContainer = (props) =>  {
 							<CardBody>
 								<Row className="card-body-row">
 									<Col md={3}>{t("Name")}</Col>
-									<Col>{resource._id}</Col>
+									<Col>
+										{ editMode ?
+											<Input
+												id="resource_name"
+												name="resource_name"
+												type="text"
+												autoComplete="off"
+												onChange={registerName.onChange}
+												onBlur={registerName.onBlur}
+												innerRef={registerName.ref}
+											/>
+										:
+											resource._id
+										}
+									</Col>
 								</Row>
 								<Row className="mt-3 card-body-row">
 									<Col md={3}>{t("Created at")}</Col>
@@ -116,6 +157,7 @@ const ResourceDetailContainer = (props) =>  {
 										<>
 											<Button color="primary" type="submit" >{t("Save")}</Button>
 											<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+											<Button color="danger" type="button" onClick={() => terminateResourceForm(resource._id)}>{t("ResourcesDetailContainer|Delete resource")}</Button>
 										</>
 									:
 										<ButtonWithAuthz
