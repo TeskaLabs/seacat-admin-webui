@@ -33,7 +33,7 @@ const ResourceDetailContainer = (props) =>  {
 			setResource(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Something went wrong, can't fetch resource details")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Can't fetch resource details")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -62,32 +62,34 @@ const ResourceDetailContainer = (props) =>  {
 			setEditMode(false);
 			setOnUpdate(true);
 			getResourceDetail(values.resource_name);
+			props.history.push(`/auth/resources/${values.resource_name}`);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Something went wrong, failed to update resource")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Failed to update resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
 	// Set terminate resource dialog
-	const terminateResourceForm = (resourceId) => {
+	const terminateResourceForm = () => {
 		var r = confirm(t('ResourcesListContainer|Do you want to delete this resource?'));
 		if (r == true) {
-			deleteResource(resourceId);
+			deleteResource();
 		}
 	}
 
 	// Terminate the resource
-	const deleteResource = async (resourceId) => {
+	const deleteResource = async () => {
 		try {
-			let response = await SeaCatAuthAPI.delete(`/resource/${resourceId}`);
+			let response = await SeaCatAuthAPI.delete(`/resource/${resource_id}`);
 			if (response.data.result !== "OK") {
-				throw new Error(t("ResourcesListContainer|Something went wrong when terminating resource"));
+				throw new Error(t("ResourcesListContainer|Failed to terminate resource"));
 			}
 			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully terminated"));
-			retrieveData();
+			// redirect to list of deleted resources
+			props.history.push("/auth/deletedresources");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to terminate the resource")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to terminate resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -152,13 +154,12 @@ const ResourceDetailContainer = (props) =>  {
 							</CardBody>
 
 							<CardFooter>
-								<ButtonGroup>
 									{editMode ?
-										<>
-											<Button color="primary" type="submit" >{t("Save")}</Button>
-											<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
-											<Button color="danger" type="button" onClick={() => terminateResourceForm(resource._id)}>{t("ResourcesDetailContainer|Delete resource")}</Button>
-										</>
+										<ButtonGroup>
+												<Button color="primary" type="submit" >{t("Save")}</Button>
+												<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+												<Button color="danger" type="button" onClick={() => terminateResourceForm(resource._id)}>{t("ResourcesDetailContainer|Delete resource")}</Button>
+										</ButtonGroup>
 									:
 										<ButtonWithAuthz
 											color="primary"
@@ -171,7 +172,6 @@ const ResourceDetailContainer = (props) =>  {
 											{t("Edit")}
 										</ButtonWithAuthz>
 									}
-								</ButtonGroup>
 							</CardFooter>
 						</Form>
 					</Card>
