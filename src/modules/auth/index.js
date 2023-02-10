@@ -19,6 +19,8 @@ import RolesDetailContainer from './roles/RolesDetailContainer';
 import ResourcesListContainer from './resources/ResourcesListContainer';
 import ResourcesDetailContainer from './resources/ResourcesDetailContainer';
 import ResourcesCreateContainer from './resources/ResourcesCreateContainer';
+import ResourcesDeletedListContainer from './resources/ResourcesDeletedListContainer';
+import ResourcesDeletedDetailContainer from'./resources/ResourcesDeletedDetailContainer';
 
 import ClientListContainer from './clients/ClientListContainer';
 import ClientCreateContainer from './clients/ClientCreateContainer';
@@ -55,6 +57,18 @@ export default class SeaCatAuthModule extends Module {
 			exact: true,
 			name: 'Resource detail',
 			component: ResourcesDetailContainer
+		});
+		app.Router.addRoute({
+			path: '/auth/deletedresources',
+			exact: true,
+			name: 'Deleted resources',
+			component: ResourcesDeletedListContainer
+		});
+		app.Router.addRoute({
+			path: '/auth/deletedresources/:resource_id',
+			exact: true,
+			name: 'Deleted resource detail',
+			component: ResourcesDeletedDetailContainer
 		});
 
 		// Roles
@@ -196,6 +210,11 @@ export default class SeaCatAuthModule extends Module {
 					name: 'Resources',
 					url: '/auth/resources',
 					icon: 'cil-lock-unlocked'
+				},
+				{
+					name: 'Deleted resources',
+					url: '/auth/deletedresources',
+					icon: 'cil-lock-locked'
 				},
 				{
 					name: 'Clients',
