@@ -86,7 +86,7 @@ function ResourcesListContainer(props) {
 		} catch(e) {
 			console.error(e);
 			setLoading(false);
-			props.app.addAlert("warning", `${t("ResourcesListContainer|Something went wrong, failed to load resources")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to load resources")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 	// Set terminate resource dialog
@@ -102,10 +102,10 @@ function ResourcesListContainer(props) {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/resource/${resourceId}`);
 			if (response.data.result !== "OK") {
-				throw new Error(t("ResourcesListContainer|Something went wrong when terminating resource"));
+				throw new Error(t("ResourcesListContainer|Failed to terminate the resource"));
 			}
 			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully terminated"));
-			getResources();
+			props.history.push("/auth/deletedresources");
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to terminate the resource")}. ${e?.response?.data?.message}`, 30);
