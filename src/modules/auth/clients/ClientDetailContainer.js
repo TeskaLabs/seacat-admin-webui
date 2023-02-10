@@ -98,7 +98,7 @@ const ClientDetailContainer = (props) =>  {
 						<CardBody className="card-body-client">
 							<Row className="card-body-row">
 								<Col md={4} title="client_name">{t("ClientDetailContainer|Client name")}</Col>
-								<Col className="client-edit" title="client_name">{client?.client_name ? client.client_name : "N/A"}</Col>
+								<Col title="client_name">{client?.client_name ? client.client_name : "N/A"}</Col>
 							</Row>
 							<Row className="card-body-row">
 								<Col md={4} title="client_id">{t("ClientDetailContainer|Client ID")}</Col>
@@ -161,7 +161,7 @@ const ClientDetailContainer = (props) =>  {
 							</Row>
 							<Row className="card-body-row">
 								<Col md={4} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
-								<Col className="client-edit" title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
+								<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
 							</Row>
 							<Row className="mt-3 card-body-row">
 								<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
