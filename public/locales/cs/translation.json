@@ -354,13 +354,26 @@
 	"ResourcesDetailContainer": {
 		"Resource": "Zdroj",
 		"Resource updated successfully": "Zdroj byl úspěšně aktualizován",
-		"Something went wrong, can't fetch resource details": "Něco je špatně, nepodařilo se načíst zdroj",
-		"Something went wrong, failed to update resource": "Něco je špatně, aktualizace zdroje se nezdařila"
+		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
+		"ailed to update resource": "Aktualizace zdroje se nezdařila",
+		"Failed to terminate resource": "Odstranění zdroje se nezdařilo",
+		"Resource successfully terminated": "Zdroj byl úspěšně odstraněn"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Seznam zdrojů",
 		"Create resource": "Vytvořit zdroj",
-		"Something went wrong, failed to load resources": "Něco je špatně, nepodařilo se načíst zdroje"
+		"Failed to load resources": "Nepodařilo se načíst zdroje",
+		"Failed to terminate the resource": "Nepodařilo se odstranit zdroj"
+	},
+	"ResourcesDeletedDetailContainer": {
+		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
+		"Failed to hard-delete the resource": "Failed to hard-delete the resource"
+	},
+	"ResourcesDeletedListContainer": {
+		"Retrieve resource": "Retrieve resource",
+		"Failed to load resources": "Nepodařilo se načíst zdroje",
+		"Failed to un-delete resource": "Failed to un-delete resource",
+		"Deleted resources list": "Deleted resources list"
 	},
 	"SessionListContainer": {
 		"Credentials": "Uživ. Identifikace",

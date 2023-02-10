@@ -354,13 +354,26 @@
 	"ResourcesDetailContainer": {
 		"Resource": "Resource",
 		"Resource updated successfully": "Resource updated successfully",
-		"Something went wrong, can't fetch resource details": "Something went wrong, can't fetch resource details",
-		"Something went wrong, failed to update resource": "Something went wrong, failed to update resource"
+		"Can't fetch resource details": "Can't fetch resource details",
+		"Failed to update resource": "Failed to update resource",
+		"Failed to terminate resource": "Failed to terminate resource",
+		"Resource successfully terminated": "Resource successfully terminated"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Resources list",
 		"Create resource": "Create resource",
-		"Something went wrong, failed to load resources": "Something went wrong, failed to load resources"
+		"Failed to load resources": "Failed to load resources",
+		"Failed to terminate the resource": "Failed to terminate the resource"
+	},
+	"ResourcesDeletedDetailContainer": {
+		"Can't fetch resource details": "Can't fetch resource details",
+		"Failed to hard-delete the resource": "Failed to hard-delete the resource"
+	},
+	"ResourcesDeletedListContainer": {
+		"Retrieve resource": "Retrieve resource",
+		"Failed to load resources": "Failed to load resources",
+		"Failed to un-delete resource": "Failed to un-delete resource",
+		"Deleted resources list": "Deleted resources list"
 	},
 	"SessionListContainer": {
 		"Credentials": "Credentials",
