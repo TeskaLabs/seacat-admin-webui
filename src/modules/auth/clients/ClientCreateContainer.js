@@ -10,7 +10,7 @@ import {
 	Form, FormGroup, Input, Label
 } from 'reactstrap';
 
-import {TextInput, SelectInput, URiInput, MultiCheckbox} from './FormFields';
+import {TextInput, SelectInput, URiInput, MultiCheckbox, RadioInput} from './FormFields';
 
 import { ButtonWithAuthz } from 'asab-webui';
 
@@ -31,10 +31,11 @@ const ClientCreateContainer = (props) => {
 
 	const { t } = useTranslation();
 
-	const { handleSubmit, register, formState: { errors, isSubmitting }, control, setValue, resetField} = useForm({
+	const { handleSubmit, register, formState: { errors, isSubmitting }, control, setValue, resetField } = useForm({
 		defaultValues: {
 			response_types: [],
 			grant_types: [],
+			code_challenge_methods: [],
 		}
 	});
 
@@ -47,11 +48,7 @@ const ClientCreateContainer = (props) => {
 		}
 	});
 
-
-	const { fields, append, remove, update } = useFieldArray({
-		control,
-		name: "redirect_uris"
-	});
+	const { fields, append, remove, update } = useFieldArray({control, name: "redirect_uris"});
 
 	useEffect(() => {
 		retrieveClientFeatures();
@@ -67,7 +64,7 @@ const ClientCreateContainer = (props) => {
 	let editClient = clientState["editClient"];
 
 	useEffect(() => {
-		if (editClient == true) {
+		if ((editClient == true) && metaData) {
 			getClientDetail();
 		}
 	}, [editClient]);
@@ -141,8 +138,6 @@ const ClientCreateContainer = (props) => {
 	}
 
 	const onSubmitNewClient = async (values) => {
-		refactorSubmitData(values)
-
 		try {
 			console.log(refactorSubmitData(values), "new client")
 			let response = await SeaCatAuthAPI.post(`/client`, refactorSubmitData(values));
@@ -160,39 +155,14 @@ const ClientCreateContainer = (props) => {
 	};
 
 	const onSubmitEditClient = async (values) => {
-		refactorSubmitData(values)
-		// let body = {}
-		// let uri = []
-		// // Refactor object "redirect_uris" to array
-		// await Promise.all(Object.keys(values).map(async (key, idx) => {
-		// 	if (key === "redirect_uris_main") {
-		// 		if (values[key] != "") {
-		// 			uri.push(values[key]);
-		// 		}
-		// 	} else if (key === "redirect_uris") {
-		// 		values["redirect_uris"] && values["redirect_uris"].map(item => {
-		// 			// Don't append empty redirect_uris's
-		// 			if (item.value) {
-		// 				uri.push(item.value);
-		// 			}
-		// 		})
-		// 	} else {
-		// 		body[key] = values[key];
-		// 	}
-		// }))
-		// body["redirect_uris"] = uri;
-		//
-		// if (body.client_name == undefined) {
-		// 	body.client_name = "";
-		// }
-
 		try {
 			console.log(refactorSubmitData(values), "edit")
-			// let response = await SeaCatAuthAPI.put(`/client/${client_id}`, refactorSubmitData(values));
-			// if (response.statusText != 'OK') {
-			// 	throw new Error("Unable to change client details");
-			// }
-			// props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
+			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, refactorSubmitData(values));
+			if (response.statusText != 'OK') {
+				throw new Error("Unable to change client details");
+			}
+			props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
+			props.history.push(`/auth/clients/${client_id}`);
 		} catch (e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ClientDetailContainer|Something went wrong, failed to update client")}. ${e?.response?.data?.message}`, 30);
@@ -247,11 +217,13 @@ const ClientCreateContainer = (props) => {
 			setValue("template", obj?.template);
 			setSelectedTemplate(obj?.template);
 		}
+
+		setValue("application_type", obj?.application_type);
 		setValue("client_name", obj?.client_name);
 		setValue("client_uri", obj?.client_uri);
 		setValue("cookie_domain", obj?.cookie_domain);
 		setValue("login_uri", obj?.login_uri);
-		setValue("code_challenge_methods", obj?.code_challenge_methods);
+		// setValue("code_challenge_methods", obj?.code_challenge_methods);
 	}
 
 	const refactorSubmitData = (values) => {
@@ -271,28 +243,34 @@ const ClientCreateContainer = (props) => {
 						uri.push(item.value);
 					}
 				})
-			} else {
+			}
+			else {
 				body[key] = values[key];
 			}
 		})
 		body["redirect_uris"] = uri;
 
-		if (body.client_name == undefined) {
+		if (body?.client_name == undefined) {
 			body.client_name = "";
 		}
-
-		if (body.preferred_client_id == "" || body.preferred_client_id == undefined) {
+		if (body?.preferred_client_id == "" || body.preferred_client_id == undefined) {
 			delete body.preferred_client_id;
 		}
-
-		if (body.client_uri == "") {
+		if (body?.client_uri == "") {
 			delete body.client_uri;
 		}
-
-		if (body.cookie_domain == "") {
+		if (body?.cookie_domain == "") {
 			delete body.cookie_domain;
 		}
-
+		if (body?.response_types?.length == 0) {
+			delete body.response_types;
+		}
+		if (body?.grant_types?.length == 0) {
+			delete body.response_types;
+		}
+		// if (body?.code_challenge_methods?.length == 0) {
+		// 	delete body.code_challenge_methods;
+		// }
 		return body;
 	}
 
@@ -339,9 +317,10 @@ const ClientCreateContainer = (props) => {
 											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
 											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Login URi')}/>)
-											case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} setValue={setValue} labelName={t('ClientCreateContainer|Response types')}/>)
-											case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} setValue={setValue} labelName={t('ClientCreateContainer|Grant types')}/>)
-											case 'code_challenge_methods': return(<SelectInput key={key} name={key} register={register} value={value["items"]["enum"]} labelName={t('ClientCreateContainer|Code challenge method')}/>)
+											case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} labelName={t('ClientCreateContainer|Response types')}/>)
+											case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} labelName={t('ClientCreateContainer|Grant types')}/>)
+											case 'code_challenge_methods': return(<MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} labelName={t('ClientCreateContainer|Code challenge method')}/>)
+											// case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} value={value["items"]["enum"]} labelName={t('ClientCreateContainer|Code challenge method')}/>)
 											case 'application_type': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} labelName={t('ClientCreateContainer|Application type')}/>)
 											case 'token_endpoint_auth_method': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} labelName={t('ClientCreateContainer|Token endpoint authentication method')}/>)
 											default: return(<div key={key}>{t('ClientCreateContainer|Unknown item')}: "{key}"</div>)

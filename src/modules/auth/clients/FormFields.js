@@ -76,6 +76,34 @@ export function SelectInput ({ name, register, value, labelName }) {
 	)
 }
 
+// // The usual select input
+// export function RadioInput ({ name, value, register, labelName }) {
+// 	const { t } = useTranslation();
+//
+// 	return (
+// 		<FormGroup key={name}>
+// 			{labelName && <Label for={name} title={name}>{labelName}</Label>}
+// 			<div title={name}>
+// 				{value && value?.map((item, key) => (
+// 					<InputGroup key={key}>
+// 						<div className="ml-4">{item}</div>
+// 						{/*<input {...register("code_challenge_methods")} type="radio" value="A" />*/}
+// 						<Input
+// 							id={item}
+// 							name={item}
+// 							title={item}
+// 							type="radio"
+// 							className="ml-0"
+// 							value={item}
+// 							{...register("code_challenge_methods")}
+// 						/>
+// 					</InputGroup>
+// 				))}
+// 			</div>
+// 		</FormGroup>
+// 	)
+// }
+
 // Dynamic form that can be added and removed. You can to control your fields.
 export function URiInput ({name, errors, append, remove, fields, labelName, reg, invalid, register, mailTemplateName, disabled}) {
 	const { t } = useTranslation();
@@ -230,8 +258,9 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 };
 
 // Checkbox groups which store the selected values in a single array
-export function MultiCheckbox ({ name, value, setValue, labelName }) {
+export function MultiCheckbox ({ name, value, assignValue, setValue, labelName }) {
 	const [addedOption, setAddedOption] = useState([]); // Items show in the input value
+	const [checkedState, setCheckedState] = useState(new Array(value?.length).fill(false));
 
 	const { t } = useTranslation();
 
@@ -240,9 +269,31 @@ export function MultiCheckbox ({ name, value, setValue, labelName }) {
 			setValue("response_types", addedOption);
 		} else if (name === "grant_types") {
 			setValue("grant_types", addedOption);
+		} else if (name === "code_challenge_methods") {
+			setValue("code_challenge_methods", addedOption);
 		}
 	}, [addedOption]);
 
+	useEffect(() => {
+		if (assignValue != undefined) {
+			if (name === "response_types") {
+				setValue("response_types", assignValue[name]);
+			} else if (name === "grant_types") {
+				setValue("grant_types", assignValue[name]);
+			} else if (name === "code_challenge_methods") {
+				setValue("code_challenge_methods", assignValue[name]);
+			}
+			value && value?.map((item, idx) => {
+				if (assignValue[name]?.includes(item)) {
+					const updatedCheckedState = checkedState.map((item, index) =>
+						index === idx ? !item : item
+					);
+					setCheckedState(updatedCheckedState)
+				}
+			})
+		}
+
+	}, [assignValue]);
 
 	// Adds new item to multiselect
 	const addItem = (item) => {
@@ -254,28 +305,35 @@ export function MultiCheckbox ({ name, value, setValue, labelName }) {
 		setAddedOption(addedOption.filter((e) => e !== item));
 	}
 
-	const handleChange = (e, item) => {
+	const handleChange = (e, item, position) => {
 		if (e.target.checked) {
 			addItem(item);
 		} else {
 			removeItem(item);
 		}
+
+		const updatedCheckedState = checkedState.map((item, index) =>
+			index === position ? !item : item
+		);
+		setCheckedState(updatedCheckedState);
 	};
 
 	return (
 		<FormGroup key={name}>
 			{labelName && <Label for={name} title={name}>{labelName}</Label>}
 			<div title={name}>
-				{value && value.map((item, key) => (
+				{value && value?.map((item, key) => (
 					<InputGroup key={key}>
 						<div className="ml-4">{item}</div>
 						<Input
-							className="ml-0"
 							id={item}
 							name={item}
 							title={item}
 							type="checkbox"
-							onChange={() => handleChange(event, item)}
+							className="ml-0"
+							value={item}
+							checked={checkedState[key]}
+							onChange={() => handleChange(event, item, key)}
 						/>
 					</InputGroup>
 				))}
