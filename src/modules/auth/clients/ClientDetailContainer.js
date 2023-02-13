@@ -95,7 +95,7 @@ const ClientDetailContainer = (props) =>  {
 								{t("ClientDetailContainer|Client")}
 							</div>
 						</CardHeader>
-						<CardBody className="card-body-client">
+						<CardBody>
 							<Row className="card-body-row">
 								<Col md={4} title="client_name">{t("ClientDetailContainer|Client name")}</Col>
 								<Col title="client_name">{client?.client_name ? client.client_name : "N/A"}</Col>

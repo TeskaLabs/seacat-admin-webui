@@ -47,13 +47,6 @@ $svg-arrow: var(--svg-arrow);
 	position: absolute;
 }
 
-// ClientDetailContainer
-.card-body-client {
-	.form-group {
-		margin-bottom: 0;
-	}
-}
-
 @media (max-width: 768px) {
 	.client-name-column {
 		display: block;
