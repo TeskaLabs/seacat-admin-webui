@@ -63,6 +63,8 @@
 		"Resources": "Zdroje",
 		"New resource": "Nový zdroj",
 		"Resource detail": "Detail zdroje",
+		"Deleted resources": "Vymazané zdroje",
+		"Deleted resource detail": "Detail vymazaného zdroje",
 		"Roles": "Role",
 		"New roles": "Nové role",
 		"Role detail": "Detail role",
@@ -510,6 +512,7 @@
 		"Sessions": "Relace",
 		"Roles": "Role",
 		"Resources": "Zdroje",
+		"Deleted resources": "Vymazané zdroje",
 		"Clients": "Klienti"
 	},
 	"Name": "Název",

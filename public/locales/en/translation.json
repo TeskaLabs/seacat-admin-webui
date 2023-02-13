@@ -63,6 +63,8 @@
 		"Resources": "Resources",
 		"New resource": "New resource",
 		"Resource detail": "Resource detail",
+		"Deleted resources": "Deleted resources",
+		"Deleted resource detail": "Deleted resource detail",
 		"Roles": "Roles",
 		"New roles": "New roles",
 		"Role detail": "Role detail",
@@ -511,6 +513,7 @@
 		"Sessions": "Sessions",
 		"Roles": "Roles",
 		"Resources": "Resources",
+		"Deleted resources": "Deleted resources",
 		"Clients": "Clients"
 	},
 	"Name": "Name",
