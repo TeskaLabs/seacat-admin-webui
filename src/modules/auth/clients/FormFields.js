@@ -51,7 +51,7 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 }
 
 // The usual select input
-export function SelectInput ({ name, register, value, labelName }) {
+export function SelectInput ({ name, register, value, labelName, disabled }) {
 	const { t } = useTranslation();
 	const reg = register(name);
 
@@ -64,6 +64,7 @@ export function SelectInput ({ name, register, value, labelName }) {
 				name={name}
 				title={name}
 				type="select"
+				disabled={disabled}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
@@ -77,7 +78,7 @@ export function SelectInput ({ name, register, value, labelName }) {
 }
 
 // The usual select input
-export function RadioInput ({ name, value, register, labelName }) {
+export function RadioInput ({ name, value, register, labelName, disabled }) {
 	const { t } = useTranslation();
 
 	return (
@@ -91,6 +92,7 @@ export function RadioInput ({ name, value, register, labelName }) {
 						className="ml-0 client_radio_input"
 						value=""
 						defaultValue
+						disabled={disabled}
 						{...register("code_challenge_methods")}
 					/>
 					<div className="ml-4">{t("ClientFormField|None")}</div>
@@ -104,6 +106,7 @@ export function RadioInput ({ name, value, register, labelName }) {
 							type="radio"
 							className="ml-0 client_radio_input"
 							value={item}
+							disabled={disabled}
 							{...register("code_challenge_methods")}
 						/>
 						<div className="ml-4">{item}</div>
@@ -152,13 +155,14 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					remove={remove}
 					register={register}
 					name={mailTemplateName}
+					disabled={disabled}
 				/>
 			))}
 		</FormGroup>
 	)
 }
 
-function InputTemplate({index, errors, remove, register, name}){
+function InputTemplate({index, errors, remove, register, name, disabled}){
 	const { t } = useTranslation();
 	const regMail = register(`${name}[${index}].value`, {
 		validate: {
@@ -173,6 +177,7 @@ function InputTemplate({index, errors, remove, register, name}){
 				type="text"
 				id={`${name}[${index}].value`}
 				name={`${name}[${index}].value`}
+				disabled={disabled}
 				onChange={regMail.onChange}
 				onBlur={regMail.onBlur}
 				innerRef={regMail.ref}
@@ -268,7 +273,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 };
 
 // Checkbox groups which store the selected values in a single array
-export function MultiCheckbox ({ name, value, assignValue, setValue, labelName }) {
+export function MultiCheckbox ({ name, value, assignValue, setValue, labelName, disabled }) {
 	const [addedOption, setAddedOption] = useState([]); // Items show in the input value
 	const [checkedState, setCheckedState] = useState(new Array(value?.length).fill(false));
 
@@ -338,6 +343,7 @@ export function MultiCheckbox ({ name, value, assignValue, setValue, labelName }
 							type="checkbox"
 							className="ml-0"
 							value={item}
+							disabled={disabled}
 							checked={checkedState[key]}
 							onChange={() => handleChange(event, item, key)}
 						/>

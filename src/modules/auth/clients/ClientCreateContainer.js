@@ -7,7 +7,7 @@ import ReactJson from 'react-json-view';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, FormGroup, Input, Label, InputGroup
+	Form, FormGroup, Input, Label
 } from 'reactstrap';
 
 import {TextInput, SelectInput, URiInput, MultiCheckbox, RadioInput} from './FormFields';
@@ -18,6 +18,7 @@ const ClientCreateContainer = (props) => {
 	const [metaData, setMetaData] = useState({});
 	const [template, setTemplate] = useState({});
 	const [selectedTemplate, setSelectedTemplate] = useState(undefined);
+	const [disabled, setDisabled] = useState(false);
 
 	const [incomingLink, setIncomingLink] = useState(window.location.href); // tracking method in URL
 	const [client, setClient] = useState(null); // tracking method in URL
@@ -74,7 +75,6 @@ const ClientCreateContainer = (props) => {
 			assignValueToInputs(client);
 		}
 	}, [client]);
-
 	/*
 		Set the 'selectedTemplate' when the page is loaded
 		and the data from the 'template' state is retrieved
@@ -133,7 +133,7 @@ const ClientCreateContainer = (props) => {
 		} catch (e) {
 			console.error(e);
 			// todo: update locales
-			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, failed to fetch client details")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, failed to fetch client info")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -155,17 +155,20 @@ const ClientCreateContainer = (props) => {
 	};
 
 	const onSubmitEditClient = async (values) => {
+		setDisabled(true);
 		try {
 			console.log(refactorSubmitData(values), "edit")
 			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, refactorSubmitData(values));
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
 			}
-			props.app.addAlert("success", t("ClientDetailContainer|Client updated successfully"));
+			setDisabled(false);
+			props.app.addAlert("success", t("ClientCreateContainer|Client updated successfully"));
 			props.history.push(`/auth/clients/${client_id}`);
 		} catch (e) {
+			setDisabled(false);
 			console.error(e);
-			props.app.addAlert("warning", `${t("ClientDetailContainer|Something went wrong, failed to update client")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ClienClientCreateContainertDetailContainer|Something went wrong, failed to update client")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -179,7 +182,6 @@ const ClientCreateContainer = (props) => {
 			}
 		})
 	}
-
 	/*
 		When a template is changed, the values in the inputs are reset
 		The selected template is passed to the function
@@ -198,7 +200,7 @@ const ClientCreateContainer = (props) => {
 	// Fill the fields with the correct values
 	const assignValueToInputs = (obj) => {
 		let copyArr = [];
-		console.log(obj, "obj")
+
 		if (obj?.redirect_uris != undefined) {
 			copyArr = [...obj?.redirect_uris];
 			setValue("redirect_uris_main", copyArr[0]);
@@ -209,13 +211,18 @@ const ClientCreateContainer = (props) => {
 			setValue(`redirect_uris[${idx}].value`, item);
 		})
 
-		if (obj.template == undefined) {
+		if (obj?.template == undefined) {
 			console.log("is it undef?")
 			setValue("template", Object.keys(template)[1]);
 			setSelectedTemplate(Object.keys(template)[1]);
 		} else {
 			setValue("template", obj?.template);
 			setSelectedTemplate(obj?.template);
+		}
+
+		if (obj?.template == "Public web application") {
+			setValue("response_types", obj?.response_types);
+			setValue("grant_types", obj?.grant_types);
 		}
 
 		if (obj?.code_challenge_methods) {
@@ -227,6 +234,7 @@ const ClientCreateContainer = (props) => {
 		}
 
 		setValue("application_type", obj?.application_type);
+		setValue("token_endpoint_auth_method", obj?.token_endpoint_auth_method);
 		setValue("client_name", obj?.client_name);
 		setValue("client_uri", obj?.client_uri);
 		setValue("login_uri", obj?.login_uri);
@@ -302,16 +310,13 @@ const ClientCreateContainer = (props) => {
 
 							<CardBody>
 								<FormGroup>
-									<div>
-									</div>
-								</FormGroup>
-								<FormGroup>
 									<Label for="template">{t('ClientCreateContainer|Template')}</Label>
 									<Input
 										id="template"
 										name="template"
 										title={t('ClientCreateContainer|Template')}
 										type="select"
+										disabled={disabled}
 										onChange={e => changeTemplate(e.target.value)}
 										onBlur={regTemplate.onBlur}
 										innerRef={regTemplate.ref}
@@ -324,17 +329,17 @@ const ClientCreateContainer = (props) => {
 								{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
 									if (key != "template") {
 										switch(key) {
-											case 'redirect_uris': return(<URiInput key={key} name="redirect_uris_main" invalid={errors?.redirect_uris_main && true} mailTemplateName="redirect_uris" errors={errors} append={append} remove={remove} fields={fields} register={register} reg={regRedirectUrisMain} labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}/>)
-											case 'client_name': return(<TextInput key={key} name={key} register={register} required={true} labelName={`${t("ClientCreateContainer|Client name")}*`}/>)
-											case 'client_uri': return(<TextInput key={key} name={key} register={register} labelName={t('ClientCreateContainer|Client URI')}/>)
-											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Cookie domain')}/>)
-											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
-											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Login URi')}/>)
-											case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} labelName={t('ClientCreateContainer|Response types')}/>)
-											case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} labelName={t('ClientCreateContainer|Grant types')}/>)
-											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} value={value["items"]["enum"]} labelName={t('ClientCreateContainer|Code challenge method')}/>)
-											case 'application_type': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} labelName={t('ClientCreateContainer|Application type')}/>)
-											case 'token_endpoint_auth_method': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} labelName={t('ClientCreateContainer|Token endpoint authentication method')}/>)
+											case 'redirect_uris': return(<URiInput key={key} name="redirect_uris_main" invalid={errors?.redirect_uris_main && true} disabled={disabled} mailTemplateName="redirect_uris" errors={errors} append={append} remove={remove} fields={fields} register={register} reg={regRedirectUrisMain} labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}/>)
+											case 'client_name': return(<TextInput key={key} name={key} register={register} required={true} disabled={disabled} labelName={`${t("ClientCreateContainer|Client name")}*`}/>)
+											case 'client_uri': return(<TextInput key={key} name={key} register={register} disabled={disabled} labelName={t('ClientCreateContainer|Client URI')}/>)
+											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Cookie domain')}/>)
+											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
+											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URi')}/>)
+											case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} disabled={disabled} labelName={t('ClientCreateContainer|Response types')}/>)
+											case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} disabled={disabled} labelName={t('ClientCreateContainer|Grant types')}/>)
+											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} value={value["items"]["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge method')}/>)
+											case 'application_type': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Application type')}/>)
+											case 'token_endpoint_auth_method': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Token endpoint authentication method')}/>)
 											default: return(<div key={key}>{t('ClientCreateContainer|Unknown item')}: "{key}"</div>)
 										}
 									}
