@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
 
 import {
-	Container, Row, Col, Card, Input, Label,
-	CardHeader, CardBody, Form, Button, CardFooter, FormGroup, ButtonGroup
+	Container, Row, Col, Card,
+	CardHeader, CardBody, Button,
+	CardFooter, ButtonGroup
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';
@@ -51,7 +52,7 @@ const ResourceDetailContainer = (props) =>  {
 
 	// Set terminate resource dialog
 	const confirmForm = (type) => {
-		var r = confirm(t(`ResourcesListContainer|Do you want to ${type === "delete" ? 'hard-delete' : 'retrieve'} this resource?`));
+		var r = confirm(t(`ResourcesListContainer|Do you really want to ${type === "delete" ? 'terminate' : 'retrieve'} this resource`));
 		if (r == true) {
 			if (type === "delete") {
 				hardDelete()
@@ -66,13 +67,13 @@ const ResourceDetailContainer = (props) =>  {
 		try {
 			let response = await SeaCatAuthAPI.post(`/resource/${resource_id}`, {});
 			if (response.data.result !== "OK") {
-				throw new Error(t("ResourcesDeletedListContainer|Failed to un-delete resource"));
+				throw new Error(t("ResourcesDeletedDetailContainer|Failed to retrieve resource"));
 			}
-			props.app.addAlert("success", t("ResourcesDeletedListContainer|Resource returned back to life"));
+			props.app.addAlert("success", t("ResourcesDeletedDetailContainer|Resource retrieved successfuly"));
 			props.history.push("/auth/resources");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesDeletedListContainer|Failed to un-delete the resource")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesDeletedDetailContainer|Failed to retrieve resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -80,13 +81,13 @@ const ResourceDetailContainer = (props) =>  {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/resource/${resource_id}`, {hard_delete: true});
 			if (response.data.result !== "OK") {
-				throw new Error(t("ResourcesDeletedListContainer|Unable to terminate this resource for good"));
+				throw new Error(t("ResourcesDeletedDetailContainer|Failed to terminate this resource"));
 			}
-			props.app.addAlert("success", t("ResourcesDeletedListContainer|Successfully terminated for good"));
+			props.app.addAlert("success", t("ResourcesDeletedDetailContainer|Resource was successfully terminated"));
 			props.history.push("/auth/resources");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesDeletedListContainer|Failed to hard-delete the resource")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesDeletedDetailContainer|Failed to terminate this resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -124,8 +125,8 @@ const ResourceDetailContainer = (props) =>  {
 								{editMode ?
 										<>
 									<ButtonGroup>
-											<Button color="primary" onClick={() => confirmForm("retrieve")} >{t("Un-delete")}</Button>
-											<Button color="danger" type="button" onClick={() => confirmForm("delete")}>{t("ResourcesDetailContainer|Hard-Delete")}</Button>
+											<Button color="primary" onClick={() => confirmForm("retrieve")} >{t("ResourcesDeletedDetailContainer|Retrieve")}</Button>
+											<Button color="danger" type="button" onClick={() => confirmForm("delete")}>{t("ResourcesDeletedDetailContainer|Terminate")}</Button>
 											<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
 									</ButtonGroup>
 										</>

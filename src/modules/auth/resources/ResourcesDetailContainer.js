@@ -71,7 +71,7 @@ const ResourceDetailContainer = (props) =>  {
 
 	// Set terminate resource dialog
 	const terminateResourceForm = () => {
-		var r = confirm(t('ResourcesListContainer|Do you want to delete this resource?'));
+		var r = confirm(t('ResourcesListContainer|Do you really want to delete this resource'));
 		if (r == true) {
 			deleteResource();
 		}

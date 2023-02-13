@@ -99,13 +99,13 @@ const ResourcesDeletedListContainer = (props) => {
 		try {
 			let response = await SeaCatAuthAPI.post(`/resource/${resourceId}`, {});
 			if (response.data.result !== "OK") {
-				throw new Error(t("ResourcesDeletedListContainer|Failed to un-delete resource"));
+				throw new Error(t("ResourcesDeletedListContainer|Failed to retrieve resource"));
 			}
-			props.app.addAlert("success", t("ResourcesDeletedListContainer|Resource returned back to life"));
+			props.app.addAlert("success", t("ResourcesDeletedListContainer|Resource retrieved successfuly"));
 			props.history.push(`resources/${resourceId}`);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesDeletedListContainer|Failed to un-delete resource")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesDeletedListContainer|Failed to retrieve resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
