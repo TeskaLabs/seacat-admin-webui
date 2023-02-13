@@ -76,33 +76,43 @@ export function SelectInput ({ name, register, value, labelName }) {
 	)
 }
 
-// // The usual select input
-// export function RadioInput ({ name, value, register, labelName }) {
-// 	const { t } = useTranslation();
-//
-// 	return (
-// 		<FormGroup key={name}>
-// 			{labelName && <Label for={name} title={name}>{labelName}</Label>}
-// 			<div title={name}>
-// 				{value && value?.map((item, key) => (
-// 					<InputGroup key={key}>
-// 						<div className="ml-4">{item}</div>
-// 						{/*<input {...register("code_challenge_methods")} type="radio" value="A" />*/}
-// 						<Input
-// 							id={item}
-// 							name={item}
-// 							title={item}
-// 							type="radio"
-// 							className="ml-0"
-// 							value={item}
-// 							{...register("code_challenge_methods")}
-// 						/>
-// 					</InputGroup>
-// 				))}
-// 			</div>
-// 		</FormGroup>
-// 	)
-// }
+// The usual select input
+export function RadioInput ({ name, value, register, labelName }) {
+	const { t } = useTranslation();
+
+	return (
+		<FormGroup key={name}>
+			{labelName && <Label for={name} title={name}>{labelName}</Label>}
+			<div title={name}>
+				<InputGroup>
+					{/* Use standard input*/}
+					<input
+						type="radio"
+						className="ml-0 client_radio_input"
+						value=""
+						defaultValue
+						{...register("code_challenge_methods")}
+					/>
+					<div className="ml-4">{t("ClientFormField|None")}</div>
+				</InputGroup>
+				{value && value?.map((item, key) => (
+					<InputGroup key={key}>
+						<input
+							id={item}
+							name={item}
+							title={item}
+							type="radio"
+							className="ml-0 client_radio_input"
+							value={item}
+							{...register("code_challenge_methods")}
+						/>
+						<div className="ml-4">{item}</div>
+					</InputGroup>
+				))}
+			</div>
+		</FormGroup>
+	)
+}
 
 // Dynamic form that can be added and removed. You can to control your fields.
 export function URiInput ({name, errors, append, remove, fields, labelName, reg, invalid, register, mailTemplateName, disabled}) {
@@ -269,8 +279,6 @@ export function MultiCheckbox ({ name, value, assignValue, setValue, labelName }
 			setValue("response_types", addedOption);
 		} else if (name === "grant_types") {
 			setValue("grant_types", addedOption);
-		} else if (name === "code_challenge_methods") {
-			setValue("code_challenge_methods", addedOption);
 		}
 	}, [addedOption]);
 
@@ -280,8 +288,6 @@ export function MultiCheckbox ({ name, value, assignValue, setValue, labelName }
 				setValue("response_types", assignValue[name]);
 			} else if (name === "grant_types") {
 				setValue("grant_types", assignValue[name]);
-			} else if (name === "code_challenge_methods") {
-				setValue("code_challenge_methods", assignValue[name]);
 			}
 			value && value?.map((item, idx) => {
 				if (assignValue[name]?.includes(item)) {

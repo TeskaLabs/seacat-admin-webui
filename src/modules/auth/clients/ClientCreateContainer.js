@@ -7,7 +7,7 @@ import ReactJson from 'react-json-view';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, FormGroup, Input, Label
+	Form, FormGroup, Input, Label, InputGroup
 } from 'reactstrap';
 
 import {TextInput, SelectInput, URiInput, MultiCheckbox, RadioInput} from './FormFields';
@@ -35,7 +35,7 @@ const ClientCreateContainer = (props) => {
 		defaultValues: {
 			response_types: [],
 			grant_types: [],
-			code_challenge_methods: [],
+			code_challenge_methods: "",
 		}
 	});
 
@@ -218,17 +218,24 @@ const ClientCreateContainer = (props) => {
 			setSelectedTemplate(obj?.template);
 		}
 
+		if (obj?.code_challenge_methods) {
+			setValue("code_challenge_methods", obj?.code_challenge_methods[0])
+		}
+
+		if (obj?.cookie_domain?.length > 0) {
+			setValue("cookie_domain", obj?.cookie_domain);
+		}
+
 		setValue("application_type", obj?.application_type);
 		setValue("client_name", obj?.client_name);
 		setValue("client_uri", obj?.client_uri);
-		setValue("cookie_domain", obj?.cookie_domain);
 		setValue("login_uri", obj?.login_uri);
-		// setValue("code_challenge_methods", obj?.code_challenge_methods);
 	}
 
 	const refactorSubmitData = (values) => {
 		let body = {};
 		let uri = [];
+		let challengeArr = [];
 
 		// Refactor "redirect_uris" and "redirect_uris_main" to array
 		Object.keys(values).map(async (key, idx) => {
@@ -243,12 +250,17 @@ const ClientCreateContainer = (props) => {
 						uri.push(item.value);
 					}
 				})
+			} else if (key === "code_challenge_methods") {
+				if (values[key] && (values[key]?.length > 0)) {
+					challengeArr.push(values[key]);
+				}
 			}
 			else {
 				body[key] = values[key];
 			}
 		})
 		body["redirect_uris"] = uri;
+		body["code_challenge_methods"] = challengeArr;
 
 		if (body?.client_name == undefined) {
 			body.client_name = "";
@@ -268,9 +280,6 @@ const ClientCreateContainer = (props) => {
 		if (body?.grant_types?.length == 0) {
 			delete body.response_types;
 		}
-		// if (body?.code_challenge_methods?.length == 0) {
-		// 	delete body.code_challenge_methods;
-		// }
 		return body;
 	}
 
@@ -292,6 +301,10 @@ const ClientCreateContainer = (props) => {
 							</CardHeader>
 
 							<CardBody>
+								<FormGroup>
+									<div>
+									</div>
+								</FormGroup>
 								<FormGroup>
 									<Label for="template">{t('ClientCreateContainer|Template')}</Label>
 									<Input
@@ -319,8 +332,7 @@ const ClientCreateContainer = (props) => {
 											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} labelName={t('ClientCreateContainer|Login URi')}/>)
 											case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} labelName={t('ClientCreateContainer|Response types')}/>)
 											case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} labelName={t('ClientCreateContainer|Grant types')}/>)
-											case 'code_challenge_methods': return(<MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} labelName={t('ClientCreateContainer|Code challenge method')}/>)
-											// case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} value={value["items"]["enum"]} labelName={t('ClientCreateContainer|Code challenge method')}/>)
+											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} value={value["items"]["enum"]} labelName={t('ClientCreateContainer|Code challenge method')}/>)
 											case 'application_type': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} labelName={t('ClientCreateContainer|Application type')}/>)
 											case 'token_endpoint_auth_method': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} labelName={t('ClientCreateContainer|Token endpoint authentication method')}/>)
 											default: return(<div key={key}>{t('ClientCreateContainer|Unknown item')}: "{key}"</div>)
