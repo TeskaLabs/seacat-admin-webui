@@ -117,6 +117,7 @@ const ClientDetailContainer = (props) =>  {
 											style={{padding: 0, borderWidth: 0, marginTop: "8px"}}
 											color="link"
 											onClick={() => resetSecretConfirm()}
+											className="client_secret_btn"
 										>
 											{t("ClientDetailContainer|Reset secret")}
 										</Button>
@@ -138,7 +139,7 @@ const ClientDetailContainer = (props) =>  {
 							<Row className="card-body-row">
 								<Col md={4} title="response_types">{t("ClientDetailContainer|Response types")}</Col>
 								<Col title="response_types">
-									{client?.response_types.length > 0 &&
+									{client?.response_types?.length > 0 &&
 										client?.response_types.map((item, idx) => (
 											<div key={idx}>{item}</div>
 										))
@@ -148,7 +149,7 @@ const ClientDetailContainer = (props) =>  {
 							<Row className="card-body-row">
 								<Col md={4} title="grant_types">{t("ClientDetailContainer|Grant types")}</Col>
 								<Col title="grant_types">
-									{client?.grant_types.length > 0 &&
+									{client?.grant_types?.length > 0 &&
 										client?.grant_types.map((item, idx) => (
 											<div key={idx}>{item}</div>
 										))
