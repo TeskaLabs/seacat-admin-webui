@@ -161,8 +161,8 @@ const ClientDetailContainer = (props) =>  {
 								<Col title="token_endpoint_auth_method">{client?.token_endpoint_auth_method}</Col>
 							</Row>
 							<Row className="mt-3 card-body-row">
-								<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Code challenge method")}</Col>
-								<Col title="redirect_uris" className="redirect_uris">
+								<Col md={4} title="code_challenge_methods">{t("ClientDetailContainer|Code challenge method")}</Col>
+								<Col title="code_challenge_methods">
 									{client?.code_challenge_methods ? client?.code_challenge_methods.map((item, idx) => (
 										<div key={idx}>{item}</div>))
 									:
@@ -171,7 +171,7 @@ const ClientDetailContainer = (props) =>  {
 								</Col>
 							</Row>
 							<Row className="card-body-row">
-								<Col md={4} title="client_uri">{t("ClientDetailContainer|Login URi")}</Col>
+								<Col md={4} title="login_uri">{t("ClientDetailContainer|Login URi")}</Col>
 								<Col>{client?.login_uri ? client.login_uri : "N/A"}</Col>
 							</Row>
 							<Row className="card-body-row">
