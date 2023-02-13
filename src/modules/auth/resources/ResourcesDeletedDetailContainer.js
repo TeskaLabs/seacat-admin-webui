@@ -79,7 +79,7 @@ const ResourceDetailContainer = (props) =>  {
 
 	const hardDelete = async () => {
 		try {
-			let response = await SeaCatAuthAPI.delete(`/resource/${resource_id}?hard_delete=true`);
+			let response = await SeaCatAuthAPI.delete(`/resource/${resource_id}`, { params: { hard_delete: true } });
 			if (response.data.result !== "OK") {
 				throw new Error(t("ResourcesDeletedDetailContainer|Failed to terminate this resource"));
 			}
