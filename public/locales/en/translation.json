@@ -353,26 +353,37 @@
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Resource",
+		"Delete resource": "Odstranit zdroj",
 		"Resource updated successfully": "Resource updated successfully",
 		"Can't fetch resource details": "Can't fetch resource details",
 		"Failed to update resource": "Failed to update resource",
 		"Failed to terminate resource": "Failed to terminate resource",
-		"Resource successfully terminated": "Resource successfully terminated"
+		"Resource successfully terminated": "Resource successfully terminated",
+		"Do you really want to delete this resource": "Do you really want to delete this resource"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Resources list",
 		"Create resource": "Create resource",
+		"Delete resource": "Delete resource",
 		"Failed to load resources": "Failed to load resources",
 		"Failed to terminate the resource": "Failed to terminate the resource"
 	},
 	"ResourcesDeletedDetailContainer": {
+		"Terminate": "Terminate",
+		"Retrieve": "Retrieve",
 		"Can't fetch resource details": "Can't fetch resource details",
-		"Failed to hard-delete the resource": "Failed to hard-delete the resource"
+		"Failed to terminate this resource": "Failed to terminate this resource",
+		"Failed to retrieve resource": "Failed to retrieve resource",
+		"Resource retrieved successfuly": "Resource retrieved successfuly",
+		"Resource was successfully terminated": "Resource was successfully terminated",
+		"Do you really want to terminate this resource": "Do you really want to terminate this resource?",
+		"Do you really want to retrieve this resource": "Do you really want to retrieve this resource?"
 	},
 	"ResourcesDeletedListContainer": {
 		"Retrieve resource": "Retrieve resource",
+		"Resource retrieved successfuly": "Resource retrieved successfuly",
 		"Failed to load resources": "Failed to load resources",
-		"Failed to un-delete resource": "Failed to un-delete resource",
+		"Failed to retrieve resource": "Failed to retrieve resource",
 		"Deleted resources list": "Deleted resources list"
 	},
 	"SessionListContainer": {

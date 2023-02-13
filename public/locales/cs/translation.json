@@ -353,27 +353,38 @@
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Zdroj",
+		"Delete resource": "Odstranit zdroj",
 		"Resource updated successfully": "Zdroj byl úspěšně aktualizován",
 		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
-		"ailed to update resource": "Aktualizace zdroje se nezdařila",
+		"Failed to update resource": "Aktualizace zdroje se nezdařila",
 		"Failed to terminate resource": "Odstranění zdroje se nezdařilo",
-		"Resource successfully terminated": "Zdroj byl úspěšně odstraněn"
+		"Resource successfully terminated": "Zdroj byl úspěšně odstraněn",
+		"Do you really want to delete this resource": "Opravdu si přejete odstranit tento zdroj?"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Seznam zdrojů",
 		"Create resource": "Vytvořit zdroj",
+		"Delete resource": "Odstranit zdroj",
 		"Failed to load resources": "Nepodařilo se načíst zdroje",
 		"Failed to terminate the resource": "Nepodařilo se odstranit zdroj"
 	},
 	"ResourcesDeletedDetailContainer": {
+		"Terminate": "Navždy vymazat",
+		"Retrieve": "Obnovit zdroj",
 		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
-		"Failed to hard-delete the resource": "Failed to hard-delete the resource"
+		"Failed to terminate this resource": "Nepodařilo se navždy vymazat tento zdroj",
+		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
+		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
+		"Resource was successfully terminated": "Zdroj byl úspěšně navždy vymazán",
+		"Do you really want to terminate this resource": "Opravdu si přejete navždy vymazat zdroj?",
+		"Do you really want to retrieve this resource": "Opravdu si přejete obnovit zdroj?"
 	},
 	"ResourcesDeletedListContainer": {
-		"Retrieve resource": "Retrieve resource",
+		"Retrieve resource": "Obnovit zdroj",
+		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
 		"Failed to load resources": "Nepodařilo se načíst zdroje",
-		"Failed to un-delete resource": "Failed to un-delete resource",
-		"Deleted resources list": "Deleted resources list"
+		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
+		"Deleted resources list": "Seznam vymazaných zdrojů"
 	},
 	"SessionListContainer": {
 		"Credentials": "Uživ. Identifikace",
