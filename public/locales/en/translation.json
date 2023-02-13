@@ -153,6 +153,7 @@
 		"URI have to start with https": "URI have to start with https",
 		"URL hash have to be empty": "URL hash have to be empty",
 		"Choose an option": "Choose an option",
+		"None": "None",
 		"Required field": "Required field"
 	},
 	"CredentialsCreateContainer": {

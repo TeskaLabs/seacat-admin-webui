@@ -153,6 +153,7 @@
 		"URI have to start with https": "URI musí začínat https",
 		"URL hash have to be empty": "URL hash musí být prázdný",
 		"Choose an option": "Zvolte možnost",
+		"None": "Žádná",
 		"Required field": "Povinný údaj"
 	},
 	"CredentialsCreateContainer": {
