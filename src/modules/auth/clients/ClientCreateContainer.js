@@ -7,7 +7,7 @@ import ReactJson from 'react-json-view';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, FormGroup, Input, Label
+	Form, FormGroup, Input, Label, ButtonGroup
 } from 'reactstrap';
 
 import {TextInput, SelectInput, URiInput, MultiCheckbox, RadioInput} from './FormFields';
@@ -139,7 +139,6 @@ const ClientCreateContainer = (props) => {
 
 	const onSubmitNewClient = async (values) => {
 		try {
-			console.log(refactorSubmitData(values), "new client")
 			let response = await SeaCatAuthAPI.post(`/client`, refactorSubmitData(values));
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to create client");
@@ -157,7 +156,6 @@ const ClientCreateContainer = (props) => {
 	const onSubmitEditClient = async (values) => {
 		setDisabled(true);
 		try {
-			console.log(refactorSubmitData(values), "edit")
 			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, refactorSubmitData(values));
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
@@ -212,7 +210,6 @@ const ClientCreateContainer = (props) => {
 		})
 
 		if (obj?.template == undefined) {
-			console.log("is it undef?")
 			setValue("template", Object.keys(template)[1]);
 			setSelectedTemplate(Object.keys(template)[1]);
 		} else {
@@ -334,10 +331,10 @@ const ClientCreateContainer = (props) => {
 											case 'client_uri': return(<TextInput key={key} name={key} register={register} disabled={disabled} labelName={t('ClientCreateContainer|Client URI')}/>)
 											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
-											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URi')}/>)
+											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URI')}/>)
 											case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} disabled={disabled} labelName={t('ClientCreateContainer|Response types')}/>)
 											case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} disabled={disabled} labelName={t('ClientCreateContainer|Grant types')}/>)
-											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} value={value["items"]["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge method')}/>)
+											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} value={value["items"]["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge methods')}/>)
 											case 'application_type': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Application type')}/>)
 											case 'token_endpoint_auth_method': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Token endpoint authentication method')}/>)
 											default: return(<div key={key}>{t('ClientCreateContainer|Unknown item')}: "{key}"</div>)
@@ -347,16 +344,31 @@ const ClientCreateContainer = (props) => {
 							</CardBody>
 							<CardFooter>
 								{((client != undefined) && (editClient == true)) ?
-									<ButtonWithAuthz
-										title={t("ClientListContainer|Save")}
-										color="primary"
-										type="submit"
-										disabled={isSubmitting}
-										resource={resource}
-										resources={resources}
-									>
-										{t("ClientListContainer|Save")}
-									</ButtonWithAuthz>
+									<ButtonGroup>
+										<ButtonWithAuthz
+											title={t("ClientListContainer|Save")}
+											color="primary"
+											type="submit"
+											disabled={isSubmitting}
+											resource={resource}
+											resources={resources}
+										>
+											{t("ClientListContainer|Save")}
+										</ButtonWithAuthz>
+										<ButtonWithAuthz
+											outline
+											title={t("Cancel")}
+											color="primary"
+											type="submit"
+											disabled={isSubmitting}
+											resource={resource}
+											resources={resources}
+											onClick={() => props.history.push(`/auth/clients/${client_id}`)}
+										>
+											{t("Cancel")}
+										</ButtonWithAuthz>
+									</ButtonGroup>
+
 								:
 									<ButtonWithAuthz
 										title={t("ClientListContainer|New client")}
