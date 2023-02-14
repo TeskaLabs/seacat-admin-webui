@@ -22,7 +22,6 @@
 
 - Add new input `cookie_domain` to Clients. Fix min-max height styles for CustomComponent (INDIGO Sprint 230120, [!15](https://github.com/TeskaLabs/seacat-admin-webui/pull/15))
 
-
 ## v23.4
 
 ### Compatibility
