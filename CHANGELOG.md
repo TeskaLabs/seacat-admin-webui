@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Refactor ClientDetail and ClientCreate components, refactor URI inputs to new format, refactor client editing (INDIGO Sprint 230203, [!18](https://github.com/TeskaLabs/seacat-admin-webui/pull/18))
+
 ## v23.4
 
 ### Compatibility
