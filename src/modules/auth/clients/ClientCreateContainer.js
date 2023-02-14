@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from "react-router-dom";
 import ReactJson from 'react-json-view';
 
 import {
@@ -20,9 +21,9 @@ const ClientCreateContainer = (props) => {
 	const [selectedTemplate, setSelectedTemplate] = useState(undefined);
 	const [disabled, setDisabled] = useState(false);
 
-	const [incomingLink, setIncomingLink] = useState(window.location.href); // tracking method in URL
 	const [client, setClient] = useState(null); // tracking method in URL
 	const { client_id } = props.match.params;
+	const incomingLink = useLocation(); // tracking method in URL
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const resource = "authz:superuser";
@@ -56,11 +57,11 @@ const ClientCreateContainer = (props) => {
 	}, []);
 
 	const clientState = useMemo(() => {
-		if (incomingLink.indexOf('/edit') !== -1) {
+		if (incomingLink.pathname.indexOf('/edit') !== -1) {
 			return {editClient: true};
 		}
 		return {editClient: false};
-	}, [incomingLink]);
+	}, [incomingLink.pathname]);
 
 	let editClient = clientState["editClient"];
 
@@ -138,8 +139,9 @@ const ClientCreateContainer = (props) => {
 	}
 
 	const onSubmitNewClient = async (values) => {
+		let body = refactorSubmitData(values);
 		try {
-			let response = await SeaCatAuthAPI.post(`/client`, refactorSubmitData(values));
+			let response = await SeaCatAuthAPI.post(`/client`, body);
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to create client");
 			}
@@ -154,9 +156,10 @@ const ClientCreateContainer = (props) => {
 	};
 
 	const onSubmitEditClient = async (values) => {
+		let body = refactorSubmitData(values);
 		setDisabled(true);
 		try {
-			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, refactorSubmitData(values));
+			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, body);
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to change client details");
 			}
