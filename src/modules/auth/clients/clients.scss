@@ -47,6 +47,12 @@ $svg-arrow: var(--svg-arrow);
 	position: absolute;
 }
 
+.client_secret_btn {
+	padding: 0;
+	bottom: 0;
+	margin-top: 8px;
+}
+
 @media (max-width: 768px) {
 	.client-name-column {
 		display: block;

@@ -114,7 +114,6 @@ const ClientDetailContainer = (props) =>  {
 									<Col>
 										<code>{client?.client_secret}</code>
 										<Button
-											style={{padding: 0, borderWidth: 0, marginTop: "8px"}}
 											color="link"
 											onClick={() => resetSecretConfirm()}
 											className="client_secret_btn"

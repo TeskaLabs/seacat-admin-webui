@@ -23,7 +23,7 @@ const ClientCreateContainer = (props) => {
 
 	const [client, setClient] = useState(null); // tracking method in URL
 	const { client_id } = props.match.params;
-	const incomingLink = useLocation(); // tracking method in URL
+	const location = useLocation(); // tracking method in URL
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const resource = "authz:superuser";
@@ -57,11 +57,11 @@ const ClientCreateContainer = (props) => {
 	}, []);
 
 	const clientState = useMemo(() => {
-		if (incomingLink.pathname.indexOf('/edit') !== -1) {
+		if (location.pathname.indexOf('/edit') !== -1) {
 			return {editClient: true};
 		}
 		return {editClient: false};
-	}, [incomingLink.pathname]);
+	}, [location.pathname]);
 
 	let editClient = clientState["editClient"];
 
@@ -246,7 +246,7 @@ const ClientCreateContainer = (props) => {
 		let challengeArr = [];
 
 		// Refactor "redirect_uris" and "redirect_uris_main" to array
-		Object.keys(values).map(async (key, idx) => {
+		Object.keys(values).map((key, idx) => {
 			if (key === "redirect_uris_main") {
 				if (values[key] != "") {
 					uri.push(values[key]);
