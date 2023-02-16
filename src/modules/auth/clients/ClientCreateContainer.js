@@ -282,6 +282,9 @@ const ClientCreateContainer = (props) => {
 		if (body?.cookie_domain == "") {
 			delete body.cookie_domain;
 		}
+		if (body?.code_challenge_methods.length == 0) {
+			delete body.code_challenge_methods;
+		}
 		if (body?.response_types?.length == 0) {
 			delete body.response_types;
 		}
