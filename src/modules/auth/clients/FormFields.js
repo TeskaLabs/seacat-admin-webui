@@ -89,7 +89,7 @@ export function RadioInput ({ name, value, register, labelName, disabled }) {
 					{/* Use standard input*/}
 					<input
 						type="radio"
-						className="ml-0 client_radio_input"
+						className="ml-0 client-radio-input"
 						value=""
 						defaultValue
 						disabled={disabled}
@@ -104,7 +104,7 @@ export function RadioInput ({ name, value, register, labelName, disabled }) {
 							name={item}
 							title={item}
 							type="radio"
-							className="ml-0 client_radio_input"
+							className="ml-0 client-radio-input"
 							value={item}
 							disabled={disabled}
 							{...register("code_challenge_methods")}

@@ -116,7 +116,7 @@ const ClientDetailContainer = (props) =>  {
 										<Button
 											color="link"
 											onClick={() => resetSecretConfirm()}
-											className="client_secret_btn"
+											className="client-secret-btn"
 										>
 											{t("ClientDetailContainer|Reset secret")}
 										</Button>
