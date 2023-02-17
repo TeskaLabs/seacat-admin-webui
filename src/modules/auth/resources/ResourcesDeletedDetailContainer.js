@@ -117,8 +117,10 @@ const ResourceDetailContainer = (props) =>  {
 								<Col md={3}>{t("Modified at")}</Col>
 								<Col><DateTime value={resource._m} /></Col>
 							</Row>
+							<Row className="card-body-row">
 								<Col sm={3}>{t("Description")}</Col>
 								<Col sm={6} style={{minHeight: "90px"}}>{ resource.description }</Col>
+							</Row>
 						</CardBody>
 
 						<CardFooter>
