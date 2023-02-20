@@ -96,20 +96,20 @@ const ClientDetailContainer = (props) =>  {
 							</div>
 						</CardHeader>
 						<CardBody>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="client_name">{t("ClientDetailContainer|Client name")}</Col>
 								<Col title="client_name">{client?.client_name ? client.client_name : "N/A"}</Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="client_id">{t("ClientDetailContainer|Client ID")}</Col>
 								<Col><code>{client?.client_id}</code></Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="client_uri">{t("ClientDetailContainer|Client URI")}</Col>
 								<Col>{client?.client_uri ? client.client_uri : "N/A"}</Col>
 							</Row>
 							{client?.client_secret &&
-								<Row className="card-body-row">
+								<Row>
 									<Col md={4} title="client_secret">{t("ClientDetailContainer|Client secret")}</Col>
 									<Col>
 										<code>{client?.client_secret}</code>
@@ -123,19 +123,19 @@ const ClientDetailContainer = (props) =>  {
 									</Col>
 								</Row>
 							}
-							<Row className="mt-2 card-body-row">
+							<Row className="mt-3">
 								<Col md={4} title="created_at">{t("Created at")}</Col>
 								<Col><DateTime value={client?._c} /></Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="modified_at">{t("Modified at")}</Col>
 								<Col><DateTime value={client?._m} /></Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="application_type">{t("ClientDetailContainer|Application type")}</Col>
 								<Col title="application_type">{client?.application_type}</Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="response_types">{t("ClientDetailContainer|Response types")}</Col>
 								<Col title="response_types">
 									{client?.response_types?.length > 0 &&
@@ -145,7 +145,7 @@ const ClientDetailContainer = (props) =>  {
 									}
 								</Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="grant_types">{t("ClientDetailContainer|Grant types")}</Col>
 								<Col title="grant_types">
 									{client?.grant_types?.length > 0 &&
@@ -155,11 +155,11 @@ const ClientDetailContainer = (props) =>  {
 									}
 								</Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="token_endpoint_auth_method">{t("ClientDetailContainer|Token endpoint auth. method")}</Col>
 								<Col title="token_endpoint_auth_method">{client?.token_endpoint_auth_method}</Col>
 							</Row>
-							<Row className="mt-3 card-body-row">
+							<Row className="mt-3">
 								<Col md={4} title="code_challenge_methods">{t("ClientDetailContainer|Code challenge methods")}</Col>
 								<Col title="code_challenge_methods">
 									{client?.code_challenge_methods ? client?.code_challenge_methods.map((item, idx) => (
@@ -169,15 +169,15 @@ const ClientDetailContainer = (props) =>  {
 									}
 								</Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="login_uri">{t("ClientDetailContainer|Login URI")}</Col>
 								<Col>{client?.login_uri ? client.login_uri : "N/A"}</Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={4} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
 								<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
 							</Row>
-							<Row className="mt-3 card-body-row">
+							<Row className="mt-3">
 								<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
 								<Col title="redirect_uris" className="redirect_uris">
 									{client?.redirect_uris.map((item, idx) => (

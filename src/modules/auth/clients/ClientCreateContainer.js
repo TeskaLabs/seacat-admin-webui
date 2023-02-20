@@ -338,11 +338,11 @@ const ClientCreateContainer = (props) => {
 											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
 											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URI')}/>)
-											case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} disabled={disabled} labelName={t('ClientCreateContainer|Response types')}/>)
-											case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} value={value["items"]["enum"]} assignValue={client && client} setValue={setValue} disabled={disabled} labelName={t('ClientCreateContainer|Grant types')}/>)
-											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} value={value["items"]["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge methods')}/>)
-											case 'application_type': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Application type')}/>)
-											case 'token_endpoint_auth_method': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} value={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Token endpoint authentication method')}/>)
+											case 'response_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} valueList={value["items"]["enum"]} assignValue={client && client} setValue={setValue} disabled={disabled} labelName={t('ClientCreateContainer|Response types')}/>)
+											case 'grant_types': return(selectedTemplate === "Custom" && <MultiCheckbox key={key} name={key} valueList={value["items"]["enum"]} assignValue={client && client} setValue={setValue} disabled={disabled} labelName={t('ClientCreateContainer|Grant types')}/>)
+											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} valueList={value["items"]["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge methods')}/>)
+											case 'application_type': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} valueList={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Application type')}/>)
+											case 'token_endpoint_auth_method': return(selectedTemplate === "Custom" && <SelectInput key={key} name={key} register={register} valueList={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Token endpoint authentication method')}/>)
 											default: return(<div key={key}>{t('ClientCreateContainer|Unknown item')}: "{key}"</div>)
 										}
 									}

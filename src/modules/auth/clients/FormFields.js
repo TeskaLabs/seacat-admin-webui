@@ -51,7 +51,7 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 }
 
 // The usual select input
-export function SelectInput ({ name, register, value, labelName, disabled }) {
+export function SelectInput ({ name, register, valueList, labelName, disabled }) {
 	const { t } = useTranslation();
 	const reg = register(name);
 
@@ -69,7 +69,7 @@ export function SelectInput ({ name, register, value, labelName, disabled }) {
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
 			>
-				{value && value.map((optionItem, idx) => (
+				{valueList && valueList.map((optionItem, idx) => (
 					<option key={idx} value={optionItem}>{optionItem}</option>
 				))}
 			</Input>
@@ -78,7 +78,7 @@ export function SelectInput ({ name, register, value, labelName, disabled }) {
 }
 
 // The usual select input
-export function RadioInput ({ name, value, register, labelName, disabled }) {
+export function RadioInput ({ name, valueList, register, labelName, disabled }) {
 	const { t } = useTranslation();
 
 	return (
@@ -97,7 +97,7 @@ export function RadioInput ({ name, value, register, labelName, disabled }) {
 					/>
 					<div className="ml-4">{t("ClientFormField|None")}</div>
 				</InputGroup>
-				{value && value?.map((item, key) => (
+				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
 						<input
 							id={item}
@@ -273,9 +273,9 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 };
 
 // Checkbox groups which store the selected values in a single array
-export function MultiCheckbox ({ name, value, assignValue, setValue, labelName, disabled }) {
+export function MultiCheckbox ({ name, valueList, assignValue, setValue, labelName, disabled }) {
 	const [addedOption, setAddedOption] = useState([]); // Items show in the input value
-	const [checkedState, setCheckedState] = useState(new Array(value?.length).fill(false));
+	const [checkedState, setCheckedState] = useState(new Array(valueList?.length).fill(false));
 
 	const { t } = useTranslation();
 
@@ -294,7 +294,7 @@ export function MultiCheckbox ({ name, value, assignValue, setValue, labelName, 
 			} else if (name === "grant_types") {
 				setValue("grant_types", assignValue[name]);
 			}
-			value && value?.map((item, idx) => {
+			valueList && valueList?.map((item, idx) => {
 				if (assignValue[name]?.includes(item)) {
 					const updatedCheckedState = checkedState.map((item, index) =>
 						index === idx ? !item : item
@@ -333,7 +333,7 @@ export function MultiCheckbox ({ name, value, assignValue, setValue, labelName, 
 		<FormGroup key={name}>
 			{labelName && <Label for={name} title={name}>{labelName}</Label>}
 			<div title={name}>
-				{value && value?.map((item, key) => (
+				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
 						<div className="ml-4">{item}</div>
 						<Input
