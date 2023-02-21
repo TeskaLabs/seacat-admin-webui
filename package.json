@@ -59,7 +59,7 @@
 		"react-content-loader": "^6.1.0",
 		"react-dom": "^17.0.0",
 		"react-helmet": "^6.1.0",
-		"react-hook-form": "^7.22.1",
+		"react-hook-form": "^7.43.1",
 		"react-i18next": "^11.8.12",
 		"react-json-view": "^1.21.1",
 		"react-redux": "^7.2.0",
