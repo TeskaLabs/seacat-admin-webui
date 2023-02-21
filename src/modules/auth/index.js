@@ -212,11 +212,6 @@ export default class SeaCatAuthModule extends Module {
 					icon: 'cil-lock-unlocked'
 				},
 				{
-					name: 'Deleted resources',
-					url: '/auth/deletedresources',
-					icon: 'cil-lock-locked'
-				},
-				{
 					name: 'Clients',
 					url: '/auth/clients',
 					icon: 'cil-layers',
