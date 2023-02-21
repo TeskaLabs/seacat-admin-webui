@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { DataTable, ButtonWithAuthz } from 'asab-webui';
-import { Container } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 
 function ResourcesListContainer(props) {
 
@@ -124,6 +124,17 @@ function ResourcesListContainer(props) {
 		</ButtonWithAuthz>
 	)
 
+	const deletedResourcesList = (
+		<Button
+			title={t("ResourcesListContainer|Deleted resources")}
+			color="primary"
+			outline
+			onClick={() => props.history.push('/auth/deletedresources')}
+		>
+			{t("ResourcesListContainer|Deleted resources")}
+		</Button>
+	)
+
 	const redirectToCreate = () => {
 		props.history.push('/auth/resources/!create');
 	}
@@ -145,6 +156,7 @@ function ResourcesListContainer(props) {
 					setPage={setPage}
 					limit={limit}
 					setLimit={setLimit}
+					customButton={deletedResourcesList}
 					customComponent={createResourceComponent}
 					isLoading={loading}
 					contentLoader={show}
