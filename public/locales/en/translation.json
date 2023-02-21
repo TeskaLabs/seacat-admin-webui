@@ -355,12 +355,12 @@
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Resource",
-		"Delete resource": "Odstranit zdroj",
+		"Delete resource": "Delete resource",
 		"Resource updated successfully": "Resource updated successfully",
 		"Can't fetch resource details": "Can't fetch resource details",
 		"Failed to update resource": "Failed to update resource",
-		"Failed to terminate resource": "Failed to terminate resource",
-		"Resource successfully terminated": "Resource successfully terminated",
+		"Failed to delete resource": "Failed to delete resource",
+		"Resource successfully deleted": "Resource successfully deleted",
 		"Do you really want to delete this resource": "Do you really want to delete this resource"
 	},
 	"ResourcesListContainer": {
@@ -368,17 +368,17 @@
 		"Create resource": "Create resource",
 		"Delete resource": "Delete resource",
 		"Failed to load resources": "Failed to load resources",
-		"Failed to terminate the resource": "Failed to terminate the resource"
+		"Failed to delete the resource": "Failed to delete the resource"
 	},
 	"ResourcesDeletedDetailContainer": {
-		"Terminate": "Terminate",
+		"Hard delete": "Hard delete",
 		"Retrieve": "Retrieve",
 		"Can't fetch resource details": "Can't fetch resource details",
-		"Failed to terminate this resource": "Failed to terminate this resource",
+		"Failed to hard delete this resource": "Failed to hard delete this resource",
 		"Failed to retrieve resource": "Failed to retrieve resource",
 		"Resource retrieved successfuly": "Resource retrieved successfuly",
-		"Resource was successfully terminated": "Resource was successfully terminated",
-		"Do you really want to terminate this resource": "Do you really want to terminate this resource?",
+		"Resource was successfully hard deleted": "Resource was successfully hard deleted",
+		"Do you really want to hard delete this resource": "Do you really want to hard delete this resource?",
 		"Do you really want to retrieve this resource": "Do you really want to retrieve this resource?"
 	},
 	"ResourcesDeletedListContainer": {
@@ -513,7 +513,6 @@
 		"Sessions": "Sessions",
 		"Roles": "Roles",
 		"Resources": "Resources",
-		"Deleted resources": "Deleted resources",
 		"Clients": "Clients"
 	},
 	"Name": "Name",

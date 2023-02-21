@@ -63,12 +63,12 @@
 		"Resources": "Zdroje",
 		"New resource": "Nový zdroj",
 		"Resource detail": "Detail zdroje",
-		"Deleted resources": "Vymazané zdroje",
-		"Deleted resource detail": "Detail vymazaného zdroje",
+		"Deleted resources": "Odstranit zdroje",
+		"Deleted resource detail": "Detail odstraněného zdroje",
 		"Roles": "Role",
 		"New roles": "Nové role",
 		"Role detail": "Detail role",
-		"Credentials": "Uživ. Identifikace",
+		"Credentials": "Uživatelské údaje",
 		"New credentials": "Nové uživ. údaje",
 		"Credentials detail": "Detail uživ. údajů",
 		"Reset password": "Obnovení hesla",
@@ -359,8 +359,8 @@
 		"Resource updated successfully": "Zdroj byl úspěšně aktualizován",
 		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
 		"Failed to update resource": "Aktualizace zdroje se nezdařila",
-		"Failed to terminate resource": "Odstranění zdroje se nezdařilo",
-		"Resource successfully terminated": "Zdroj byl úspěšně odstraněn",
+		"Failed to delete resource": "Odstranění zdroje se nezdařilo",
+		"Resource successfully deleted": "Zdroj byl úspěšně odstraněn",
 		"Do you really want to delete this resource": "Opravdu si přejete odstranit tento zdroj?"
 	},
 	"ResourcesListContainer": {
@@ -368,17 +368,17 @@
 		"Create resource": "Vytvořit zdroj",
 		"Delete resource": "Odstranit zdroj",
 		"Failed to load resources": "Nepodařilo se načíst zdroje",
-		"Failed to terminate the resource": "Nepodařilo se odstranit zdroj"
+		"Failed to delete the resource": "Nepodařilo se odstranit zdroj"
 	},
 	"ResourcesDeletedDetailContainer": {
-		"Terminate": "Navždy vymazat",
+		"Hard delete": "Navždy vymazat",
 		"Retrieve": "Obnovit zdroj",
 		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
-		"Failed to terminate this resource": "Nepodařilo se navždy vymazat tento zdroj",
+		"Failed to hard delete this resource": "Nepodařilo se navždy vymazat tento zdroj",
 		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
 		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
-		"Resource was successfully terminated": "Zdroj byl úspěšně navždy vymazán",
-		"Do you really want to terminate this resource": "Opravdu si přejete navždy vymazat zdroj?",
+		"Resource was successfully hard deleted": "Zdroj byl úspěšně navždy vymazán",
+		"Do you really want to hard delete this resource": "Opravdu si přejete navždy vymazat zdroj?",
 		"Do you really want to retrieve this resource": "Opravdu si přejete obnovit zdroj?"
 	},
 	"ResourcesDeletedListContainer": {
@@ -386,7 +386,7 @@
 		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
 		"Failed to load resources": "Nepodařilo se načíst zdroje",
 		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
-		"Deleted resources list": "Seznam vymazaných zdrojů"
+		"Deleted resources list": "Seznam odstraněných zdrojů"
 	},
 	"SessionListContainer": {
 		"Credentials": "Uživ. Identifikace",
@@ -507,12 +507,11 @@
 		"Home": "Domů",
 		"About": "O Aplikaci",
 		"Auth": "Autorizace",
-		"Credentials": "Uživ. Identifikace",
+		"Credentials": "Uživatelé",
 		"Tenants": "Tenanti",
 		"Sessions": "Relace",
 		"Roles": "Role",
 		"Resources": "Zdroje",
-		"Deleted resources": "Vymazané zdroje",
 		"Clients": "Klienti"
 	},
 	"Name": "Název",
