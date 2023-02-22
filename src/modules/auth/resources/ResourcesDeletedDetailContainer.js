@@ -126,11 +126,13 @@ const ResourceDetailContainer = (props) =>  {
 						<CardFooter>
 								{editMode ?
 										<>
-									<ButtonGroup>
-											<Button color="primary" onClick={() => confirmForm("retrieve")} >{t("ResourcesDeletedDetailContainer|Retrieve")}</Button>
-											<Button color="danger" type="button" onClick={() => confirmForm("delete")}>{t("ResourcesDeletedDetailContainer|Terminate")}</Button>
-											<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
-									</ButtonGroup>
+											<ButtonGroup>
+												<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+											</ButtonGroup>
+											<div className="actions-right">
+												<Button color="primary" onClick={() => confirmForm("retrieve")} >{t("ResourcesDeletedDetailContainer|Retrieve")}</Button>
+												<Button color="danger" type="button" onClick={() => confirmForm("delete")}>{t("ResourcesDeletedDetailContainer|Terminate")}</Button>
+											</div>
 										</>
 									:
 										<ButtonWithAuthz
