@@ -102,38 +102,37 @@ function ResourcesListContainer(props) {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/resource/${resourceId}`);
 			if (response.data.result !== "OK") {
-				throw new Error(t("ResourcesListContainer|Failed to terminate the resource"));
+				throw new Error(t("ResourcesListContainer|Failed to delete the resource"));
 			}
-			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully terminated"));
+			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully deleted"));
 			props.history.push("/auth/deletedresources");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to terminate the resource")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to delete the resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
-	const createResourceComponent = (
-		<ButtonWithAuthz
-			title={t("ResourcesListContainer|Create resource")}
-			color="primary"
-			onClick={() => {redirectToCreate()}}
-			resource="authz:superuser"
-			resources={credentialsResources}
-		>
-			{t("ResourcesListContainer|Create resource")}
-		</ButtonWithAuthz>
-	)
-
-	const deletedResourcesList = (
-		<Button
-			title={t("ResourcesListContainer|Deleted resources")}
-			color="primary"
-			outline
-			onClick={() => props.history.push('/auth/deletedresources')}
-		>
-			{t("ResourcesListContainer|Deleted resources")}
-		</Button>
-	)
+	const customComponent = (
+		<div style={{display: "flex"}} >
+			<Button
+				title={t("ResourcesListContainer|Deleted resources")}
+				color="primary"
+				outline
+				onClick={() => props.history.push('/auth/deletedresources')}
+				>
+				{t("ResourcesListContainer|Deleted resources")}
+			</Button>
+			<ButtonWithAuthz
+				title={t("ResourcesListContainer|Create resource")}
+				color="primary"
+				onClick={() => {redirectToCreate()}}
+				resource="authz:superuser"
+				resources={credentialsResources}
+				>
+				{t("ResourcesListContainer|Create resource")}
+			</ButtonWithAuthz>
+		</div>
+	);
 
 	const redirectToCreate = () => {
 		props.history.push('/auth/resources/!create');
@@ -156,8 +155,7 @@ function ResourcesListContainer(props) {
 					setPage={setPage}
 					limit={limit}
 					setLimit={setLimit}
-					customButton={deletedResourcesList}
-					customComponent={createResourceComponent}
+					customComponent={customComponent}
 					isLoading={loading}
 					contentLoader={show}
 					customRowClassName={customRowClassName}
