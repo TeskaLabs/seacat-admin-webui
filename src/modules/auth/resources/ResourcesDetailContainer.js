@@ -71,7 +71,7 @@ const ResourceDetailContainer = (props) =>  {
 
 	// Set terminate resource dialog
 	const terminateResourceForm = () => {
-		var r = confirm(t('ResourcesListContainer|Do you really want to delete this resource'));
+		var r = confirm(t('ResourcesDetailContainer|Do you really want to delete this resource'));
 		if (r == true) {
 			deleteResource();
 		}
@@ -82,14 +82,14 @@ const ResourceDetailContainer = (props) =>  {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/resource/${resource_id}`);
 			if (response.data.result !== "OK") {
-				throw new Error(t("ResourcesListContainer|Failed to terminate resource"));
+				throw new Error(t("ResourcesDetailContainer|Failed to delete resource"));
 			}
-			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully terminated"));
+			props.app.addAlert("success", t("ResourcesDetailContainer|Resource successfully deleted"));
 			// redirect to list of deleted resources
 			props.history.push("/auth/deletedresources");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to terminate resource")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Failed to delete resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
