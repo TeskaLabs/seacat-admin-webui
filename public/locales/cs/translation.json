@@ -366,6 +366,7 @@
 	"ResourcesListContainer": {
 		"Resources list": "Seznam zdrojů",
 		"Create resource": "Vytvořit zdroj",
+		"Delete resource": "Vymazat zdroj",
 		"Deleted resources": "Vymazané zdroje",
 		"Failed to load resources": "Nepodařilo se načíst zdroje",
 		"Failed to delete the resource": "Nepodařilo se vymazat zdroj"

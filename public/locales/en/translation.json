@@ -367,6 +367,7 @@
 		"Resources list": "Resources list",
 		"Create resource": "Create resource",
 		"Delete resource": "Delete resource",
+		"Deleted resources": "Deleted resources",
 		"Failed to load resources": "Failed to load resources",
 		"Failed to delete the resource": "Failed to delete the resource"
 	},

@@ -45,7 +45,7 @@ function ResourcesListContainer(props) {
 				generate: (resource) => (
 					<div className="d-flex justify-content-end">
 						<ButtonWithAuthz
-							title={t("ResourceListContainer|Delete resource")}
+							title={t("ResourcesListContainer|Delete resource")}
 							id={resource._id}
 							size="sm"
 							color="danger"
