@@ -139,7 +139,7 @@ const ClientCreateContainer = (props) => {
 	}
 
 	const onSubmitNewClient = async (values) => {
-		let body = refactorSubmitData(values);
+		let body = refactorSubmitData(values, "create");
 		try {
 			let response = await SeaCatAuthAPI.post(`/client`, body);
 			if (response.statusText != 'OK') {
@@ -156,7 +156,7 @@ const ClientCreateContainer = (props) => {
 	};
 
 	const onSubmitEditClient = async (values) => {
-		let body = refactorSubmitData(values);
+		let body = refactorSubmitData(values, "edit");
 		setDisabled(true);
 		try {
 			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, body);
@@ -240,7 +240,7 @@ const ClientCreateContainer = (props) => {
 		setValue("login_uri", obj?.login_uri);
 	}
 
-	const refactorSubmitData = (values) => {
+	const refactorSubmitData = (values, type) => {
 		let body = {};
 		let uri = [];
 		let challengeArr = [];
@@ -270,18 +270,25 @@ const ClientCreateContainer = (props) => {
 		body["redirect_uris"] = uri;
 		body["code_challenge_methods"] = challengeArr;
 
+		if (type == "create") {
+			if (body?.client_uri == "") {
+				delete body.client_uri;
+			}
+			if (body?.cookie_domain == "") {
+				delete body.cookie_domain;
+			}
+			if (body?.login_uri == "") {
+				delete body.login_uri;
+			}
+		}
+
 		if (body?.client_name == undefined) {
 			body.client_name = "";
 		}
 		if (body?.preferred_client_id == "" || body.preferred_client_id == undefined) {
 			delete body.preferred_client_id;
 		}
-		if (body?.client_uri == "") {
-			delete body.client_uri;
-		}
-		if (body?.cookie_domain == "") {
-			delete body.cookie_domain;
-		}
+
 		if (body?.code_challenge_methods.length == 0) {
 			delete body.code_challenge_methods;
 		}
