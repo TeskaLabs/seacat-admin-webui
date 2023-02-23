@@ -10,6 +10,8 @@
 
 - Dropdown menu used to assign `tenants` nad `roles` to specific `Credentials` has been refactored to offer more data than the initial limit, upon clicking the 'More ...' button. (INDIGO Sprint 230203, [!14](https://github.com/TeskaLabs/seacat-admin-webui/pull/14))
 
+- Webpack V4 to V5 migration. (INDIGO Sprint 230217, [!16](https://github.com/TeskaLabs/seacat-admin-webui/pull/16))
+
 ## v23.5
 
 ### Features
