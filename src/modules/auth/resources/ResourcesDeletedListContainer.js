@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { DataTable, ButtonWithAuthz } from 'asab-webui';
-import { Container } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 
 const ResourcesDeletedListContainer = (props) => {
 
@@ -45,7 +45,7 @@ const ResourcesDeletedListContainer = (props) => {
 				generate: (resource) => (
 					<div className="d-flex justify-content-end">
 						<ButtonWithAuthz
-							title={t("ResourceDeletedListContainer|Retrieve resource")}
+							title={t("ResourcesDeletedListContainer|Retrieve resource")}
 							id={resource._id}
 							size="sm"
 							color="primary"
@@ -114,11 +114,21 @@ const ResourcesDeletedListContainer = (props) => {
 		className: "description-row"
 	}
 
+	const goBackButton = (
+		<Button
+			outline
+			title={t('ResourcesDeletedListContainer|Back')}
+			onClick={() => props.history.push("/auth/resources")}
+		>
+			{t('ResourcesDeletedListContainer|Back')}
+		</Button>
+	)
+
 	return (
 		<div className="h-100" ref={ref}>
 			<Container>
 				<DataTable
-					title={{ text: t('ResourcesDeletedListContainer|Deleted resources list'), icon: 'cil-lock-unlocked'}}
+					title={{ text: t('ResourcesDeletedListContainer|Deleted resources'), icon: 'cil-lock-locked'}}
 					data={resources}
 					headers={headers}
 					count={count}
@@ -128,6 +138,7 @@ const ResourcesDeletedListContainer = (props) => {
 					setLimit={setLimit}
 					isLoading={loading}
 					contentLoader={show}
+					customComponent={goBackButton}
 					customRowClassName={customRowClassName}
 					height={height}
 				/>
