@@ -371,22 +371,23 @@
 		"Failed to delete the resource": "Failed to delete the resource"
 	},
 	"ResourcesDeletedDetailContainer": {
-		"Hard delete": "Hard delete",
+		"Hard-delete": "Hard-delete",
 		"Retrieve": "Retrieve",
 		"Can't fetch resource details": "Can't fetch resource details",
-		"Failed to hard delete this resource": "Failed to hard delete this resource",
+		"Failed to hard-delete this resource": "Failed to hard-delete this resource",
 		"Failed to retrieve resource": "Failed to retrieve resource",
 		"Resource retrieved successfuly": "Resource retrieved successfuly",
-		"Resource was successfully hard deleted": "Resource was successfully hard deleted",
-		"Do you really want to hard delete this resource": "Do you really want to hard delete this resource?",
+		"Resource was successfully hard-deleted": "Resource was successfully hard-deleted",
+		"Do you really want to hard-delete this resource": "Do you really want to hard-delete this resource?",
 		"Do you really want to retrieve this resource": "Do you really want to retrieve this resource?"
 	},
 	"ResourcesDeletedListContainer": {
+		"Back": "Back",
 		"Retrieve resource": "Retrieve resource",
 		"Resource retrieved successfuly": "Resource retrieved successfuly",
 		"Failed to load resources": "Failed to load resources",
 		"Failed to retrieve resource": "Failed to retrieve resource",
-		"Deleted resources list": "Deleted resources list"
+		"Deleted resources": "Deleted resources"
 	},
 	"SessionListContainer": {
 		"Credentials": "Credentials",

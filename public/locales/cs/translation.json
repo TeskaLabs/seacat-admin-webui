@@ -63,8 +63,8 @@
 		"Resources": "Zdroje",
 		"New resource": "Nový zdroj",
 		"Resource detail": "Detail zdroje",
-		"Deleted resources": "Odstranit zdroje",
-		"Deleted resource detail": "Detail odstraněného zdroje",
+		"Deleted resources": "Vymazané zdroje",
+		"Deleted resource detail": "Detail vymazaného zdroje",
 		"Roles": "Role",
 		"New roles": "Nové role",
 		"Role detail": "Detail role",
@@ -355,38 +355,40 @@
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Zdroj",
-		"Delete resource": "Odstranit zdroj",
+		"Delete resource": "Vymazat zdroj",
 		"Resource updated successfully": "Zdroj byl úspěšně aktualizován",
 		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
 		"Failed to update resource": "Aktualizace zdroje se nezdařila",
-		"Failed to delete resource": "Odstranění zdroje se nezdařilo",
-		"Resource successfully deleted": "Zdroj byl úspěšně odstraněn",
-		"Do you really want to delete this resource": "Opravdu si přejete odstranit tento zdroj?"
+		"Failed to delete resource": "Vymazání zdroje se nezdařilo",
+		"Resource successfully deleted": "Zdroj byl úspěšně vymazán",
+		"Do you really want to delete this resource": "Opravdu si přejete vymazat tento zdroj?"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Seznam zdrojů",
 		"Create resource": "Vytvořit zdroj",
-		"Delete resource": "Odstranit zdroj",
+		"Deleted resources": "Vymazané zdroje",
 		"Failed to load resources": "Nepodařilo se načíst zdroje",
-		"Failed to delete the resource": "Nepodařilo se odstranit zdroj"
+		"Failed to delete the resource": "Nepodařilo se vymazat zdroj"
 	},
 	"ResourcesDeletedDetailContainer": {
-		"Hard delete": "Navždy vymazat",
+		"Resource": "Zdroj",
+		"Hard-delete": "Navždy vymazat",
 		"Retrieve": "Obnovit zdroj",
 		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
-		"Failed to hard delete this resource": "Nepodařilo se navždy vymazat tento zdroj",
+		"Failed to hard-delete this resource": "Nepodařilo se navždy vymazat tento zdroj",
 		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
 		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
-		"Resource was successfully hard deleted": "Zdroj byl úspěšně navždy vymazán",
-		"Do you really want to hard delete this resource": "Opravdu si přejete navždy vymazat zdroj?",
+		"Resource was successfully hard-deleted": "Zdroj byl úspěšně navždy vymazán",
+		"Do you really want to hard-delete this resource": "Opravdu si přejete navždy vymazat zdroj?",
 		"Do you really want to retrieve this resource": "Opravdu si přejete obnovit zdroj?"
 	},
 	"ResourcesDeletedListContainer": {
+		"Back": "Zpět",
 		"Retrieve resource": "Obnovit zdroj",
 		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
 		"Failed to load resources": "Nepodařilo se načíst zdroje",
 		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
-		"Deleted resources list": "Seznam odstraněných zdrojů"
+		"Deleted resources": "Seznam odstraněných zdrojů"
 	},
 	"SessionListContainer": {
 		"Credentials": "Uživ. Identifikace",
