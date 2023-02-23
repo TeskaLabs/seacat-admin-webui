@@ -50,7 +50,7 @@ const ResourcesDeletedListContainer = (props) => {
 							size="sm"
 							color="primary"
 							outline
-							onClick={() => {retrieveResource(resource._id)}}
+							onClick={() => {retrievePrompt(resource._id)}}
 							resource="authz:tenant:admin"
 							resources={credentialsResources}
 						>
@@ -106,6 +106,13 @@ const ResourcesDeletedListContainer = (props) => {
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ResourcesDeletedListContainer|Failed to retrieve resource")}. ${e?.response?.data?.message}`, 30);
+		}
+	}
+
+	const retrievePrompt = (resourceId) => {
+		var r = confirm(t('ResourcesDeletedListContainer|Do you really want to retrieve this resource'));
+		if (r == true) {
+			retrieveResource(resourceId);
 		}
 	}
 
