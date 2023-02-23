@@ -4,7 +4,9 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[7f3c1e5](https://github.com/TeskaLabs/asab-webui/commit/7f3c1e5e0c7513f69ad8653aef9f7e65ae635f29)] commit (INDIGO Sprint 230203, [!14](https://github.com/TeskaLabs/seacat-admin-webui/pull/14))
+- ASAB WebUI submodule version bump [[5e6c5a8](https://github.com/TeskaLabs/asab-webui/commit/5e6c5a83b1a90624345cd0309a24abbb692aaa12)] commit (INDIGO Sprint 230217, [!19](https://github.com/TeskaLabs/seacat-admin-webui/pull/19))
+
+- Resources actions extended. Added posibility to rename, delete, hard-delete and retrieve resources (INDIGO Sprint 230217, [!19](https://github.com/TeskaLabs/seacat-admin-webui/pull/19))
 
 ### Refactoring
 
