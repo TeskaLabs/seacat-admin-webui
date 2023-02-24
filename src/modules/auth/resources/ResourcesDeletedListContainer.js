@@ -19,6 +19,8 @@ const ResourcesDeletedListContainer = (props) => {
 	const ref = useRef(null);
 	const { t } = useTranslation();
 
+	const retrieveButtonResource = "authz:tenant:admin";
+
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
 	const headers = [
@@ -51,7 +53,7 @@ const ResourcesDeletedListContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => {confirmationPrompt(resource._id)}}
-							resource="authz:tenant:admin"
+							resource={retrieveButtonResource}
 							resources={credentialsResources}
 						>
 							<i className="cil-action-undo"></i>
