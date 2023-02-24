@@ -26,7 +26,7 @@ const ResourcesDeletedListContainer = (props) => {
 			name: t("Name"),
 			key: '_id',
 			link: {
-				pathname: '/auth/deletedresources/',
+				pathname: '/auth/resources/deleted',
 				key: '_id'
 			}
 		},
@@ -50,7 +50,7 @@ const ResourcesDeletedListContainer = (props) => {
 							size="sm"
 							color="primary"
 							outline
-							onClick={() => {retrievePrompt(resource._id)}}
+							onClick={() => {confirmationPrompt(resource._id)}}
 							resource="authz:tenant:admin"
 							resources={credentialsResources}
 						>
@@ -77,11 +77,12 @@ const ResourcesDeletedListContainer = (props) => {
 		}
 	}, [page, limit]);
 
+	// Fetches deleted resources
 	const getResources = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/resource`, {params: {p:page, i:limit, include_deleted:true}});
-            let deletedResources = [];
-            response.data.data.map((item) => {
+			let deletedResources = [];
+			response.data.data.map((item) => {
 				item.deleted === true ? deletedResources.push(item) : null;
 			})
 			setResources(deletedResources);
@@ -109,7 +110,8 @@ const ResourcesDeletedListContainer = (props) => {
 		}
 	}
 
-	const retrievePrompt = (resourceId) => {
+	// This prompt invites user to confirm if they really wish to retrieve selected resource.
+	const confirmationPrompt = (resourceId) => {
 		var r = confirm(t('ResourcesDeletedListContainer|Do you really want to retrieve this resource'));
 		if (r == true) {
 			retrieveResource(resourceId);
@@ -152,12 +154,6 @@ const ResourcesDeletedListContainer = (props) => {
 			</Container>
 		</div>
 	);
-
-    return (
-        <>
-            ello worldh
-        </>
-    )
 };
 
 export default ResourcesDeletedListContainer;
