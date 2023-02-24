@@ -41,7 +41,9 @@ const ResourceDetailContainer = (props) =>  {
 		getResourceDetail(resource_id);
 	}, []);
 
-	if (!resource) return null;
+	useEffect(() => {
+		if (!resource) return null;
+	}, [resource]);
 
 	if (resource != null && onUpdate === false) {
 		setValue("resource_description", resource.description);
@@ -86,7 +88,7 @@ const ResourceDetailContainer = (props) =>  {
 			}
 			props.app.addAlert("success", t("ResourcesDetailContainer|Resource successfully deleted"));
 			// redirect to list of deleted resources
-			props.history.push("/auth/deletedresources");
+			props.history.push("/auth/resources/deleted");
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Failed to delete resource")}. ${e?.response?.data?.message}`, 30);
