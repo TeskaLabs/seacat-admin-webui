@@ -19,6 +19,8 @@ function ResourcesListContainer(props) {
 	const ref = useRef(null);
 	const { t } = useTranslation();
 
+	const deleteButtonResource = "authz:tenant:admin";
+
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
 	const headers = [
@@ -51,7 +53,7 @@ function ResourcesListContainer(props) {
 							color="danger"
 							outline
 							onClick={() => {terminateResourceForm(resource._id)}}
-							resource="authz:tenant:admin"
+							resource={deleteButtonResource}
 							resources={credentialsResources}
 						>
 							<i className="cil-x"></i>
@@ -105,7 +107,7 @@ function ResourcesListContainer(props) {
 				throw new Error(t("ResourcesListContainer|Failed to delete the resource"));
 			}
 			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully deleted"));
-			props.history.push("/auth/deletedresources");
+			props.history.push("/auth/resources/deleted");
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to delete the resource")}. ${e?.response?.data?.message}`, 30);
@@ -118,7 +120,7 @@ function ResourcesListContainer(props) {
 				title={t("ResourcesListContainer|Deleted resources")}
 				color="primary"
 				outline
-				onClick={() => props.history.push('/auth/deletedresources')}
+				onClick={() => props.history.push('/auth/resources/deleted')}
 				>
 				{t("ResourcesListContainer|Deleted resources")}
 			</Button>
