@@ -13,11 +13,19 @@ import { DateTime, ButtonWithAuthz } from 'asab-webui';
 const ResourceDetailContainer = (props) =>  {
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
-	const [resource, setResource] = useState(null);
+	const [resource, setResource] = useState(undefined);
 	const [editMode, setEditMode] = useState(false);
 	const { resource_id } = props.match.params;
 
 	const resources = useSelector(state => state.auth?.resources);
+
+	useEffect(() => {
+		getResourceDetail(resource_id);
+	}, []);
+
+	useEffect(() => {
+		if (!resource) return null;
+	}, [resource]);
 
 	const getResourceDetail = async (res) => {
 		try {
@@ -29,18 +37,13 @@ const ResourceDetailContainer = (props) =>  {
 		}
 	}
 
-	useEffect(() => {
-		getResourceDetail(resource_id);
-	}, []);
-
-	if (!resource) return null;
 
 	// Set delete resource dialog
 	const confirmForm = (type) => {
 		var r = confirm(t(`ResourcesDeletedDetailContainer|Do you really want to ${type === "delete" ? 'hard-delete' : 'retrieve'} this resource`));
 		if (r == true) {
 			if (type === "delete") {
-				hardDelete()
+				hardDelete();
 			} else {
 				retrieveResource();
 			}
@@ -62,6 +65,7 @@ const ResourceDetailContainer = (props) =>  {
 		}
 	}
 
+	// Hard-deletes selected resource. After this action, the resource cannot be retrieved anymore.
 	const hardDelete = async () => {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/resource/${resource_id}`, { params: { hard_delete: true } });
