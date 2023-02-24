@@ -12,6 +12,8 @@
 
 - Refactor ClientDetail and ClientCreate components, refactor URI inputs to new format, refactor client editing (INDIGO Sprint 230203, [!18](https://github.com/TeskaLabs/seacat-admin-webui/pull/18))
 
+- Remove react-helmet from the package.json (INDIGO Sprint 230216, [!20](https://github.com/TeskaLabs/seacat-admin-webui/pull/20))
+
 ## v23.5
 
 ### Features
