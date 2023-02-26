@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 const CredentialsTenantsAssignContainer = (props) => {
 
 	const {t} = useTranslation();
+    const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+
     const [ allTenants, setAllTenants] = useState(undefined);
 
 	const { register, handleSubmit, reset } = useForm({defaultValues: { tenants: assignedTenants }});
@@ -14,6 +16,16 @@ const CredentialsTenantsAssignContainer = (props) => {
     useEffect(() => {
         fetchAllTenants();
     })
+
+	const retrieveUserInfo = async () => {
+		try {
+			let response = await SeaCatAuthAPI.get(`/credentials/${credentials_id}`);
+			setCredentialsList([response.data]);
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("XXXXXXXXXXX|Something went wrong, failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
+		}
+	};
 
     const fetchAllTenants = async() => {
 		try {
