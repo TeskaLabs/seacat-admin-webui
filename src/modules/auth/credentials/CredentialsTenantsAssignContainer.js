@@ -13,14 +13,22 @@ const CredentialsTenantsAssignContainer = (props) => {
 
 	const [ allTenants, setAllTenants] = useState(undefined);
 	const [ assignedTenants, setAssignedTenants] = useState([]);
+	const [ assignedCredentialsDropdown, setAssignedCredentialsDropdown ] = useState([]);
+	const [ limit, setLimit] = useState(15);
+	const [ count, setCount ] = useState(undefined);
+	const [ filter, setFilter] = useState('');
+	const [ loading, setLoading ] = useState(true);
 
 
 	const { register, handleSubmit, reset } = useForm({defaultValues: { tenants: assignedTenants }});
 	const resources = useSelector(state => state.auth?.resources);
 
+	const credentials_id = props.match.params.credentials_id;
+
 	useEffect(() => {
 		fetchAllTenants();
 		retrieveUserInfo();
+		retrieveAssignedTenants();
 	})
 
 	const retrieveUserInfo = async () => {
@@ -30,6 +38,17 @@ const CredentialsTenantsAssignContainer = (props) => {
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("XXXXXXXXXXX|Something went wrong, failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
+		}
+	};
+
+	const retrieveAssignedTenants = async () => {
+		try {
+			let response = await SeaCatAuthAPI.get(`/tenant_assign/${credentials_id}`);
+			setAssignedTenants(response.data);
+			setPrevAssignedTenants(response.data)
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Something went wrong, failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -51,6 +70,28 @@ const CredentialsTenantsAssignContainer = (props) => {
 		} catch(e) {
 			console.error(e);
 			// props.app.addAlert("warning", `${t("CredentialsTenantsCard|Something went wrong, failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
+		}
+	};
+
+	// Receives data from all credentials
+	const retrieveCredentialsForDropdown = async () => {
+		setLoading(true);
+		let response;
+		try {
+			response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: credentialsLimit, f: filter}});
+			if (response.data.result !== "OK") {
+				throw new Error(t("CredentialsTenantsAssignContainer|Something went wrong, failed to fetch data"));
+			}
+			setAssignedCredentialsDropdown(response.data.data);
+			setLoading(false)
+		} catch(e) {
+			console.error(e);
+			setLoading(false)
+			if (e.response.status === 401) {
+				props.app.addAlert("warning", t("CredentialsTenantsAssignContainer|Can't fetch the data, you don't have rights to display it"), 30);
+				return;
+			}
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
