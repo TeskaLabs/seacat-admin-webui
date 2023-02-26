@@ -28,7 +28,7 @@ const ResourcesDeletedListContainer = (props) => {
 			name: t("Name"),
 			key: '_id',
 			link: {
-				pathname: '/auth/resources/deleted',
+				pathname: '/auth/resources/deleted/',
 				key: '_id'
 			}
 		},
