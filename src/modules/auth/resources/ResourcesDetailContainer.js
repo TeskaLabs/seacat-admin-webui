@@ -15,7 +15,7 @@ const ResourceDetailContainer = (props) =>  {
 	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
-	const [resource, setResource] = useState(null);
+	const [ resource, setResource ] = useState(null);
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
 	const { resource_id } = props.match.params;
@@ -53,7 +53,6 @@ const ResourceDetailContainer = (props) =>  {
 
 	// Update description
 	const onSubmit = async (values) => {
-		console.log('values.resource_name: ',  values.resource_name)
 		try {
 			await SeaCatAuthAPI.put(`/resource/${resource_id}`,
 				{
@@ -123,17 +122,17 @@ const ResourceDetailContainer = (props) =>  {
 												innerRef={registerName.ref}
 											/>
 										:
-											resource._id
+											resource && resource._id
 										}
 									</Col>
 								</Row>
 								<Row className="mt-3 card-body-row">
 									<Col md={3}>{t("Created at")}</Col>
-									<Col><DateTime value={resource._c} /></Col>
+									<Col><DateTime value={resource && resource._c} /></Col>
 								</Row>
 								<Row className="card-body-row">
 									<Col md={3}>{t("Modified at")}</Col>
-									<Col><DateTime value={resource._m} /></Col>
+									<Col><DateTime value={resource && resource._m} /></Col>
 								</Row>
 
 									<FormGroup row className="mt-3">
@@ -150,7 +149,7 @@ const ResourceDetailContainer = (props) =>  {
 													onBlur={registerDescription.onBlur}
 													innerRef={registerDescription.ref}
 												/>
-											: resource.description }
+											: resource && resource.description }
 										</Col>
 									</FormGroup>
 							</CardBody>
