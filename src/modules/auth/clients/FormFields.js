@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
 
 // The usual text input
-export function TextInput ({ name, register, errors, labelName, disabled }) {
+export function TextInput ({ name, register, errors, labelName, disabled, required }) {
 	const { t } = useTranslation();
 	const reg = register(
 		name,
@@ -38,7 +38,7 @@ export function TextInput ({ name, register, errors, labelName, disabled }) {
 				name={name}
 				type="text"
 				disabled={disabled}
-				required={(name === "client_name") ? true : false}
+				required={required}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
@@ -51,7 +51,7 @@ export function TextInput ({ name, register, errors, labelName, disabled }) {
 }
 
 // The usual select input
-export function SelectInput ({ name, register, value, labelName }) {
+export function SelectInput ({ name, register, valueList, labelName, disabled }) {
 	const { t } = useTranslation();
 	const reg = register(name);
 
@@ -64,11 +64,12 @@ export function SelectInput ({ name, register, value, labelName }) {
 				name={name}
 				title={name}
 				type="select"
+				disabled={disabled}
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
 			>
-				{value && value.map((optionItem, idx) => (
+				{valueList && valueList.map((optionItem, idx) => (
 					<option key={idx} value={optionItem}>{optionItem}</option>
 				))}
 			</Input>
@@ -76,59 +77,119 @@ export function SelectInput ({ name, register, value, labelName }) {
 	)
 }
 
-// Dynamic form that can be added and removed. You can to control your fields.
-export function URiInput ({ name, control, errors, append, remove, fields, labelName, disabled }) {
+// The usual select input
+export function RadioInput ({ name, valueList, register, labelName, disabled }) {
 	const { t } = useTranslation();
 
 	return (
-		<FormGroup title={name}>
-			{(labelName && name) &&
-				<Label for={name} title={t("ClientFormField|Required field")}>{labelName}</Label>}
-				{fields && fields.map((item, idx) => {
-					return (
-						<InputGroup key={item.id} className="mb-1">
-							<Controller
-								render={({field}) => <Input {...field} required={true} invalid={errors.redirect_uris?.[idx]?.text} disabled={disabled}/>}
-								name={`redirect_uris[${idx}].text`}
-								control={control}
-								rules={{
-									validate: {
-										emptyInput: value => (value && value.toString().length !== 0) || t("ClientFormField|URI can't be empty"),
-										startWith: value => (/(https:\/\/)/).test(value) || t("ClientFormField|URI have to start with https"),
-										urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientFormField|URL hash have to be empty"),
-									}
-								}}
-							/>
-							<InputGroupAddon addonType="append" style={{marginLeft: "0"}}>
-								<Button
-									outline
-									size="sm"
-									color="danger"
-									title={t("ClientFormField|Remove input")}
-									disabled={(fields.length  === 1) && true}
-									onClick={() => remove(idx)}
-								>
-									<span className="cil-minus" />
-								</Button>
-							</InputGroupAddon>
-							{errors.redirect_uris?.[idx]?.text && <FormFeedback>{errors.redirect_uris?.[idx]?.text?.message}</FormFeedback>}
-						</InputGroup>
-					);
-				})}
-			<Button
-				outline
-				size="sm"
-				color="primary"
-				className="mt-2"
-				title={t("ClientFormField|Add new input")}
-				type="button"
-				onClick={() => {
-					append({ text: "" });
-				}}
-			>
-				<span className="cil-plus" />
-			</Button>
+		<FormGroup key={name}>
+			{labelName && <Label for={name} title={name}>{labelName}</Label>}
+			<div title={name}>
+				<InputGroup>
+					{/* Use standard input*/}
+					<input
+						type="radio"
+						className="ml-0 client-radio-input"
+						value=""
+						defaultValue
+						disabled={disabled}
+						{...register("code_challenge_methods")}
+					/>
+					<div className="ml-4">{t("ClientFormField|None")}</div>
+				</InputGroup>
+				{valueList && valueList?.map((item, key) => (
+					<InputGroup key={key}>
+						<input
+							id={item}
+							name={item}
+							title={item}
+							type="radio"
+							className="ml-0 client-radio-input"
+							value={item}
+							disabled={disabled}
+							{...register("code_challenge_methods")}
+						/>
+						<div className="ml-4">{item}</div>
+					</InputGroup>
+				))}
+			</div>
 		</FormGroup>
+	)
+}
+
+// Dynamic form that can be added and removed. You can to control your fields.
+export function URiInput ({name, errors, append, remove, fields, labelName, reg, invalid, register, mailTemplateName, disabled}) {
+	const { t } = useTranslation();
+
+	return (
+		<FormGroup>
+			<Label title={t("ExportFormField|Required field")} for={name}>{labelName}</Label>
+			<InputGroup>
+				<Input
+					id={name}
+					name={name}
+					type="text"
+					onChange={reg.onChange}
+					onBlur={reg.onBlur}
+					innerRef={reg.ref}
+					invalid={invalid}
+					disabled={disabled}
+				/>
+				<InputGroupAddon addonType="append" className="ml-0">
+					<Button
+						outline
+						color="primary"
+						size="sm"
+						onClick={() => append({ value: ""})}
+					>
+						<span className="cil-plus" />
+					</Button>
+				</InputGroupAddon>
+				{errors && errors[name] && <FormFeedback>{errors[name].message}</FormFeedback>}
+			</InputGroup>
+			{fields && fields.map((item, i) => (
+				<InputTemplate
+					key={item.id}
+					index={i}
+					errors={errors}
+					remove={remove}
+					register={register}
+					name={mailTemplateName}
+					disabled={disabled}
+				/>
+			))}
+		</FormGroup>
+	)
+}
+
+function InputTemplate({index, errors, remove, register, name, disabled}){
+	const { t } = useTranslation();
+	const regMail = register(`${name}[${index}].value`, {
+		validate: {
+			emptyInput: value => (value && value.toString().length !== 0) || t("ClientFormField|URI can't be empty"),
+			startWith: value => (/(https:\/\/)/).test(value) || t("ClientFormField|URI have to start with https"),
+			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientFormField|URL hash have to be empty"),
+		}
+	});
+	return(
+		<InputGroup className="pt-1">
+			<Input
+				type="text"
+				id={`${name}[${index}].value`}
+				name={`${name}[${index}].value`}
+				disabled={disabled}
+				onChange={regMail.onChange}
+				onBlur={regMail.onBlur}
+				innerRef={regMail.ref}
+				invalid={errors[name]?.[index]?.value && true}
+			/>
+			<InputGroupAddon addonType="append" className="ml-0">
+				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)}>
+					<span className="cil-minus" />
+				</Button>
+			</InputGroupAddon>
+			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}
+		</InputGroup>
 	)
 }
 
@@ -212,8 +273,9 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 };
 
 // Checkbox groups which store the selected values in a single array
-export function MultiCheckbox ({ name, value, setValue, labelName }) {
+export function MultiCheckbox ({ name, valueList, assignValue, setValue, labelName, disabled }) {
 	const [addedOption, setAddedOption] = useState([]); // Items show in the input value
+	const [checkedState, setCheckedState] = useState(new Array(valueList?.length).fill(false));
 
 	const { t } = useTranslation();
 
@@ -225,6 +287,24 @@ export function MultiCheckbox ({ name, value, setValue, labelName }) {
 		}
 	}, [addedOption]);
 
+	useEffect(() => {
+		if (assignValue != undefined) {
+			if (name === "response_types") {
+				setValue("response_types", assignValue[name]);
+			} else if (name === "grant_types") {
+				setValue("grant_types", assignValue[name]);
+			}
+			valueList && valueList?.map((item, idx) => {
+				if (assignValue[name]?.includes(item)) {
+					const updatedCheckedState = checkedState.map((item, index) =>
+						index === idx ? !item : item
+					);
+					setCheckedState(updatedCheckedState)
+				}
+			})
+		}
+
+	}, [assignValue]);
 
 	// Adds new item to multiselect
 	const addItem = (item) => {
@@ -236,28 +316,36 @@ export function MultiCheckbox ({ name, value, setValue, labelName }) {
 		setAddedOption(addedOption.filter((e) => e !== item));
 	}
 
-	const handleChange = (e, item) => {
+	const handleChange = (e, item, position) => {
 		if (e.target.checked) {
 			addItem(item);
 		} else {
 			removeItem(item);
 		}
+
+		const updatedCheckedState = checkedState.map((item, index) =>
+			index === position ? !item : item
+		);
+		setCheckedState(updatedCheckedState);
 	};
 
 	return (
 		<FormGroup key={name}>
 			{labelName && <Label for={name} title={name}>{labelName}</Label>}
 			<div title={name}>
-				{value && value.map((item, key) => (
+				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
 						<div className="ml-4">{item}</div>
 						<Input
-							className="ml-0"
 							id={item}
 							name={item}
 							title={item}
 							type="checkbox"
-							onChange={() => handleChange(event, item)}
+							className="ml-0"
+							value={item}
+							disabled={disabled}
+							checked={checkedState[key]}
+							onChange={() => handleChange(event, item, key)}
 						/>
 					</InputGroup>
 				))}
