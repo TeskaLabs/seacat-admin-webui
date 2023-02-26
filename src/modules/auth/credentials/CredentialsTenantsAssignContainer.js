@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from "react-redux";
+import { Container, Row, Form,  Card,
+	CardBody, CardHeader, CardFooter,
+	ButtonGroup, Button, Col} from "reactstrap";
 
 const CredentialsTenantsAssignContainer = (props) => {
 
@@ -9,6 +12,8 @@ const CredentialsTenantsAssignContainer = (props) => {
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
 	const [ allTenants, setAllTenants] = useState(undefined);
+	const [ assignedTenants, setAssignedTenants] = useState([]);
+
 
 	const { register, handleSubmit, reset } = useForm({defaultValues: { tenants: assignedTenants }});
 	const resources = useSelector(state => state.auth?.resources);
@@ -56,7 +61,27 @@ const CredentialsTenantsAssignContainer = (props) => {
 	return (
 		<Container>
 			<Form onSubmit={handleSubmit(submit)} className="assign-tenants-wraper">
-
+				<Card className='assign-tenants-credentails w-30'>
+					<CardHeader>
+						<div className="card-header-title">
+							<i className="cil-people mr-2" />
+							{t("CredentialsTenantsAssignContainer|Credentials")}
+						</div>
+					</CardHeader>
+					<CardBody>
+						{ (credentialsList.length > 0) && (
+							credentialsList.map((el) => {
+								return (
+									<div className="card-header-title">
+										<i className="cil-user mr-1" />
+										{el.username}
+									</div>
+									)
+								}
+							))
+						}
+					</CardBody>
+				</Card>
 				<Card className="assign-tenants-tenants w-30">
 					<CardHeader>
 						<div className="card-header-title">
