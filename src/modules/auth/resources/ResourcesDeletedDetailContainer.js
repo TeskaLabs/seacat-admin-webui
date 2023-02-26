@@ -37,7 +37,6 @@ const ResourceDetailContainer = (props) =>  {
 		}
 	}
 
-
 	// Set delete resource dialog
 	const confirmForm = (type) => {
 		var r = confirm(t(`ResourcesDeletedDetailContainer|Do you really want to ${type === "delete" ? 'hard-delete' : 'retrieve'} this resource`));
@@ -82,6 +81,7 @@ const ResourceDetailContainer = (props) =>  {
 
 
 	return (
+
 		<Container>
 			<Row className="mb-4 justify-content-md-center">
 				<Col md={8}>
@@ -96,19 +96,19 @@ const ResourceDetailContainer = (props) =>  {
 						<CardBody>
 							<Row className="card-body-row">
 								<Col md={3}>{t("Name")}</Col>
-								<Col>{resource._id}</Col>
+								<Col>{resource && resource._id}</Col>
 							</Row>
 							<Row className="mt-3 card-body-row">
 								<Col md={3}>{t("Created at")}</Col>
-								<Col><DateTime value={resource._c} /></Col>
+								<Col><DateTime value={resource && resource._c} /></Col>
 							</Row>
 							<Row className="card-body-row">
 								<Col md={3}>{t("Modified at")}</Col>
-								<Col><DateTime value={resource._m} /></Col>
+								<Col><DateTime value={resource && resource._m} /></Col>
 							</Row>
 							<Row className="card-body-row">
 								<Col sm={3}>{t("Description")}</Col>
-								<Col sm={6} style={{minHeight: "90px"}}>{ resource.description }</Col>
+								<Col sm={6} style={{minHeight: "90px"}}>{resource &&  resource.description }</Col>
 							</Row>
 						</CardBody>
 
