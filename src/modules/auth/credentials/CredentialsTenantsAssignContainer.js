@@ -6,16 +6,17 @@ import { useSelector } from "react-redux";
 const CredentialsTenantsAssignContainer = (props) => {
 
 	const {t} = useTranslation();
-    const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
-    const [ allTenants, setAllTenants] = useState(undefined);
+	const [ allTenants, setAllTenants] = useState(undefined);
 
 	const { register, handleSubmit, reset } = useForm({defaultValues: { tenants: assignedTenants }});
-    const resources = useSelector(state => state.auth?.resources);
+	const resources = useSelector(state => state.auth?.resources);
 
-    useEffect(() => {
-        fetchAllTenants();
-    })
+	useEffect(() => {
+		fetchAllTenants();
+		retrieveUserInfo();
+	})
 
 	const retrieveUserInfo = async () => {
 		try {
@@ -27,7 +28,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 		}
 	};
 
-    const fetchAllTenants = async() => {
+	const fetchAllTenants = async() => {
 		try {
 			let eligibleTenants = [];
 			let response = await SeaCatAuthAPI.get('/tenants', {params: {f: filter, i: limit}});
@@ -48,50 +49,50 @@ const CredentialsTenantsAssignContainer = (props) => {
 		}
 	};
 
-    const submit = (data) => {
-        // TBD
-    }
+	const submit = (data) => {
+		// TBD
+	}
 
-    return (
-        <Container>
+	return (
+		<Container>
 			<Form onSubmit={handleSubmit(submit)} className="assign-tenants-wraper">
 
-                <Card className="assign-tenants-tenants w-30">
-                    <CardHeader>
-                        <div className="card-header-title">
-                            <i className="cil-apps mr-2" />
-                            {t("CredentialsTenantsAssignContainer|Assign tenants")}
-                        </div>
-                    </CardHeader>
+				<Card className="assign-tenants-tenants w-30">
+					<CardHeader>
+						<div className="card-header-title">
+							<i className="cil-apps mr-2" />
+							{t("CredentialsTenantsAssignContainer|Assign tenants")}
+						</div>
+					</CardHeader>
 
-                    <CardBody>
-                        <Col>
-                        {allTenants && allTenants.length > 0 ?
-                        allTenants.map((tenant) => {
-                            return(
-                                <Row key={tenant._id}>
-                                    <input
-                                        type="checkbox"
-                                        value={tenant._id}
-                                        {...register("tenants")}
-                                    />
-                                    {tenant._id}
-                                </Row>
-                            )
-                        })
-                        : <p>{t("CredentialsTenantsAssignContainer|No data")}</p>}
-                        </Col>
-                    </CardBody>
+					<CardBody>
+						<Col>
+						{allTenants && allTenants.length > 0 ?
+						allTenants.map((tenant) => {
+							return(
+								<Row key={tenant._id}>
+									<input
+										type="checkbox"
+										value={tenant._id}
+										{...register("tenants")}
+									/>
+									{tenant._id}
+								</Row>
+							)
+						})
+						: <p>{t("CredentialsTenantsAssignContainer|No data")}</p>}
+						</Col>
+					</CardBody>
 
-                    <CardFooter className="border-top">
-                        <ButtonGroup className="flex-nowrap">
-                            <Button color="primary" type="submit"> {t("Save")} </Button>
-                        </ButtonGroup>
-                    </CardFooter>
-                </Card>
+					<CardFooter className="border-top">
+						<ButtonGroup className="flex-nowrap">
+							<Button color="primary" type="submit"> {t("Save")} </Button>
+						</ButtonGroup>
+					</CardFooter>
+				</Card>
 			</Form>
 		</Container>
-    )
+	)
 }
 
 export default CredentialsTenantsAssignContainer
