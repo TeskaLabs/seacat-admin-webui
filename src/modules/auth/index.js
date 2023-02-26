@@ -3,6 +3,7 @@ import Module from 'asab-webui/abc/Module';
 import CredentialsListContainer from './credentials/CredentialsListContainer';
 import CredentialsDetailContainer from './credentials/CredentialsDetailContainer';
 import CredentialsCreateContainer from './credentials/CredentialsCreateContainer';
+import CredentialsTenantsAssignContainer from './credentials/CredentialsTenantsAssignContainer';
 import ResetPasswordContainer from './credentials/ResetPasswordContainer';
 
 import SessionListContainer from './session/SessionListContainer';
@@ -89,6 +90,12 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/credentials/!create',
 			name: 'New credentials',
 			component: CredentialsCreateContainer
+		});
+
+		app.Router.addRoute({
+			path: '/auth/credentials/:credentials_id/assigntenants',
+			name: 'Assign tenants',
+			component: CredentialsTenantsAssignContainer
 		});
 
 		app.Router.addRoute({
