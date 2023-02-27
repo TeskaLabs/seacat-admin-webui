@@ -75,6 +75,7 @@
 		"Tenants": "Tenanti",
 		"New tenant": "Nový tenant",
 		"Tenant detail": "Detail tenanta",
+		"Assign tenants": "Přiřadit tenanty",
 		"Clients": "Klienti",
 		"New client": "Nový klient",
 		"Client detail": "Detail klienta",
@@ -224,6 +225,23 @@
 		"Something went wrong, failed to fetch tenants": "Něco je špatně, nepodařilo se získat tenanty",
 		"Something went wrong, failed to fetch assigned tenants": "Něco je špatně, nepodařilo se získat přiřazené tenanty",
 		"No match": "Shoda nenalezena"
+	},
+	"CredentialsTenantsAssignContainer": {
+		"Failed to fetch data": "Nepodařilo se získat data",
+		"Failed to fetch user details": "Nepodařilo se získat data uživatele",
+		"Failed to fetch assigned tenants": "Nepodařilo se získat přiřazené tenanty",
+		"Failed to fetch tenants": "Nepodařilo se získat tenanty",
+		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
+		"Credentials": "Uživatelské údaje",
+		"Select credentials": "Zvolit uživatele",
+		"Search": "Hledat",
+		"Loading": "Načítám...",
+		"No match": "Shoda nenalezena",
+		"Assign tenants": "Přiřadit tenanty",
+		"No data": "Žádná data",
+		"Save": "Uložit",
+		"Cancel": "Zrušit",
+		"Remove": "Odstranit"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Relace",

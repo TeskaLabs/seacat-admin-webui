@@ -75,6 +75,7 @@
 		"Tenants": "Tenants",
 		"New tenant": "New tenant",
 		"Tenant detail": "Tenant detail",
+		"Assign tenants": "Assign tenants",
 		"Clients": "Clients",
 		"New client": "New client",
 		"Client detail": "Client detail",
@@ -224,6 +225,23 @@
 		"Something went wrong, failed to fetch tenants": "Something went wrong, failed to fetch tenants",
 		"Something went wrong, failed to fetch assigned tenants": "Something went wrong, failed to fetch assigned tenants",
 		"No match": "No match"
+	},
+	"CredentialsTenantsAssignContainer": {
+		"Failed to fetch data": "Failed to fetch data",
+		"Failed to fetch user details": "Failed to fetch user details",
+		"Failed to fetch assigned tenants": "Failed to fetch assigned tenants",
+		"Failed to fetch tenants": "Failed to fetch tenants",
+		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
+		"Credentials": "Credentials",
+		"Select credentials": "Select credentials",
+		"Search": "Search",
+		"Loading": "Loading",
+		"No match": "No match",
+		"Assign tenants": "Assign tenants",
+		"No data": "No data",
+		"Save": "Save",
+		"Cancel": "Cancel",
+		"Remove": "Remove"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Sessions",
