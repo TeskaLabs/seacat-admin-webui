@@ -115,13 +115,18 @@ const CredentialsTenantsAssignContainer = (props) => {
 		}
 	};
 
+	// Removes credentials from being displayed in the tenants card
+	const removeCredentialFromList = (idx) => {
+		const modifiedCreds = credentialsList;
+		modifiedCreds.splice(idx, 1);
+		setCredentialsList([...modifiedCreds]);
+	};
+
 	const submit = (data) => {
 		// TBD
 		console.log('data: ', data);
 		console.log('Credentials to use: ', credentialsList);
-	}
-
-	// TODO - remove user button
+	};
 
 	return (
 		<Container>
@@ -175,21 +180,32 @@ const CredentialsTenantsAssignContainer = (props) => {
 					</CardHeader>
 					<CardBody>
 						{ (credentialsList.length > 0) && (
-							credentialsList.map((el) => {
+							credentialsList.map((el, idx) => {
 								return (
 									<div className="mt-2">
 										{el.username ?
-										<>
-											<i className="cil-user mr-1" />
-											{el.username}
-										</>
+											<>
+												<i className="cil-user mr-1" />
+												{el.username}
+											</>
 										:
-										<Credentials
-											className="disabled-link"
-											app={props.app}
-											credentials_ids={el._id}
-										/>
+											<Credentials
+												className="disabled-link"
+												app={props.app}
+												credentials_ids={el._id}
+											/>
 										}
+										<Button
+											size="sm"
+											outline
+											className='ml-4'
+											style={{'display': 'inline'}}
+											color="danger"
+											onClick={() => ( console.log('we bouta remove'), removeCredentialFromList(idx))}
+											title={t("CredentialsTenantsAssignContainer|Remove")}
+										>
+											-
+										</Button>
 									</div>
 									)
 								}
