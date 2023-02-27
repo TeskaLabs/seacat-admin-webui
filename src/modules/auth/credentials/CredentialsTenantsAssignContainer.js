@@ -27,7 +27,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 	const [ credentialsList, setCredentialsList ] = useState([]);
 	const [ prevAssignedTenants, setPrevAssignedTenants ] = useState(undefined);
 
-	const { register, handleSubmit, reset } = useForm({defaultValues: { tenants: assignedTenants }});
+	const { register, handleSubmit, reset, setValue } = useForm({defaultValues: { tenants: assignedTenants }});
 	const resources = useSelector(state => state.auth?.resources);
 	const credentials_id = props.match.params.credentials_id;
 
@@ -53,21 +53,29 @@ const CredentialsTenantsAssignContainer = (props) => {
 	const retrieveUserInfo = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/credentials/${credentials_id}`);
+			if (response.data.result !== "OK") {
+				throw new Error(t("CredentialsTenantsAssignContainer|Failed to fetch data"));
+			}
 			setCredentialsList([response.data]);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Something went wrong, failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
 	const retrieveAssignedTenants = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/tenant_assign/${credentials_id}`);
+			if (response.data.result !== "OK") {
+				throw new Error(t("CredentialsTenantsAssignContainer|Failed to fetch data"));
+			}
+			//updates tenants inside useForm and activates ('prefills') appropriate checkboxes on the screen
+			setValue('tenants', response.data);
 			setAssignedTenants(response.data);
 			setPrevAssignedTenants(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Something went wrong, failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -89,7 +97,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 			setCount(response.data.count);
 		} catch(e) {
 			console.error(e);
-			// props.app.addAlert("warning", `${t("CredentialsTenantsCard|Something went wrong, failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
+			// props.app.addAlert("warning", `${t("CredentialsTenantsCard|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -99,7 +107,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 		try {
 			response = await SeaCatAuthAPI.get("/credentials", {params: {f: filter}});
 			if (response.data.result !== "OK") {
-				throw new Error(t("CredentialsTenantsAssignContainer|Something went wrong, failed to fetch data"));
+				throw new Error(t("CredentialsTenantsAssignContainer|Failed to fetch data"));
 			}
 			setAssignedCredentialsDropdown(response.data.data);
 			setLoading(false);
@@ -110,7 +118,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 				props.app.addAlert("warning", t("CredentialsTenantsAssignContainer|Can't fetch the data, you don't have rights to display it"), 30);
 				return;
 			}
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Something went wrong, failed to fetch data")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
