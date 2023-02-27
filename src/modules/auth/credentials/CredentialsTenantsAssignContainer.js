@@ -13,6 +13,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 
 	const {t} = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const timeoutRef = useRef(null);
 
 	const [ allTenants, setAllTenants] = useState(undefined);
 	const [ assignedTenants, setAssignedTenants] = useState([]);
@@ -35,6 +36,17 @@ const CredentialsTenantsAssignContainer = (props) => {
 		retrieveUserInfo();
 		retrieveAssignedTenants();
 	}, [])
+
+	//useEffect, applying filtering to credentials dropdown
+	useEffect(() => {
+		if (timeoutRef.current !== null) {
+			clearTimeout(timeoutRef.current);
+		}
+		timeoutRef.current = setTimeout(() => {
+			timeoutRef.current = null;
+			retrieveCredentialsForDropdown()
+		}, 500);
+	}, [filter]);
 
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 
@@ -83,7 +95,6 @@ const CredentialsTenantsAssignContainer = (props) => {
 
 	// Receives data from all credentials
 	const retrieveCredentialsForDropdown = async () => {
-		setLoading(true);
 		let response;
 		try {
 			response = await SeaCatAuthAPI.get("/credentials", {params: {f: filter}});
@@ -106,6 +117,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 	const submit = (data) => {
 		// TBD
 		console.log('data: ', data);
+		console.log('Credentials to use: ', credentialsList);
 	}
 
 	return (
@@ -212,8 +224,20 @@ const CredentialsTenantsAssignContainer = (props) => {
 
 					<CardFooter className="border-top">
 						<ButtonGroup className="flex-nowrap">
-							<Button color="primary" type="submit"> {t("Save")} </Button>
+							<Button color="primary" type="submit"> {t("CredentialsTenantsAssignContainer|Save")} </Button>
 						</ButtonGroup>
+						<div className='actions-right'>
+							<Button
+								outline
+								onClick={(e) => (
+									e.preventDefault(),
+									reset({tenants: assignedTenants}),
+									retrieveUserInfo(),
+									setAssignedTenants(prevAssignedTenants)
+								)}>
+								{t("CredentialsTenantsAssignContainer|Cancel")}
+							</Button>
+						</div>
 					</CardFooter>
 				</Card>
 			</Form>
