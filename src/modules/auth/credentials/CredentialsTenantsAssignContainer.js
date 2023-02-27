@@ -53,29 +53,23 @@ const CredentialsTenantsAssignContainer = (props) => {
 	const retrieveUserInfo = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/credentials/${credentials_id}`);
-			if (response.data.result !== "OK") {
-				throw new Error(t("CredentialsTenantsAssignContainer|Failed to fetch data"));
-			}
 			setCredentialsList([response.data]);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
 	const retrieveAssignedTenants = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/tenant_assign/${credentials_id}`);
-			if (response.data.result !== "OK") {
-				throw new Error(t("CredentialsTenantsAssignContainer|Failed to fetch data"));
-			}
 			//updates tenants inside useForm and activates ('prefills') appropriate checkboxes on the screen
 			setValue('tenants', response.data);
 			setAssignedTenants(response.data);
 			setPrevAssignedTenants(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -92,12 +86,11 @@ const CredentialsTenantsAssignContainer = (props) => {
 			}
 			// this function changed eligibleTenants order to alphabetical
 			eligibleTenants.sort((a, b) => a._id.localeCompare(b._id));
-			console.log('eigible tenants: ', eligibleTenants);
 			setAllTenants(eligibleTenants);
 			setCount(response.data.count);
 		} catch(e) {
 			console.error(e);
-			// props.app.addAlert("warning", `${t("CredentialsTenantsCard|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -127,6 +120,8 @@ const CredentialsTenantsAssignContainer = (props) => {
 		console.log('data: ', data);
 		console.log('Credentials to use: ', credentialsList);
 	}
+
+	// TODO - remove user button
 
 	return (
 		<Container>
@@ -182,7 +177,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 						{ (credentialsList.length > 0) && (
 							credentialsList.map((el) => {
 								return (
-									<div className="card-header-title">
+									<div className="mt-2">
 										{el.username ?
 										<>
 											<i className="cil-user mr-1" />
@@ -232,17 +227,25 @@ const CredentialsTenantsAssignContainer = (props) => {
 
 					<CardFooter className="border-top">
 						<ButtonGroup className="flex-nowrap">
-							<Button color="primary" type="submit"> {t("CredentialsTenantsAssignContainer|Save")} </Button>
+							<Button
+								color="primary"
+								type="submit"
+								title={t("CredentialsTenantsAssignContainer|Save")}
+							>
+								{t("CredentialsTenantsAssignContainer|Save")}
+							</Button>
 						</ButtonGroup>
 						<div className='actions-right'>
 							<Button
 								outline
+								title={t("CredentialsTenantsAssignContainer|Cancel")}
 								onClick={(e) => (
 									e.preventDefault(),
 									reset({tenants: assignedTenants}),
 									retrieveUserInfo(),
 									setAssignedTenants(prevAssignedTenants)
-								)}>
+								)}
+							>
 								{t("CredentialsTenantsAssignContainer|Cancel")}
 							</Button>
 						</div>
