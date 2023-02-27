@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from "react-redux";
 import { Container, Row, Form,  Card,
 	CardBody, CardHeader, CardFooter,
-	ButtonGroup, Button, Col} from "reactstrap";
+	ButtonGroup, Button, Col,
+	Input, Dropdown, DropdownToggle,
+	DropdownItem, DropdownMenu } from "reactstrap";
+import { Credentials } from 'asab-webui';
 
 const CredentialsTenantsAssignContainer = (props) => {
 
@@ -17,19 +20,23 @@ const CredentialsTenantsAssignContainer = (props) => {
 	const [ limit, setLimit] = useState(15);
 	const [ count, setCount ] = useState(undefined);
 	const [ filter, setFilter] = useState('');
+	const [ page, setPage] = useState('');
 	const [ loading, setLoading ] = useState(true);
-
+	const [ dropdownOpen, setDropdownOpen ] = useState(false);
+	const [ credentialsList, setCredentialsList ] = useState([]);
+	const [ prevAssignedTenants, setPrevAssignedTenants ] = useState(undefined);
 
 	const { register, handleSubmit, reset } = useForm({defaultValues: { tenants: assignedTenants }});
 	const resources = useSelector(state => state.auth?.resources);
-
 	const credentials_id = props.match.params.credentials_id;
 
 	useEffect(() => {
 		fetchAllTenants();
 		retrieveUserInfo();
 		retrieveAssignedTenants();
-	})
+	}, [])
+
+	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 
 	const retrieveUserInfo = async () => {
 		try {
@@ -37,7 +44,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 			setCredentialsList([response.data]);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("XXXXXXXXXXX|Something went wrong, failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Something went wrong, failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -45,7 +52,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/tenant_assign/${credentials_id}`);
 			setAssignedTenants(response.data);
-			setPrevAssignedTenants(response.data)
+			setPrevAssignedTenants(response.data);
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("CredentialsTenantsAssignCard|Something went wrong, failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
@@ -65,7 +72,8 @@ const CredentialsTenantsAssignContainer = (props) => {
 			}
 			// this function changed eligibleTenants order to alphabetical
 			eligibleTenants.sort((a, b) => a._id.localeCompare(b._id));
-			setAllTenants(eligibleTenants)
+			console.log('eigible tenants: ', eligibleTenants);
+			setAllTenants(eligibleTenants);
 			setCount(response.data.count);
 		} catch(e) {
 			console.error(e);
@@ -78,12 +86,12 @@ const CredentialsTenantsAssignContainer = (props) => {
 		setLoading(true);
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: credentialsLimit, f: filter}});
+			response = await SeaCatAuthAPI.get("/credentials", {params: {f: filter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("CredentialsTenantsAssignContainer|Something went wrong, failed to fetch data"));
 			}
 			setAssignedCredentialsDropdown(response.data.data);
-			setLoading(false)
+			setLoading(false);
 		} catch(e) {
 			console.error(e);
 			setLoading(false)
@@ -97,6 +105,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 
 	const submit = (data) => {
 		// TBD
+		console.log('data: ', data);
 	}
 
 	return (
@@ -108,14 +117,64 @@ const CredentialsTenantsAssignContainer = (props) => {
 							<i className="cil-people mr-2" />
 							{t("CredentialsTenantsAssignContainer|Credentials")}
 						</div>
+						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
+							<DropdownToggle caret outline color="primary" className="card-header-dropdown">
+								{t("CredentialsTenantsAssignContainer|Select credentials")}
+							</DropdownToggle>
+							<DropdownMenu className="assign-credential-list-dropdown">
+								<DropdownItem header>
+									<Input
+										className="m-0"
+										placeholder={t("CredentialsTenantsAssignContainer|Search")}
+										onChange={e => setFilter(e.target.value)}
+										value={filter}
+									/>
+								</DropdownItem>
+								{loading ?
+									<DropdownItem><span>{t("CredentialsTenantsAssignContainer|Loading")}</span></DropdownItem>
+									:
+									(assignedCredentialsDropdown && Object.keys(assignedCredentialsDropdown).map((item, i) => {
+										let checkCredentialsAvailability = credentialsList.findIndex(elem => elem._id === assignedCredentialsDropdown[item]._id);
+										if (checkCredentialsAvailability === -1) {
+											// Display only if the credentials is not already assigned
+											return (
+												<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => setCredentialsList([...credentialsList, assignedCredentialsDropdown[item]])}>
+													{assignedCredentialsDropdown[item].username ?
+														<span>{assignedCredentialsDropdown[item].username}</span>
+														:
+														<Credentials
+															className="disabled-link"
+															app={props.app}
+															credentials_ids={assignedCredentialsDropdown[item]._id}
+														/>
+													}
+												</DropdownItem>
+											)
+										}
+										else {return null}
+									}))
+								}
+								{(!assignedCredentialsDropdown ) && <DropdownItem><span>{t("CredentialsTenantsAssignContainer|No match")}</span></DropdownItem>}
+							</DropdownMenu>
+						</Dropdown>
 					</CardHeader>
 					<CardBody>
 						{ (credentialsList.length > 0) && (
 							credentialsList.map((el) => {
 								return (
 									<div className="card-header-title">
-										<i className="cil-user mr-1" />
-										{el.username}
+										{el.username ?
+										<>
+											<i className="cil-user mr-1" />
+											{el.username}
+										</>
+										:
+										<Credentials
+											className="disabled-link"
+											app={props.app}
+											credentials_ids={el._id}
+										/>
+										}
 									</div>
 									)
 								}
@@ -133,12 +192,13 @@ const CredentialsTenantsAssignContainer = (props) => {
 
 					<CardBody>
 						<Col>
-						{allTenants && allTenants.length > 0 ?
+						{(allTenants && allTenants.length > 0) ?
 						allTenants.map((tenant) => {
 							return(
 								<Row key={tenant._id}>
 									<input
 										type="checkbox"
+										className="mr-1"
 										value={tenant._id}
 										{...register("tenants")}
 									/>
