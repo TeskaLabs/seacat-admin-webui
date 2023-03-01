@@ -8,6 +8,10 @@
 	}
 }
 
+.resource-detail-description {
+	min-height: 90px;
+}
+
 @media screen and (max-width: 1097px) {
 	.description-row {
 		.data-table-td:last-child {
