@@ -20,6 +20,7 @@ function ResourcesListContainer(props) {
 	const { t } = useTranslation();
 
 	const deleteButtonResource = "authz:tenant:admin";
+	const createResourceButtonResource = "authz:superuser"
 
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
@@ -128,7 +129,7 @@ function ResourcesListContainer(props) {
 				title={t("ResourcesListContainer|Create resource")}
 				color="primary"
 				onClick={() => {redirectToCreate()}}
-				resource="authz:superuser"
+				resource={createResourceButtonResource}
 				resources={credentialsResources}
 				>
 				{t("ResourcesListContainer|Create resource")}

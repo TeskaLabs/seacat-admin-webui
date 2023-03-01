@@ -17,6 +17,7 @@ const ResourceDetailContainer = (props) =>  {
 	const [editMode, setEditMode] = useState(false);
 	const { resource_id } = props.match.params;
 
+	const editButtonResource = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 
 	useEffect(() => {
@@ -108,7 +109,7 @@ const ResourceDetailContainer = (props) =>  {
 							</Row>
 							<Row className="card-body-row">
 								<Col sm={3}>{t("Description")}</Col>
-								<Col sm={6} style={{minHeight: "90px"}}>{resource &&  resource.description }</Col>
+								<Col sm={6} className="resource-detail-description">{resource &&  resource.description }</Col>
 							</Row>
 						</CardBody>
 
@@ -150,7 +151,7 @@ const ResourceDetailContainer = (props) =>  {
 											type="button"
 											onClick={(e) => (e.preventDefault(), setEditMode(true))}
 											resources={resources}
-											resource="authz:superuser"
+											resource={editButtonResource}
 											title={t("Edit")}
 										>
 											{t("Edit")}
