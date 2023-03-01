@@ -15,7 +15,7 @@ const ResourceDetailContainer = (props) =>  {
 	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
-	const [ resource, setResource ] = useState(null);
+	const [ resource, setResource ] = useState(undefined);
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
 	const { resource_id } = props.match.params;
@@ -137,7 +137,7 @@ const ResourceDetailContainer = (props) =>  {
 
 									<FormGroup row className="mt-3">
 										<Col sm={3}>{t("Description")}</Col>
-										<Col sm={6} style={{minHeight: "90px"}}>
+										<Col sm={6} className="resource-detail-description">
 											{editMode ?
 												<Input
 													id="resource_description"
