@@ -53,13 +53,13 @@ export default class SeaCatAuthModule extends Module {
 			component: ResourcesCreateContainer
 		});
 		app.Router.addRoute({
-			path: '/auth/resources/deleted',
+			path: '/auth/resources/!deleted',
 			exact: true,
 			name: 'Deleted resources',
 			component: ResourcesDeletedListContainer
 		});
 		app.Router.addRoute({
-			path: '/auth/resources/deleted/:resource_id',
+			path: '/auth/resources/!deleted/:resource_id',
 			exact: true,
 			name: 'Deleted resource detail',
 			component: ResourcesDeletedDetailContainer

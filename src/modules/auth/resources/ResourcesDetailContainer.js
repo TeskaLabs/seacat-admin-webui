@@ -87,7 +87,7 @@ const ResourceDetailContainer = (props) =>  {
 			}
 			props.app.addAlert("success", t("ResourcesDetailContainer|Resource successfully deleted"));
 			// redirect to list of deleted resources
-			props.history.push("/auth/resources/deleted");
+			props.history.push("/auth/resources/!deleted");
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Failed to delete resource")}. ${e?.response?.data?.message}`, 30);

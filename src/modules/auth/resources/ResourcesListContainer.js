@@ -108,7 +108,7 @@ function ResourcesListContainer(props) {
 				throw new Error(t("ResourcesListContainer|Failed to delete the resource"));
 			}
 			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully deleted"));
-			props.history.push("/auth/resources/deleted");
+			props.history.push("/auth/resources/!deleted");
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to delete the resource")}. ${e?.response?.data?.message}`, 30);
@@ -121,7 +121,7 @@ function ResourcesListContainer(props) {
 				title={t("ResourcesListContainer|Deleted resources")}
 				color="primary"
 				outline
-				onClick={() => props.history.push('/auth/resources/deleted')}
+				onClick={() => props.history.push('/auth/resources/!deleted')}
 				>
 				{t("ResourcesListContainer|Deleted resources")}
 			</Button>
