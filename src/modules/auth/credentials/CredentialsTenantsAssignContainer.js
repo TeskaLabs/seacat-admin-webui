@@ -27,14 +27,16 @@ const CredentialsTenantsAssignContainer = (props) => {
 	const [ credentialsList, setCredentialsList ] = useState([]);
 	const [ prevAssignedTenants, setPrevAssignedTenants ] = useState(undefined);
 
-	const { register, handleSubmit, reset, setValue } = useForm({defaultValues: { tenants: assignedTenants }});
+	const { register, handleSubmit, reset, setValue } = useForm();
+	// const { register, handleSubmit, reset, setValue } = useForm({defaultValues: { tenants: assignedTenants }});
 	const resources = useSelector(state => state.auth?.resources);
+	const tenant = useSelector(state => state.tenant?.current);
 	const credentials_id = props.match.params.credentials_id;
 
 	useEffect(() => {
 		fetchAllTenants();
 		retrieveUserInfo();
-		retrieveAssignedTenants();
+		// retrieveAssignedTenants();
 	}, [])
 
 	//useEffect, applying filtering to credentials dropdown
@@ -98,7 +100,10 @@ const CredentialsTenantsAssignContainer = (props) => {
 	const retrieveCredentialsForDropdown = async () => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get("/credentials", {params: {f: filter}});
+			// response = await SeaCatAuthAPI.get("/credentials", {params: {f: filter}});
+			response = await SeaCatAuthAPI.get("/credentials", {params: {m: 'tenant', f: tenant}});
+			// GET /credentials?m=tenant&f=tenant-a
+			console.log('response.data from GET / credentails: ', response.data)
 			if (response.data.result !== "OK") {
 				throw new Error(t("CredentialsTenantsAssignContainer|Failed to fetch data"));
 			}
@@ -122,10 +127,32 @@ const CredentialsTenantsAssignContainer = (props) => {
 		setCredentialsList([...modifiedCreds]);
 	};
 
-	const submit = (data) => {
+	const submit = async (data) => {
 		// TBD
 		console.log('data: ', data);
 		console.log('Credentials to use: ', credentialsList);
+		let arr = []
+		credentialsList.map((el) => {
+			arr.push(el._id)
+		})
+		console.log('arr: ', arr)
+
+		try {
+			let response = await SeaCatAuthAPI.put(`/tenant_assign_many/${data.tenant}`, arr);
+			if (response.data.result !== "OK") {
+				throw new Error(t("CredentialsTenantsAssignContainer|Fail"));
+			}
+			console.log('reponse: ', response)
+			props.app.addAlert("success", t("CredentialsTenantsAssignContainer|Tenant assignment was successful"), 30);
+		} catch(e) {
+			console.error(e);
+			if (e.response.status === 401) {
+				props.app.addAlert("warning", t("CredentialsTenantsAssignContainer|Fail"), 30);
+				return;
+			}
+			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Fail")}. ${e?.response?.data?.message}`, 30);
+		}
+
 	};
 
 	return (
@@ -228,10 +255,11 @@ const CredentialsTenantsAssignContainer = (props) => {
 							return(
 								<Row key={tenant._id}>
 									<input
-										type="checkbox"
+										type="radio"
+										name="tenant"
 										className="mr-1"
 										value={tenant._id}
-										{...register("tenants")}
+										{...register("tenant")}
 									/>
 									{tenant._id}
 								</Row>
@@ -246,9 +274,9 @@ const CredentialsTenantsAssignContainer = (props) => {
 							<Button
 								color="primary"
 								type="submit"
-								title={t("CredentialsTenantsAssignContainer|Save")}
+								title={t("CredentialsTenantsAssignContainer|Assign selected tennant to selected list of credentials")}
 							>
-								{t("CredentialsTenantsAssignContainer|Save")}
+								{t("CredentialsTenantsAssignContainer|Assign")}
 							</Button>
 						</ButtonGroup>
 						<div className='actions-right'>
