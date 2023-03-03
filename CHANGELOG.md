@@ -4,13 +4,17 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[b4f37c0](https://github.com/TeskaLabs/asab-webui/commit/b4f37c070709bdee5d003377c9d9b86c2ee2533d)] commit (INDIGO Sprint 230203, [!16](https://github.com/TeskaLabs/seacat-admin-webui/pull/16))
+- ASAB WebUI submodule version bump [[a86c691](https://github.com/TeskaLabs/asab-webui/commit/a86c691689c71a6f65720e6f7e4f5f4fc65ef4d4)] commit (INDIGO Sprint 230217, [!20](https://github.com/TeskaLabs/seacat-admin-webui/pull/20))
 
 ### Refactoring
 
 - Dropdown menu used to assign `tenants` nad `roles` to specific `Credentials` has been refactored to offer more data than the initial limit, upon clicking the 'More ...' button. (INDIGO Sprint 230203, [!14](https://github.com/TeskaLabs/seacat-admin-webui/pull/14))
 
-- Webpack V4 to V5 migration. (INDIGO Sprint 230217, [!16](https://github.com/TeskaLabs/seacat-admin-webui/pull/16))
+- Refactor ClientDetail and ClientCreate components, refactor URI inputs to new format, refactor client editing (INDIGO Sprint 230203, [!18](https://github.com/TeskaLabs/seacat-admin-webui/pull/18))
+
+- Remove react-helmet from the package.json (INDIGO Sprint 230216, [!20](https://github.com/TeskaLabs/seacat-admin-webui/pull/20))
+
+- Webpack V4 to V5 migration. (INDIGO Sprint 230303, [!16](https://github.com/TeskaLabs/seacat-admin-webui/pull/16))
 
 ## v23.5
 
