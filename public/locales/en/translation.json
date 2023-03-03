@@ -241,7 +241,9 @@
 		"No data": "No data",
 		"Save": "Save",
 		"Cancel": "Cancel",
-		"Remove": "Remove"
+		"Remove": "Remove",
+		"Assign selected tennant to selected list of credentials": "Assign selected tennant to selected list of credentials",
+		"Assign": "Assign"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Sessions",

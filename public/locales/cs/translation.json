@@ -241,7 +241,9 @@
 		"No data": "Žádná data",
 		"Save": "Uložit",
 		"Cancel": "Zrušit",
-		"Remove": "Odstranit"
+		"Remove": "Odstranit",
+		"Assign selected tennant to selected list of credentials": "Přiřadit zvoleného tenanta ke zvoleným uživatelům",
+		"Assign": "Přiřadit"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Relace",
