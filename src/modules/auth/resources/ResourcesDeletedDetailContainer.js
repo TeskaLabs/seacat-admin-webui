@@ -95,19 +95,19 @@ const ResourceDetailContainer = (props) =>  {
 						</CardHeader>
 
 						<CardBody>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={3}>{t("Name")}</Col>
 								<Col>{resource && resource._id}</Col>
 							</Row>
-							<Row className="mt-3 card-body-row">
+							<Row className="mt-3">
 								<Col md={3}>{t("Created at")}</Col>
 								<Col><DateTime value={resource && resource._c} /></Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row>
 								<Col md={3}>{t("Modified at")}</Col>
 								<Col><DateTime value={resource && resource._m} /></Col>
 							</Row>
-							<Row className="card-body-row">
+							<Row className='mt-3'>
 								<Col sm={3}>{t("Description")}</Col>
 								<Col sm={6} className="resource-detail-description">{resource &&  resource.description }</Col>
 							</Row>
