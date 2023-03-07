@@ -285,15 +285,15 @@ const RolesDetailContainer = (props) =>  {
 								</div>
 							</CardHeader>
 							<CardBody>
-								<Row className="card-body-row">
+								<Row>
 									<Col md={3}>{t("Name")}</Col>
 									<Col>{role._id}</Col>
 								</Row>
-								<Row className="card-body-row">
+								<Row>
 									<Col md={3}>{t("Created at")}</Col>
 									<Col><DateTime value={role._c} /></Col>
 								</Row>
-								<Row className="card-body-row">
+								<Row>
 									<Col md={3}>{t("Modified at")}</Col>
 									<Col><DateTime value={role._m} /></Col>
 								</Row>

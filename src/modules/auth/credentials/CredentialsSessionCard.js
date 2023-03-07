@@ -48,7 +48,7 @@ function CredentialsSessionCard(props) {
 			<CardBody className="card-body-scroll">
 				{data.length > 0 ? data.map((session, idx) => {
 					return(
-						<Row className="card-body-row" key={idx}>
+						<Row key={idx}>
 							<Col style={{overflowX: "auto"}}>
 								<Link to={{ pathname:`/auth/session/${session._id}` }} className="user-session">
 									<i className="cil-link"></i>
