@@ -11,7 +11,7 @@ import {
 	Form, ButtonGroup
 } from 'reactstrap';
 
-import {TextInput, SelectInput, URiInput, MultiCheckbox, RadioInput} from './FormFields';
+import {TextInput, URiInput, RadioInput} from './FormFields';
 import CustomDataInput from "../components/CustomDataInput";
 
 import { ButtonWithAuthz } from 'asab-webui';
@@ -267,11 +267,29 @@ const ClientCreateContainer = (props) => {
 							</CardHeader>
 
 							<CardBody>
+								<TextInput
+									name="client_name"
+									register={register}
+									required={true}
+									disabled={disabled}
+									labelName={`${t("ClientCreateContainer|Client name")}*`}
+								/>
+								<URiInput
+									name="redirect_uris_main"
+									mainTemplateName="redirect_uris"
+									invalid={errors?.redirect_uris_main && true}
+									disabled={disabled}
+									errors={errors}
+									append={redirect_urisAppend}
+									remove={redirect_urisRemove}
+									fields={redirect_urisFields}
+									register={register}
+									reg={regRedirectUrisMain}
+									labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
+								/>
 								{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
 									if (key != "template") {
 										switch(key) {
-											case 'redirect_uris': return(<URiInput key={key} name="redirect_uris_main" invalid={errors?.redirect_uris_main && true} disabled={disabled} mailTemplateName="redirect_uris" errors={errors} append={redirect_urisAppend} remove={redirect_urisRemove} fields={redirect_urisFields} register={register} reg={regRedirectUrisMain} labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}/>)
-											case 'client_name': return(<TextInput key={key} name={key} register={register} required={true} disabled={disabled} labelName={`${t("ClientCreateContainer|Client name")}*`}/>)
 											case 'client_uri': return(<TextInput key={key} name={key} register={register} disabled={disabled} labelName={t('ClientCreateContainer|Client URI')}/>)
 											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
@@ -282,6 +300,8 @@ const ClientCreateContainer = (props) => {
 											case 'grant_types': return null
 											case 'application_type': return null
 											case 'token_endpoint_auth_method': return null
+											case 'redirect_uris': return null
+											case 'client_name': return null
 											default: return(<div key={key}>{t('ClientCreateContainer|Unknown item')}: "{key}"</div>)
 										}
 									}
