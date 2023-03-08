@@ -92,9 +92,13 @@
 	},
 	"ClientCreateContainer": {
 		"Something went wrong, failed to fetch clients": "Something went wrong, failed to fetch clients",
+		"Something went wrong, failed to fetch client info": "Something went wrong, failed to fetch client info",
+		"Client updated successfully": "Client updated successfully",
+		"Something went wrong, failed to update client": "Something went wrong, failed to update client",
 		"Client has been created": "Client has been created",
 		"Something went wrong, client has not been created": "Something went wrong, client has not been created",
 		"Create new client": "Create new client",
+		"Edit client": "Edit client",
 		"Template": "Template",
 		"Client name": "Client name",
 		"Preferred client ID": "Preferred client ID",
@@ -103,19 +107,23 @@
 		"Grant types": "Grant types",
 		"Application type": "Application type",
 		"Token endpoint authentication method": "Token endpoint authentication method",
+		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
 		"Create client": "Create client",
-		"Unknown item": "Unknown item"
+		"Unknown item": "Unknown item",
+		"Code challenge methods": "Code challenge methods",
+		"Login URi": "Login URi",
+		"URL hash have to be empty": "URL hash have to be empty",
+		"Choose an option": "Choose an option",
+		"Required field": "Required field"
 	},
 	"ClientDetailContainer": {
 		"Something went wrong, failed to fetch client details": "Something went wrong, failed to fetch client details",
 		"Secret has been reset successfully": "Secret has been reset successfully",
 		"Something went wrong, failed to reset secret": "Something went wrong, failed to reset secret",
 		"Do you want to reset this secret?": "Do you want to reset this secret?",
-		"Something went wrong, failed to update client": "Something went wrong, failed to update client",
 		"Do you want to remove this client?": "Do you want to remove this client?",
 		"Client removed successfully": "Client removed successfully",
-		"Client updated successfully": "Client updated successfully",
 		"Something went wrong, failed to remove client": "Something went wrong, failed to remove client",
 		"Client": "Client",
 		"Client name": "Client name",
@@ -127,18 +135,26 @@
 		"Response types": "Response types",
 		"Grant types": "Grant types",
 		"Token endpoint auth. method": "Token endpoint auth. method",
+		"Cookie domain": "Cookie domain",
 		"Redirect URIs": "Redirect URIs",
+		"Code challenge methods": "Code challenge methods",
+		"Login URI": "Login URI",
 		"Redirect URI must be in absolute format without a fragment component.": "Redirect URI must be in absolute format without a fragment component.",
-		"Remove client": "Remove client"
+		"Remove client": "Remove client",
+		"Save changes": "Save changes",
+		"No changes were made": "No changes were made"
 	},
 	"ClientFormField": {
 		"Add new input": "Add new input",
 		"Remove input": "Remove input",
 		"Invalid format, input should have minimum of 8 characters": "Invalid format, input should have minimum of 8 characters",
+		"Invalid format for cookie_domain": "Invalid format for cookie_domain",
 		"URI can't be empty": "URI can't be empty",
 		"URI have to start with https": "URI have to start with https",
 		"URL hash have to be empty": "URL hash have to be empty",
-		"Choose an option": "Choose an option"
+		"Choose an option": "Choose an option",
+		"None": "None",
+		"Required field": "Required field"
 	},
 	"CredentialsCreateContainer": {
 		"Create new credentials": "Create new credentials",
@@ -146,7 +162,12 @@
 		"Create credentials": "Create credentials",
 		"Credentials have been created successfully": "Credentials have been created successfully",
 		"Something went wrong, failed to create credentials": "Something went wrong, failed to create credentials",
-		"Something went wrong, failed to fetch providers": "Something went wrong, failed to fetch providers"
+		"Something went wrong, failed to fetch providers": "Something went wrong, failed to fetch providers",
+		"Create": "Create",
+		"Invite": "Invite",
+		"Invite user": "Invite user",
+		"Invitation sent successfully": "Invitation sent successfully",
+		"Something went wrong, failed to send invitation": "Something went wrong, failed to send invitation"
 	},
 	"CredentialsDetailContainer": {
 		"Credentials": "Credentials",
@@ -177,9 +198,14 @@
 		"Phone number already in use": "Phone number already in use",
 		"Email address already in use": "Email address already in use",
 		"Something went wrong, failed to fetch provider data": "Something went wrong, failed to fetch provider data",
-		"Information editing is not allowed within this credentials": "Information editing is not allowed within this credentials"
+		"Information editing is not allowed within this credentials": "Information editing is not allowed within this credentials",
+		"Invited": "Invited",
+		"Resend invitation": "Resend invitation",
+		"Something went wrong, failed to resend invitation": "Something went wrong, failed to resend invitation",
+		"Invitation sent successfully": "Invitation sent successfully"
 	},
 	"CredentialsRolesCard": {
+		"More": "More...",
 		"Assigned roles": "Assigned roles",
 		"Assign a new role": "Assign a new role",
 		"Select role to assign ...": "Select role to assign ...",
@@ -189,6 +215,7 @@
 		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles"
 	},
 	"CredentialsTenantsCard": {
+		"More": "More...",
 		"Tenants": "Tenants",
 		"Assign a tenant": "Assign a tenant",
 		"Search": "Search",
@@ -219,7 +246,8 @@
 		"Tenants": "Tenants",
 		"Roles": "Roles",
 		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",
-		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it"
+		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
+		"Credentials invited": "Credentials invited"
 	},
 	"FormFields": {
 		"Phone": "Phone",
@@ -346,7 +374,7 @@
 	},
 	"SessionListContainer": {
 		"Credentials": "Credentials",
-		"Failed to fetch the object": "Failed to fetch the object.",
+		"Failed to fetch the object": "Failed to fetch the object",
 		"Sessions": "Sessions",
 		"Expected expiration": "Expected expiration",
 		"Terminate session": "Terminate session",
@@ -364,7 +392,6 @@
 		"Session": "Session"
 	},
 	"SessionDetailContainer": {
-		"Something went wrong when fetching details": "Something went wrong when fetching details",
 		"Failed to fetch details": "Failed to fetch details",
 		"Do you want to terminate this session?": "Do you want to terminate this session?",
 		"Session successfully terminated": "Session successfully terminated",
@@ -411,7 +438,6 @@
 		"Assigned credentials": "Assigned credentials",
 		"Assign credentials": "Assign credentials",
 		"Something went wrong, failed to fetch assigned credentials": "Something went wrong, failed to fetch assigned credentials",
-		"Something went wrong, failed to update credentials": "Something went wrong, failed to update credentials",
 		"Something went wrong, the credentials cannot be assigned": "Something went wrong, the credentials cannot be assigned",
 		"Something went wrong, the credentials cannot be unassigned": "Something went wrong, the credentials cannot be unassigned",
 		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",

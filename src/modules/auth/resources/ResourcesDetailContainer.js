@@ -32,7 +32,7 @@ const ResourceDetailContainer = (props) =>  {
 			setResource(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ResourcesDetailContainer|Something went wrong, can't fetch resource details"));
+			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Something went wrong, can't fetch resource details")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -60,7 +60,7 @@ const ResourceDetailContainer = (props) =>  {
 			getResourceDetail();
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("ResourcesDetailContainer|Something went wrong, failed to update resource"));
+			props.app.addAlert("warning", `${t("ResourcesDetailContainer|Something went wrong, failed to update resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

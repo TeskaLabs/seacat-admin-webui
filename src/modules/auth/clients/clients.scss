@@ -42,22 +42,15 @@ $svg-arrow: var(--svg-arrow);
 	}
 }
 
-// ClientDetailContainer
-.card-body-client {
-	.form-group {
-		margin-bottom: 0;
-	}
-	.client-name {
-		height: 40px;
-	}
-	.redirect_uris {
-		&.edit {
-			padding-bottom: 61px; // Here it is necessary to leave exactly 61 pixels, otherwise the screen will change height by this pixel when adding 'Redirect uris'
-		}
-		.redirect-uris-item {
-			height: 42px;
-		}
-	}
+.client-radio-input {
+	margin-top: 0.3rem;
+	position: absolute;
+}
+
+.client-secret-btn {
+	padding: 0;
+	bottom: 0;
+	margin-top: 8px;
 }
 
 @media (max-width: 768px) {

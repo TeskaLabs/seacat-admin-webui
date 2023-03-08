@@ -95,10 +95,10 @@ const SessionListContainer = (props) => {
 		} catch(e) {
 			if (e.response.status == 403) {
 				console.error(e);
-				props.app.addAlert("warning", t("SessionListContainer|Access denied, you do not have a right to perform this action"));
+				props.app.addAlert("warning", t("SessionListContainer|Access denied, you do not have a right to perform this action"), 30);
 			} else {
 				console.error(e);
-				props.app.addAlert("warning", t("SessionListContainer|Failed to fetch the object"));
+				props.app.addAlert("warning", `${t("SessionListContainer|Failed to fetch the object")}. ${e?.response?.data?.message}`, 30);
 			}
 			setLoading(false);
 		}
@@ -131,7 +131,7 @@ const SessionListContainer = (props) => {
 			retrieveData();
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("SessionListContainer|Failed to terminate the session"));
+			props.app.addAlert("warning", `${t("SessionListContainer|Failed to terminate the session")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -149,7 +149,7 @@ const SessionListContainer = (props) => {
 			}, 5000)
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", t("SessionListContainer|Failed to terminate all sessions"));
+			props.app.addAlert("warning", `${t("SessionListContainer|Failed to terminate all sessions")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
