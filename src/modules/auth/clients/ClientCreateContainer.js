@@ -31,7 +31,7 @@ const ClientCreateContainer = (props) => {
 
 	const { t } = useTranslation();
 
-	const { handleSubmit, register, formState: { errors, isSubmitting }, control, setValue, resetField } = useForm({
+	const { handleSubmit, register, formState: { errors, isSubmitting }, control, setValue, reset } = useForm({
 		defaultValues: {
 			login_key: [{key: '', value: ''}],
 			code_challenge_methods: "",
@@ -106,7 +106,6 @@ const ClientCreateContainer = (props) => {
 				throw new Error("Unable to get client details");
 			}
 			setClient(response.data);
-			setCustomClietnData(response.data)
 		} catch (e) {
 			console.error(e);
 			// todo: update locales
@@ -117,14 +116,14 @@ const ClientCreateContainer = (props) => {
 	const onSubmitNewClient = async (values) => {
 		let body = refactorSubmitData(values, "create");
 		try {
-			// let response = await SeaCatAuthAPI.post(`/client`, body);
-			// if (response.statusText != 'OK') {
-			// 	throw new Error("Unable to create client");
-			// }
-			// if (response.data?.client_id) {
-			// 	props.app.addAlert("success", t("ClientCreateContainer|Client has been created"));
-			// 	props.history.push(`/auth/clients/${response.data.client_id}`);
-			// }
+			let response = await SeaCatAuthAPI.post(`/client`, body);
+			if (response.statusText != 'OK') {
+				throw new Error("Unable to create client");
+			}
+			if (response.data?.client_id) {
+				props.app.addAlert("success", t("ClientCreateContainer|Client has been created"));
+				props.history.push(`/auth/clients/${response.data.client_id}`);
+			}
 		} catch (e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, client has not been created")}. ${e?.response?.data?.message}`, 30);
@@ -135,17 +134,17 @@ const ClientCreateContainer = (props) => {
 		let body = refactorSubmitData(values, "edit");
 		setDisabled(true);
 		try {
-			// let response = await SeaCatAuthAPI.put(`/client/${client_id}`, body);
-			// if (response.statusText != 'OK') {
-			// 	throw new Error("Unable to change client details");
-			// }
-			// setDisabled(false);
-			// props.app.addAlert("success", t("ClientCreateContainer|Client updated successfully"));
-			// props.history.push(`/auth/clients/${client_id}`);
+			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, body);
+			if (response.statusText != 'OK') {
+				throw new Error("Unable to change client details");
+			}
+			setDisabled(false);
+			props.app.addAlert("success", t("ClientCreateContainer|Client updated successfully"));
+			props.history.push(`/auth/clients/${client_id}`);
 		} catch (e) {
 			setDisabled(false);
 			console.error(e);
-			props.app.addAlert("warning", `${t("ClienClientCreateContainertDetailContainer|Something went wrong, failed to update client")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, failed to update client")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -162,6 +161,17 @@ const ClientCreateContainer = (props) => {
 			redirect_urisUpdate(idx, item);
 			setValue(`redirect_uris[${idx}].value`, item);
 		})
+
+		if (obj?.login_key) {
+			let data = { login_key: [obj.login_key] }
+			reset(data)
+			data?.login_key.map((obj) => {
+				Object.keys(obj) && Object.keys(obj).map((key, index) => {
+					setValue(`login_key[${index}].key`, key);
+					setValue(`login_key[${index}].value`, obj[key]);
+				})
+			})
+		}
 
 		if (obj?.code_challenge_methods) {
 			setValue("code_challenge_methods", obj?.code_challenge_methods[0])
@@ -233,7 +243,7 @@ const ClientCreateContainer = (props) => {
 			delete body.preferred_client_id;
 		}
 
-		if (body?.code_challenge_methods.length == 0) {
+		if (type == "create" && body?.code_challenge_methods.length == 0) {
 			delete body.code_challenge_methods;
 		}
 		return body;
@@ -267,7 +277,7 @@ const ClientCreateContainer = (props) => {
 											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
 											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URI')}/>)
 											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} valueList={value["items"]["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge methods')}/>)
-											case 'login_key': return (<CustomDataInput key={key} name={key} control={control} errors={errors} append={loginKeyAppend} remove={loginKeyRemove} fields={loginKeyFields} replace={loginKeyReplace} labelName={t('ClientCreateContainer|Login Key')}/>)
+											case 'login_key': return (<CustomDataInput key={key} name={key} control={control} errors={errors} append={loginKeyAppend} remove={loginKeyRemove} fields={loginKeyFields} replace={loginKeyReplace} labelName={t('ClientCreateContainer|Login key')}/>)
 											case 'response_types': return null
 											case 'grant_types': return null
 											case 'application_type': return null
