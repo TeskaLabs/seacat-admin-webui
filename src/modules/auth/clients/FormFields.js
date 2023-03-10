@@ -85,18 +85,18 @@ export function RadioInput ({ name, valueList, register, labelName, disabled }) 
 		<FormGroup key={name}>
 			{labelName && <Label for={name} title={name}>{labelName}</Label>}
 			<div title={name}>
-				<InputGroup>
-					{/* Use standard input*/}
-					<input
-						type="radio"
-						className="ml-0 client-radio-input"
-						value=""
-						defaultValue
-						disabled={disabled}
-						{...register("code_challenge_methods")}
-					/>
-					<div className="ml-4">{t("ClientFormField|None")}</div>
-				</InputGroup>
+				{/*<InputGroup>*/}
+				{/*	/!* Use standard input*!/*/}
+				{/*	<input*/}
+				{/*		type="radio"*/}
+				{/*		className="ml-0 client-radio-input"*/}
+				{/*		value=""*/}
+				{/*		defaultValue*/}
+				{/*		disabled={disabled}*/}
+				{/*		{...register("code_challenge_methods")}*/}
+				{/*	/>*/}
+				{/*	/!*<div className="ml-4">{t("ClientFormField|None")}</div>*!/*/}
+				{/*</InputGroup>*/}
 				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
 						<input
@@ -107,7 +107,7 @@ export function RadioInput ({ name, valueList, register, labelName, disabled }) 
 							className="ml-0 client-radio-input"
 							value={item}
 							disabled={disabled}
-							{...register("code_challenge_methods")}
+							{...register("code_challenge_method")}
 						/>
 						<div className="ml-4">{item}</div>
 					</InputGroup>
