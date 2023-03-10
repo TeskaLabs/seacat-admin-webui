@@ -118,7 +118,7 @@ export function RadioInput ({ name, valueList, register, labelName, disabled }) 
 }
 
 // Dynamic form that can be added and removed. You can to control your fields.
-export function URiInput ({name, errors, append, remove, fields, labelName, reg, invalid, register, mainTemplateName, disabled}) {
+export function URiInput ({name, errors, append, remove, fields, labelName, reg, invalid, register, templateName, disabled}) {
 	const { t } = useTranslation();
 
 	return (
@@ -154,7 +154,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					errors={errors}
 					remove={remove}
 					register={register}
-					name={mainTemplateName}
+					name={templateName}
 					disabled={disabled}
 				/>
 			))}

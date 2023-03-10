@@ -8,7 +8,7 @@ import ReactJson from 'react-json-view';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, ButtonGroup, Button
+	Form, ButtonGroup
 } from 'reactstrap';
 
 import {TextInput, URiInput, RadioInput} from './FormFields';
@@ -271,7 +271,7 @@ const ClientCreateContainer = (props) => {
 								/>
 								<URiInput
 									name="redirect_uris_main"
-									mainTemplateName="redirect_uris"
+									templateName="redirect_uris"
 									invalid={errors?.redirect_uris_main && true}
 									disabled={disabled}
 									errors={errors}
