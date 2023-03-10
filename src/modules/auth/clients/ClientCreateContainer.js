@@ -12,7 +12,6 @@ import {
 } from 'reactstrap';
 
 import {TextInput, URiInput, RadioInput} from './FormFields';
-import CustomDataInput from "../components/CustomDataInput";
 
 import { ButtonWithAuthz } from 'asab-webui';
 
@@ -32,11 +31,7 @@ const ClientCreateContainer = (props) => {
 
 	const { t } = useTranslation();
 
-	const { handleSubmit, register, formState: { errors, isSubmitting }, control, setValue, reset } = useForm({
-		defaultValues: {
-			login_key: [{key: '', value: ''}]
-		}
-	});
+	const { handleSubmit, register, formState: { errors, isSubmitting }, control, setValue } = useForm();
 
 	const regRedirectUrisMain = register("redirect_uris_main", {
 		validate: {
@@ -46,19 +41,7 @@ const ClientCreateContainer = (props) => {
 		}
 	});
 
-	const {
-		fields: redirect_urisFields,
-		append: redirect_urisAppend,
-		remove: redirect_urisRemove,
-		update: redirect_urisUpdate
-	} = useFieldArray({ control, name: "redirect_uris" });
-
-	const {
-		fields: loginKeyFields,
-		append: loginKeyAppend,
-		remove: loginKeyRemove,
-		replace: loginKeyReplace
-	} = useFieldArray({ control, name: "login_key" });
+	const { fields, append, remove, update } = useFieldArray({control, name: "redirect_uris"});
 
 	useEffect(() => {
 		retrieveClientFeatures();
@@ -158,20 +141,9 @@ const ClientCreateContainer = (props) => {
 			copyArr.splice(0, 1);
 		}
 		copyArr.map((item, idx) => {
-			redirect_urisUpdate(idx, item);
+			update(idx, item);
 			setValue(`redirect_uris[${idx}].value`, item);
 		})
-
-		if (obj?.login_key) {
-			let data = { login_key: [obj.login_key] }
-			reset(data)
-			data?.login_key.map((obj) => {
-				Object.keys(obj) && Object.keys(obj).map((key, index) => {
-					setValue(`login_key[${index}].key`, key);
-					setValue(`login_key[${index}].value`, obj[key]);
-				})
-			})
-		}
 
 		if (obj?.code_challenge_method?.length > 0) {
 			setValue("code_challenge_method", obj?.code_challenge_method);
@@ -189,7 +161,6 @@ const ClientCreateContainer = (props) => {
 
 	const refactorSubmitData = (values, type) => {
 		let body = {};
-		let login_keyObj = {};
 		let uri = [];
 
 		// Refactor "redirect_uris" and "redirect_uris_main" to array
@@ -211,13 +182,6 @@ const ClientCreateContainer = (props) => {
 		})
 		body["redirect_uris"] = uri;
 
-		(values?.login_key?.length !== 0) && values?.login_key?.map((el) => {
-			if ((el.key != undefined) && (el.key != '') && (el.key != 'undefined')) {
-				login_keyObj[el.key] = el.value;
-			}
-		});
-		body["login_key"] = login_keyObj;
-
 		if (type == "create") {
 			if (body?.client_uri == "") {
 				delete body.client_uri;
@@ -227,10 +191,6 @@ const ClientCreateContainer = (props) => {
 			}
 			if (body?.login_uri == "") {
 				delete body.login_uri;
-			}
-
-			if (Object.keys(body?.login_key).length == 0) {
-				delete body.login_key;
 			}
 		}
 
@@ -275,9 +235,9 @@ const ClientCreateContainer = (props) => {
 									invalid={errors?.redirect_uris_main && true}
 									disabled={disabled}
 									errors={errors}
-									append={redirect_urisAppend}
-									remove={redirect_urisRemove}
-									fields={redirect_urisFields}
+									append={append}
+									remove={remove}
+									fields={fields}
 									register={register}
 									reg={regRedirectUrisMain}
 									labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
@@ -291,7 +251,6 @@ const ClientCreateContainer = (props) => {
 											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URI')}/>)
 											case 'authorize_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Authorize URI')}/>)
 											case 'code_challenge_method': return(<RadioInput key={key} name={key} register={register} valueList={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}/>)
-											case 'login_key': return (<CustomDataInput key={key} name={key} control={control} errors={errors} append={loginKeyAppend} remove={loginKeyRemove} fields={loginKeyFields} replace={loginKeyReplace} labelName={t('ClientCreateContainer|Login key')}/>)
 											case 'response_types': return null
 											case 'grant_types': return null
 											case 'application_type': return null
