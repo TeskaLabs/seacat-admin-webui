@@ -163,6 +163,10 @@ const ClientDetailContainer = (props) =>  {
 								<Col md={4} title="login_uri">{t("ClientDetailContainer|Login URI")}</Col>
 								<Col>{client?.login_uri ? client.login_uri : "N/A"}</Col>
 							</Row>
+							<Row className="mt-3">
+								<Col md={4} title="authorize_uri">{t("ClientDetailContainer|Authorize URI")}</Col>
+								<Col>{client?.authorize_uri ? client.authorize_uri : "N/A"}</Col>
+							</Row>
 							<Row>
 								<Col md={4} title="login_key">{t("ClientDetailContainer|Login key")}</Col>
 									<Col>
@@ -179,15 +183,8 @@ const ClientDetailContainer = (props) =>  {
 									</Col>
 							</Row>
 							<Row className="mt-3">
-								<Col md={4} title="code_challenge_methods">{t("ClientDetailContainer|Code challenge methods")}</Col>
-								<Col title="code_challenge_methods">
-									{client?.code_challenge_methods ?
-										client?.code_challenge_methods.map((item, idx) => (
-											<div key={idx}>{item}</div>))
-									:
-										<div>N/A</div>
-									}
-								</Col>
+								<Col md={4} title="code_challenge_method">{t("ClientDetailContainer|Code challenge method (PKCE)")}</Col>
+								<Col title="code_challenge_method">{client?.code_challenge_method ? client.code_challenge_method : "N/A"}</Col>
 							</Row>
 							<Row>
 								<Col md={4} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>

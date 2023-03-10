@@ -34,8 +34,7 @@ const ClientCreateContainer = (props) => {
 
 	const { handleSubmit, register, formState: { errors, isSubmitting }, control, setValue, reset } = useForm({
 		defaultValues: {
-			login_key: [{key: '', value: ''}],
-			code_challenge_methods: "",
+			login_key: [{key: '', value: ''}]
 		}
 	});
 
@@ -174,8 +173,8 @@ const ClientCreateContainer = (props) => {
 			})
 		}
 
-		if (obj?.code_challenge_methods) {
-			setValue("code_challenge_methods", obj?.code_challenge_methods[0])
+		if (obj?.code_challenge_method?.length > 0) {
+			setValue("code_challenge_method", obj?.code_challenge_method);
 		}
 
 		if (obj?.cookie_domain?.length > 0) {
@@ -185,14 +184,13 @@ const ClientCreateContainer = (props) => {
 		setValue("client_name", obj?.client_name);
 		setValue("client_uri", obj?.client_uri);
 		setValue("login_uri", obj?.login_uri);
+		setValue("authorize_uri", obj?.authorize_uri);
 	}
 
 	const refactorSubmitData = (values, type) => {
-		console.log(values, values)
 		let body = {};
 		let login_keyObj = {};
 		let uri = [];
-		let challengeArr = [];
 
 		// Refactor "redirect_uris" and "redirect_uris_main" to array
 		Object.keys(values).map((key, idx) => {
@@ -207,17 +205,11 @@ const ClientCreateContainer = (props) => {
 						uri.push(item.value);
 					}
 				})
-			} else if (key === "code_challenge_methods") {
-				if (values[key] && (values[key]?.length > 0)) {
-					challengeArr.push(values[key]);
-				}
-			}
-			else {
+			} else {
 				body[key] = values[key];
 			}
 		})
 		body["redirect_uris"] = uri;
-		body["code_challenge_methods"] = challengeArr;
 
 		(values?.login_key?.length !== 0) && values?.login_key?.map((el) => {
 			if ((el.key != undefined) && (el.key != '') && (el.key != 'undefined')) {
@@ -236,9 +228,7 @@ const ClientCreateContainer = (props) => {
 			if (body?.login_uri == "") {
 				delete body.login_uri;
 			}
-			if (body?.code_challenge_methods.length == 0) {
-				delete body.code_challenge_methods;
-			}
+
 			if (Object.keys(body?.login_key).length == 0) {
 				delete body.login_key;
 			}
@@ -265,7 +255,7 @@ const ClientCreateContainer = (props) => {
 									<i className="cil-layers pr-2"></i>
 									{((client != undefined) && (editClient == true)) ?
 										t("ClientCreateContainer|Edit client")
-										:
+									:
 										t("ClientCreateContainer|Create new client")
 									}
 								</div>
@@ -299,6 +289,7 @@ const ClientCreateContainer = (props) => {
 											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
 											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URI')}/>)
+											case 'authorize_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Authorize URI')}/>)
 											case 'code_challenge_method': return(<RadioInput key={key} name={key} register={register} valueList={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}/>)
 											case 'login_key': return (<CustomDataInput key={key} name={key} control={control} errors={errors} append={loginKeyAppend} remove={loginKeyRemove} fields={loginKeyFields} replace={loginKeyReplace} labelName={t('ClientCreateContainer|Login key')}/>)
 											case 'response_types': return null
@@ -340,14 +331,14 @@ const ClientCreateContainer = (props) => {
 										</ButtonWithAuthz>
 										<ButtonWithAuthz
 											outline
-											title={showMore ? t("ExportNewContainer|Show custom inputs") : t("ExportNewContainer|Hide custom inputs")}
+											title={showMore ? t("ExportNewContainer|Hide custom inputs") : t("ExportNewContainer|Show custom inputs")}
 											color="primary"
 											type="button"
 											resource={resource}
 											resources={resources}
 											onClick={() => setShowMore(!showMore)}
 										>
-											{showMore ? t("ExportNewContainer|Show custom inputs") : t("ExportNewContainer|Hide custom inputs")}
+											{showMore ? t("ExportNewContainer|Hide custom inputs") : t("ExportNewContainer|Show custom inputs")}
 										</ButtonWithAuthz>
 									</>
 								:
@@ -364,14 +355,14 @@ const ClientCreateContainer = (props) => {
 										</ButtonWithAuthz>
 										<ButtonWithAuthz
 											outline
-											title={showMore ? t("ExportNewContainer|Show custom inputs") : t("ExportNewContainer|Hide custom inputs")}
+											title={showMore ? t("ExportNewContainer|Hide custom inputs") : t("ExportNewContainer|Show custom inputs")}
 											color="primary"
 											type="button"
 											resource={resource}
 											resources={resources}
 											onClick={() => setShowMore(!showMore)}
 										>
-											{showMore ? t("ExportNewContainer|Show custom inputs") : t("ExportNewContainer|Hide custom inputs")}
+											{showMore ? t("ExportNewContainer|Hide custom inputs") : t("ExportNewContainer|Show custom inputs")}
 										</ButtonWithAuthz>
 									</>
 								}
