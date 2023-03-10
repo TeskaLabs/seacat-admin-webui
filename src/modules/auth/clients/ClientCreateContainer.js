@@ -8,7 +8,7 @@ import ReactJson from 'react-json-view';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, ButtonGroup
+	Form, ButtonGroup, Button
 } from 'reactstrap';
 
 import {TextInput, URiInput, RadioInput} from './FormFields';
@@ -20,6 +20,7 @@ const ClientCreateContainer = (props) => {
 	const [metaData, setMetaData] = useState({});
 	const [disabled, setDisabled] = useState(false);
 	const [client, setClient] = useState(null); // tracking method in URL
+	const [showMore, setShowMore] = useState(false);
 	const { client_id } = props.match.params;
 	const location = useLocation(); // tracking method in URL
 
@@ -187,6 +188,7 @@ const ClientCreateContainer = (props) => {
 	}
 
 	const refactorSubmitData = (values, type) => {
+		console.log(values, values)
 		let body = {};
 		let login_keyObj = {};
 		let uri = [];
@@ -217,6 +219,13 @@ const ClientCreateContainer = (props) => {
 		body["redirect_uris"] = uri;
 		body["code_challenge_methods"] = challengeArr;
 
+		(values?.login_key?.length !== 0) && values?.login_key?.map((el) => {
+			if ((el.key != undefined) && (el.key != '') && (el.key != 'undefined')) {
+				login_keyObj[el.key] = el.value;
+			}
+		});
+		body["login_key"] = login_keyObj;
+
 		if (type == "create") {
 			if (body?.client_uri == "") {
 				delete body.client_uri;
@@ -227,24 +236,20 @@ const ClientCreateContainer = (props) => {
 			if (body?.login_uri == "") {
 				delete body.login_uri;
 			}
-		}
-
-		values?.login_key?.map((el) => {
-			if ((el.key != undefined) && (el.key != '') && (el.key != 'undefined')) {
-				login_keyObj[el.key] = el.value;
+			if (body?.code_challenge_methods.length == 0) {
+				delete body.code_challenge_methods;
 			}
-		});
-		body["login_key"] = login_keyObj;
+			if (Object.keys(body?.login_key).length == 0) {
+				delete body.login_key;
+			}
+		}
 
 		if (body?.client_name == undefined) {
 			body.client_name = "";
 		}
+
 		if (body?.preferred_client_id == "" || body.preferred_client_id == undefined) {
 			delete body.preferred_client_id;
-		}
-
-		if (type == "create" && body?.code_challenge_methods.length == 0) {
-			delete body.code_challenge_methods;
 		}
 		return body;
 	}
@@ -260,7 +265,7 @@ const ClientCreateContainer = (props) => {
 									<i className="cil-layers pr-2"></i>
 									{((client != undefined) && (editClient == true)) ?
 										t("ClientCreateContainer|Edit client")
-									:
+										:
 										t("ClientCreateContainer|Create new client")
 									}
 								</div>
@@ -287,14 +292,14 @@ const ClientCreateContainer = (props) => {
 									reg={regRedirectUrisMain}
 									labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
 								/>
-								{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
+								{showMore && metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
 									if (key != "template") {
 										switch(key) {
 											case 'client_uri': return(<TextInput key={key} name={key} register={register} disabled={disabled} labelName={t('ClientCreateContainer|Client URI')}/>)
 											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Cookie domain')}/>)
 											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
 											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URI')}/>)
-											case 'code_challenge_methods': return(<RadioInput key={key} name={key} register={register} valueList={value["items"]["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge methods')}/>)
+											case 'code_challenge_method': return(<RadioInput key={key} name={key} register={register} valueList={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}/>)
 											case 'login_key': return (<CustomDataInput key={key} name={key} control={control} errors={errors} append={loginKeyAppend} remove={loginKeyRemove} fields={loginKeyFields} replace={loginKeyReplace} labelName={t('ClientCreateContainer|Login key')}/>)
 											case 'response_types': return null
 											case 'grant_types': return null
@@ -308,8 +313,9 @@ const ClientCreateContainer = (props) => {
 								})}
 							</CardBody>
 							<CardFooter>
+								<ButtonGroup>
 								{((client != undefined) && (editClient == true)) ?
-									<ButtonGroup>
+									<>
 										<ButtonWithAuthz
 											title={t("ClientListContainer|Save")}
 											color="primary"
@@ -332,20 +338,44 @@ const ClientCreateContainer = (props) => {
 										>
 											{t("Cancel")}
 										</ButtonWithAuthz>
-									</ButtonGroup>
-
+										<ButtonWithAuthz
+											outline
+											title={showMore ? t("ExportNewContainer|Show custom inputs") : t("ExportNewContainer|Hide custom inputs")}
+											color="primary"
+											type="button"
+											resource={resource}
+											resources={resources}
+											onClick={() => setShowMore(!showMore)}
+										>
+											{showMore ? t("ExportNewContainer|Show custom inputs") : t("ExportNewContainer|Hide custom inputs")}
+										</ButtonWithAuthz>
+									</>
 								:
-									<ButtonWithAuthz
-										title={t("ClientListContainer|New client")}
-										color="primary"
-										type="submit"
-										disabled={isSubmitting}
-										resource={resource}
-										resources={resources}
-									>
-										{t("ClientListContainer|New client")}
-									</ButtonWithAuthz>
+									<>
+										<ButtonWithAuthz
+											title={t("ClientListContainer|New client")}
+											color="primary"
+											type="submit"
+											disabled={isSubmitting}
+											resource={resource}
+											resources={resources}
+										>
+											{t("ClientListContainer|New client")}
+										</ButtonWithAuthz>
+										<ButtonWithAuthz
+											outline
+											title={showMore ? t("ExportNewContainer|Show custom inputs") : t("ExportNewContainer|Hide custom inputs")}
+											color="primary"
+											type="button"
+											resource={resource}
+											resources={resources}
+											onClick={() => setShowMore(!showMore)}
+										>
+											{showMore ? t("ExportNewContainer|Show custom inputs") : t("ExportNewContainer|Hide custom inputs")}
+										</ButtonWithAuthz>
+									</>
 								}
+								</ButtonGroup>
 							</CardFooter>
 						</Card>
 					</Form>
