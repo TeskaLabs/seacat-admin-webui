@@ -28,9 +28,9 @@ const ResourceDetailContainer = (props) =>  {
 		if (!resource) return null;
 	}, [resource]);
 
-	const getResourceDetail = async (res) => {
+	const getResourceDetail = async (resourceId) => {
 		try {
-			let response = await SeaCatAuthAPI.get(`resource/${res}`);
+			let response = await SeaCatAuthAPI.get(`resource/${resourceId}`);
 			setResource(response.data);
 		} catch(e) {
 			console.error(e);
@@ -109,7 +109,7 @@ const ResourceDetailContainer = (props) =>  {
 							</Row>
 							<Row className='mt-3'>
 								<Col sm={3}>{t("Description")}</Col>
-								<Col sm={6} className="resource-detail-description">{resource &&  resource.description }</Col>
+								<Col sm={6} className="resource-detail-description">{resource &&  resource.description}</Col>
 							</Row>
 						</CardBody>
 
