@@ -108,21 +108,10 @@ const ClientDetailContainer = (props) =>  {
 								<Col md={4} title="client_uri">{t("ClientDetailContainer|Client URI")}</Col>
 								<Col>{client?.client_uri ? client.client_uri : "N/A"}</Col>
 							</Row>
-							{client?.client_secret &&
-								<Row>
-									<Col md={4} title="client_secret">{t("ClientDetailContainer|Client secret")}</Col>
-									<Col>
-										<code>{client?.client_secret}</code>
-										<Button
-											color="link"
-											onClick={() => resetSecretConfirm()}
-											className="client-secret-btn"
-										>
-											{t("ClientDetailContainer|Reset secret")}
-										</Button>
-									</Col>
-								</Row>
-							}
+							<Row>
+								<Col md={4} title="application_type">{t("ClientDetailContainer|Application type")}</Col>
+								<Col title="application_type">{client?.application_type}</Col>
+							</Row>
 							<Row className="mt-3">
 								<Col md={4} title="created_at">{t("Created at")}</Col>
 								<Col><DateTime value={client?._c} /></Col>
@@ -131,9 +120,9 @@ const ClientDetailContainer = (props) =>  {
 								<Col md={4} title="modified_at">{t("Modified at")}</Col>
 								<Col><DateTime value={client?._m} /></Col>
 							</Row>
-							<Row>
-								<Col md={4} title="application_type">{t("ClientDetailContainer|Application type")}</Col>
-								<Col title="application_type">{client?.application_type}</Col>
+							<Row className="mt-3">
+								<Col md={4} title="code_challenge_method">{t("ClientDetailContainer|Code challenge method")}</Col>
+								<Col title="code_challenge_method">{client?.code_challenge_method ? client.code_challenge_method : "N/A"}</Col>
 							</Row>
 							<Row>
 								<Col md={4} title="response_types">{t("ClientDetailContainer|Response types")}</Col>
@@ -155,40 +144,36 @@ const ClientDetailContainer = (props) =>  {
 									}
 								</Col>
 							</Row>
-							<Row>
+							<Row className="mt-3">
 								<Col md={4} title="token_endpoint_auth_method">{t("ClientDetailContainer|Token endpoint auth. method")}</Col>
 								<Col title="token_endpoint_auth_method">{client?.token_endpoint_auth_method}</Col>
 							</Row>
+							{client?.client_secret &&
+								<Row>
+									<Col md={4} title="client_secret">{t("ClientDetailContainer|Client secret")}</Col>
+									<Col>
+										<code>{client?.client_secret}</code>
+										<Button
+											color="link"
+											onClick={() => resetSecretConfirm()}
+											className="client-secret-btn"
+										>
+											{t("ClientDetailContainer|Reset secret")}
+										</Button>
+									</Col>
+								</Row>
+							}
 							<Row className="mt-3">
 								<Col md={4} title="login_uri">{t("ClientDetailContainer|Login URI")}</Col>
 								<Col>{client?.login_uri ? client.login_uri : "N/A"}</Col>
 							</Row>
-							<Row className="mt-3">
-								<Col md={4} title="authorize_uri">{t("ClientDetailContainer|Authorize URI")}</Col>
-								<Col>{client?.authorize_uri ? client.authorize_uri : "N/A"}</Col>
-							</Row>
-							<Row>
-								<Col md={4} title="login_key">{t("ClientDetailContainer|Login key")}</Col>
-									<Col>
-										{client?.login_key ?
-											Object.keys(client.login_key).map((item, idx) => (
-												<Row>
-													<Col sm="4" md="3">{item}</Col>
-													<Col sm="8" md="9">{client.login_key[item]}</Col>
-												</Row>
-											))
-										:
-											"N/A"
-										}
-									</Col>
-							</Row>
-							<Row className="mt-3">
-								<Col md={4} title="code_challenge_method">{t("ClientDetailContainer|Code challenge method (PKCE)")}</Col>
-								<Col title="code_challenge_method">{client?.code_challenge_method ? client.code_challenge_method : "N/A"}</Col>
-							</Row>
 							<Row>
 								<Col md={4} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
 								<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
+							</Row>
+							<Row>
+								<Col md={4} title="authorize_uri">{t("ClientDetailContainer|Authorize URI")}</Col>
+								<Col>{client?.authorize_uri ? client.authorize_uri : "N/A"}</Col>
 							</Row>
 							<Row className="mt-3">
 								<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
