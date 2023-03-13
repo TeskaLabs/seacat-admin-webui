@@ -19,7 +19,6 @@ const ClientCreateContainer = (props) => {
 	const [metaData, setMetaData] = useState({});
 	const [disabled, setDisabled] = useState(false);
 	const [client, setClient] = useState(null); // tracking method in URL
-	const [showMore, setShowMore] = useState(false);
 	const { client_id } = props.match.params;
 	const location = useLocation(); // tracking method in URL
 
@@ -205,150 +204,173 @@ const ClientCreateContainer = (props) => {
 	}
 
 	return (
-		<Container>
-			<Row className="justify-content-md-center">
-				<Col md={6}>
-					<Form onSubmit={(client == undefined) ? handleSubmit(onSubmitNewClient) : handleSubmit(onSubmitEditClient)}>
-						<Card>
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="cil-layers pr-2"></i>
-									{((client != undefined) && (editClient == true)) ?
-										t("ClientCreateContainer|Edit client")
-									:
-										t("ClientCreateContainer|Create new client")
-									}
-								</div>
-							</CardHeader>
-
-							<CardBody>
-								<TextInput
-									name="client_name"
-									register={register}
-									required={true}
-									disabled={disabled}
-									labelName={`${t("ClientCreateContainer|Client name")}*`}
-								/>
-								<URiInput
-									name="redirect_uris_main"
-									templateName="redirect_uris"
-									invalid={errors?.redirect_uris_main && true}
-									disabled={disabled}
-									errors={errors}
-									append={append}
-									remove={remove}
-									fields={fields}
-									register={register}
-									reg={regRedirectUrisMain}
-									labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
-								/>
-								{showMore && metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
-									if (key != "template") {
-										switch(key) {
-											case 'client_uri': return(<TextInput key={key} name={key} register={register} disabled={disabled} labelName={t('ClientCreateContainer|Client URI')}/>)
-											case 'cookie_domain': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Cookie domain')}/>)
-											case 'preferred_client_id': return((client == undefined) && <TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Preferred client ID')}/>)
-											case 'login_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Login URI')}/>)
-											case 'authorize_uri': return(<TextInput key={key} name={key} register={register} errors={errors} disabled={disabled} labelName={t('ClientCreateContainer|Authorize URI')}/>)
-											case 'code_challenge_method': return(<RadioInput key={key} name={key} register={register} valueList={value["enum"]} disabled={disabled} labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}/>)
-											case 'response_types': return null
-											case 'grant_types': return null
-											case 'application_type': return null
-											case 'token_endpoint_auth_method': return null
-											case 'redirect_uris': return null
-											case 'client_name': return null
-											default: return(<div key={key}>{t('ClientCreateContainer|Unknown item')}: "{key}"</div>)
-										}
-									}
-								})}
-							</CardBody>
-							<CardFooter>
-								<ButtonGroup>
+		<Container className="client-wrapper">
+			<Form onSubmit={(client == undefined) ? handleSubmit(onSubmitNewClient) : handleSubmit(onSubmitEditClient)}>
+				<div className="client-main-info">
+					<Card>
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-layers pr-2"></i>
 								{((client != undefined) && (editClient == true)) ?
-									<>
-										<ButtonWithAuthz
-											title={t("ClientListContainer|Save")}
-											color="primary"
-											type="submit"
-											disabled={isSubmitting}
-											resource={resource}
-											resources={resources}
-										>
-											{t("ClientListContainer|Save")}
-										</ButtonWithAuthz>
-										<ButtonWithAuthz
-											outline
-											title={t("Cancel")}
-											color="primary"
-											type="submit"
-											disabled={isSubmitting}
-											resource={resource}
-											resources={resources}
-											onClick={() => props.history.push(`/auth/clients/${client_id}`)}
-										>
-											{t("Cancel")}
-										</ButtonWithAuthz>
-										<ButtonWithAuthz
-											outline
-											title={showMore ? t("ExportNewContainer|Hide custom inputs") : t("ExportNewContainer|Show custom inputs")}
-											color="primary"
-											type="button"
-											resource={resource}
-											resources={resources}
-											onClick={() => setShowMore(!showMore)}
-										>
-											{showMore ? t("ExportNewContainer|Hide custom inputs") : t("ExportNewContainer|Show custom inputs")}
-										</ButtonWithAuthz>
-									</>
+									t("ClientCreateContainer|Edit client")
 								:
-									<>
-										<ButtonWithAuthz
-											title={t("ClientListContainer|New client")}
-											color="primary"
-											type="submit"
-											disabled={isSubmitting}
-											resource={resource}
-											resources={resources}
-										>
-											{t("ClientListContainer|New client")}
-										</ButtonWithAuthz>
-										<ButtonWithAuthz
-											outline
-											title={showMore ? t("ExportNewContainer|Hide custom inputs") : t("ExportNewContainer|Show custom inputs")}
-											color="primary"
-											type="button"
-											resource={resource}
-											resources={resources}
-											onClick={() => setShowMore(!showMore)}
-										>
-											{showMore ? t("ExportNewContainer|Hide custom inputs") : t("ExportNewContainer|Show custom inputs")}
-										</ButtonWithAuthz>
-									</>
+									t("ClientCreateContainer|Create new client")
 								}
-								</ButtonGroup>
-							</CardFooter>
-						</Card>
-					</Form>
-					{(advmode && ((client != undefined) && (editClient == true))) &&
-						<Card className="w-100 mt-3">
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="cil-code pr-2"></i>
-									JSON
-								</div>
-							</CardHeader>
-							<CardBody>
-								<ReactJson
-									src={client}
-									name={false}
-									collapsed={false}
-									theme={(theme === 'dark') ? "chalk" : "rjv-default"}
+							</div>
+						</CardHeader>
+
+						<CardBody>
+							<TextInput
+								name="client_name"
+								register={register}
+								required={true}
+								disabled={disabled}
+								labelName={`${t("ClientCreateContainer|Client name")}*`}
+							/>
+							<URiInput
+								name="redirect_uris_main"
+								templateName="redirect_uris"
+								invalid={errors?.redirect_uris_main && true}
+								disabled={disabled}
+								errors={errors}
+								append={append}
+								remove={remove}
+								fields={fields}
+								register={register}
+								reg={regRedirectUrisMain}
+								labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
+							/>
+							{(client == undefined) &&
+								<TextInput
+									name="preferred_client_id"
+									register={register}
+									errors={errors}
+									disabled={disabled}
+									labelName={t('ClientCreateContainer|Preferred client ID')}
 								/>
-							</CardBody>
-						</Card>
-					}
-				</Col>
-			</Row>
+							}
+							<TextInput name="client_uri" register={register} disabled={disabled} labelName={t('ClientCreateContainer|Client URI')}/>
+						</CardBody>
+						<CardFooter>
+							<ButtonGroup>
+							{((client != undefined) && (editClient == true)) ?
+								<>
+									<ButtonWithAuthz
+										title={t("ClientListContainer|Save")}
+										color="primary"
+										type="submit"
+										disabled={isSubmitting}
+										resource={resource}
+										resources={resources}
+									>
+										{t("ClientListContainer|Save")}
+									</ButtonWithAuthz>
+									<ButtonWithAuthz
+										outline
+										title={t("Cancel")}
+										color="primary"
+										type="submit"
+										disabled={isSubmitting}
+										resource={resource}
+										resources={resources}
+										onClick={() => props.history.push(`/auth/clients/${client_id}`)}
+									>
+										{t("Cancel")}
+									</ButtonWithAuthz>
+								</>
+							:
+								<ButtonWithAuthz
+									title={t("ClientListContainer|New client")}
+									color="primary"
+									type="submit"
+									disabled={isSubmitting}
+									resource={resource}
+									resources={resources}
+								>
+									{t("ClientListContainer|New client")}
+								</ButtonWithAuthz>
+							}
+							</ButtonGroup>
+						</CardFooter>
+					</Card>
+				</div>
+				<div className="client-right-cards">
+					<Card>
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-layers pr-2"></i>
+								{t("ClientCreateContainer|Multidomain support")}
+							</div>
+						</CardHeader>
+						<CardBody>
+							<TextInput
+								name="login_uri"
+								register={register}
+								errors={errors}
+								disabled={disabled}
+								labelName={t('ClientCreateContainer|Login URI')}
+							/>
+							<TextInput
+								name="cookie_domain"
+								register={register}
+								errors={errors}
+								disabled={disabled}
+								labelName={t('ClientCreateContainer|Cookie domain')}
+							/>
+							<TextInput
+								name="authorize_uri"
+								register={register}
+								errors={errors}
+								disabled={disabled}
+								labelName={t('ClientCreateContainer|Authorize URI')}
+							/>
+						</CardBody>
+					</Card>
+
+					<Card className="mt-3">
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-layers pr-2"></i>
+								{t("ClientCreateContainer|Proof Key for Code Exchange (PKCE)")}
+							</div>
+						</CardHeader>
+						<CardBody>
+							{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
+								if (key == "code_challenge_method") {
+									return(
+										<RadioInput
+											key={key}
+											name={key}
+											register={register}
+											valueList={value["enum"]}
+											disabled={disabled}
+											labelName={t('ClientCreateContainer|Code challenge method')}
+										/>
+									)
+								}
+							})}
+						</CardBody>
+					</Card>
+				</div>
+			</Form>
+			{(advmode && ((client != undefined) && (editClient == true))) &&
+				<Card className="w-100 adv-card">
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-code pr-2"></i>
+							JSON
+						</div>
+					</CardHeader>
+					<CardBody>
+						<ReactJson
+							src={client}
+							name={false}
+							collapsed={false}
+							theme={(theme === 'dark') ? "chalk" : "rjv-default"}
+						/>
+					</CardBody>
+				</Card>
+			}
 		</Container>
 	)
 }
