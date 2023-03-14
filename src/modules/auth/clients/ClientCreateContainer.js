@@ -6,12 +6,11 @@ import { useLocation } from "react-router-dom";
 import ReactJson from 'react-json-view';
 
 import {
-	Container, Row, Col,
-	Card, CardHeader, CardFooter, CardBody,
-	Form, ButtonGroup
+	Container, Card, CardHeader,
+	CardFooter, CardBody, Form, ButtonGroup
 } from 'reactstrap';
 
-import {TextInput, URiInput, RadioInput} from './FormFields';
+import {TextInput, URiInput, RadioInput, SingleCheckboxInput} from './FormFields';
 
 import { ButtonWithAuthz } from 'asab-webui';
 
@@ -156,6 +155,7 @@ const ClientCreateContainer = (props) => {
 		setValue("client_uri", obj?.client_uri);
 		setValue("login_uri", obj?.login_uri);
 		setValue("authorize_uri", obj?.authorize_uri);
+		setValue("authorize_anonymous_users", obj?.authorize_anonymous_users);
 	}
 
 	const refactorSubmitData = (values, type) => {
@@ -190,6 +190,9 @@ const ClientCreateContainer = (props) => {
 			}
 			if (body?.login_uri == "") {
 				delete body.login_uri;
+			}
+			if (body?.authorize_uri) {
+				delete body?.authorize_uri;
 			}
 		}
 
@@ -349,6 +352,23 @@ const ClientCreateContainer = (props) => {
 									)
 								}
 							})}
+						</CardBody>
+					</Card>
+
+					<Card className="mt-3">
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-layers pr-2"></i>
+								{t("ClientCreateContainer|Access control")}
+							</div>
+						</CardHeader>
+						<CardBody>
+							<SingleCheckboxInput
+								name="authorize_anonymous_users"
+								register={register}
+								disabled={disabled}
+								checkboxText={t('ClientCreateContainer|Authorize anonymous users')}
+							/>
 						</CardBody>
 					</Card>
 				</div>
