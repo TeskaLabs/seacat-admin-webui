@@ -143,19 +143,13 @@ const ClientCreateContainer = (props) => {
 			setValue(`redirect_uris[${idx}].value`, item);
 		})
 
-		if (obj?.code_challenge_method?.length > 0) {
-			setValue("code_challenge_method", obj?.code_challenge_method);
-		}
-
-		if (obj?.cookie_domain?.length > 0) {
-			setValue("cookie_domain", obj?.cookie_domain);
-		}
-
 		setValue("client_name", obj?.client_name);
 		setValue("client_uri", obj?.client_uri);
 		setValue("login_uri", obj?.login_uri);
 		setValue("authorize_uri", obj?.authorize_uri);
 		setValue("authorize_anonymous_users", obj?.authorize_anonymous_users);
+		setValue("code_challenge_method", obj?.code_challenge_method);
+		setValue("cookie_domain", obj?.cookie_domain);
 	}
 
 	const refactorSubmitData = (values, type) => {
@@ -191,7 +185,7 @@ const ClientCreateContainer = (props) => {
 			if (body?.login_uri == "") {
 				delete body.login_uri;
 			}
-			if (body?.authorize_uri) {
+			if (body?.authorize_uri == "") {
 				delete body?.authorize_uri;
 			}
 		}
@@ -348,6 +342,7 @@ const ClientCreateContainer = (props) => {
 											valueList={value["enum"]}
 											disabled={disabled}
 											labelName={t('ClientCreateContainer|Code challenge method')}
+											editing={(client != undefined)}
 										/>
 									)
 								}
