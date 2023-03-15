@@ -295,7 +295,7 @@ const ClientCreateContainer = (props) => {
 					<Card>
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-layers pr-2"></i>
+								<i className="cil-applications-settings pr-2"></i>
 								{t("ClientCreateContainer|Multidomain support")}
 							</div>
 						</CardHeader>
@@ -327,7 +327,7 @@ const ClientCreateContainer = (props) => {
 					<Card className="mt-3">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-layers pr-2"></i>
+								<i className="cil-swap-horizontal pr-2"></i>
 								{t("ClientCreateContainer|Proof Key for Code Exchange (PKCE)")}
 							</div>
 						</CardHeader>
@@ -353,7 +353,7 @@ const ClientCreateContainer = (props) => {
 					<Card className="mt-3">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-layers pr-2"></i>
+								<i className="cil-exit-to-app pr-2"></i>
 								{t("ClientCreateContainer|Access control")}
 							</div>
 						</CardHeader>
