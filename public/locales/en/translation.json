@@ -100,6 +100,7 @@
 		"Create new client": "Create new client",
 		"Edit client": "Edit client",
 		"Multidomain support": "Multidomain support",
+		"Access control": "Access control",
 		"Proof Key for Code Exchange (PKCE)": "Proof Key for Code Exchange (PKCE)",
 		"Template": "Template",
 		"Client name": "Client name",
@@ -116,6 +117,7 @@
 		"Code challenge method": "Code challenge method",
 		"Login URi": "Login URi",
 		"Authorize URI": "Authorize URI",
+		"Authorize anonymous users": "Authorize anonymous users",
 		"URL hash have to be empty": "URL hash have to be empty",
 		"Choose an option": "Choose an option",
 		"Required field": "Required field"
@@ -143,6 +145,7 @@
 		"Code challenge method": "Code challenge method",
 		"Login URI": "Login URI",
 		"Authorize URI": "Authorize URI",
+		"Authorize anonymous users": "Authorize anonymous users",
 		"Redirect URI must be in absolute format without a fragment component.": "Redirect URI must be in absolute format without a fragment component.",
 		"Remove client": "Remove client",
 		"Save changes": "Save changes",

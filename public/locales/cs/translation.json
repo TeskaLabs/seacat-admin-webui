@@ -100,6 +100,7 @@
 		"Create new client": "Vytvořit nového klienta",
 		"Edit client": "Upravit klienta",
 		"Multidomain support": "Multidoménová odpora",
+		"Access control": "Přístupová oprávnění",
 		"Proof Key for Code Exchange (PKCE)": "Důkazový klíč pro výměnu kódů (PKCE)",
 		"Template": "Šablona",
 		"Client name": "Název klienta",
@@ -116,6 +117,7 @@
 		"Code challenge method": "Metod ověření kódu",
 		"Login URI": "URI přihlašovací stránky",
 		"Authorize URI": "Autorizace URI",
+		"Authorize anonymous users": "Autorizace anonymních uživatelů",
 		"URI can't be empty": "URI nemůže být prázdný",
 		"URI have to start with https": "URI musí začínat https",
 		"URL hash have to be empty": "URL hash musí být prázdný"
@@ -143,6 +145,7 @@
 		"Code challenge method": "Metod ověření kódu",
 		"Login URi": "Přihlášení URi",
 		"Authorize URI": "Autorizace URI",
+		"Authorize anonymous users": "Autorizace anonymních uživatelů",
 		"Redirect URI must be in absolute format without a fragment component.": "URI k přesměrování musí být v absolutním formátu a bez fragment komponenty.",
 		"Remove client": "Odstranit klienta",
 		"Save changes": "Uložit změny",
