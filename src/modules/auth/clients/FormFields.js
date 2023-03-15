@@ -102,7 +102,7 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 }
 
 // The usual select input
-export function RadioInput ({ name, valueList, register, labelName, disabled }) {
+export function RadioInput ({ name, valueList, register, labelName, disabled, editing }) {
 
 	return (
 		<FormGroup key={name}>
@@ -119,7 +119,7 @@ export function RadioInput ({ name, valueList, register, labelName, disabled }) 
 							value={item}
 							disabled={disabled}
 							{...register(name)}
-							defaultChecked={item == "none"}
+							defaultChecked={!editing && (item == "none")}
 						/>
 						<div className="ml-4">{item}</div>
 					</InputGroup>
