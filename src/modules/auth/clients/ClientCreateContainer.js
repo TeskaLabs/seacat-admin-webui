@@ -34,7 +34,6 @@ const ClientCreateContainer = (props) => {
 	const regRedirectUrisMain = register("redirect_uris_main", {
 		validate: {
 			emptyInput: value => (value && value.toString().length !== 0) || t("ClientCreateContainer|URI can't be empty"),
-			startWith: value => (/(https:\/\/)/).test(value) || t("ClientCreateContainer|URI have to start with https"),
 			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientCreateContainer|URL hash have to be empty"),
 		}
 	});
@@ -149,6 +148,7 @@ const ClientCreateContainer = (props) => {
 		setValue("authorize_uri", obj?.authorize_uri);
 		setValue("authorize_anonymous_users", obj?.authorize_anonymous_users);
 		setValue("code_challenge_method", obj?.code_challenge_method);
+		setValue("redirect_uri_validation_method", obj?.redirect_uri_validation_method);
 		setValue("cookie_domain", obj?.cookie_domain);
 	}
 
@@ -237,6 +237,21 @@ const ClientCreateContainer = (props) => {
 								reg={regRedirectUrisMain}
 								labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
 							/>
+							{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
+								if (key == "redirect_uri_validation_method") {
+									return(
+										<RadioInput
+											key={key}
+											name={key}
+											register={register}
+											valueList={value["enum"]}
+											disabled={disabled}
+											labelName={t('ClientCreateContainer|Redirect URI validation method')}
+											editing={(client != undefined)}
+										/>
+									)
+								}
+							})}
 							{(client == undefined) &&
 								<TextInput
 									name="preferred_client_id"

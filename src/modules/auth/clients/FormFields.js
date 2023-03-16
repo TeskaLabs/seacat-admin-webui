@@ -119,7 +119,7 @@ export function RadioInput ({ name, valueList, register, labelName, disabled, ed
 							value={item}
 							disabled={disabled}
 							{...register(name)}
-							defaultChecked={!editing && (item == "none")}
+							defaultChecked={!editing && (key == 0)}
 						/>
 						<div className="ml-4">{item}</div>
 					</InputGroup>

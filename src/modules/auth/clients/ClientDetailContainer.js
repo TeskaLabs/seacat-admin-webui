@@ -183,6 +183,10 @@ const ClientDetailContainer = (props) =>  {
 									}
 								</Col>
 							</Row>
+							<Row>
+								<Col md={4} title="redirect_uri_validation_method">{t("ClientDetailContainer|Redirect URI validation method")}</Col>
+								<Col>{client?.redirect_uri_validation_method ? client.redirect_uri_validation_method : "N/A"}</Col>
+							</Row>
 							<Row className="mt-3">
 								<Col md={4} title="authorize_anonymous_users">{t("ClientDetailContainer|Authorize anonymous users")}</Col>
 								<Col>{client?.authorize_anonymous_users ? ((client.authorize_anonymous_users == true) ? "true" : "false") : "N/A"}</Col>
