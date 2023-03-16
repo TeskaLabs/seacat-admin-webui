@@ -95,16 +95,19 @@ const ClientCreateContainer = (props) => {
 
 	const onSubmitNewClient = async (values) => {
 		let body = refactorSubmitData(values, "create");
+		setDisabled(true);
 		try {
 			let response = await SeaCatAuthAPI.post(`/client`, body);
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to create client");
 			}
+			setDisabled(false);
 			if (response.data?.client_id) {
 				props.app.addAlert("success", t("ClientCreateContainer|Client has been created"));
 				props.history.push(`/auth/clients/${response.data.client_id}`);
 			}
 		} catch (e) {
+			setDisabled(false);
 			console.error(e);
 			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, client has not been created")}. ${e?.response?.data?.message}`, 30);
 		}
@@ -142,6 +145,10 @@ const ClientCreateContainer = (props) => {
 			setValue(`redirect_uris[${idx}].value`, item);
 		})
 
+		if (obj?.cookie_domain?.length > 0) {
+			setValue("cookie_domain", obj?.cookie_domain);
+		}
+
 		setValue("client_name", obj?.client_name);
 		setValue("client_uri", obj?.client_uri);
 		setValue("login_uri", obj?.login_uri);
@@ -149,7 +156,6 @@ const ClientCreateContainer = (props) => {
 		setValue("authorize_anonymous_users", obj?.authorize_anonymous_users);
 		setValue("code_challenge_method", obj?.code_challenge_method);
 		setValue("redirect_uri_validation_method", obj?.redirect_uri_validation_method);
-		setValue("cookie_domain", obj?.cookie_domain);
 	}
 
 	const refactorSubmitData = (values, type) => {
