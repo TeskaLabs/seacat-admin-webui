@@ -189,7 +189,7 @@ const ClientDetailContainer = (props) =>  {
 							</Row>
 							<Row className="mt-3">
 								<Col md={4} title="authorize_anonymous_users">{t("ClientDetailContainer|Authorize anonymous users")}</Col>
-								<Col>{client?.authorize_anonymous_users ? ((client.authorize_anonymous_users == true) ? "true" : "false") : "N/A"}</Col>
+								<Col>{(client?.authorize_anonymous_users != undefined) ? ((client.authorize_anonymous_users == true) ? "true" : "false") : "N/A"}</Col>
 							</Row>
 						</CardBody>
 
