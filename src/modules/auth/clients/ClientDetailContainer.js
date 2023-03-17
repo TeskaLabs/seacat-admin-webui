@@ -30,7 +30,7 @@ const ClientDetailContainer = (props) =>  {
 	const getClientDetail = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`client/${client_id}`);
-			if (response.statusText != 'OK') {
+			if (response.status !== 200) {
 				throw new Error("Unable to get client details");
 			}
 			setClient(response.data);
@@ -43,7 +43,7 @@ const ClientDetailContainer = (props) =>  {
 	const resetSecret = async () => {
 		try {
 			let response = await SeaCatAuthAPI.post(`client/${client_id}/reset_secret`);
-			if (response.statusText != 'OK') {
+			if (response.status !== 200) {
 				throw new Error("Unable to reset client secret");
 			}
 			props.app.addAlert("success", t('ClientDetailContainer|Secret has been reset successfully'));
@@ -73,7 +73,7 @@ const ClientDetailContainer = (props) =>  {
 	const removeClient = async () => {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/client/${client_id}`);
-			if (response.statusText != 'OK') {
+			if (response.status !== 200) {
 				throw new Error("Unable to delete client");
 			}
 			props.app.addAlert("success", t('ClientDetailContainer|Client removed successfully'));

@@ -77,7 +77,7 @@ function ClientListContainer(props) {
 	const retrieveData = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get("/client", {params: {p:page, i: limit, f: filter}});
-			if (response.statusText != 'OK') {
+			if (response.status !== 200) {
 				throw new Error("Unable to get clients");
 			}
 			setData(response.data.data);
