@@ -362,7 +362,7 @@ const ClientCreateContainer = (props) => {
 											register={register}
 											valueList={value["enum"]}
 											disabled={disabled}
-											labelName={t('ClientCreateContainer|Code challenge method')}
+											labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}
 											editing={(client != undefined)}
 										/>
 									)
