@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardBody, CardFooter,
-	Button, ButtonGroup, Label, Input, FormGroup
+	Button, ButtonGroup, Input, FormGroup
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';
 import { DateTime, ButtonWithAuthz } from 'asab-webui';
-import {RadioInput, SingleCheckboxInput, TextInput} from "./FormFields";
 
 const ClientDetailContainer = (props) =>  {
 	const { t } = useTranslation();
