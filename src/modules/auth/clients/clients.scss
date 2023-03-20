@@ -20,7 +20,7 @@ $svg-arrow: var(--svg-arrow);
 		"b";
 	grid-template-columns: 1fr;
 
-	& form {
+	& .client-cards-wrapper {
 		display: grid;
 		grid-area: a;
 		grid-template-areas:
@@ -96,7 +96,7 @@ $svg-arrow: var(--svg-arrow);
 
 @media (max-width: 994px) {
 	.client-wrapper {
-		& form {
+		& .client-cards-wrapper {
 			grid-template-areas:
 			"i"
 			"q";
