@@ -35,7 +35,7 @@ const ResourceCreateContainer = (props) => {
 		let body = {};
 		body["description"] = values.resource_description;
 		try {
-			let res = await SeaCatAuthAPI.post(`/resource/${values.resource_id}`,
+			await SeaCatAuthAPI.post(`/resource/${values.resource_id}`,
 				JSON.stringify(body),
 				{
 					headers: {

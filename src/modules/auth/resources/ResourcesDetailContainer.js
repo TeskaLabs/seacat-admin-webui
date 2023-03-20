@@ -27,9 +27,9 @@ const ResourceDetailContainer = (props) =>  {
 	const registerDescription = register("resource_description");
 	const registerName = register("resource_name");
 
-	const getResourceDetail = async (res) => {
+	const getResourceDetail = async (resourceId) => {
 		try {
-			let response = await SeaCatAuthAPI.get(`resource/${res}`);
+			let response = await SeaCatAuthAPI.get(`resource/${resourceId}`);
 			setResource(response.data);
 		} catch(e) {
 			console.error(e);
