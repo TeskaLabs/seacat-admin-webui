@@ -208,7 +208,7 @@ const ClientCreateContainer = (props) => {
 
 	return (
 		<Container className="client-wrapper">
-			<Form onSubmit={(client == undefined) ? handleSubmit(onSubmitNewClient) : handleSubmit(onSubmitEditClient)}>
+			<Form className="client-cards-wrapper" onSubmit={(client == undefined) ? handleSubmit(onSubmitNewClient) : handleSubmit(onSubmitEditClient)}>
 				<div className="client-main-info">
 					<Card>
 						<CardHeader className="border-bottom">
@@ -298,14 +298,14 @@ const ClientCreateContainer = (props) => {
 								</>
 							:
 								<ButtonWithAuthz
-									title={t("ClientListContainer|New client")}
+									title={t("ClientCreateContainer|Create")}
 									color="primary"
 									type="submit"
 									disabled={isSubmitting}
 									resource={resource}
 									resources={resources}
 								>
-									{t("ClientListContainer|New client")}
+									{t("ClientCreateContainer|Create")}
 								</ButtonWithAuthz>
 							}
 							</ButtonGroup>
@@ -317,7 +317,7 @@ const ClientCreateContainer = (props) => {
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
 								<i className="cil-applications-settings pr-2"></i>
-								{t("ClientCreateContainer|Multidomain support")}
+								{t("ClientCreateContainer|Multidomain")}
 							</div>
 						</CardHeader>
 						<CardBody>
@@ -349,7 +349,7 @@ const ClientCreateContainer = (props) => {
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
 								<i className="cil-swap-horizontal pr-2"></i>
-								{t("ClientCreateContainer|Proof Key for Code Exchange (PKCE)")}
+								{t("ClientCreateContainer|Authorization")}
 							</div>
 						</CardHeader>
 						<CardBody>
