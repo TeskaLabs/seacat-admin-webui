@@ -121,7 +121,6 @@
 		"Authorize URI": "Autorizace URI",
 		"Authorize anonymous users": "Autorizace anonymních uživatelů",
 		"URI can't be empty": "URI nemůže být prázdný",
-		"URI have to start with https": "URI musí začínat https",
 		"URL hash have to be empty": "URL hash musí být prázdný"
 	},
 	"ClientDetailContainer": {
@@ -163,7 +162,6 @@
 		"Invalid format, input should have minimum of 8 characters": "Nesprávný formát, pole musí mít minimálně 8 znaků",
 		"Invalid format for cookie_domain": "Nesprávný formát pro cookie_domain",
 		"URI can't be empty": "URI nemůže být prázdný",
-		"URI have to start with https": "URI musí začínat https",
 		"URL hash have to be empty": "URL hash musí být prázdný",
 		"Choose an option": "Zvolte možnost",
 		"None": "Žádná",

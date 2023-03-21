@@ -10,14 +10,14 @@ import {
 	CardFooter, CardBody, Form, ButtonGroup
 } from 'reactstrap';
 
-import {TextInput, URiInput, RadioInput, SingleCheckboxInput} from './FormFields';
+import { TextInput, URiInput, RadioInput, SingleCheckboxInput } from './FormFields';
 
 import { ButtonWithAuthz } from 'asab-webui';
 
 const ClientCreateContainer = (props) => {
 	const [metaData, setMetaData] = useState({});
+	const [client, setClient] = useState(null);
 	const [disabled, setDisabled] = useState(false);
-	const [client, setClient] = useState(null); // tracking method in URL
 	const { client_id } = props.match.params;
 	const location = useLocation(); // tracking method in URL
 
@@ -38,7 +38,7 @@ const ClientCreateContainer = (props) => {
 		}
 	});
 
-	const { fields, append, remove, update } = useFieldArray({control, name: "redirect_uris"});
+	const { fields, append, remove, update } = useFieldArray({ control, name: "redirect_uris" });
 
 	useEffect(() => {
 		retrieveClientFeatures();

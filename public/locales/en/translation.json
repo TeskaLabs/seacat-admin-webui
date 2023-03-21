@@ -120,6 +120,7 @@
 		"Login URi": "Login URi",
 		"Authorize URI": "Authorize URI",
 		"Authorize anonymous users": "Authorize anonymous users",
+		"URI can't be empty": "URI can't be empty",
 		"URL hash have to be empty": "URL hash have to be empty",
 		"Choose an option": "Choose an option",
 		"Required field": "Required field"
@@ -163,7 +164,6 @@
 		"Invalid format, input should have minimum of 8 characters": "Invalid format, input should have minimum of 8 characters",
 		"Invalid format for cookie_domain": "Invalid format for cookie_domain",
 		"URI can't be empty": "URI can't be empty",
-		"URI have to start with https": "URI have to start with https",
 		"URL hash have to be empty": "URL hash have to be empty",
 		"Choose an option": "Choose an option",
 		"None": "None",
