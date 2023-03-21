@@ -97,7 +97,7 @@ function CredentialsDetailContainer(props) {
 			setSessions(response.data.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("SessionListContainer|Something went wrong, failed to fetch user sessions")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to fetch user sessions")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -235,7 +235,7 @@ function CredentialsDetailContainer(props) {
 									</ButtonWithAuthz>
 									:
 									<ButtonWithAuthz
-										style={{padding: 0, borderWidth: 0, marginTop: "8px"}}
+										style={{padding: 0, borderWidth: 0}}
 										onClick={(e) => { e.preventDefault(); suspendUserForm((suspended === false) || (suspended === undefined)) }}
 										color="link"
 										resource={resourceManageCredentials}

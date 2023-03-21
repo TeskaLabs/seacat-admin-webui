@@ -105,7 +105,7 @@ function CredentialsRolesCard(props) {
 			<CardBody className="card-body-scroll">
 
 				{assignedRoles.map((role) => (
-					<Row key={role} className="mb-2">
+					<Row key={role}>
 						<Col style={{overflow: "hidden", marginLeft: "15px", paddingLeft: "0"}}>
 							<span className="d-flex align-items-center btn-edit-mode">
 								{editMode &&
