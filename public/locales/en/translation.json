@@ -228,12 +228,11 @@
 	"CredentialsSessionCard": {
 		"Sessions": "Sessions",
 		"No active sessions": "No active sessions",
-		"Terminate user sessions": "Terminate user sessions",
-		"Terminate sessions": "Terminate sessions",
-		"Do you want to terminate user sessions?": "Do you want to terminate user sessions?",
-		"Sessions successfully terminated": "Sessions successfully terminated",
-		"Something went wrong when terminating sessions": "Something went wrong when terminating sessions",
-		"Failed to terminate sessions": "Failed to terminate sessions"
+		"Log out": "Log out",
+		"Do you really want to log the user out?": "Do you really want to log the user out?",
+		"Successfully logged out": "Successfully logged out",
+		"Unsuccessful log out": "Unsuccessful log out",
+		"Failed to log out": "Failed to log out"
 	},
 	"CredentialsListContainer": {
 		"Credentials": "Credentials",
