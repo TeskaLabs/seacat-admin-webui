@@ -289,7 +289,7 @@ const RolesDetailContainer = (props) =>  {
 									<Col md={3}>{t("Name")}</Col>
 									<Col>{role._id}</Col>
 								</Row>
-								<Row>
+								<Row className="mt-3">
 									<Col md={3}>{t("Created at")}</Col>
 									<Col><DateTime value={role._c} /></Col>
 								</Row>
