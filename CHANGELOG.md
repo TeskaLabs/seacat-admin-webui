@@ -4,7 +4,7 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[a86c691](https://github.com/TeskaLabs/asab-webui/commit/a86c691689c71a6f65720e6f7e4f5f4fc65ef4d4)] commit (INDIGO Sprint 230217, [!20](https://github.com/TeskaLabs/seacat-admin-webui/pull/20))
+- ASAB WebUI submodule version bump [[b9aa958](https://github.com/TeskaLabs/asab-webui/commit/b9aa958b8e060bc464e4cf1c210916bf772b00ea)] commit (INDIGO Sprint 230303, [!23](https://github.com/TeskaLabs/seacat-admin-webui/pull/23))
 
 ### Refactoring
 
@@ -13,6 +13,8 @@
 - Refactor ClientDetail and ClientCreate components, refactor URI inputs to new format, refactor client editing (INDIGO Sprint 230203, [!18](https://github.com/TeskaLabs/seacat-admin-webui/pull/18))
 
 - Remove react-helmet from the package.json (INDIGO Sprint 230216, [!20](https://github.com/TeskaLabs/seacat-admin-webui/pull/20))
+
+- Webpack V4 to V5 migration. (INDIGO Sprint 230303, [!16](https://github.com/TeskaLabs/seacat-admin-webui/pull/16))
 
 ## v23.5
 
