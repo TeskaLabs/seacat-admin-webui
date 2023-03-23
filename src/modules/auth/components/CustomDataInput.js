@@ -42,7 +42,7 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 								color="danger"
 								outline
 								size="sm"
-								disabled={(fields.length === 1) && ((fields[0].key === ""))}
+								disabled={(fields.length === 1) && ((fields[0].key === ""))} // Disable button if he number of inputs is 1  and no text added
 								onClick={() => {(fields.length === 1) ? replace({key: '', value: ''}) : remove(idx)}}
 							>
 								<span className="cil-minus" />
