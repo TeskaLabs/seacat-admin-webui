@@ -102,10 +102,8 @@ const ClientCreateContainer = (props) => {
 				throw new Error("Unable to create client");
 			}
 			setDisabled(false);
-			if (response.data?.client_id) {
-				props.app.addAlert("success", t("ClientCreateContainer|Client has been created"));
-				props.history.push(`/auth/clients/${response.data.client_id}`);
-			}
+			props.app.addAlert("success", t("ClientCreateContainer|Client has been created"));
+			props.history.push(`/auth/clients/${response.data.client_id}`);
 		} catch (e) {
 			setDisabled(false);
 			console.error(e);
@@ -389,6 +387,8 @@ const ClientCreateContainer = (props) => {
 					</Card>
 				</div>
 			</Form>
+
+			{/*Display the card when the client is being edited*/}
 			{(advmode && ((client != undefined) && (editClient == true))) &&
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
