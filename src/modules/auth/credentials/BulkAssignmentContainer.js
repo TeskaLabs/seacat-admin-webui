@@ -9,7 +9,7 @@ import { Container, Row, Form,  Card,
 	DropdownItem, DropdownMenu } from "reactstrap";
 import { Credentials } from 'asab-webui';
 
-const CredentialsTenantsAssignContainer = (props) => {
+const BulkAssignmentContainer = (props) => {
 
 	const {t} = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
@@ -58,7 +58,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 			setCredentialsList([response.data]);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -71,7 +71,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 			setPrevAssignedTenants(response.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -92,7 +92,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 			setCount(response.data.count);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -105,7 +105,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 			// GET /credentials?m=tenant&f=tenant-a
 			console.log('response.data from GET / credentails: ', response.data)
 			if (response.data.result !== "OK") {
-				throw new Error(t("CredentialsTenantsAssignContainer|Failed to fetch data"));
+				throw new Error(t("BulkAssignmentContainer|Failed to fetch data"));
 			}
 			setAssignedCredentialsDropdown(response.data.data);
 			setLoading(false);
@@ -113,10 +113,10 @@ const CredentialsTenantsAssignContainer = (props) => {
 			console.error(e);
 			setLoading(false)
 			if (e.response.status === 401) {
-				props.app.addAlert("warning", t("CredentialsTenantsAssignContainer|Can't fetch the data, you don't have rights to display it"), 30);
+				props.app.addAlert("warning", t("BulkAssignmentContainer|Can't fetch the data, you don't have rights to display it"), 30);
 				return;
 			}
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Failed to fetch data")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch data")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -140,17 +140,17 @@ const CredentialsTenantsAssignContainer = (props) => {
 		try {
 			let response = await SeaCatAuthAPI.put(`/tenant_assign_many/${data.tenant}`, arr);
 			if (response.data.result !== "OK") {
-				throw new Error(t("CredentialsTenantsAssignContainer|Fail"));
+				throw new Error(t("BulkAssignmentContainer|Fail"));
 			}
 			console.log('reponse: ', response)
-			props.app.addAlert("success", t("CredentialsTenantsAssignContainer|Tenant assignment was successful"), 30);
+			props.app.addAlert("success", t("BulkAssignmentContainer|Tenant assignment was successful"), 30);
 		} catch(e) {
 			console.error(e);
 			if (e.response.status === 401) {
-				props.app.addAlert("warning", t("CredentialsTenantsAssignContainer|Fail"), 30);
+				props.app.addAlert("warning", t("BulkAssignmentContainer|Fail"), 30);
 				return;
 			}
-			props.app.addAlert("warning", `${t("CredentialsTenantsAssignContainer|Fail")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Fail")}. ${e?.response?.data?.message}`, 30);
 		}
 
 	};
@@ -162,23 +162,23 @@ const CredentialsTenantsAssignContainer = (props) => {
 					<CardHeader>
 						<div className="card-header-title">
 							<i className="cil-people mr-2" />
-							{t("CredentialsTenantsAssignContainer|Credentials")}
+							{t("BulkAssignmentContainer|Credentials")}
 						</div>
 						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
 							<DropdownToggle caret outline color="primary" className="card-header-dropdown">
-								{t("CredentialsTenantsAssignContainer|Select credentials")}
+								{t("BulkAssignmentContainer|Select credentials")}
 							</DropdownToggle>
 							<DropdownMenu className="assign-credential-list-dropdown">
 								<DropdownItem header>
 									<Input
 										className="m-0"
-										placeholder={t("CredentialsTenantsAssignContainer|Search")}
+										placeholder={t("BulkAssignmentContainer|Search")}
 										onChange={e => setFilter(e.target.value)}
 										value={filter}
 									/>
 								</DropdownItem>
 								{loading ?
-									<DropdownItem><span>{t("CredentialsTenantsAssignContainer|Loading")}</span></DropdownItem>
+									<DropdownItem><span>{t("BulkAssignmentContainer|Loading")}</span></DropdownItem>
 									:
 									(assignedCredentialsDropdown && Object.keys(assignedCredentialsDropdown).map((item, i) => {
 										let checkCredentialsAvailability = credentialsList.findIndex(elem => elem._id === assignedCredentialsDropdown[item]._id);
@@ -201,7 +201,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 										else {return null}
 									}))
 								}
-								{(!assignedCredentialsDropdown ) && <DropdownItem><span>{t("CredentialsTenantsAssignContainer|No match")}</span></DropdownItem>}
+								{(!assignedCredentialsDropdown ) && <DropdownItem><span>{t("BulkAssignmentContainer|No match")}</span></DropdownItem>}
 							</DropdownMenu>
 						</Dropdown>
 					</CardHeader>
@@ -229,7 +229,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 											style={{'display': 'inline'}}
 											color="danger"
 											onClick={() => ( console.log('we bouta remove'), removeCredentialFromList(idx))}
-											title={t("CredentialsTenantsAssignContainer|Remove")}
+											title={t("BulkAssignmentContainer|Remove")}
 										>
 											-
 										</Button>
@@ -244,7 +244,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 					<CardHeader>
 						<div className="card-header-title">
 							<i className="cil-apps mr-2" />
-							{t("CredentialsTenantsAssignContainer|Assign tenants")}
+							{t("BulkAssignmentContainer|Assign tenants")}
 						</div>
 					</CardHeader>
 
@@ -265,7 +265,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 								</Row>
 							)
 						})
-						: <p>{t("CredentialsTenantsAssignContainer|No data")}</p>}
+						: <p>{t("BulkAssignmentContainer|No data")}</p>}
 						</Col>
 					</CardBody>
 
@@ -274,15 +274,15 @@ const CredentialsTenantsAssignContainer = (props) => {
 							<Button
 								color="primary"
 								type="submit"
-								title={t("CredentialsTenantsAssignContainer|Assign selected tennant to selected list of credentials")}
+								title={t("BulkAssignmentContainer|Assign selected tennant to selected list of credentials")}
 							>
-								{t("CredentialsTenantsAssignContainer|Assign")}
+								{t("BulkAssignmentContainer|Assign")}
 							</Button>
 						</ButtonGroup>
 						<div className='actions-right'>
 							<Button
 								outline
-								title={t("CredentialsTenantsAssignContainer|Cancel")}
+								title={t("BulkAssignmentContainer|Cancel")}
 								onClick={(e) => (
 									e.preventDefault(),
 									reset({tenants: assignedTenants}),
@@ -290,7 +290,7 @@ const CredentialsTenantsAssignContainer = (props) => {
 									setAssignedTenants(prevAssignedTenants)
 								)}
 							>
-								{t("CredentialsTenantsAssignContainer|Cancel")}
+								{t("BulkAssignmentContainer|Cancel")}
 							</Button>
 						</div>
 					</CardFooter>
@@ -300,4 +300,4 @@ const CredentialsTenantsAssignContainer = (props) => {
 	)
 }
 
-export default CredentialsTenantsAssignContainer
+export default BulkAssignmentContainer

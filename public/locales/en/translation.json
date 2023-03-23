@@ -226,7 +226,7 @@
 		"Something went wrong, failed to fetch assigned tenants": "Something went wrong, failed to fetch assigned tenants",
 		"No match": "No match"
 	},
-	"CredentialsTenantsAssignContainer": {
+	"BulkAssignmentContainer": {
 		"Failed to fetch data": "Failed to fetch data",
 		"Failed to fetch user details": "Failed to fetch user details",
 		"Failed to fetch assigned tenants": "Failed to fetch assigned tenants",

@@ -226,7 +226,7 @@
 		"Something went wrong, failed to fetch assigned tenants": "Něco je špatně, nepodařilo se získat přiřazené tenanty",
 		"No match": "Shoda nenalezena"
 	},
-	"CredentialsTenantsAssignContainer": {
+	"BulkAssignmentContainer": {
 		"Failed to fetch data": "Nepodařilo se získat data",
 		"Failed to fetch user details": "Nepodařilo se získat data uživatele",
 		"Failed to fetch assigned tenants": "Nepodařilo se získat přiřazené tenanty",
