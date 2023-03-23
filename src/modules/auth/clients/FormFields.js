@@ -97,7 +97,6 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 				{checkboxText}
 			</Label>
 		</FormGroup>
-
 	)
 }
 
@@ -179,7 +178,7 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 	const regMail = register(`${name}[${index}].value`, {
 		validate: {
 			emptyInput: value => (value && value.toString().length !== 0) || t("ClientFormField|URI can't be empty"),
-			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientFormField|URL hash have to be empty"),
+			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientFormField|URL hash has to be empty"),
 		}
 	});
 	return(

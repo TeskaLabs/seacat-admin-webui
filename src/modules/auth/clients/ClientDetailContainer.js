@@ -102,7 +102,7 @@ const ClientDetailContainer = (props) =>  {
 							</Row>
 							<Row>
 								<Col md={5} title="client_id">{t("ClientDetailContainer|Client ID")}</Col>
-								<Col><code>{(client?.client_id != undefined) && client?.client_id}</code></Col>
+								<Col><code>{client?.client_id ? client.client_id : "N/A"}</code></Col>
 							</Row>
 							<Row className="mt-3">
 								<Col md={5} title="created_at">{t("Created at")}</Col>
@@ -225,7 +225,7 @@ const ClientDetailContainer = (props) =>  {
 								<Row>
 									<Col md={5} title="client_secret">{t("ClientDetailContainer|Client secret")}</Col>
 									<Col>
-										<code>{(client?.client_secret != undefined) && client?.client_secret}</code>
+										<code>{client?.client_secret ? client.client_secret : "N/A"}</code>
 										<Button
 											color="link"
 											onClick={() => resetSecretConfirm()}

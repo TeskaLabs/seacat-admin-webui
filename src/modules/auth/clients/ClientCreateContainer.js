@@ -34,7 +34,7 @@ const ClientCreateContainer = (props) => {
 	const regRedirectUrisMain = register("redirect_uris_main", {
 		validate: {
 			emptyInput: value => (value && value.toString().length !== 0) || t("ClientCreateContainer|URI can't be empty"),
-			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientCreateContainer|URL hash have to be empty"),
+			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientCreateContainer|URL hash has to be empty"),
 		}
 	});
 
@@ -133,7 +133,7 @@ const ClientCreateContainer = (props) => {
 		let copyArr = [];
 
 		if (obj?.redirect_uris != undefined) {
-			copyArr = [...obj?.redirect_uris];
+			copyArr = [...obj.redirect_uris];
 			setValue("redirect_uris_main", copyArr[0]);
 			copyArr.splice(0, 1);
 		}
@@ -143,7 +143,7 @@ const ClientCreateContainer = (props) => {
 		})
 
 		if (obj?.cookie_domain?.length > 0) {
-			setValue("cookie_domain", obj?.cookie_domain);
+			setValue("cookie_domain", obj.cookie_domain);
 		}
 
 		setValue("client_name", obj?.client_name);
@@ -189,7 +189,7 @@ const ClientCreateContainer = (props) => {
 				delete body.login_uri;
 			}
 			if (body?.authorize_uri == "") {
-				delete body?.authorize_uri;
+				delete body.authorize_uri;
 			}
 		}
 
