@@ -101,7 +101,6 @@ const ClientCreateContainer = (props) => {
 			if (response.statusText != 'OK') {
 				throw new Error("Unable to create client");
 			}
-			setDisabled(false);
 			props.app.addAlert("success", t("ClientCreateContainer|Client has been created"));
 			props.history.push(`/auth/clients/${response.data.client_id}`);
 		} catch (e) {
