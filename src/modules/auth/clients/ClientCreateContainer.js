@@ -231,7 +231,7 @@ const ClientCreateContainer = (props) => {
 								reg={regRedirectUrisMain}
 								labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
 							/>
-							{metaData["properties"] && metaData["properties"]["redirect_uri_validation_method"] &&
+							{(metaData != undefined) && metaData["properties"] && metaData["properties"]["redirect_uri_validation_method"] &&
 								<RadioInput
 									key="redirect_uri_validation_method"
 									name="redirect_uri_validation_method"
@@ -336,7 +336,7 @@ const ClientCreateContainer = (props) => {
 							</div>
 						</CardHeader>
 						<CardBody>
-							{metaData["properties"] && metaData["properties"]["code_challenge_method"] &&
+							{(metaData != undefined) && metaData["properties"] && metaData["properties"]["code_challenge_method"] &&
 								<RadioInput
 									key="code_challenge_method"
 									name="code_challenge_method"
