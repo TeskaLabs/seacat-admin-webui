@@ -16,7 +16,7 @@
 
 - Webpack V4 to V5 migration. (INDIGO Sprint 230303, [!16](https://github.com/TeskaLabs/seacat-admin-webui/pull/16))
 
-- Refactor Clients. Add new inputs `authorize_uri` and `redirect_uri_validation_method`. Refactor ClientDetail and ClientCreate to new format (divide to the cards). Update locales (INDIGO Sprint 230303, [!22](https://github.com/TeskaLabs/seacat-admin-webui/pull/22))
+- Refactor Clients. Add new inputs `authorize_uri` and `redirect_uri_validation_method`. Refactor ClientDetail and ClientCreate to new format (divide to the cards). Update locales (INDIGO Sprint 230317, [!22](https://github.com/TeskaLabs/seacat-admin-webui/pull/22))
 
 ### Bugfix
 
