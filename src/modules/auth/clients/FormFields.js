@@ -77,26 +77,36 @@ export function SelectInput ({ name, register, valueList, labelName, disabled })
 	)
 }
 
-// The usual select input
-export function RadioInput ({ name, valueList, register, labelName, disabled }) {
+// The usual single checkbox input
+export function SingleCheckboxInput ({ name, register, checkboxText, disabled }) {
 	const { t } = useTranslation();
+	const reg = register(name);
+
+	return (
+		<FormGroup check>
+			<Label for={name}>
+				<Input
+					id={name}
+					name={name}
+					type="checkbox"
+					onChange={reg.onChange}
+					onBlur={reg.onBlur}
+					innerRef={reg.ref}
+					disabled={disabled}
+				/>{' '}
+				{checkboxText}
+			</Label>
+		</FormGroup>
+	)
+}
+
+// The usual select input
+export function RadioInput ({ name, valueList, register, labelName, disabled, editing }) {
 
 	return (
 		<FormGroup key={name}>
 			{labelName && <Label for={name} title={name}>{labelName}</Label>}
 			<div title={name}>
-				<InputGroup>
-					{/* Use standard input*/}
-					<input
-						type="radio"
-						className="ml-0 client-radio-input"
-						value=""
-						defaultValue
-						disabled={disabled}
-						{...register("code_challenge_methods")}
-					/>
-					<div className="ml-4">{t("ClientFormField|None")}</div>
-				</InputGroup>
 				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
 						<input
@@ -107,7 +117,8 @@ export function RadioInput ({ name, valueList, register, labelName, disabled }) 
 							className="ml-0 client-radio-input"
 							value={item}
 							disabled={disabled}
-							{...register("code_challenge_methods")}
+							{...register(name)}
+							defaultChecked={!editing && (key == 0)}
 						/>
 						<div className="ml-4">{item}</div>
 					</InputGroup>
@@ -118,7 +129,7 @@ export function RadioInput ({ name, valueList, register, labelName, disabled }) 
 }
 
 // Dynamic form that can be added and removed. You can to control your fields.
-export function URiInput ({name, errors, append, remove, fields, labelName, reg, invalid, register, mailTemplateName, disabled}) {
+export function URiInput ({name, errors, append, remove, fields, labelName, reg, invalid, register, templateName, disabled}) {
 	const { t } = useTranslation();
 
 	return (
@@ -154,7 +165,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					errors={errors}
 					remove={remove}
 					register={register}
-					name={mailTemplateName}
+					name={templateName}
 					disabled={disabled}
 				/>
 			))}
@@ -167,8 +178,7 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 	const regMail = register(`${name}[${index}].value`, {
 		validate: {
 			emptyInput: value => (value && value.toString().length !== 0) || t("ClientFormField|URI can't be empty"),
-			startWith: value => (/(https:\/\/)/).test(value) || t("ClientFormField|URI have to start with https"),
-			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientFormField|URL hash have to be empty"),
+			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientFormField|URL hash has to be empty"),
 		}
 	});
 	return(

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useForm, useFieldArray, Controller } from 'react-hook-form';
+import { useForm, useFieldArray } from 'react-hook-form';
+import CustomDataInput from "./CustomDataInput";
 
 import { ButtonWithAuthz, CellContentLoader } from 'asab-webui';
 import {
 	Row, Card, CardHeader, Col,
-	CardFooter, CardBody, Button, Label,
-	InputGroup, InputGroupAddon, Input,
-	ButtonGroup, Form, FormFeedback,
-	FormGroup
+	CardFooter, CardBody, Button,
+	Label, ButtonGroup, Form
 } from 'reactstrap';
 
 export function CustomDataContainer({app, resources, customData, setCustomData, loading, resource = "authz:superuser", uri}) {
@@ -101,10 +100,10 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 				<CardBody className="card-body-scroll-sm " >
 					{loading ?
 						<CellContentLoader cols={2} rows={5} />
-						:
+					:
 						!edit && (data.length === 1) && (data[0].key === '') ?
 							<Label className="mb-0">{t('CustomDataContainer|No data')}</Label>
-							:
+						:
 							!edit && <Row className="custom-data-headers">
 								<Col sm={"4"} md={edit ? "4" : "3"} ><h6>{t('CustomDataContainer|Name')}</h6></Col>
 								<Col sm={"8"} md={edit ? "6" : "9"} ><h6>{t('CustomDataContainer|Value')}</h6></Col>
@@ -123,6 +122,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 						</>
 						:
 						<CustomDataInput
+							name="customData" // name - String containing name for the input
 							control={control} // control - Object containing methods for registering components into React Hook Form.
 							errors={errors} // errors - Object containing errors in fields which didn't pass regex validation
 							fields={fields} // fields - Object containing component's defaultValue and key.
@@ -173,70 +173,5 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 				</CardFooter>
 			</Form>
 		</Card>
-	)
-}
-
-// separate method for better code legibility
-function CustomDataInput ({control, errors, append, remove, fields, replace}) {
-	const { t } = useTranslation();
-
-	return (
-		<FormGroup>
-			{fields && fields.map((item, idx) => {
-				if (fields[idx].key === "undefined") {
-					return
-				}
-				return (
-					<InputGroup key={item.id} className="mb-1 custom-data" >
-						<div className="custom-data-key" >
-							<Controller
-								render={({field}) => <Input {...field} invalid={errors.customData?.[idx]?.key}/>}
-								name={`customData[${idx}].key`}
-								control={control}
-								rules={{
-									validate: {
-										val: value => (/^[a-zA-Z][a-zA-Z0-9_-]{0,126}[a-zA-Z0-9]$|^$/).test(value) || t("CustomDataContainer|Invalid format"),
-									}
-								}}
-							/>
-							{errors.customData?.[idx]?.key && <FormFeedback>{errors.customData?.[idx]?.key?.message}</FormFeedback>}
-						</div>
-						<div className="custom-data-value">
-							<Controller
-								render={({field}) => <Input {...field} invalid={errors.customData?.[idx]?.value}/>}
-								name={`customData[${idx}].value`}
-								control={control}
-							/>
-						</div>
-						<InputGroupAddon addonType="append" className="custom-data-remove-button" >
-							<Button
-								key={idx}
-								title={(fields.length === 1) && (fields[0].key === "") ? t("CustomDataContainer|Nothing to remove") : t("CustomDataContainer|Remove input")}
-								color="danger"
-								outline
-								size="sm"
-								disabled={(fields.length === 1) && ((fields[0].key === ""))}
-								onClick={() => {(fields.length === 1) ? replace({key: '', value: ''}) : remove(idx)}}
-							>
-								<span className="cil-minus" />
-							</Button>
-						</InputGroupAddon>
-					</InputGroup>
-				);
-			})}
-			<Button
-				className="mt-2"
-				title={t("CustomDataContainer|Add new input")}
-				color="primary"
-				outline
-				size="sm"
-				type="button"
-				onClick={() => {
-					append({key: '', value: ''});
-				}}
-			>
-				<span className="cil-plus" />
-			</Button>
-		</FormGroup>
 	)
 }
