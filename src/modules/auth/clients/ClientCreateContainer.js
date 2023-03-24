@@ -69,9 +69,6 @@ const ClientCreateContainer = (props) => {
 	const retrieveClientFeatures = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get('/client/features');
-			if (response.statusText != 'OK') {
-				throw new Error("Unable to get clients");
-			}
 			setMetaData(response.data["metadata_schema"]);
 		} catch (e) {
 			console.error("Failed to retrieve providers from server: ", e);
@@ -82,9 +79,6 @@ const ClientCreateContainer = (props) => {
 	const getClientDetail = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`client/${client_id}`);
-			if (response.statusText != 'OK') {
-				throw new Error("Unable to get client details");
-			}
 			setClient(response.data);
 		} catch (e) {
 			console.error(e);
@@ -98,9 +92,6 @@ const ClientCreateContainer = (props) => {
 		setDisabled(true);
 		try {
 			let response = await SeaCatAuthAPI.post(`/client`, body);
-			if (response.statusText != 'OK') {
-				throw new Error("Unable to create client");
-			}
 			props.app.addAlert("success", t("ClientCreateContainer|Client has been created"));
 			props.history.push(`/auth/clients/${response.data.client_id}`);
 		} catch (e) {
@@ -115,7 +106,7 @@ const ClientCreateContainer = (props) => {
 		setDisabled(true);
 		try {
 			let response = await SeaCatAuthAPI.put(`/client/${client_id}`, body);
-			if (response.statusText != 'OK') {
+			if (response.data.result !== "OK") {
 				throw new Error("Unable to change client details");
 			}
 			setDisabled(false);
