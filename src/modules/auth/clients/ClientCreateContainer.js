@@ -240,21 +240,16 @@ const ClientCreateContainer = (props) => {
 								reg={regRedirectUrisMain}
 								labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
 							/>
-							{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
-								if (key == "redirect_uri_validation_method") {
-									return(
-										<RadioInput
-											key={key}
-											name={key}
-											register={register}
-											valueList={value["enum"]}
-											disabled={disabled}
-											labelName={t('ClientCreateContainer|Redirect URI validation method')}
-											editing={(client != undefined)}
-										/>
-									)
-								}
-							})}
+							{metaData["properties"] && metaData["properties"]["redirect_uri_validation_method"] &&
+								<RadioInput
+									key="redirect_uri_validation_method"
+									name="redirect_uri_validation_method"
+									register={register}
+									valueList={metaData["properties"]["redirect_uri_validation_method"]["enum"]}
+									disabled={disabled}
+									labelName={t('ClientCreateContainer|Redirect URI validation method')}
+									editing={(client != undefined)}
+								/>}
 							{(client == undefined) &&
 								<TextInput
 									name="preferred_client_id"
@@ -350,21 +345,16 @@ const ClientCreateContainer = (props) => {
 							</div>
 						</CardHeader>
 						<CardBody>
-							{metaData["properties"] && Object.entries(metaData["properties"]).map(([key, value]) => {
-								if (key == "code_challenge_method") {
-									return(
-										<RadioInput
-											key={key}
-											name={key}
-											register={register}
-											valueList={value["enum"]}
-											disabled={disabled}
-											labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}
-											editing={(client != undefined)}
-										/>
-									)
-								}
-							})}
+							{metaData["properties"] && metaData["properties"]["code_challenge_method"] &&
+								<RadioInput
+									key="code_challenge_method"
+									name="code_challenge_method"
+									register={register}
+									valueList={metaData["properties"]["code_challenge_method"]["enum"]}
+									disabled={disabled}
+									labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}
+									editing={(client != undefined)}
+								/>}
 						</CardBody>
 					</Card>
 
