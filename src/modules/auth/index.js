@@ -93,8 +93,8 @@ export default class SeaCatAuthModule extends Module {
 		});
 
 		app.Router.addRoute({
-			path: '/auth/credentials/:credentials_id/assigntenants',
-			name: 'Assign tenants',
+			path: '/auth/credentials/!bulk-assignment',
+			name: 'Bulk actions',
 			component: BulkAssignmentContainer
 		});
 
