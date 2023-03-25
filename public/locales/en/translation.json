@@ -83,6 +83,22 @@
 		"About": "About",
 		"Access control": "Access control"
 	},
+	"BulkAssignmentContainer" : {
+		"Credentials invited": "Credentials invited",
+		"Credentials suspended": "Credentials suspended",
+		"Failed to fetch credentials": "Failed to fetch credentials",
+		"Can't fetch credentials, you don't have rights to display it": "Can't fetch credentiasl, you don't have rights to display it",
+		"Failed to fetch tenants": "Failed to fetch tenants",
+		"Failed to perform bulk operation": "Failed to perform bulk operation",
+		"Bulk action was successful": "Bulk action was successful",
+		"Credentials": "Credentials",
+		"Search": "Search",
+		"Selected credentials": "Selected credentials",
+		"Unselect": "Unselect",
+		"Tenants": "Tenants",
+		"Selected tenants": "Selected tenants",
+		"Assign in bulk": "Assign in bulk"
+	},
 	"ClientListContainer": {
 		"Application type": "Application type",
 		"Failed to fetch clients": "Failed to fetch clients",
@@ -225,25 +241,6 @@
 		"Something went wrong, failed to fetch tenants": "Something went wrong, failed to fetch tenants",
 		"Something went wrong, failed to fetch assigned tenants": "Something went wrong, failed to fetch assigned tenants",
 		"No match": "No match"
-	},
-	"BulkAssignmentContainer": {
-		"Failed to fetch data": "Failed to fetch data",
-		"Failed to fetch user details": "Failed to fetch user details",
-		"Failed to fetch assigned tenants": "Failed to fetch assigned tenants",
-		"Failed to fetch tenants": "Failed to fetch tenants",
-		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
-		"Credentials": "Credentials",
-		"Select credentials": "Select credentials",
-		"Search": "Search",
-		"Loading": "Loading",
-		"No match": "No match",
-		"Assign tenants": "Assign tenants",
-		"No data": "No data",
-		"Save": "Save",
-		"Cancel": "Cancel",
-		"Remove": "Remove",
-		"Assign selected tennant to selected list of credentials": "Assign selected tennant to selected list of credentials",
-		"Assign": "Assign"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Sessions",
