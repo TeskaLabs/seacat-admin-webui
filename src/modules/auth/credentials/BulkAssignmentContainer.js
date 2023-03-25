@@ -1,117 +1,220 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useMemo } from "react"
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Container, Row, Form,  Card,
 	CardBody, CardHeader, CardFooter,
 	ButtonGroup, Button, Col,
 	Input, Dropdown, DropdownToggle,
 	DropdownItem, DropdownMenu } from "reactstrap";
-import { Credentials } from 'asab-webui';
+import { Credentials, DataTable, ButtonWithAuthz  } from 'asab-webui';
 
 const BulkAssignmentContainer = (props) => {
 
-	const {t} = useTranslation();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
-	const timeoutRef = useRef(null);
+	const { t } = useTranslation();
 
-	const [ allTenants, setAllTenants] = useState(undefined);
-	const [ assignedTenants, setAssignedTenants] = useState([]);
-	const [ assignedCredentialsDropdown, setAssignedCredentialsDropdown ] = useState([]);
-	const [ limit, setLimit] = useState(15);
-	const [ count, setCount ] = useState(undefined);
-	const [ filter, setFilter] = useState('');
-	const [ page, setPage] = useState('');
-	const [ loading, setLoading ] = useState(true);
-	const [ dropdownOpen, setDropdownOpen ] = useState(false);
-	const [ credentialsList, setCredentialsList ] = useState([]);
-	const [ prevAssignedTenants, setPrevAssignedTenants ] = useState(undefined);
+	const [data, setData] = useState([]);
+	const [count, setCount] = useState(0);
+	const [page, setPage] = useState(1);
+	const [limit, setLimit] = useState(5);
+	const [filter, setFilter] = useState("");
+	const [loading, setLoading] = useState(true);
+	const [selectedCredentials, setSelectedCredentials] = useState([]);
 
-	const { register, handleSubmit, reset, setValue } = useForm();
-	// const { register, handleSubmit, reset, setValue } = useForm({defaultValues: { tenants: assignedTenants }});
-	const resources = useSelector(state => state.auth?.resources);
-	const tenant = useSelector(state => state.tenant?.current);
-	const credentials_id = props.match.params.credentials_id;
+	const [tenants, setTenants] = useState({});
+	const [tenantsCount, setTenantsCount] = useState(0);
+	const [tenantsPage, setTenantsPage] = useState(1);
+	const [tenantsLimit, setTenantsLimit] = useState(0);
+	const [tenantsFilter, setTenantsFilter] = useState("");
+	const [loadingTenants, setLoadingTenants] = useState(true);
+	const [selectedTenants, setSelectedTenants] = useState([]);
 
-	useEffect(() => {
-		fetchAllTenants();
-		retrieveUserInfo();
-		// retrieveAssignedTenants();
-	}, [])
+	const [show, setShow] = useState(false);
 
-	//useEffect, applying filtering to credentials dropdown
-	useEffect(() => {
-		if (timeoutRef.current !== null) {
-			clearTimeout(timeoutRef.current);
-		}
-		timeoutRef.current = setTimeout(() => {
-			timeoutRef.current = null;
-			retrieveCredentialsForDropdown()
-		}, 500);
-	}, [filter]);
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
-	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
+	// const resourceCreateCredentials = "authz:tenant:admin";
+	// const resources = useSelector(state => state.auth?.resources);
+	// const tenant = useSelector(state => state.tenant?.current);
 
-	const retrieveUserInfo = async () => {
-		try {
-			let response = await SeaCatAuthAPI.get(`/credentials/${credentials_id}`);
-			setCredentialsList([response.data]);
-		} catch(e) {
-			console.error(e);
-			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch user details")}. ${e?.response?.data?.message}`, 30);
-		}
-	};
 
-	const retrieveAssignedTenants = async () => {
-		try {
-			let response = await SeaCatAuthAPI.get(`/tenant_assign/${credentials_id}`);
-			//updates tenants inside useForm and activates ('prefills') appropriate checkboxes on the screen
-			setValue('tenants', response.data);
-			setAssignedTenants(response.data);
-			setPrevAssignedTenants(response.data);
-		} catch(e) {
-			console.error(e);
-			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch assigned tenants")}. ${e?.response?.data?.message}`, 30);
-		}
-	};
-
-	const fetchAllTenants = async() => {
-		try {
-			let eligibleTenants = [];
-			let response = await SeaCatAuthAPI.get('/tenants', {params: {f: filter, i: limit}});
-			// if a logged in user doesn't hold 'authz:superuser' resource, their rights allow them to only assing the tenant, which they are currently using
-			if (resources.includes('authz:superuser')) {
-				eligibleTenants = response.data.data;
-			} else if (response.data.data.length > 0) {
-				let filteredTenant = response.data.data.filter(obj => obj._id === `${tenant}`);
-				eligibleTenants.push(filteredTenant[0]);
+	// headers for CredentailsList
+	const headers = [
+		{
+			name: '',
+			customComponent: {
+				generate: (credential) => (
+					<div className="">
+						<ButtonWithAuthz
+							title={t("Add Credential")}
+							id={credential._id}
+							size="sm"
+							color="primary"
+							outline
+							onClick={() => saveToSelectedCredentials(credential)}
+							resource="authz:superuser"
+							// resources={resources}
+							resources={"authz:superuser"}
+							disabled={credential.assigned}
+						>
+							<i className="cil-plus"></i>
+						</ButtonWithAuthz>
+					</div>
+				)
 			}
-			// this function changed eligibleTenants order to alphabetical
-			eligibleTenants.sort((a, b) => a._id.localeCompare(b._id));
-			setAllTenants(eligibleTenants);
-			setCount(response.data.count);
-		} catch(e) {
-			console.error(e);
-			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
+		},
+		{
+			name: t('BulkAssignmentContainer|Name'),
+			customComponent: {
+				generate: (obj) => (
+					<div
+						style={{whiteSpace: "nowrap",
+							maxWidth: "40ch",
+							textOverflow: "ellipsis",
+							overflow: "hidden",
+							marginBottom: 0}}
+					>
+						{obj.suspended === true ?
+							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
+							: <span className="cil-user mr-1" />}
+						<Link
+							style={{color: obj.suspended === true && '#73818f'}}
+							to={{
+								pathname: `/auth/credentials/${obj._id}`,
+							}}>
+							{/* TODO: substitute with Credentials component, when it's ready */}
+							{obj.username ?? obj._id}
+						</Link>
+					</div>
+				)
+			},
+			// customHeaderStyle: { width: "10%" }
 		}
+	];
+
+	// headers for Roles
+	const tenantHeaders = [
+		{
+			name: '',
+			customComponent: {
+				generate: (tenant) => (
+					<div className="">
+						<ButtonWithAuthz
+							title={t("Add Tenant")}
+							id={tenant._id}
+							size="sm"
+							color="primary"
+							outline
+							onClick={() => saveToSelectedTenants(tenant)}
+							resource="authz:superuser"
+							// resources={resources}
+							resources={"authz:superuser"}
+							disabled={tenant.assigned}
+						>
+							<i className="cil-plus"></i>
+						</ButtonWithAuthz>
+					</div>
+				)
+			}
+		},
+		{
+			name: t("Name"),
+			key: "_id",
+			link: {
+				key: "_id",
+				pathname: "/auth/tenant/"
+			}
+		}
+	];
+
+	// const suspendRow = {condition: (row) => (row.suspended === true), className: "bg-light"};
+
+	// Filter the value
+	const onSearch = (value) => {
+		setFilter(value);
 	};
 
-	// Receives data from all credentials
-	const retrieveCredentialsForDropdown = async () => {
+	// for CREDENTIALS
+	useEffect(() => {
+		setShow(false);
+		if (data?.length === 0) {
+			// Timeout delays appearance of content loader in DataTable. This measure prevents 'flickering effect' during fast fetch of data, where content loader appears just for a split second.
+			setTimeout(() => setShow(true), 500);
+		}
+		if (limit > 0) {
+			retrieveData();
+		}
+		// remove limit, since it will probabbly bbe hard coded?
+	}, [page, filter, limit]);
+
+	// for TENANTS
+	useEffect(() => {
+		setShow(false);
+		if (data?.length === 0) {
+			// Timeout delays appearance of content loader in DataTable. This measure prevents 'flickering effect' during fast fetch of data, where content loader appears just for a split second.
+			setTimeout(() => setShow(true), 500);
+		}
+		if (limit > 0) {
+			retrieveTenants();
+		}
+		// remove limit, since it will probabbly bbe hard coded?
+	}, [tenantsPage, tenantsFilter, tenantsLimit]);
+
+	const datatableCredentialsData = useMemo(() => {
+		let credentialsTableData = [];
+		if (data) {
+			data.map((credObj) => {
+				let matchObj = selectedCredentials.find(obj => obj._id === credObj._id);
+				console.log('selectedCredentials', selectedCredentials);
+				console.log('matchObj', matchObj);
+				if (matchObj) {
+					matchObj['assigned'] = true;
+					credentialsTableData.push(matchObj);
+				} else {
+					credObj['assigned'] = false;
+					credentialsTableData.push(credObj);
+				}
+			})
+		}
+		return credentialsTableData
+	}, [data, selectedCredentials])
+
+	const datatableTenantsData = useMemo(() => {
+		let tenantsTableData = [];
+		if (tenants.length > 0) {
+			tenants.map((tenantObj) => {
+				let matchObj = selectedTenants.find(obj => obj._id === tenantObj._id);
+				console.log('selectedTenants', selectedTenants);
+				console.log('matchObj', matchObj);
+				if (matchObj) {
+					matchObj['assigned'] = true;
+					tenantsTableData.push(matchObj);
+				} else {
+					tenantObj['assigned'] = false;
+					tenantsTableData.push(tenantObj);
+				}
+			})
+		}
+		return tenantsTableData
+	}, [tenants, selectedTenants])
+
+	//retrieves Credentials Data
+	const retrieveData = async () => {
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 		let response;
+		setLoading(true);
 		try {
-			// response = await SeaCatAuthAPI.get("/credentials", {params: {f: filter}});
-			response = await SeaCatAuthAPI.get("/credentials", {params: {m: 'tenant', f: tenant}});
-			// GET /credentials?m=tenant&f=tenant-a
-			console.log('response.data from GET / credentails: ', response.data)
+			response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: filter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to fetch data"));
 			}
-			setAssignedCredentialsDropdown(response.data.data);
+			setData(response.data.data);
+			setCount(response.data.count);
 			setLoading(false);
 		} catch(e) {
 			console.error(e);
-			setLoading(false)
+			setLoading(false);
 			if (e.response.status === 401) {
 				props.app.addAlert("warning", t("BulkAssignmentContainer|Can't fetch the data, you don't have rights to display it"), 30);
 				return;
@@ -120,184 +223,146 @@ const BulkAssignmentContainer = (props) => {
 		}
 	};
 
-	// Removes credentials from being displayed in the tenants card
-	const removeCredentialFromList = (idx) => {
-		const modifiedCreds = credentialsList;
-		modifiedCreds.splice(idx, 1);
-		setCredentialsList([...modifiedCreds]);
-	};
-
-	const submit = async (data) => {
-		// TBD
-		console.log('data: ', data);
-		console.log('Credentials to use: ', credentialsList);
-		let arr = []
-		credentialsList.map((el) => {
-			arr.push(el._id)
-		})
-		console.log('arr: ', arr)
-
+	// retrieves tenatns to display in Tenants List
+	const retrieveTenants = async () => {
 		try {
-			let response = await SeaCatAuthAPI.put(`/tenant_assign_many/${data.tenant}`, arr);
-			if (response.data.result !== "OK") {
-				throw new Error(t("BulkAssignmentContainer|Fail"));
-			}
-			console.log('reponse: ', response)
-			props.app.addAlert("success", t("BulkAssignmentContainer|Tenant assignment was successful"), 30);
+			let response = await SeaCatAuthAPI.get("/tenants", {params: {p:tenantsPage, i:tenantsLimit}});
+			setTenants(response.data.data);
+			setTenantsCount(response.data.count);
+			setLoadingTenants(false);
 		} catch(e) {
 			console.error(e);
-			if (e.response.status === 401) {
-				props.app.addAlert("warning", t("BulkAssignmentContainer|Fail"), 30);
-				return;
-			}
-			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Fail")}. ${e?.response?.data?.message}`, 30);
+			setLoadingTenants(false);
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
 		}
+	}
 
-	};
+	const assignMany = async () => {
+		let credential_ids = [];
+		let tenantObj = {};
+		selectedCredentials.map((obj) => {
+			credential_ids.push(obj._id);
+		})
+		selectedTenants.map((obj) => {
+			tenantObj[obj._id] = [];
+		})
+		console.log('credential_ids', credential_ids)
+		console.log('tenant_ids', tenantObj)
+		try {
+			await SeaCatAuthAPI.put("/tenant_assign_many", {"credential_ids": credential_ids, "tenants": tenantObj })
+		} catch (error) {
+
+		}
+	}
+
+	const saveToSelectedCredentials = (credentialObj) => {
+		setSelectedCredentials([...selectedCredentials, credentialObj]);
+	}
+
+	// remove item from selected credentials
+	const unselectCredential = (idx) => {
+		let credData = selectedCredentials;
+		credData.splice(idx, 1);
+		setSelectedCredentials([...credData]);
+	}
+
+	const saveToSelectedTenants = (tenantObj) => {
+		setSelectedTenants([...selectedTenants, tenantObj]);
+	}
+
+	const unselectTenant = (idx) => {
+		let tenantData = selectedTenants;
+		tenantData.splice(idx, 1);
+		setSelectedTenants([...tenantData]);
+	}
 
 	return (
-		<Container>
-			<Form onSubmit={handleSubmit(submit)} className="assign-tenants-wraper">
-				<Card className='assign-tenants-credentails w-30'>
-					<CardHeader>
-						<div className="card-header-title">
-							<i className="cil-people mr-2" />
-							{t("BulkAssignmentContainer|Credentials")}
-						</div>
-						<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
-							<DropdownToggle caret outline color="primary" className="card-header-dropdown">
-								{t("BulkAssignmentContainer|Select credentials")}
-							</DropdownToggle>
-							<DropdownMenu className="assign-credential-list-dropdown">
-								<DropdownItem header>
-									<Input
-										className="m-0"
-										placeholder={t("BulkAssignmentContainer|Search")}
-										onChange={e => setFilter(e.target.value)}
-										value={filter}
-									/>
-								</DropdownItem>
-								{loading ?
-									<DropdownItem><span>{t("BulkAssignmentContainer|Loading")}</span></DropdownItem>
-									:
-									(assignedCredentialsDropdown && Object.keys(assignedCredentialsDropdown).map((item, i) => {
-										let checkCredentialsAvailability = credentialsList.findIndex(elem => elem._id === assignedCredentialsDropdown[item]._id);
-										if (checkCredentialsAvailability === -1) {
-											// Display only if the credentials is not already assigned
-											return (
-												<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => setCredentialsList([...credentialsList, assignedCredentialsDropdown[item]])}>
-													{assignedCredentialsDropdown[item].username ?
-														<span>{assignedCredentialsDropdown[item].username}</span>
-														:
-														<Credentials
-															className="disabled-link"
-															app={props.app}
-															credentials_ids={assignedCredentialsDropdown[item]._id}
-														/>
-													}
-												</DropdownItem>
-											)
-										}
-										else {return null}
-									}))
-								}
-								{(!assignedCredentialsDropdown ) && <DropdownItem><span>{t("BulkAssignmentContainer|No match")}</span></DropdownItem>}
-							</DropdownMenu>
-						</Dropdown>
-					</CardHeader>
-					<CardBody>
-						{ (credentialsList.length > 0) && (
-							credentialsList.map((el, idx) => {
-								return (
-									<div className="mt-2">
-										{el.username ?
-											<>
-												<i className="cil-user mr-1" />
-												{el.username}
-											</>
-										:
-											<Credentials
-												className="disabled-link"
-												app={props.app}
-												credentials_ids={el._id}
-											/>
-										}
-										<Button
-											size="sm"
-											outline
-											className='ml-4'
-											style={{'display': 'inline'}}
-											color="danger"
-											onClick={() => ( console.log('we bouta remove'), removeCredentialFromList(idx))}
-											title={t("BulkAssignmentContainer|Remove")}
-										>
-											-
-										</Button>
-									</div>
-									)
-								}
-							))
-						}
-					</CardBody>
-				</Card>
-				<Card className="assign-tenants-tenants w-30">
-					<CardHeader>
-						<div className="card-header-title">
-							<i className="cil-apps mr-2" />
-							{t("BulkAssignmentContainer|Assign tenants")}
-						</div>
-					</CardHeader>
+		// <div className="h-100" ref={ref}>
+		<div className='wraper'>
 
+			<div className='credentials-list'>
+					<DataTable
+						title={{ text: t("CredentialsListdiv|Credentials"), icon: "cil-storage" }}
+						headers={headers}
+						data={datatableCredentialsData}
+						count={count}
+						limit={limit}
+						setLimit={setLimit}
+						currentPage={page}
+						setPage={setPage}
+						search={{ icon: 'cil-magnifying-glass', placeholder: t("CredentialsListdiv|Search") }}
+						onSearch={onSearch}
+						customRowClassName={'bg-white'}
+						isLoading={loading}
+						contentLoader={show}
+						height={700}
+					/>
+			</div>
+
+			<div className='credentials-selection'>
+				<Card>
+					<CardHeader>
+						<div className="card-header-title">
+							<i className="cil-list" />
+							Selected credentials
+						</div>
+					</CardHeader>
 					<CardBody>
-						<Col>
-						{(allTenants && allTenants.length > 0) ?
-						allTenants.map((tenant) => {
-							return(
-								<Row key={tenant._id}>
-									<input
-										type="radio"
-										name="tenant"
-										className="mr-1"
-										value={tenant._id}
-										{...register("tenant")}
-									/>
-									{tenant._id}
-								</Row>
+						{selectedCredentials.map((obj, idx) => {
+							return (
+								<div className='d-flex flex-direction-row align-items-center'>
+									<Button outline size="sm" secondary onClick={() => unselectCredential(idx)}><i className='cil-x'/></Button>
+									<span className="cil-user mr-1" />{obj.username ?? obj._id}
+								</div>
 							)
-						})
-						: <p>{t("BulkAssignmentContainer|No data")}</p>}
-						</Col>
+						})}
 					</CardBody>
-
 					<CardFooter className="border-top">
-						<ButtonGroup className="flex-nowrap">
-							<Button
-								color="primary"
-								type="submit"
-								title={t("BulkAssignmentContainer|Assign selected tennant to selected list of credentials")}
-							>
-								{t("BulkAssignmentContainer|Assign")}
-							</Button>
-						</ButtonGroup>
-						<div className='actions-right'>
-							<Button
-								outline
-								title={t("BulkAssignmentContainer|Cancel")}
-								onClick={(e) => (
-									e.preventDefault(),
-									reset({tenants: assignedTenants}),
-									retrieveUserInfo(),
-									setAssignedTenants(prevAssignedTenants)
-								)}
-							>
-								{t("BulkAssignmentContainer|Cancel")}
-							</Button>
-						</div>
+						<Button onClick={() => console.log('selected', selectedCredentials)}>Action</Button>
 					</CardFooter>
 				</Card>
-			</Form>
-		</Container>
+			</div>
+
+			<div className='tenant-list'>
+				<DataTable
+					title={{ text: t("TenantListContainer|Tenants"), icon: "cil-apps" }}
+					headers={tenantHeaders}
+					data={datatableTenantsData}
+					count={tenantsCount}
+					limit={tenantsLimit}
+					setLimit={setTenantsLimit}
+					currentPage={tenantsPage}
+					setPage={setTenantsPage}
+					isLoading={loadingTenants}
+					contentLoader={show}
+				/>
+			</div>
+
+			<div className='tenant-selection'>
+				<Card>
+					<CardHeader>
+						<div className="card-header-title">
+							<i className="cil-list" />
+							Selected Tenants
+						</div>
+					</CardHeader>
+					<CardBody>
+						{selectedTenants.map((obj, idx) => {
+							return (
+								<div className='d-flex flex-direction-row align-items-center'>
+									<Button outline size="sm" secondary onClick={() => unselectTenant(idx)}><i className='cil-x'/></Button>
+									{obj._id}
+								</div>
+							)
+						})}
+					</CardBody>
+					<CardFooter className="border-top">
+						<Button onClick={() => assignMany()}>Action</Button>
+					</CardFooter>
+				</Card>
+			</div>
+		</div>
 	)
-}
+};
 
 export default BulkAssignmentContainer
