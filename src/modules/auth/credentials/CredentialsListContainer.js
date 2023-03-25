@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { DataTable, ButtonWithAuthz } from 'asab-webui';
 
-import {Container} from 'reactstrap';
+import {Container, Button} from 'reactstrap';
 
 function CredentialsListContainer(props) {
 
@@ -200,15 +200,18 @@ function CredentialsListContainer(props) {
 	}
 
 	const createCredentialsComponent = (
-		<ButtonWithAuthz
-			title={t("CredentialsListContainer|Create new credentials")}
-			color="primary"
-			onClick={() => {redirectToCreate()}}
-			resource={resourceCreateCredentials}
-			resources={resources}
-		>
-			{t("CredentialsListContainer|Create new credentials")}
-		</ButtonWithAuthz>
+		<div className='d-flex'>
+			<Button outline secondary onClick={() => props.history.push('/auth/credentials/!bulk-assignment')}>Bulk Actions</Button>
+			<ButtonWithAuthz
+				title={t("CredentialsListContainer|Create new credentials")}
+				color="primary"
+				onClick={() => {redirectToCreate()}}
+				resource={resourceCreateCredentials}
+				resources={resources}
+				>
+				{t("CredentialsListContainer|Create new credentials")}
+			</ButtonWithAuthz>
+		</div>
 	);
 
 	const redirectToCreate = () => {
