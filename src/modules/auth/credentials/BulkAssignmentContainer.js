@@ -17,7 +17,7 @@ const BulkAssignmentContainer = (props) => {
 	const [data, setData] = useState([]);
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(1);
-	const [limit, setLimit] = useState(5);
+	const [limit, setLimit] = useState(0);
 	const [filter, setFilter] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [selectedCredentials, setSelectedCredentials] = useState([]);
@@ -65,7 +65,7 @@ const BulkAssignmentContainer = (props) => {
 			}
 		},
 		{
-			name: t('BulkAssignmentContainer|Name'),
+			name: '',
 			customComponent: {
 				generate: (obj) => (
 					<div
@@ -89,7 +89,6 @@ const BulkAssignmentContainer = (props) => {
 					</div>
 				)
 			},
-			// customHeaderStyle: { width: "10%" }
 		}
 	];
 
@@ -119,7 +118,7 @@ const BulkAssignmentContainer = (props) => {
 			}
 		},
 		{
-			name: t("Name"),
+			name: '',
 			key: "_id",
 			link: {
 				key: "_id",
@@ -310,9 +309,9 @@ const BulkAssignmentContainer = (props) => {
 					<CardBody>
 						{selectedCredentials.map((obj, idx) => {
 							return (
-								<div className='d-flex flex-direction-row align-items-center'>
+								<div className='d-flex flex-direction-row align-items-center selected-row'>
 									<Button outline size="sm" secondary onClick={() => unselectCredential(idx)}><i className='cil-x'/></Button>
-									<span className="cil-user mr-1" />{obj.username ?? obj._id}
+									<span className="cil-user mr-1 ml-3" />{obj.username ?? obj._id}
 								</div>
 							)
 						})}
@@ -349,9 +348,9 @@ const BulkAssignmentContainer = (props) => {
 					<CardBody>
 						{selectedTenants.map((obj, idx) => {
 							return (
-								<div className='d-flex flex-direction-row align-items-center'>
+								<div className='d-flex flex-direction-row align-items-center selected-row'>
 									<Button outline size="sm" secondary onClick={() => unselectTenant(idx)}><i className='cil-x'/></Button>
-									{obj._id}
+									<span className="ml-3">{obj._id}</span>
 								</div>
 							)
 						})}
