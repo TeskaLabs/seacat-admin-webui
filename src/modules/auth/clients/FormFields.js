@@ -134,7 +134,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 
 	return (
 		<FormGroup>
-			<Label title={t("ExportFormField|Required field")} for={name}>{labelName}</Label>
+			<Label title={t("ClientFormField|Required field")} for={name}>{labelName}</Label>
 			<InputGroup>
 				<Input
 					id={name}
