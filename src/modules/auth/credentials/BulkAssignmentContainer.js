@@ -291,7 +291,7 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	return (
-		<div className='wraper'>
+		<div className='bulk-actions-wraper'>
 			<div className='credentials-list'>
 					<DataTable
 						title={{ text: t("BulkAssignmentContainer|Credentials"), icon: "cil-people" }}
