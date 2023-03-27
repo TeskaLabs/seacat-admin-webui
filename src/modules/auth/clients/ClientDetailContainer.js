@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardBody, CardFooter,
-	Button, ButtonGroup
+	Button, ButtonGroup, Input, FormGroup
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';
@@ -30,9 +30,6 @@ const ClientDetailContainer = (props) =>  {
 	const getClientDetail = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`client/${client_id}`);
-			if (response.statusText != 'OK') {
-				throw new Error("Unable to get client details");
-			}
 			setClient(response.data);
 		} catch (e) {
 			console.error(e);
@@ -43,9 +40,6 @@ const ClientDetailContainer = (props) =>  {
 	const resetSecret = async () => {
 		try {
 			let response = await SeaCatAuthAPI.post(`client/${client_id}/reset_secret`);
-			if (response.statusText != 'OK') {
-				throw new Error("Unable to reset client secret");
-			}
 			props.app.addAlert("success", t('ClientDetailContainer|Secret has been reset successfully'));
 			getClientDetail();
 		} catch (e) {
@@ -73,7 +67,7 @@ const ClientDetailContainer = (props) =>  {
 	const removeClient = async () => {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/client/${client_id}`);
-			if (response.statusText != 'OK') {
+			if (response.data.result !== "OK") {
 				throw new Error("Unable to delete client");
 			}
 			props.app.addAlert("success", t('ClientDetailContainer|Client removed successfully'));
@@ -85,9 +79,9 @@ const ClientDetailContainer = (props) =>  {
 	};
 
 	return (
-		<Container>
-			<Row className="mb-4 justify-content-md-center">
-				<Col md={8}>
+		<Container className="client-wrapper">
+			<div className="client-cards-wrapper">
+				<div className="client-main-info">
 					<Card>
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
@@ -97,96 +91,42 @@ const ClientDetailContainer = (props) =>  {
 						</CardHeader>
 						<CardBody>
 							<Row>
-								<Col md={4} title="client_name">{t("ClientDetailContainer|Client name")}</Col>
+								<Col md={5} title="client_name">{t("ClientDetailContainer|Client name")}</Col>
 								<Col title="client_name">{client?.client_name ? client.client_name : "N/A"}</Col>
 							</Row>
 							<Row>
-								<Col md={4} title="client_id">{t("ClientDetailContainer|Client ID")}</Col>
-								<Col><code>{client?.client_id}</code></Col>
+								<Col md={5} title="client_id">{t("ClientDetailContainer|Client ID")}</Col>
+								<Col><code>{client?.client_id ? client.client_id : "N/A"}</code></Col>
 							</Row>
-							<Row>
-								<Col md={4} title="client_uri">{t("ClientDetailContainer|Client URI")}</Col>
-								<Col>{client?.client_uri ? client.client_uri : "N/A"}</Col>
-							</Row>
-							{client?.client_secret &&
-								<Row>
-									<Col md={4} title="client_secret">{t("ClientDetailContainer|Client secret")}</Col>
-									<Col>
-										<code>{client?.client_secret}</code>
-										<Button
-											color="link"
-											onClick={() => resetSecretConfirm()}
-											className="client-secret-btn"
-										>
-											{t("ClientDetailContainer|Reset secret")}
-										</Button>
-									</Col>
-								</Row>
-							}
 							<Row className="mt-3">
-								<Col md={4} title="created_at">{t("Created at")}</Col>
+								<Col md={5} title="created_at">{t("Created at")}</Col>
 								<Col><DateTime value={client?._c} /></Col>
 							</Row>
 							<Row>
-								<Col md={4} title="modified_at">{t("Modified at")}</Col>
+								<Col md={5} title="modified_at">{t("Modified at")}</Col>
 								<Col><DateTime value={client?._m} /></Col>
 							</Row>
-							<Row>
-								<Col md={4} title="application_type">{t("ClientDetailContainer|Application type")}</Col>
-								<Col title="application_type">{client?.application_type}</Col>
-							</Row>
-							<Row>
-								<Col md={4} title="response_types">{t("ClientDetailContainer|Response types")}</Col>
-								<Col title="response_types">
-									{client?.response_types?.length > 0 &&
-										client?.response_types.map((item, idx) => (
-											<div key={idx}>{item}</div>
-										))
-									}
-								</Col>
-							</Row>
-							<Row>
-								<Col md={4} title="grant_types">{t("ClientDetailContainer|Grant types")}</Col>
-								<Col title="grant_types">
-									{client?.grant_types?.length > 0 &&
-										client?.grant_types.map((item, idx) => (
-											<div key={idx}>{item}</div>
-										))
-									}
-								</Col>
-							</Row>
-							<Row>
-								<Col md={4} title="token_endpoint_auth_method">{t("ClientDetailContainer|Token endpoint auth. method")}</Col>
-								<Col title="token_endpoint_auth_method">{client?.token_endpoint_auth_method}</Col>
-							</Row>
 							<Row className="mt-3">
-								<Col md={4} title="code_challenge_methods">{t("ClientDetailContainer|Code challenge methods")}</Col>
-								<Col title="code_challenge_methods">
-									{client?.code_challenge_methods ? client?.code_challenge_methods.map((item, idx) => (
-										<div key={idx}>{item}</div>))
-									:
-										<div>N/A</div>
-									}
-								</Col>
-							</Row>
-							<Row>
-								<Col md={4} title="login_uri">{t("ClientDetailContainer|Login URI")}</Col>
-								<Col>{client?.login_uri ? client.login_uri : "N/A"}</Col>
-							</Row>
-							<Row>
-								<Col md={4} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
-								<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
-							</Row>
-							<Row className="mt-3">
-								<Col md={4} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
+								<Col md={5} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
 								<Col title="redirect_uris" className="redirect_uris">
 									{client?.redirect_uris.map((item, idx) => (
-											<div key={idx} className="redirect-uris-item">{item}</div>))
+										<div key={idx} className="redirect-uris-item">{item}</div>))
 									}
 								</Col>
 							</Row>
+							<Row>
+								<Col md={5} title="redirect_uri_validation_method">{t("ClientDetailContainer|Redirect URI validation method")}</Col>
+								<Col>{client?.redirect_uri_validation_method ? client.redirect_uri_validation_method : "N/A"}</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="client_uri">{t("ClientDetailContainer|Client URI")}</Col>
+								<Col>{client?.client_uri ? client.client_uri : "N/A"}</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="application_type">{t("ClientDetailContainer|Application type")}</Col>
+								<Col title="application_type">{client?.application_type}</Col>
+							</Row>
 						</CardBody>
-
 						<CardFooter>
 							<ButtonGroup>
 								<Link to={{pathname: `/auth/clients/${client_id}/edit`}}>
@@ -214,33 +154,128 @@ const ClientDetailContainer = (props) =>  {
 							</ButtonGroup>
 						</CardFooter>
 					</Card>
-				</Col>
-			</Row>
+				</div>
+				<div className="client-right-cards">
+					<Card>
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-applications-settings pr-2"></i>
+								{t("ClientDetailContainer|Multidomain")}
+							</div>
+						</CardHeader>
+						<CardBody>
+							<Row>
+								<Col md={5} title="login_uri">{t("ClientDetailContainer|Login URI")}</Col>
+								<Col>{client?.login_uri ? client.login_uri : "N/A"}</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
+								<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="authorize_uri">{t("ClientDetailContainer|Authorize URI")}</Col>
+								<Col>{client?.authorize_uri ? client.authorize_uri : "N/A"}</Col>
+							</Row>
+						</CardBody>
+					</Card>
 
-			<Row className="justify-content-md-center">
-				{advmode &&
-					<Col md={8}>
-						<Card>
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="cil-code pr-2"></i>
-									JSON
-								</div>
-							</CardHeader>
-							{client &&
-								<CardBody>
-									<ReactJson
-										theme={theme === 'dark' ? "chalk" : "rjv-default"}
-										src={client}
-										name={false}
-										collapsed={false}
-									/>
-								</CardBody>
+					<Card className="mt-3">
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-swap-horizontal pr-2"></i>
+								{t("ClientDetailContainer|Authorization")}
+							</div>
+						</CardHeader>
+						<CardBody>
+							<Row>
+								<Col md={5} title="code_challenge_method">{t("ClientDetailContainer|Code challenge method (PKCE)")}</Col>
+								<Col title="code_challenge_method">{client?.code_challenge_method ? client.code_challenge_method : "N/A"}</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="response_types">{t("ClientDetailContainer|Response types")}</Col>
+								<Col title="response_types">
+									{client?.response_types?.length > 0 &&
+										client?.response_types.map((item, idx) => (
+											<div key={idx}>{item}</div>
+										))
+									}
+								</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="grant_types">{t("ClientDetailContainer|Grant types")}</Col>
+								<Col title="grant_types">
+									{client?.grant_types?.length > 0 &&
+										client?.grant_types.map((item, idx) => (
+											<div key={idx}>{item}</div>
+										))
+									}
+								</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="token_endpoint_auth_method">{t("ClientDetailContainer|Token endpoint auth. method")}</Col>
+								<Col title="token_endpoint_auth_method">{client?.token_endpoint_auth_method}</Col>
+							</Row>
+							{client?.client_secret &&
+								<Row>
+									<Col md={5} title="client_secret">{t("ClientDetailContainer|Client secret")}</Col>
+									<Col>
+										<code>{client?.client_secret ? client.client_secret : "N/A"}</code>
+										<Button
+											color="link"
+											onClick={() => resetSecretConfirm()}
+											className="client-secret-btn"
+										>
+											{t("ClientDetailContainer|Reset secret")}
+										</Button>
+									</Col>
+								</Row>
 							}
-						</Card>
-					</Col>
-				}
-			</Row>
+						</CardBody>
+					</Card>
+
+					<Card className="mt-3">
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-exit-to-app pr-2"></i>
+								{t("ClientDetailContainer|Access control")}
+							</div>
+						</CardHeader>
+						<CardBody>
+							<FormGroup check>
+								<Input
+									id="authorize_anonymous_users"
+									name="authorize_anonymous_users"
+									type="checkbox"
+									disabled={true}
+									checked={(client?.authorize_anonymous_users == true) ? true : false}
+								/>{' '}
+								{t('ClientDetailContainer|Authorize anonymous users')}
+							</FormGroup>
+						</CardBody>
+					</Card>
+				</div>
+			</div>
+
+			{advmode &&
+				<Card className="w-100 adv-card">
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-code pr-2"></i>
+							JSON
+						</div>
+					</CardHeader>
+					{client &&
+						<CardBody>
+							<ReactJson
+								theme={theme === 'dark' ? "chalk" : "rjv-default"}
+								src={client}
+								name={false}
+								collapsed={false}
+							/>
+						</CardBody>
+					}
+				</Card>
+			}
 		</Container>
 	);
 }

@@ -127,9 +127,6 @@ function TenantDetailContainer(props) {
 	const retrieveData = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/tenant/${tenant_id}`);
-			if (response.statusText !== "OK") {
-				throw new Error(t("TenantDetailContainer|Something went wrong, failed to fetch tenant detail"));
-			}
 			setData(response.data);
 			response.data?.data && setCustomTenantData(response.data.data);
 			setLoadingCustomData(false);
