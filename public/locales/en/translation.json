@@ -121,9 +121,7 @@
 		"Authorize URI": "Authorize URI",
 		"Authorize anonymous users": "Authorize anonymous users",
 		"URI can't be empty": "URI can't be empty",
-		"URL hash have to be empty": "URL hash have to be empty",
-		"Choose an option": "Choose an option",
-		"Required field": "Required field"
+		"URL hash has to be empty": "URL hash has to be empty"
 	},
 	"ClientDetailContainer": {
 		"Something went wrong, failed to fetch client details": "Something went wrong, failed to fetch client details",
@@ -164,7 +162,7 @@
 		"Invalid format, input should have minimum of 8 characters": "Invalid format, input should have minimum of 8 characters",
 		"Invalid format for cookie_domain": "Invalid format for cookie_domain",
 		"URI can't be empty": "URI can't be empty",
-		"URL hash have to be empty": "URL hash have to be empty",
+		"URL hash has to be empty": "URL hash has to be empty",
 		"Choose an option": "Choose an option",
 		"None": "None",
 		"Required field": "Required field"
