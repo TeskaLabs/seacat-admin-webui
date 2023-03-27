@@ -20,6 +20,8 @@
 
 - Update locales. Add missing and remove unused locales (INDIGO Sprint 230317, [!27](https://github.com/TeskaLabs/seacat-admin-webui/pull/27))
 
+- Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230317, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
+
 ### Bugfix
 
 - Fix responses in Clients and Tenant containers causing errors on undefined value. Closing issue [!24](https://github.com/TeskaLabs/seacat-admin-webui/issues/24). (INDIGO Sprint 230317, [!25](https://github.com/TeskaLabs/seacat-admin-webui/pull/25))
