@@ -217,7 +217,7 @@
 	},
 	"CredentialsRolesCard": {
 		"More": "Více ...",
-		"Assigned roles": "Přiřazené role",
+		"Roles": "Role",
 		"Assign a new role": "Přidat novou roli",
 		"Select role to assign ...": "Vyberte roli k přiřazení ...",
 		"Roles updated successfully": "Role úspěšně aktualizované",

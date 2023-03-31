@@ -217,7 +217,7 @@
 	},
 	"CredentialsRolesCard": {
 		"More": "More...",
-		"Assigned roles": "Assigned roles",
+		"Roles": "Roles",
 		"Assign a new role": "Assign a new role",
 		"Select role to assign ...": "Select role to assign ...",
 		"Roles updated successfully": "Roles updated successfully",
