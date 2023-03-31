@@ -10,7 +10,7 @@ Tested with Seacat Auth service [v23.13-beta](https://github.com/TeskaLabs/seaca
 
 ### Features
 
-- ASAB WebUI submodule version bump [[1960466](https://github.com/TeskaLabs/asab-webui/commit/1960466a45d0c48ec279e703317ebf0a59fdcbda)] commit (INDIGO Sprint 230317, [!22](https://github.com/TeskaLabs/seacat-admin-webui/pull/22))
+- ASAB WebUI submodule version bump [[d0608ba](https://github.com/TeskaLabs/asab-webui/commit/d0608ba897f120a163561513e004dadf53c46dda)] commit (INDIGO Sprint 230317, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
 
 ### Refactoring
 
