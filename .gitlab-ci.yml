@@ -46,7 +46,7 @@ azure main:
     - main
 
   script:
-    - az storage blob upload --overwrite --file seacat-admin-webui.tar.lzma --container-name "\$web" --name "seacat/master/seacat-admin-webui.tar.lzma" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
+    - az storage blob upload --overwrite --file seacat-admin-webui.tar.lzma --container-name "\$web" --name "seacat-admin/master/seacat-admin-webui.tar.lzma" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
 
 
 azure tags:
@@ -64,4 +64,4 @@ azure tags:
     - tags
 
   script:
-    - az storage blob upload --overwrite --file seacat-admin-webui.tar.lzma --container-name "\$web" --name "seacat/${CI_COMMIT_TAG}/seacat-admin-webui.tar.lzma" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
+    - az storage blob upload --overwrite --file seacat-admin-webui.tar.lzma --container-name "\$web" --name "seacat-admin/${CI_COMMIT_TAG}/seacat-admin-webui.tar.lzma" --connection-string "$AZURE_STORAGE_CONNECTION_STRING"
