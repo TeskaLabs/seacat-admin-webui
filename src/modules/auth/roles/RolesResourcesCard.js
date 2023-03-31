@@ -84,7 +84,7 @@ const RolesResourcesCard = (props) => {
 				{assignedResources.map((resource, idx) => (
 					<Row key={idx}>
 						<Col style={{overflow: "hidden", marginLeft: "15px", paddingLeft: "0"}}>
-							<span className="d-flex align-items-center btn-edit-mode">
+							<span className="d-flex align-items-center">
 								{editMode &&
 									<Button
 										disabled={!editMode}

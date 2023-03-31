@@ -125,7 +125,7 @@ function CredentialsTenantsCard(props) {
 				{assignedTenants.map((tenant_id, i) => (
 				<Row key={tenant_id}>
 					<Col style={{overflow: "hidden", marginLeft: "15px", paddingLeft: "0"}}>
-						<span className="d-flex align-items-center btn-edit-mode">
+						<span className="d-flex align-items-center">
 							 {editMode &&
 								 <Button
 									 outline
