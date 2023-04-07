@@ -201,7 +201,17 @@ function CredentialsListContainer(props) {
 
 	const createCredentialsComponent = (
 		<div className='d-flex'>
-			<Button outline secondary onClick={() => props.history.push('/auth/credentials/!bulk-assignment')}>Bulk Actions</Button>
+			<ButtonWithAuthz
+				outline
+				color="primary"
+				onClick={() => props.history.push('/auth/credentials/!bulk-assignment')}
+				// resource={resourceCreateCredentials}
+				// resources={resources}
+				resource={'hello'}
+				resources={'hello'}
+				>
+				Bulk Actions
+			</ButtonWithAuthz>
 			<ButtonWithAuthz
 				title={t("CredentialsListContainer|Create new credentials")}
 				color="primary"
