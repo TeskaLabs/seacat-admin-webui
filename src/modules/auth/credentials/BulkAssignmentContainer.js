@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo } from "react"
-import { useForm } from 'react-hook-form';
+import React, { useState, useEffect, useMemo } from "react"
 import { useTranslation } from 'react-i18next';
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Container, Row, Form,  Card,
-	CardBody, CardHeader, CardFooter,
-	ButtonGroup, Button, Col,
-	Input, Dropdown, DropdownToggle,
-	DropdownItem, DropdownMenu } from "reactstrap";
-import { Credentials, DataTable, ButtonWithAuthz  } from 'asab-webui';
+import { Card, CardBody, CardHeader,
+	CardFooter, Button } from "reactstrap";
+import {DataTable, ButtonWithAuthz  } from 'asab-webui';
+import RoleDropdown from "../components/RoleDropdown";
 
 const BulkAssignmentContainer = (props) => {
 
@@ -28,6 +24,10 @@ const BulkAssignmentContainer = (props) => {
 	const [tenantsLimit, setTenantsLimit] = useState(0);
 	const [loadingTenants, setLoadingTenants] = useState(true);
 	const [selectedTenants, setSelectedTenants] = useState([]);
+
+	// const [roles, setRoles] = useState([]);
+	// const [dropdownOpen, setDropdownOpen] = useState(false);
+	// const [selectedRoles, setSelectedRoles] = useState([]);
 
 	const [show, setShow] = useState(false);
 	const [showTenantsContentLoader, setShowTenantsContentLoader] = useState(false);
@@ -143,6 +143,10 @@ const BulkAssignmentContainer = (props) => {
 		}
 	}, [page, filter, limit]);
 
+	useEffect(() => {
+		console.log('selectedTenants from useEffect: ', selectedTenants);
+	}, [selectedTenants]);
+
 	// UseEffect to fetch data for Tenants List based on changes in page/limit
 	useEffect(() => {
 		setShowTenantsContentLoader(false);
@@ -219,6 +223,35 @@ const BulkAssignmentContainer = (props) => {
 		};
 	};
 
+	// fetch roles for Tenant dropdowns
+	const retrieveRoleList = async (tenantObj) => {
+		// let credentialIds = (data !== undefined) && data.map((item, idx) => {
+		// 	return item._id ? item._id : "N/A";
+		// })
+
+
+		// console.log('tenantId')
+		let response;
+		let arr;
+		try {
+			response = await SeaCatAuthAPI.get(`/role/${tenantObj._id}`);
+			console.log('response.data', response.data);
+
+			// setRoles(response.data);
+
+			tenantObj['roles'] = response.data;
+			console.log('matchObj', tenantObj);
+
+			arr = [...selectedTenants, tenantObj];
+
+			setSelectedTenants(arr);
+			// console.log('a', a)
+		} catch (e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("CredentialsListContainer| :/ error bruh")}. ${e?.response?.data?.message}`, 30);
+		}
+	}
+
 	// fetch data for Tenants List from server
 	const retrieveTenants = async () => {
 		setLoadingTenants(true)
@@ -280,7 +313,7 @@ const BulkAssignmentContainer = (props) => {
 
 	// add specific(selected) tenant object to selectedTenants state
 	const saveToSelectedTenants = (tenantObj) => {
-		setSelectedTenants([...selectedTenants, tenantObj]);
+		retrieveRoleList(tenantObj)
 	};
 
 	// remove item from selectedTenants state
@@ -289,6 +322,15 @@ const BulkAssignmentContainer = (props) => {
 		tenantData.splice(idx, 1);
 		setSelectedTenants([...tenantData]);
 	};
+
+
+	const unselectRole = (tenantIndex, roleIndex) => {
+		let tenantData = selectedTenants;
+		tenantData[tenantIndex].selectedRole.splice(roleIndex, 1);
+		console.log('tenantData', tenantData);
+		setSelectedTenants([...tenantData]);
+	};
+
 
 	return (
 		<div className='bulk-actions-wraper'>
@@ -360,17 +402,41 @@ const BulkAssignmentContainer = (props) => {
 				<CardBody>
 					{selectedTenants.map((obj, idx) => {
 						return (
-							<div className='d-flex flex-direction-row align-items-center selected-row'>
-								<Button
-									title={t("BulkAssignmentContainer|Unselect")}
-									outline
-									size="sm"
-									onClick={() => unselectTenant(idx)}
-								>
-									<i className='cil-x'/>
-								</Button>
-								<span className="ml-3">{obj._id}</span>
-							</div>
+							<>
+								<div className='d-flex flex-direction-row align-items-center selected-row'>
+									<Button
+										title={t("BulkAssignmentContainer|Unselect")}
+										outline
+										size="sm"
+										onClick={() => unselectTenant(idx)}
+										>
+										<i className='cil-x'/>
+									</Button>
+									<span className="ml-3">{obj._id}</span>
+									<RoleDropdown
+										tenantObj={obj}
+										selectedTenants={selectedTenants}
+										setSelectedTenants={setSelectedTenants}
+										idx={idx}
+									/>
+								</div>
+								<div className="role-wrapper ml-5">
+									{obj.selectedRole ?
+										obj.selectedRole.map((role, i) => {
+											return (
+												<div className="role-item ml-4">
+													<Button className="btn-xs" size="sm" outline color="secondary" onClick={() => unselectRole(idx, i)}>
+														<i className="cil-x"/>
+													</Button>
+													<span className="pl-2">{role}</span>
+												</div>
+											)
+										})
+									:
+										null
+									}
+								</div>
+							</>
 						)
 					})}
 				</CardBody>
