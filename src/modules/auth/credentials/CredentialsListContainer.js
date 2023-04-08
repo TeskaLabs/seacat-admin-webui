@@ -26,6 +26,7 @@ function CredentialsListContainer(props) {
 	const ref = useRef(null);
 
 	const resourceCreateCredentials = "authz:tenant:admin";
+	const resourceBulkActions = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);
 
@@ -202,15 +203,14 @@ function CredentialsListContainer(props) {
 	const createCredentialsComponent = (
 		<div className='d-flex'>
 			<ButtonWithAuthz
+				title={t("CredentialsListContainer|Bulk actions")}
 				outline
 				color="primary"
 				onClick={() => props.history.push('/auth/credentials/!bulk-assignment')}
-				// resource={resourceCreateCredentials}
-				// resources={resources}
-				resource={'hello'}
-				resources={'hello'}
-				>
-				Bulk Actions
+				resource={resourceBulkActions}
+				resources={resources}
+			>
+				{t("CredentialsListContainer|Bulk actions")}
 			</ButtonWithAuthz>
 			<ButtonWithAuthz
 				title={t("CredentialsListContainer|Create new credentials")}
@@ -218,7 +218,7 @@ function CredentialsListContainer(props) {
 				onClick={() => {redirectToCreate()}}
 				resource={resourceCreateCredentials}
 				resources={resources}
-				>
+			>
 				{t("CredentialsListContainer|Create new credentials")}
 			</ButtonWithAuthz>
 		</div>
