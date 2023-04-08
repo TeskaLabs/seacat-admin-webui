@@ -88,7 +88,6 @@
 		"Credentials suspended": "Uživatel suspendován",
 		"Failed to fetch credentials": "Nezdařilo se načíst uživatele",
 		"Can't fetch credentials, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
-		"Failed to fetch tenants": "Nepodařilo se načíst tenanty",
 		"Failed to perform bulk operation": "Nepodařilo se provést hromadnou operaci",
 		"Bulk action was successful": "Hromadná operace proběhla úspěšně",
 		"Credentials": "Uživatelé",
@@ -97,7 +96,9 @@
 		"Unselect": "Odebrat z výběru",
 		"Tenants": "Tenanti",
 		"Selected tenants": "Zvolení tenanti",
-		"Assign in bulk": "Hromadně přiřadit"
+		"Assign in bulk": "Hromadně přiřadit",
+		"Select credentials and tenants": "Vyberte uživatele a tenanty",
+		"Remove assignment": "Odebrat"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",
@@ -275,7 +276,8 @@
 		"Roles": "Role",
 		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",
 		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
-		"Credentials invited": "Uživatel pozván"
+		"Credentials invited": "Uživatel pozván",
+		"Bulk actions": "Bulk actions"
 	},
 	"FormFields": {
 		"Phone": "Telefon",

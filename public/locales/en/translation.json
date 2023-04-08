@@ -88,7 +88,6 @@
 		"Credentials suspended": "Credentials suspended",
 		"Failed to fetch credentials": "Failed to fetch credentials",
 		"Can't fetch credentials, you don't have rights to display it": "Can't fetch credentiasl, you don't have rights to display it",
-		"Failed to fetch tenants": "Failed to fetch tenants",
 		"Failed to perform bulk operation": "Failed to perform bulk operation",
 		"Bulk action was successful": "Bulk action was successful",
 		"Credentials": "Credentials",
@@ -97,7 +96,9 @@
 		"Unselect": "Unselect",
 		"Tenants": "Tenants",
 		"Selected tenants": "Selected tenants",
-		"Assign in bulk": "Assign in bulk"
+		"Assign in bulk": "Assign in bulk",
+		"Select credentials and tenants": "Select credentials and tenants",
+		"Remove assignment": "Remove assignment"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
@@ -275,7 +276,8 @@
 		"Roles": "Roles",
 		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",
 		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
-		"Credentials invited": "Credentials invited"
+		"Credentials invited": "Credentials invited",
+		"Bulk actions": "Bulk actions"
 	},
 	"FormFields": {
 		"Phone": "Phone",
