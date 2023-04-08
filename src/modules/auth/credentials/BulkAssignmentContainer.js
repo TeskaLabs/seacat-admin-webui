@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react"
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardHeader,
-	CardFooter, Button } from "reactstrap";
+	CardFooter, Button, ButtonGroup } from "reactstrap";
 import {DataTable, ButtonWithAuthz  } from 'asab-webui';
 import RoleDropdown from "../components/RoleDropdown";
 
@@ -24,10 +24,6 @@ const BulkAssignmentContainer = (props) => {
 	const [tenantsLimit, setTenantsLimit] = useState(0);
 	const [loadingTenants, setLoadingTenants] = useState(true);
 	const [selectedTenants, setSelectedTenants] = useState([]);
-
-	// const [roles, setRoles] = useState([]);
-	// const [dropdownOpen, setDropdownOpen] = useState(false);
-	// const [selectedRoles, setSelectedRoles] = useState([]);
 
 	const [show, setShow] = useState(false);
 	const [showTenantsContentLoader, setShowTenantsContentLoader] = useState(false);
@@ -143,10 +139,6 @@ const BulkAssignmentContainer = (props) => {
 		}
 	}, [page, filter, limit]);
 
-	useEffect(() => {
-		console.log('selectedTenants from useEffect: ', selectedTenants);
-	}, [selectedTenants]);
-
 	// UseEffect to fetch data for Tenants List based on changes in page/limit
 	useEffect(() => {
 		setShowTenantsContentLoader(false);
@@ -225,27 +217,13 @@ const BulkAssignmentContainer = (props) => {
 
 	// fetch roles for Tenant dropdowns
 	const retrieveRoleList = async (tenantObj) => {
-		// let credentialIds = (data !== undefined) && data.map((item, idx) => {
-		// 	return item._id ? item._id : "N/A";
-		// })
-
-
-		// console.log('tenantId')
 		let response;
 		let arr;
 		try {
 			response = await SeaCatAuthAPI.get(`/role/${tenantObj._id}`);
-			console.log('response.data', response.data);
-
-			// setRoles(response.data);
-
 			tenantObj['roles'] = response.data;
-			console.log('matchObj', tenantObj);
-
 			arr = [...selectedTenants, tenantObj];
-
 			setSelectedTenants(arr);
-			// console.log('a', a)
 		} catch (e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("CredentialsListContainer| :/ error bruh")}. ${e?.response?.data?.message}`, 30);
@@ -271,7 +249,7 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	// call to assign all selected tenants to all selected credentials
-	const assignMany = async () => {
+	const bulkAction = async (actionType) => {
 		let credential_ids = [];
 		let tenantObj = {};
 		// adjustments to data structure. selectedCredentials is an array of objects. Server expects credential_ids to be an array of ids only [ 'id1', 'id2', ..]
@@ -279,12 +257,19 @@ const BulkAssignmentContainer = (props) => {
 			credential_ids.push(obj._id);
 		})
 		/* adjustments to data structure. selectedTenants is an array of objects. Server expects credential_ids to be an object with
-		tenants as keys and array of roles as their values { tenant1: [role1, role2], tenant2: [...], ...} */
+		tenants as keys and array of roles as their values { tenant1: [role1, role2], tenant2: [], ...}
+		Unless we'd like to do bulk *unassignment*, then unassigning from tenant as a whole requires { tenant1: "UNASSIGN-TENANT", tenant2: [role1, role2,..], ...} */
 		selectedTenants.map((obj) => {
-			tenantObj[obj._id] = [];
+			let roles = [];
+			if (obj.selectedRole && (obj.selectedRole.length > 0)) {
+				roles = obj.selectedRole;
+			} else if (actionType === '/tenant_unassign_many') {
+				roles = "UNASSIGN-TENANT";
+			};
+			tenantObj[obj._id] = roles;
 		})
 		try {
-			let response = await SeaCatAuthAPI.put("/tenant_assign_many", {"credential_ids": credential_ids, "tenants": tenantObj });
+			let response = await SeaCatAuthAPI.put(actionType, {"credential_ids": credential_ids, "tenants": tenantObj });
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to perform bulk operation"));
 			};
@@ -294,7 +279,7 @@ const BulkAssignmentContainer = (props) => {
 		} catch (e) {
 			console.error(e);
 			setLoadingTenants(false);
-			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to perform bulk operation")}. ${e?.response?.data?.message}`, 30);
 
 		}
 	};
@@ -323,7 +308,7 @@ const BulkAssignmentContainer = (props) => {
 		setSelectedTenants([...tenantData]);
 	};
 
-
+	// removes selected Role
 	const unselectRole = (tenantIndex, roleIndex) => {
 		let tenantData = selectedTenants;
 		tenantData[tenantIndex].selectedRole.splice(roleIndex, 1);
@@ -420,7 +405,7 @@ const BulkAssignmentContainer = (props) => {
 										idx={idx}
 									/>
 								</div>
-								<div className="role-wrapper ml-5">
+								<div className="role-wrapper ml-2">
 									{obj.selectedRole ?
 										obj.selectedRole.map((role, i) => {
 											return (
@@ -441,9 +426,17 @@ const BulkAssignmentContainer = (props) => {
 					})}
 				</CardBody>
 				<CardFooter className="border-top">
-					<Button onClick={() => assignMany()}>
-						{t("BulkAssignmentContainer|Assign in bulk")}
-					</Button>
+
+					<ButtonGroup>
+						<Button color="primary" onClick={() => bulkAction('/tenant_assign_many')}>
+							{t("BulkAssignmentContainer|Assign in bulk")}
+						</Button>
+					</ButtonGroup>
+					<div className="actions-right">
+						<Button color="warning" onClick={() => bulkAction('/tenant_unassign_many')}>
+							{t("BulkAssignmentContainer|Remove assignment")}
+						</Button>
+					</div>
 				</CardFooter>
 			</Card>
 		</div>
