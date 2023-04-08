@@ -1,62 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useForm, useFieldArray } from 'react-hook-form';
-import CustomDataInput from "./CustomDataInput";
-
-import { ButtonWithAuthz, CellContentLoader } from 'asab-webui';
-import { Container, Row, Form,  Card,
-	CardBody, CardHeader, CardFooter,
-	ButtonGroup, Button, Col,
-	Input, Dropdown, DropdownToggle,
+import { Dropdown, DropdownToggle,
 	DropdownItem, DropdownMenu } from "reactstrap";
 
-
-export default function RoleDropdown({tenantObj, selectedTenants, setSelectedTenants, idx, selectedRoles, setSelectedRoles}) {
+export default function RoleDropdown({tenantObj, selectedTenants, setSelectedTenants, idx}) {
 
 	const { t } = useTranslation();
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [displayRoles, setDisplayRoles] = useState({data: []});
 
 	useEffect(() => {
-		console.log('selected tenants', selectedTenants);
 		let obj = {...tenantObj.roles};
 		setDisplayRoles(obj);
-		// console.log(displayRoles)
-	}, [])
+	}, []);
 
 	// TODO: this useeffect should match selected roles with the ones we want to display and readd the ones which were removed from selected roles in BulkAssignmentContainer
-	// useEffect(() => {
-	// 	if (tenantObj.selectedRole && (tenantObj.selectedRole.length > 0)) {
-	// 		let display = {lenght: displayRoles.length, data: []};
-	// 		tenantObj.selectedRole.map((selectedRole) => {
-	// 			let found = tenantObj.roles.data.find(el => el === selectedRole)
-	// 			if (found) {
-	// 				display.data.push(found);
-	// 			}
-	// 		})
-	// 		setDisplayRoles(...display);
-	// 	}
-	// }, [tenantObj])
+	useEffect(() => {
+		if (tenantObj.selectedRole && (tenantObj.selectedRole.length > 0)) {
+			let display = {...displayRoles};
+			let newDisplayData = [];
+			selectedTenants[idx].roles.data.map((tenantRole) => {
+				let found = selectedTenants[idx].selectedRole.find(el => el === tenantRole._id);
+				if (!found) {
+					newDisplayData.push(tenantRole);
+				}
+			});
+			display.data = newDisplayData;
+			setDisplayRoles(display);
+		}
+		if (tenantObj.selectedRole && tenantObj.selectedRole.length === 0) {
+			setDisplayRoles(selectedTenants[idx].roles);
+		}
+	}, [selectedTenants]);
 
 	const addRole = (roleId, index) => {
 		let tenants = [...selectedTenants];
 		let tenant = {...tenantObj};
-		// let displayTenantRoles = [...selectedTenants[idx]?.roles?.data];
 		let displayTenantRoles = [...displayRoles.data];
-
+		displayTenantRoles.splice(index, 1);
+		setDisplayRoles({...displayRoles, data: displayTenantRoles});
 		if (tenant.selectedRole) {
 			Object.assign(tenant, {'selectedRole': [...tenant?.selectedRole, roleId] });
 		} else {
 			Object.assign(tenant, {'selectedRole': [ roleId] });
-		}
-
-		displayTenantRoles.splice(index, 1);
-		setDisplayRoles({...displayRoles, data: displayTenantRoles});
-		// console.log('tenants hello from the dropdown component', tenant);
+		};
 		tenants[idx] = tenant;
 		setSelectedTenants(tenants);
-	}
-
+	};
 
 	return (
 		<Dropdown className='ml-auto' size="sm" isOpen={dropdownOpen} toggle={() => setDropdownOpen(prev => !prev)}>
