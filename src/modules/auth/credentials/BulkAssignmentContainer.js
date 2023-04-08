@@ -5,6 +5,7 @@ import { Card, CardBody, CardHeader,
 	CardFooter, Button, ButtonGroup } from "reactstrap";
 import {DataTable, ButtonWithAuthz  } from 'asab-webui';
 import RoleDropdown from "../components/RoleDropdown";
+import { useSelector } from "react-redux";
 
 const BulkAssignmentContainer = (props) => {
 
@@ -30,8 +31,8 @@ const BulkAssignmentContainer = (props) => {
 
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
-	// const resourceAddToSelected = "authz:superuser";
-	// const resources = useSelector(state => state.auth?.resources);
+	const resourceAddToSelected = "authz:superuser";
+	const resources = useSelector(state => state.auth?.resources);
 
 
 	// headers for Credentails List
@@ -48,10 +49,8 @@ const BulkAssignmentContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => saveToSelectedCredentials(credential)}
-							// resource={resourceAddToSelected}
-							// resources={resources}
-							resource="authz:superuser"
-							resources={"authz:superuser"}
+							resource={resourceAddToSelected}
+							resources={resources}
 							disabled={credential.assigned}
 						>
 							<i className="cil-plus"></i>
@@ -104,10 +103,8 @@ const BulkAssignmentContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => saveToSelectedTenants(tenant)}
-							// resource={resourceAddToSelected}
-							// resources={resources}
-							resource="authz:superuser"
-							resources={"authz:superuser"}
+							resource={resourceAddToSelected}
+							resources={resources}
 							disabled={tenant.assigned}
 						>
 							<i className="cil-plus"></i>
@@ -428,14 +425,28 @@ const BulkAssignmentContainer = (props) => {
 				<CardFooter className="border-top">
 
 					<ButtonGroup>
-						<Button color="primary" onClick={() => bulkAction('/tenant_assign_many')}>
-							{t("BulkAssignmentContainer|Assign in bulk")}
-						</Button>
+						<ButtonWithAuthz
+							title={t(`BulkAssignment|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Assign in Bulk'}`)}
+							color="primary"
+							onClick={() => bulkAction('/tenant_assign_many')}
+							resource={resourceAddToSelected}
+							resources={resources}
+							disabled={(selectedCredentials.length === 0) || (selectedTenants.length === 0)}
+						>
+							{t('BulkAssignment|Assign in bulk')}
+						</ButtonWithAuthz>
 					</ButtonGroup>
 					<div className="actions-right">
-						<Button color="warning" onClick={() => bulkAction('/tenant_unassign_many')}>
-							{t("BulkAssignmentContainer|Remove assignment")}
-						</Button>
+						<ButtonWithAuthz
+							title={t(`BulkAssignment|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Remove assignment'}`)}
+							color="warning"
+							onClick={() => bulkAction('/tenant_unassign_many')}
+							resource={resourceAddToSelected}
+							resources={resources}
+							disabled={(selectedCredentials.length === 0) || (selectedTenants.length === 0)}
+						>
+							{t('BulkAssignment|Remove assignment')}
+						</ButtonWithAuthz>
 					</div>
 				</CardFooter>
 			</Card>
