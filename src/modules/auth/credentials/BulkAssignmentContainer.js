@@ -218,19 +218,19 @@ const BulkAssignmentContainer = (props) => {
 		let response;
 		let arr;
 		try {
-			response = await SeaCatAuthAPI.get(`/role/${tenantObj._id}`);
+			response = await SeaCatAuthAPI.get(`/role/${tenantObj._id}`, {params: tenantObj._id !== '*' ? {'exclude_global': true} : {}});
 			tenantObj['roles'] = response.data;
 			arr = [...selectedTenants, tenantObj];
 			setSelectedTenants(arr);
 		} catch (e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsListContainer| :/ error bruh")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch roles")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
 	// fetch data for Tenants List from server
 	const retrieveTenants = async () => {
-		setLoadingTenants(true)
+		setLoadingTenants(true);
 		try {
 			let response = await SeaCatAuthAPI.get("/tenants", {params: {p: tenantsPage, i: tenantsLimit, f: tenantsFilter}});
 			if (response.data.result !== "OK") {
@@ -254,6 +254,13 @@ const BulkAssignmentContainer = (props) => {
 		selectedCredentials.map((obj) => {
 			credential_ids.push(obj._id);
 		})
+		//in order to successfully perform a bulk operation on global roles, global roles have to be individually selected. in this condition, we are looking for items, which are defined
+		// as global, however do not contain any specific roles to be (un)assigned
+		let globalRolesUnspecified = selectedTenants.find((tenantObj) => ((tenantObj._id === '*') && ((tenantObj.selectedRole == undefined) || (tenantObj.selectedRole.length === 0))));
+		if (globalRolesUnspecified) {
+			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Global roles have to be individually specified")}`, 30);
+			return
+		}
 		/* adjustments to data structure. selectedTenants is an array of objects. Server expects credential_ids to be an object with
 		tenants as keys and array of roles as their values { tenant1: [role1, role2], tenant2: [], ...}
 		Unless we'd like to do bulk *unassignment*, then unassigning from tenant as a whole requires { tenant1: "UNASSIGN-TENANT", tenant2: [role1, role2,..], ...} */
@@ -383,6 +390,16 @@ const BulkAssignmentContainer = (props) => {
 						<i className="cil-apps mr-2" />
 						{t("BulkAssignmentContainer|Selected tenants")}
 					</div>
+					<ButtonWithAuthz
+						title={t("CredentialsListContainer|Add global role(s)")}
+						outline
+						color="primary"
+						onClick={() => retrieveRoleList({_id: '*'})}
+						resource={resourceAddToSelected}
+						resources={resources}
+					>
+						{t("BulkAssignmentContainer|Add global role(s)")}
+					</ButtonWithAuthz>
 				</CardHeader>
 				<CardBody>
 					{selectedTenants.map((obj, idx) => {
@@ -393,6 +410,7 @@ const BulkAssignmentContainer = (props) => {
 										title={t("BulkAssignmentContainer|Unselect")}
 										outline
 										size="sm"
+										className="tenant-unselect-btn"
 										onClick={() => unselectTenant(idx)}
 										>
 										<i className='cil-x'/>
@@ -409,7 +427,7 @@ const BulkAssignmentContainer = (props) => {
 									{obj.selectedRole ?
 										obj.selectedRole.map((role, i) => {
 											return (
-												<div className="role-item ml-4">
+												<div className="role-item selected-row ml-4">
 													<Button className="btn-xs" size="sm" outline color="secondary" onClick={() => unselectRole(idx, i)}>
 														<i className="cil-x"/>
 													</Button>
