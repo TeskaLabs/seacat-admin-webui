@@ -347,6 +347,7 @@ function CredentialsDetailContainer(props) {
 						resource={resourceManageCredentials}
 					/>
 					<CustomDataContainer
+						resource={resourceManageCredentials}
 						resources={resources}
 						customData={customCredentialData}
 						setCustomData={setCustomCredentialData}
