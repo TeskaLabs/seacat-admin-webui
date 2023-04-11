@@ -25,6 +25,9 @@ function TenantDetailContainer(props) {
 	const [customTenantData, setCustomTenantData] = useState({'': ''});
 	const [credentialsList, setCredentialsList] = useState([]);
 	const [assignedCredentialsDropdown, setAssignedCredentialsDropdown] = useState([]);
+	const resourceUnassign = "session:tenant:assign";
+	const resourceEdit = "seacat:tenant:edit";
+	const resourceDelete = "seacat:tenant:delete";
 	const resources = useSelector(state => state.auth?.resources);
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
@@ -84,7 +87,7 @@ function TenantDetailContainer(props) {
 							size="sm"
 							color="danger"
 							onClick={() => {unassignCredentialsForm(credentials._id)}}
-							resource="authz:tenant:admin"
+							resource={resourceUnassign}
 							resources={resources}
 						>
 							<i className="cil-x"></i>
@@ -342,7 +345,7 @@ function TenantDetailContainer(props) {
 							color="danger"
 							outline
 							onClick={removeTenantForm}
-							resource="authz:superuser"
+							resource={resourceDelete}
 							resources={resources}
 						>
 							{t("TenantDetailContainer|Remove tenant")}
@@ -351,6 +354,7 @@ function TenantDetailContainer(props) {
 				</Card>
 
 				<CustomDataContainer
+					resource={resourceEdit}
 					resources={resources}
 					customData={customTenantData}
 					setCustomData={setCustomTenantData}

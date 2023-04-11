@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 import {
 	Container, Row, Col,
@@ -10,11 +11,15 @@ import {
 	ButtonGroup, FormFeedback, FormText
 } from 'reactstrap';
 
+import { ButtonWithAuthz } from 'asab-webui';
+
 function TenantCreateContainer(props) {
 
 	const { handleSubmit, register, formState: { errors, isSubmitting }, setValue, getValues } = useForm();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const { t } = useTranslation();
+	const resources = useSelector(state => state.auth?.resources);
+	const resource = "seacat:tenant:edit";
 
 	const reg = register(
 		"id",
@@ -93,11 +98,13 @@ function TenantCreateContainer(props) {
 
 							<CardFooter>
 								<ButtonGroup>
-									<Button
+									<ButtonWithAuthz
 										color="primary"
 										type="submit"
 										disabled={isSubmitting}
-									>{t("TenantCreateContainer|Create a tenant")}</Button>
+										resources={resources}
+										resource={resource}
+									>{t("TenantCreateContainer|Create a tenant")}</ButtonWithAuthz>
 									<Button
 										color="primary"
 										outline
