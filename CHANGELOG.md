@@ -2,6 +2,14 @@
 
 ## Release Candidate
 
+- ASAB WebUI submodule version bump [[ce85b29](https://github.com/TeskaLabs/asab-webui/commit/ce85b29a6feae89fbdb06770ff9a462ef44d8903)] commit (INDIGO Sprint 230331, [!28](https://github.com/TeskaLabs/seacat-admin-webui/pull/28))
+
+### Features
+
+- Update access and edit resources in SeaCat Admin application (INDIGO Sprint 230331, [!28](https://github.com/TeskaLabs/seacat-admin-webui/pull/28))
+
+- Remove Homepage (INDIGO Sprint 230331, [!28](https://github.com/TeskaLabs/seacat-admin-webui/pull/28))
+
 ## v23.13-beta
 
 ### Compatibility
