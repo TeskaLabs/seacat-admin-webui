@@ -15,7 +15,7 @@ const BulkAssignmentContainer = (props) => {
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(1);
 	const [limit, setLimit] = useState(0);
-	const [filter, setFilter] = useState("");
+	const [credentialsFilter, setCredentialsFilter] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [selectedCredentials, setSelectedCredentials] = useState([]);
 
@@ -23,6 +23,7 @@ const BulkAssignmentContainer = (props) => {
 	const [tenantsCount, setTenantsCount] = useState(0);
 	const [tenantsPage, setTenantsPage] = useState(1);
 	const [tenantsLimit, setTenantsLimit] = useState(0);
+	const [tenantsFilter, setTenantsFilter] = useState("");
 	const [loadingTenants, setLoadingTenants] = useState(true);
 	const [selectedTenants, setSelectedTenants] = useState([]);
 
@@ -124,7 +125,7 @@ const BulkAssignmentContainer = (props) => {
 		}
 	];
 
-	// UseEffect to fetch data for Credentials List based on changes in page/filter/limit
+	// UseEffect to fetch data for Credentials List based on changes in page/credentialsFilter/limit
 	useEffect(() => {
 		setShow(false);
 		if (data?.length === 0) {
@@ -134,9 +135,9 @@ const BulkAssignmentContainer = (props) => {
 		if (limit > 0) {
 			retrieveData();
 		}
-	}, [page, filter, limit]);
+	}, [page, credentialsFilter, limit]);
 
-	// UseEffect to fetch data for Tenants List based on changes in page/limit
+	// UseEffect to fetch data for Tenants List based on changes in page/tenantsFilter/limit
 	useEffect(() => {
 		setShowTenantsContentLoader(false);
 		if (data?.length === 0) {
@@ -146,7 +147,7 @@ const BulkAssignmentContainer = (props) => {
 		if (limit > 0) {
 			retrieveTenants();
 		}
-	}, [tenantsPage, tenantsLimit]);
+	}, [tenantsPage, tenantsFilter, tenantsLimit]);
 
 	// Actual adjusted data (compared with `selectedCredentials`) to be displayed in Credentials list data table
 	const datatableCredentialsData = useMemo(() => {
@@ -193,7 +194,7 @@ const BulkAssignmentContainer = (props) => {
 	const retrieveData = async () => {
 		setLoading(true);
 		try {
-			let response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: filter}});
+			let response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: credentialsFilter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to fetch credentials"));
 			};
@@ -231,7 +232,7 @@ const BulkAssignmentContainer = (props) => {
 	const retrieveTenants = async () => {
 		setLoadingTenants(true)
 		try {
-			let response = await SeaCatAuthAPI.get("/tenants", {params: {p:tenantsPage, i:tenantsLimit}});
+			let response = await SeaCatAuthAPI.get("/tenants", {params: {p: tenantsPage, i: tenantsLimit, f: tenantsFilter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to fetch tenants"));
 			};
@@ -327,7 +328,7 @@ const BulkAssignmentContainer = (props) => {
 						currentPage={page}
 						setPage={setPage}
 						search={{ icon: 'cil-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
-						onSearch={(value) => setFilter(value)}
+						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
 						contentLoader={show}
 					/>
@@ -369,6 +370,8 @@ const BulkAssignmentContainer = (props) => {
 					setLimit={setTenantsLimit}
 					currentPage={tenantsPage}
 					setPage={setTenantsPage}
+					search={{ icon: 'cil-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
+					onSearch={(value) => setTenantsFilter(value)}
 					isLoading={loadingTenants}
 					contentLoader={showTenantsContentLoader}
 				/>
@@ -439,7 +442,8 @@ const BulkAssignmentContainer = (props) => {
 					<div className="actions-right">
 						<ButtonWithAuthz
 							title={t(`BulkAssignment|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Remove assignment'}`)}
-							color="warning"
+							color="primary"
+							outline
 							onClick={() => bulkAction('/tenant_unassign_many')}
 							resource={resourceAddToSelected}
 							resources={resources}
