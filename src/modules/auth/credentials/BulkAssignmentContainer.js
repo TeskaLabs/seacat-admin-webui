@@ -44,7 +44,7 @@ const BulkAssignmentContainer = (props) => {
 				generate: (credential) => (
 					<div>
 						<ButtonWithAuthz
-							title={t(`BulkAssignment|${credential.assigned ? "Credential already assigned" : "Add credential"}`)}
+							title={t(`BulkAssignmentContainer|${credential.assigned ? "Credential already assigned" : "Add credential"}`)}
 							id={credential._id}
 							size="sm"
 							color="primary"
@@ -98,7 +98,7 @@ const BulkAssignmentContainer = (props) => {
 				generate: (tenant) => (
 					<div>
 						<ButtonWithAuthz
-							title={t(`BulkAssignment|${tenant.assigned ? "Tenant already assigned" : "Add tenant"}`)}
+							title={t(`BulkAssignmentContainer|${tenant.assigned ? "Tenant already assigned" : "Add tenant"}`)}
 							id={tenant._id}
 							size="sm"
 							color="primary"
@@ -429,19 +429,19 @@ const BulkAssignmentContainer = (props) => {
 
 					<ButtonGroup>
 						<ButtonWithAuthz
-							title={t(`BulkAssignment|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Assign in Bulk'}`)}
+							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Assign in Bulk'}`)}
 							color="primary"
 							onClick={() => bulkAction('/tenant_assign_many')}
 							resource={resourceAddToSelected}
 							resources={resources}
 							disabled={(selectedCredentials.length === 0) || (selectedTenants.length === 0)}
 						>
-							{t('BulkAssignment|Assign in bulk')}
+							{t('BulkAssignmentContainer|Assign in bulk')}
 						</ButtonWithAuthz>
 					</ButtonGroup>
 					<div className="actions-right">
 						<ButtonWithAuthz
-							title={t(`BulkAssignment|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Remove assignment'}`)}
+							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Remove assignment'}`)}
 							color="primary"
 							outline
 							onClick={() => bulkAction('/tenant_unassign_many')}
@@ -449,7 +449,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={(selectedCredentials.length === 0) || (selectedTenants.length === 0)}
 						>
-							{t('BulkAssignment|Remove assignment')}
+							{t('BulkAssignmentContainer|Remove assignment')}
 						</ButtonWithAuthz>
 					</div>
 				</CardFooter>

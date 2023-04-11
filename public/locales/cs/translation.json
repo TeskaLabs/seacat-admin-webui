@@ -98,7 +98,7 @@
 		"Selected tenants": "Zvolení tenanti",
 		"Assign in bulk": "Hromadně přiřadit",
 		"Select credentials and tenants": "Vyberte uživatele a tenanty",
-		"Remove assignment": "Odebrat"
+		"Remove assignment": "Hromadně odebrat"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",
@@ -277,7 +277,7 @@
 		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",
 		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
 		"Credentials invited": "Uživatel pozván",
-		"Bulk actions": "Bulk actions"
+		"Bulk actions": "Hromadné akce"
 	},
 	"FormFields": {
 		"Phone": "Telefon",
