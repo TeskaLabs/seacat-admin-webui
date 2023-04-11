@@ -18,7 +18,7 @@ const ClientDetailContainer = (props) =>  {
 	const [client, setClient] = useState(null);
 	const { client_id } = props.match.params;
 
-	const resource = "authz:superuser";
+	const resource = "seacat:client:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const theme = useSelector(state => state.theme);
 	const advmode = useSelector(state => state.advmode.enabled);
