@@ -81,7 +81,8 @@
 		"Client detail": "Detail klienta",
 		"Home": "Domů",
 		"About": "O Aplikaci",
-		"Access control": "Přístupová oprávnění"
+		"Access control": "Přístupová oprávnění",
+		"Bulk actions": "Hromadné akce"
 	},
 	"BulkAssignmentContainer" : {
 		"Credentials invited": "Uživatel pozván",
@@ -99,7 +100,9 @@
 		"Assign in bulk": "Hromadně přiřadit",
 		"Select credentials and tenants": "Vyberte uživatele a tenanty",
 		"Remove assignment": "Hromadně odebrat",
-		"Failed to fetch roles": "Nepodařilo se získat role"
+		"Failed to fetch roles": "Nepodařilo se získat role",
+		"Add global role(s)": "Přidat globální role",
+		"Global roles have to be individually specified": "Globalní role musí být specifikovány"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",

@@ -81,7 +81,8 @@
 		"Client detail": "Client detail",
 		"Home": "Home",
 		"About": "About",
-		"Access control": "Access control"
+		"Access control": "Access control",
+		"Bulk actions": "Bulk actions"
 	},
 	"BulkAssignmentContainer" : {
 		"Credentials invited": "Credentials invited",
@@ -99,7 +100,9 @@
 		"Assign in bulk": "Assign in bulk",
 		"Select credentials and tenants": "Select credentials and tenants",
 		"Remove assignment": "Remove assignment",
-		"Failed to fetch roles": "Failed to fetch roles"
+		"Failed to fetch roles": "Failed to fetch roles",
+		"Add global role(s)": "Add global role(s)",
+		"Global roles have to be individually specified": "Global roles have to be individually specified"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
