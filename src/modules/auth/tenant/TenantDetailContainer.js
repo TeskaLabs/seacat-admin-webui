@@ -25,7 +25,7 @@ function TenantDetailContainer(props) {
 	const [customTenantData, setCustomTenantData] = useState({'': ''});
 	const [credentialsList, setCredentialsList] = useState([]);
 	const [assignedCredentialsDropdown, setAssignedCredentialsDropdown] = useState([]);
-	const resourceUnassign = "session:tenant:assign";
+	const resourceUnassign = "seacat:tenant:assign";
 	const resourceEdit = "seacat:tenant:edit";
 	const resourceDelete = "seacat:tenant:delete";
 	const resources = useSelector(state => state.auth?.resources);
