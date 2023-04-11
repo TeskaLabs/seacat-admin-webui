@@ -98,7 +98,8 @@
 		"Selected tenants": "Selected tenants",
 		"Assign in bulk": "Assign in bulk",
 		"Select credentials and tenants": "Select credentials and tenants",
-		"Remove assignment": "Remove assignment"
+		"Remove assignment": "Remove assignment",
+		"Failed to fetch roles": "Failed to fetch roles"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
