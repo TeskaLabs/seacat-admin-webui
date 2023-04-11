@@ -159,7 +159,7 @@ const SessionListContainer = (props) => {
 		title: t("SessionListContainer|Terminate all sessions"),
 		color:"danger",
 		onClick() {terminateAllSessionsForm()},
-		resource: resource,
+		resource: "authz:superuser", // Only superusers can terminate all sessions
 		resources: resources,
 		children: t("SessionListContainer|Terminate all")
 	}
