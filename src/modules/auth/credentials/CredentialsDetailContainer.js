@@ -268,7 +268,7 @@ function CredentialsDetailContainer(props) {
 						<CardFooter>
 							<ButtonGroup>
 								<ButtonWithAuthz
-									resource={resources}
+									resource={resourceManageCredentials}
 									resources={resources}
 									color="danger"
 									outline
@@ -278,7 +278,7 @@ function CredentialsDetailContainer(props) {
 								</ButtonWithAuthz>
 								<ButtonWithAuthz
 									color="outline-primary"
-									resource={resources}
+									resource={resourceManageCredentials}
 									resources={resources}
 									onClick={() => { resetPwd() }}
 								>
