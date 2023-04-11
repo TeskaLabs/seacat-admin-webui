@@ -103,6 +103,10 @@ function CredentialsDetailContainer(props) {
 	}
 
 
+	/*
+
+		TODO: Option to remove user from DB has been commented for eventual future usage
+
 	// Set delete user dialog
 	const deleteUserForm = () => {
 		var r = confirm(t('CredentialsDetailContainer|Do you want to remove this user?'));
@@ -123,7 +127,7 @@ function CredentialsDetailContainer(props) {
 			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to remove user")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
-
+	*/
 
 	// Set suspend/activate user dialog
 	const suspendUserForm = (isActive) => {
@@ -267,6 +271,8 @@ function CredentialsDetailContainer(props) {
 
 						<CardFooter>
 							<ButtonGroup>
+								{/*
+								TODO: Option to remove user from DB has been commented for eventual future usage
 								<ButtonWithAuthz
 									resource={resourceManageCredentials}
 									resources={resources}
@@ -275,7 +281,7 @@ function CredentialsDetailContainer(props) {
 									onClick={() => { deleteUserForm() }}
 								>
 									{t('CredentialsDetailContainer|Remove user')}
-								</ButtonWithAuthz>
+								</ButtonWithAuthz>*/}
 								<ButtonWithAuthz
 									color="outline-primary"
 									resource={resourceManageCredentials}
