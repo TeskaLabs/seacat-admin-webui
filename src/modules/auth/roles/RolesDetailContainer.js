@@ -23,7 +23,7 @@ const RolesDetailContainer = (props) =>  {
 
 	const [credentialsList, setCredentialsList] = useState([]);
 	const [assignedCredentialsDropdown, setAssignedCredentialsDropdown] = useState([]);
-	const resourceAssign = "seacat:role:assign";
+	const resourceAssign = tenant_id === "*" ? "authz:superuser" : "seacat:role:assign";
 	const resource = tenant_id === "*" ? "authz:superuser" : "seacat:role:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const advmode = useSelector(state => state.advmode?.enabled);
