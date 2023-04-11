@@ -40,9 +40,10 @@ function CredentialsDetailContainer(props) {
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
 
-	const resourceAssignTenantRole = "authz:tenant:admin";
-	const resourceManageCredentials = "authz:superuser";
-	const displaySessions = resources ? resources.indexOf("authz:superuser") != -1 : false;
+	const resourceAssignTenant = "seacat:tenant:assign";
+	const resourceAssignRole = "seacat:role:assign";
+	const resourceManageCredentials = "seacat:credentials:edit";
+	const displaySessions = resources ? ((resources.indexOf("seacat:session:access") != -1) || (resources.indexOf("authz:superuser") != -1)) : false;
 	const credentials_id = props.match.params.credentials_id;
 
 	useEffect(() => {
@@ -356,7 +357,7 @@ function CredentialsDetailContainer(props) {
 				</div>
 			</div>
 			<div className="credential-detail-resource-area credential-resources-wrapper">
-				<CredentialsTenantsCard app={props.app} credentials_id={credentials_id} resource={resourceAssignTenantRole} resources={resources} setRolesRefresh={setRolesRefresh}/>
+				<CredentialsTenantsCard app={props.app} credentials_id={credentials_id} resource={resourceAssignTenant} resources={resources} setRolesRefresh={setRolesRefresh}/>
 
 				{displaySessions && <CredentialsSessionCard
 					app={props.app}
@@ -365,7 +366,7 @@ function CredentialsDetailContainer(props) {
 					resources={resources}
 					retrieveSessions={retrieveSessions}/>
 				}
-				<CredentialsRolesCard app={props.app} credentials_id={credentials_id} resource={resourceAssignTenantRole} resources={resources} rolesRefresh={rolesRefresh}/>
+				<CredentialsRolesCard app={props.app} credentials_id={credentials_id} resource={resourceAssignRole} resources={resources} rolesRefresh={rolesRefresh}/>
 			</div>
 
 			<div className="credential-detail-json-area">
