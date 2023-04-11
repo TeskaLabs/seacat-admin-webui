@@ -260,7 +260,13 @@ function TenantDetailContainer(props) {
 
 	const assignNewCredentials = (
 		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
-			<DropdownToggle caret outline color="primary" className="card-header-dropdown">
+			<DropdownToggle
+				disabled={(resources.indexOf(resourceUnassign) == -1 && resources.indexOf("authz:superuser") == -1)}
+				caret
+				outline
+				color="primary"
+				className="card-header-dropdown"
+			>
 				{t("TenantDetailContainer|Assign credentials")}
 			</DropdownToggle>
 			<DropdownMenu className="assign-credential-list-dropdown">
