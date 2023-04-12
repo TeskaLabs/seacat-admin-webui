@@ -1,9 +1,10 @@
+import { lazy } from 'react';
 import Module from 'asab-webui/abc/Module';
 
-import CredentialsListContainer from './credentials/CredentialsListContainer';
-import CredentialsDetailContainer from './credentials/CredentialsDetailContainer';
-import CredentialsCreateContainer from './credentials/CredentialsCreateContainer';
-import ResetPasswordContainer from './credentials/ResetPasswordContainer';
+const CredentialsListContainer = lazy(() => import('./credentials/CredentialsListContainer'));
+const CredentialsDetailContainer = lazy(() => import('./credentials/CredentialsDetailContainer'));
+const CredentialsCreateContainer = lazy(() => import('./credentials/CredentialsCreateContainer'));
+const ResetPasswordContainer = lazy(() => import('./credentials/ResetPasswordContainer'));
 
 import SessionListContainer from './session/SessionListContainer';
 import SessionDetailContainer from './session/SessionDetailContainer';
