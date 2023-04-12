@@ -21,9 +21,9 @@ import ResourcesListContainer from './resources/ResourcesListContainer';
 import ResourcesDetailContainer from './resources/ResourcesDetailContainer';
 import ResourcesCreateContainer from './resources/ResourcesCreateContainer';
 
-import ClientListContainer from './clients/ClientListContainer';
-import ClientCreateContainer from './clients/ClientCreateContainer';
-import ClientDetailContainer from './clients/ClientDetailContainer';
+const ClientListContainer = lazy(() => import('./clients/ClientListContainer'));
+const ClientCreateContainer = lazy(() => import('./clients/ClientCreateContainer'));
+const ClientDetailContainer = lazy(() => import('./clients/ClientDetailContainer'));
 
 // SCSS
 import './tenant/tenant.scss';
