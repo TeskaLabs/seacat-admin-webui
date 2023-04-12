@@ -66,7 +66,7 @@ function CredentialsSessionCard(props) {
 					color="danger"
 					outline
 					onClick={() => {terminateSessionsForm()}}
-					resource="authz:superuser" // Only superusers can terminate all sessions
+					resource="seacat:session:terminate"
 					resources={props.resources}
 					disabled={data.length == 0}
 				>
