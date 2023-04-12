@@ -17,9 +17,9 @@ import RolesCreateContainer from './roles/RolesCreateContainer';
 import RolesListContainer from './roles/RolesListContainer';
 import RolesDetailContainer from './roles/RolesDetailContainer';
 
-import ResourcesListContainer from './resources/ResourcesListContainer';
-import ResourcesDetailContainer from './resources/ResourcesDetailContainer';
-import ResourcesCreateContainer from './resources/ResourcesCreateContainer';
+const ResourcesListContainer = lazy(() => import('./resources/ResourcesListContainer'));
+const ResourcesDetailContainer = lazy(() => import('./resources/ResourcesDetailContainer'));
+const ResourcesCreateContainer = lazy(() => import('./resources/ResourcesCreateContainer'));
 
 const ClientListContainer = lazy(() => import('./clients/ClientListContainer'));
 const ClientCreateContainer = lazy(() => import('./clients/ClientCreateContainer'));
