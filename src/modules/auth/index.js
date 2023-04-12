@@ -95,7 +95,8 @@ export default class SeaCatAuthModule extends Module {
 		app.Router.addRoute({
 			path: '/auth/credentials/!bulk-assignment',
 			name: 'Bulk actions',
-			component: BulkAssignmentContainer
+			component: BulkAssignmentContainer,
+			resource: 'authz:superuser'
 		});
 
 		app.Router.addRoute({
