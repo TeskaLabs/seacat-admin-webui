@@ -479,6 +479,12 @@
 		"Something went wrong, failed to create tenant": "Něco je špatně, nepodařilo se vytvořit tenanta",
 		"Something went wrong, can't propose tenant name": "Něco je špatně, není možné navrhnout jméno tenanta"
 	},
+	"HomeContainer": {
+		"Welcome!": "Vítejte!",
+		"This is TeskaLabs SeaCat Admin, cyber-security tool": "Toto je TeskaLabs SeaCat Admin, nástroj pro správu kybernetické bezpečnosti",
+		"SeaCat Admin is a comphrehensive security management tool": "SeaCat Admin je nástroj pro komplexní zabezpečení, organizaci a správu dat.",
+		"Please continue to desired agenda by navigating in the menu on the left": "Pokračujte prosím do požadované sekce pomocí nabídky na levé straně."
+	},
 
 	"UserInterfaceCard": {
 		"User interface": "Uživatelské rozhraní",

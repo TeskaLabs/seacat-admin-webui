@@ -69,8 +69,36 @@ modules.push(AboutModule);
 import SeaCatAuthModule from './modules/auth';
 modules.push(SeaCatAuthModule);
 
+// Specify dynamic modules in a config file
+/*
+	// Example of use
+	app: {
+		modules: [
+			"HomeModule"
+		],
+	},
+*/
+
+// Load custom modules
+import HomeModule from './modules/home';
+
+if (__CONFIG__.modules != null) {
+	Object.values(__CONFIG__.modules).map((module_name) => {
+		switch(module_name) {
+			case "HomeModule": modules.push(HomeModule); break;
+		}
+	});
+}
+
+// Option to specify custom default path of the module to be displayed when HomeModule is not loaded
+/*
+	app: {
+		defaultpath: "/auth/credentials",
+	},
+*/
+
 // Items order in the sidebar
-const sidebarItemsOrder = ["Auth"];
+const sidebarItemsOrder = ["Home", "Auth"];
 
 ReactDOM.render((
 	<HashRouter>
@@ -78,7 +106,7 @@ ReactDOM.render((
 			sidebarItemsOrder={sidebarItemsOrder}
 			configdefaults={ConfigDefaults}
 			modules={modules}
-			defaultpath={__CONFIG__.defaultpath ? __CONFIG__.defaultpath : "/auth/credentials"}
+			defaultpath={__CONFIG__.defaultpath ? __CONFIG__.defaultpath : "/home"}
 			hasSidebar={true}
 		/>
 	</HashRouter>

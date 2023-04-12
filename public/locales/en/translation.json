@@ -480,6 +480,12 @@
 		"Something went wrong, failed to create tenant": "Something went wrong, failed to create tenant",
 		"Something went wrong, can't propose tenant name": "Something went wrong, can't propose tenant name"
 	},
+	"HomeContainer": {
+		"Welcome!": "Welcome!",
+		"This is TeskaLabs SeaCat Admin, cyber-security tool": "This is TeskaLabs SeaCat Admin, cyber-security tool",
+		"SeaCat Admin is a comphrehensive security management tool": "SeaCat Admin is a comphrehensive security management tool.",
+		"Please continue to desired agenda by navigating in the menu on the left": "Please continue to desired agenda by navigating in the menu on the left."
+	},
 
 	"UserInterfaceCard": {
 		"User interface": "User interface",
