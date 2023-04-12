@@ -9,9 +9,9 @@ const ResetPasswordContainer = lazy(() => import('./credentials/ResetPasswordCon
 import SessionListContainer from './session/SessionListContainer';
 import SessionDetailContainer from './session/SessionDetailContainer';
 
-import TenantListContainer from './tenant/TenantListContainer';
-import TenantCreateContainer from './tenant/TenantCreateContainer';
-import TenantDetailContainer from './tenant/TenantDetailContainer';
+const TenantListContainer = lazy(() => import('./tenant/TenantListContainer'));
+const TenantCreateContainer = lazy(() => import('./tenant/TenantCreateContainer'));
+const TenantDetailContainer = lazy(() => import('./tenant/TenantDetailContainer'));
 
 import RolesCreateContainer from './roles/RolesCreateContainer';
 import RolesListContainer from './roles/RolesListContainer';
