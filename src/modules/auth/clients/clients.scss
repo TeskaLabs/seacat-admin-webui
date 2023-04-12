@@ -12,6 +12,43 @@
 $close-button: var(--close-button);
 $svg-arrow: var(--svg-arrow);
 
+.client-wrapper {
+	display: grid;
+	gap: 1rem;
+	grid-template-areas:
+		"a"
+		"b";
+	grid-template-columns: 1fr;
+
+	& .client-cards-wrapper {
+		display: grid;
+		grid-area: a;
+		grid-template-areas:
+			"i q";
+		gap: 1rem;
+		grid-template-columns: 1fr 1fr;
+		.client-main-info {
+			grid-area: i;
+		}
+		.client-right-cards{
+			grid-area: q;
+
+		}
+	}
+
+
+	.client-secret-btn {
+		padding: 0;
+		bottom: 0;
+		margin-top: 8px;
+	}
+	.adv-card {
+		grid-area: b;
+	}
+
+}
+
+// FormFields
 .multiselect-input-wrapper {
 	& input {
 		cursor: default;
@@ -47,11 +84,6 @@ $svg-arrow: var(--svg-arrow);
 	position: absolute;
 }
 
-.client-secret-btn {
-	padding: 0;
-	bottom: 0;
-	margin-top: 8px;
-}
 
 @media (max-width: 768px) {
 	.client-name-column {
@@ -62,3 +94,14 @@ $svg-arrow: var(--svg-arrow);
 		white-space: nowrap;
 	}
 }
+
+@media (max-width: 994px) {
+	.client-wrapper {
+		& .client-cards-wrapper {
+			grid-template-areas:
+			"i"
+			"q";
+		}
+	}
+}
+
