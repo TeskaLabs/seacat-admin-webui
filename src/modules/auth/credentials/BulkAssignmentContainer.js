@@ -213,20 +213,20 @@ const BulkAssignmentContainer = (props) => {
 		};
 	};
 
-	// fetch roles for Tenant dropdowns
-	const retrieveRoleList = async (tenantObj) => {
-		let response;
-		let arr;
-		try {
-			response = await SeaCatAuthAPI.get(`/role/${tenantObj._id}`, {params: tenantObj._id !== '*' ? {'exclude_global': true} : {}});
-			tenantObj['roles'] = response.data;
-			arr = [...selectedTenants, tenantObj];
-			setSelectedTenants(arr);
-		} catch (e) {
-			console.error(e);
-			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch roles")}. ${e?.response?.data?.message}`, 30);
-		}
-	}
+	// // fetch roles for Tenant dropdowns
+	// const retrieveRoleList = async (tenantObj) => {
+	// 	let response;
+	// 	let arr;
+	// 	try {
+	// 		response = await SeaCatAuthAPI.get(`/role/${tenantObj._id}`);
+	// 		tenantObj['roles'] = response.data;
+	// 		arr = [...selectedTenants, tenantObj];
+	// 		setSelectedTenants(arr);
+	// 	} catch (e) {
+	// 		console.error(e);
+	// 		props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch roles")}. ${e?.response?.data?.message}`, 30);
+	// 	}
+	// }
 
 	// fetch data for Tenants List from server
 	const retrieveTenants = async () => {
@@ -254,13 +254,6 @@ const BulkAssignmentContainer = (props) => {
 		selectedCredentials.map((obj) => {
 			credential_ids.push(obj._id);
 		})
-		//in order to successfully perform a bulk operation on global roles, global roles have to be individually selected. in this condition, we are looking for items, which are defined
-		// as global, however do not contain any specific roles to be (un)assigned
-		let globalRolesUnspecified = selectedTenants.find((tenantObj) => ((tenantObj._id === '*') && ((tenantObj.selectedRole == undefined) || (tenantObj.selectedRole.length === 0))));
-		if (globalRolesUnspecified) {
-			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Global roles have to be individually specified")}`, 30);
-			return
-		}
 		/* adjustments to data structure. selectedTenants is an array of objects. Server expects credential_ids to be an object with
 		tenants as keys and array of roles as their values { tenant1: [role1, role2], tenant2: [], ...}
 		Unless we'd like to do bulk *unassignment*, then unassigning from tenant as a whole requires { tenant1: "UNASSIGN-TENANT", tenant2: [role1, role2,..], ...} */
@@ -303,7 +296,10 @@ const BulkAssignmentContainer = (props) => {
 
 	// add specific(selected) tenant object to selectedTenants state
 	const saveToSelectedTenants = (tenantObj) => {
-		retrieveRoleList(tenantObj)
+		// retrieveRoleList(tenantObj)
+		let arr = [...selectedTenants, tenantObj]
+		console.log('arr, ', arr)
+		setSelectedTenants([...arr])
 	};
 
 	// remove item from selectedTenants state
@@ -317,7 +313,6 @@ const BulkAssignmentContainer = (props) => {
 	const unselectRole = (tenantIndex, roleIndex) => {
 		let tenantData = selectedTenants;
 		tenantData[tenantIndex].selectedRole.splice(roleIndex, 1);
-		console.log('tenantData', tenantData);
 		setSelectedTenants([...tenantData]);
 	};
 
@@ -390,19 +385,9 @@ const BulkAssignmentContainer = (props) => {
 						<i className="cil-apps mr-2" />
 						{t("BulkAssignmentContainer|Selected tenants")}
 					</div>
-					<ButtonWithAuthz
-						title={t("CredentialsListContainer|Add global role(s)")}
-						outline
-						color="primary"
-						onClick={() => retrieveRoleList({_id: '*'})}
-						resource={resourceAddToSelected}
-						resources={resources}
-					>
-						{t("BulkAssignmentContainer|Add global role(s)")}
-					</ButtonWithAuthz>
 				</CardHeader>
 				<CardBody>
-					{selectedTenants.map((obj, idx) => {
+					{selectedTenants?.map((obj, idx) => {
 						return (
 							<>
 								<div className='d-flex flex-direction-row align-items-center selected-row'>
@@ -417,6 +402,7 @@ const BulkAssignmentContainer = (props) => {
 									</Button>
 									<span className="ml-3">{obj._id}</span>
 									<RoleDropdown
+										props={props}
 										tenantObj={obj}
 										selectedTenants={selectedTenants}
 										setSelectedTenants={setSelectedTenants}
@@ -424,7 +410,7 @@ const BulkAssignmentContainer = (props) => {
 									/>
 								</div>
 								<div className="role-wrapper ml-2">
-									{obj.selectedRole ?
+									{obj?.selectedRole ?
 										obj.selectedRole.map((role, i) => {
 											return (
 												<div className="role-item selected-row ml-4">
