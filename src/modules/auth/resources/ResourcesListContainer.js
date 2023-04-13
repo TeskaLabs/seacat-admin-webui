@@ -19,7 +19,7 @@ function ResourcesListContainer(props) {
 	const ref = useRef(null);
 	const { t } = useTranslation();
 
-	const deleteButtonResource = "authz:tenant:admin";
+	const deleteButtonResource = "seacat:resource:edit";
 	const createResourceButtonResource = "authz:superuser"
 
 	const credentialsResources = useSelector(state => state.auth?.resources);
