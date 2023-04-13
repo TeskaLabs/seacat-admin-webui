@@ -275,48 +275,50 @@ const RolesDetailContainer = (props) =>  {
 	return (
 		<Container>
 			<div className="role-detail-wrapper">
-			<div className="role-detail-info">
-					<Row className="justify-content-md-center ml-0 mr-0">
-						<Card className="w-100">
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="cil-user pr-2"></i>
-									{t("RolesDetailContainer|Role")}
-								</div>
-							</CardHeader>
-							<CardBody>
-								<Row>
-									<Col md={3}>{t("Name")}</Col>
-									<Col>{role._id}</Col>
-								</Row>
-								<Row className="mt-3">
-									<Col md={3}>{t("Created at")}</Col>
-									<Col><DateTime value={role._c} /></Col>
-								</Row>
-								<Row>
-									<Col md={3}>{t("Modified at")}</Col>
-									<Col><DateTime value={role._m} /></Col>
-								</Row>
-							</CardBody>
-							<CardFooter>
-								<ButtonWithAuthz
-									className="mr-3"
-									title={t("RolesDetailContainer|Remove role")}
-									color="danger"
-									outline
-									onClick={removeRoleForm}
-									resource={resource}
-									resources={resources}
-								>
-									{t("RolesDetailContainer|Remove role")}
-								</ButtonWithAuthz>
-							</CardFooter>
-						</Card>
-					</Row>
-					<div className="role-resource-card-area">
-						<RolesResourcesCard app={props.app} role={role} params={props.match.params} resources={resources} resource={resource} />
-					</div>
-				</div>
+				<Card className="w-100 role-detail-info">
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-user pr-2"></i>
+							{t("RolesDetailContainer|Role")}
+						</div>
+					</CardHeader>
+					<CardBody>
+						<Row>
+							<Col md={3}>{t("Name")}</Col>
+							<Col>{role._id}</Col>
+						</Row>
+						<Row className="mt-3">
+							<Col md={3}>{t("Created at")}</Col>
+							<Col><DateTime value={role._c} /></Col>
+						</Row>
+						<Row>
+							<Col md={3}>{t("Modified at")}</Col>
+							<Col><DateTime value={role._m} /></Col>
+						</Row>
+					</CardBody>
+					<CardFooter>
+						<ButtonWithAuthz
+							className="mr-3"
+							title={t("RolesDetailContainer|Remove role")}
+							color="danger"
+							outline
+							onClick={removeRoleForm}
+							resource={resource}
+							resources={resources}
+						>
+							{t("RolesDetailContainer|Remove role")}
+						</ButtonWithAuthz>
+					</CardFooter>
+				</Card>
+
+				<RolesResourcesCard
+					app={props.app}
+					role={role}
+					params={props.match.params}
+					resources={resources}
+					resource={resource}
+				/>
+
 				<div className="role-detail-credentials-area">
 					<DataTable
 						title={{ text: t("RolesDetailContainer|Assigned credentials"), icon: "cil-storage" }}
@@ -332,28 +334,27 @@ const RolesDetailContainer = (props) =>  {
 						contentLoader={show}
 					/>
 				</div>
-				<div className="mb-4 w-100 role-detail-json-area">
-					{advmode &&
-						<Card>
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="cil-code pr-2"></i>
-									JSON
-								</div>
-							</CardHeader>
-							{role &&
-								<CardBody>
-									<ReactJson
-										theme={theme === 'dark' ? "chalk" : "rjv-default"}
-										src={role}
-										name={false}
-										collapsed={false}
-									/>
-								</CardBody>
-							}
-						</Card>
-					}
-				</div>
+
+				{advmode &&
+					<Card  className="mb-4 w-100 role-detail-json-area">
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-code pr-2"></i>
+								JSON
+							</div>
+						</CardHeader>
+						{role &&
+							<CardBody>
+								<ReactJson
+									theme={theme === 'dark' ? "chalk" : "rjv-default"}
+									src={role}
+									name={false}
+									collapsed={false}
+								/>
+							</CardBody>
+						}
+					</Card>
+				}
 			</div>
 		</Container>
 	);
