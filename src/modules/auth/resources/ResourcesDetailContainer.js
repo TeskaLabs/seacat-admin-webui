@@ -95,97 +95,91 @@ const ResourceDetailContainer = (props) =>  {
 	}
 
 	return (
-		<Container>
-			<Row className="mb-4 justify-content-md-center">
-				<Col md={8}>
-					<Card>
-						<Form onSubmit={handleSubmit(onSubmit)}>
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="cil-lock-unlocked pr-2"></i>
-									{t("ResourcesDetailContainer|Resource")}
-								</div>
-							</CardHeader>
+		<Container className="resource-container">
+			<Card className='resource-detail-description'>
+				<Form onSubmit={handleSubmit(onSubmit)}>
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-lock-unlocked pr-2"></i>
+							{t("ResourcesDetailContainer|Resource")}
+						</div>
+					</CardHeader>
 
-							<CardBody>
-								<Row>
-									<Col md={3}>{t("Name")}</Col>
-									<Col>
-										{ editMode ?
-											<Input
-												id="resource_name"
-												name="resource_name"
-												type="text"
-												autoComplete="off"
-												onChange={registerName.onChange}
-												onBlur={registerName.onBlur}
-												innerRef={registerName.ref}
-											/>
-										:
-											resource && resource._id
-										}
-									</Col>
-								</Row>
-								<Row className="mt-3">
-									<Col md={3}>{t("Created at")}</Col>
-									<Col><DateTime value={resource && resource._c} /></Col>
-								</Row>
-								<Row>
-									<Col md={3}>{t("Modified at")}</Col>
-									<Col><DateTime value={resource && resource._m} /></Col>
-								</Row>
+					<CardBody>
+						<Row>
+							<Col md={3}>{t("Name")}</Col>
+							<Col>
+								{ editMode ?
+									<Input
+										id="resource_name"
+										name="resource_name"
+										type="text"
+										autoComplete="off"
+										onChange={registerName.onChange}
+										onBlur={registerName.onBlur}
+										innerRef={registerName.ref}
+									/>
+								:
+									resource?._id
+								}
+							</Col>
+						</Row>
+						<Row className="mt-3">
+							<Col md={3}>{t("Created at")}</Col>
+							<Col><DateTime value={resource?._c} /></Col>
+						</Row>
+						<Row>
+							<Col md={3}>{t("Modified at")}</Col>
+							<Col><DateTime value={resource?._m} /></Col>
+						</Row>
 
-									<FormGroup row className="mt-3">
-										<Col sm={3}>{t("Description")}</Col>
-										<Col sm={6} className="resource-detail-description">
-											{editMode ?
-												<Input
-													id="resource_description"
-													name="resource_description"
-													type="textarea"
-													rows={3}
-													autoComplete="off"
-													onChange={registerDescription.onChange}
-													onBlur={registerDescription.onBlur}
-													innerRef={registerDescription.ref}
-												/>
-											: resource && resource.description }
-										</Col>
-									</FormGroup>
-							</CardBody>
-
-							<CardFooter>
+							<FormGroup row className="mt-3">
+								<Col sm={3}>{t("Description")}</Col>
+								<Col sm={6} className="resource-detail-description">
 									{editMode ?
-										<>
-											<ButtonGroup>
-													<Button color="primary" type="submit" >{t("Save")}</Button>
-													<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
-											</ButtonGroup>
-											<div className='actions-right'>
-												<Button color="danger" type="button" onClick={() => terminateResourceForm(resource._id)}>{t("ResourcesDetailContainer|Delete resource")}</Button>
-											</div>
-										</>
-									:
-										<ButtonWithAuthz
-											color="primary"
-											outline
-											type="button"
-											onClick={(e) => (e.preventDefault(), setEditMode(true))}
-											resources={resources}
-											resource="authz:superuser"
-										>
-											{t("Edit")}
-										</ButtonWithAuthz>
-									}
-							</CardFooter>
-						</Form>
-					</Card>
-				</Col>
-			</Row>
+										<Input
+											id="resource_description"
+											name="resource_description"
+											type="textarea"
+											rows={3}
+											autoComplete="off"
+											onChange={registerDescription.onChange}
+											onBlur={registerDescription.onBlur}
+											innerRef={registerDescription.ref}
+										/>
+									: resource?.description }
+								</Col>
+							</FormGroup>
+					</CardBody>
 
-			<Row className="justify-content-md-center">
+					<CardFooter>
+							{editMode ?
+								<>
+									<ButtonGroup>
+											<Button color="primary" type="submit" >{t("Save")}</Button>
+											<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+									</ButtonGroup>
+									<div className='actions-right'>
+										<Button color="danger" type="button" onClick={() => terminateResourceForm(resource._id)}>{t("ResourcesDetailContainer|Delete resource")}</Button>
+									</div>
+								</>
+							:
+								<ButtonWithAuthz
+									color="primary"
+									outline
+									type="button"
+									onClick={(e) => (e.preventDefault(), setEditMode(true))}
+									resources={resources}
+									resource="authz:superuser"
+								>
+									{t("Edit")}
+								</ButtonWithAuthz>
+							}
+					</CardFooter>
+				</Form>
+			</Card>
+
 				{advmode &&
-					<Col md={8}>
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className="card-header-title">
@@ -204,9 +198,7 @@ const ResourceDetailContainer = (props) =>  {
 								</CardBody>
 							}
 						</Card>
-					</Col>
 				}
-			</Row>
 		</Container>
 	);
 }
