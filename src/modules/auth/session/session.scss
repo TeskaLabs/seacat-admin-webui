@@ -8,8 +8,8 @@
 		"c c c b"
 		"d d d b";
 	grid-template-rows: auto auto auto;
-	column-gap: 1rem;
-	row-gap: 1rem;
+	column-gap: 0.25rem;
+	row-gap: 0.25rem;
 
 	.session-info-area {
 		grid-area: a;
@@ -39,8 +39,8 @@
 			"c c"
 			"d d";
 		grid-template-rows: auto;
-		column-gap: 1rem;
-		row-gap: 1rem;
+		column-gap: 0.25rem;
+		row-gap: 0.25rem;
 	}
 }
 
