@@ -80,87 +80,81 @@ const ResourceDetailContainer = (props) =>  {
 		}
 	}
 
-
 	return (
+		<Container className="resource-container">
+			<Card className='reosurce-detail-description'>
+				<CardHeader className="border-bottom">
+					<div className="card-header-title">
+						<i className="cil-lock-locked pr-2"></i>
+						{t("ResourcesDeletedDetailContainer|Resource")}
+					</div>
+				</CardHeader>
 
-		<Container>
-			<Row className="mb-4 justify-content-md-center">
-				<Col md={8}>
-					<Card>
-						<CardHeader className="border-bottom">
-							<div className="card-header-title">
-								<i className="cil-lock-locked pr-2"></i>
-								{t("ResourcesDeletedDetailContainer|Resource")}
+				<CardBody>
+					<Row>
+						<Col md={3}>{t("Name")}</Col>
+						<Col>{resource?._id}</Col>
+					</Row>
+					<Row className="mt-3">
+						<Col md={3}>{t("Created at")}</Col>
+						<Col><DateTime value={resource?._c} /></Col>
+					</Row>
+					<Row>
+						<Col md={3}>{t("Modified at")}</Col>
+						<Col><DateTime value={resource?._m} /></Col>
+					</Row>
+					<Row className='mt-3'>
+						<Col sm={3}>{t("Description")}</Col>
+						<Col sm={6} className="resource-detail-description">{resource?.description}</Col>
+					</Row>
+				</CardBody>
+
+				<CardFooter>
+					{editMode ?
+						<>
+							<ButtonGroup>
+								<Button
+									color="outline-primary"
+									type="button"
+									title={t("Cancel")}
+									onClick={(e) => (setEditMode(false))}
+								>
+									{t("Cancel")}
+								</Button>
+							</ButtonGroup>
+							<div className="actions-right">
+								<Button
+									color="primary"
+									onClick={() => confirmForm("retrieve")}
+									title={t("ResourcesDeletedDetailContainer|Retrieve")}
+								>
+									{t("ResourcesDeletedDetailContainer|Retrieve")}
+								</Button>
+								<Button
+									color="danger"
+									type="button"
+									onClick={() => confirmForm("delete")}
+									title={t("ResourcesDeletedDetailContainer|Hard-delete")}
+								>
+									{t("ResourcesDeletedDetailContainer|Hard-delete")}
+								</Button>
 							</div>
-						</CardHeader>
-
-						<CardBody>
-							<Row>
-								<Col md={3}>{t("Name")}</Col>
-								<Col>{resource && resource._id}</Col>
-							</Row>
-							<Row className="mt-3">
-								<Col md={3}>{t("Created at")}</Col>
-								<Col><DateTime value={resource && resource._c} /></Col>
-							</Row>
-							<Row>
-								<Col md={3}>{t("Modified at")}</Col>
-								<Col><DateTime value={resource && resource._m} /></Col>
-							</Row>
-							<Row className='mt-3'>
-								<Col sm={3}>{t("Description")}</Col>
-								<Col sm={6} className="resource-detail-description">{resource &&  resource.description}</Col>
-							</Row>
-						</CardBody>
-
-						<CardFooter>
-								{editMode ?
-										<>
-											<ButtonGroup>
-												<Button
-													color="outline-primary"
-													type="button"
-													title={t("Cancel")}
-													onClick={(e) => (setEditMode(false))}
-												>
-													{t("Cancel")}
-												</Button>
-											</ButtonGroup>
-											<div className="actions-right">
-												<Button
-													color="primary"
-													onClick={() => confirmForm("retrieve")}
-													title={t("ResourcesDeletedDetailContainer|Retrieve")}
-												>
-													{t("ResourcesDeletedDetailContainer|Retrieve")}
-												</Button>
-												<Button
-													color="danger"
-													type="button"
-													onClick={() => confirmForm("delete")}
-													title={t("ResourcesDeletedDetailContainer|Hard-delete")}
-												>
-													{t("ResourcesDeletedDetailContainer|Hard-delete")}
-												</Button>
-											</div>
-										</>
-									:
-										<ButtonWithAuthz
-											color="primary"
-											outline
-											type="button"
-											onClick={(e) => (e.preventDefault(), setEditMode(true))}
-											resources={resources}
-											resource={editButtonResource}
-											title={t("Edit")}
-										>
-											{t("Edit")}
-										</ButtonWithAuthz>
-									}
-						</CardFooter>
-					</Card>
-				</Col>
-			</Row>
+						</>
+					:
+						<ButtonWithAuthz
+							color="primary"
+							outline
+							type="button"
+							onClick={(e) => (e.preventDefault(), setEditMode(true))}
+							resources={resources}
+							resource={editButtonResource}
+							title={t("Edit")}
+						>
+							{t("Edit")}
+						</ButtonWithAuthz>
+					}
+				</CardFooter>
+			</Card>
 		</Container>
 	);
 }
