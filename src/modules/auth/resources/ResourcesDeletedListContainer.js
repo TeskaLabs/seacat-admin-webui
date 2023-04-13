@@ -19,7 +19,7 @@ const ResourcesDeletedListContainer = (props) => {
 	const ref = useRef(null);
 	const { t } = useTranslation();
 
-	const retrieveButtonResource = "authz:tenant:admin";
+	const retrieveButtonResource = "seacat:resource:edit";
 
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
@@ -84,17 +84,16 @@ const ResourcesDeletedListContainer = (props) => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/resource`, {params: {p:page, i:limit, include_deleted:true}});
 			let deletedResources = [];
-			response.data.data.map((item) => {
+			response?.data?.data && response.data.data.map((item) => {
 				item.deleted === true ? deletedResources.push(item) : null;
 			})
 			setResources(deletedResources);
 			setCount(deletedResources.length || 0);
-			setLoading(false);
 		} catch(e) {
 			console.error(e);
-			setLoading(false);
 			props.app.addAlert("warning", `${t("ResourcesDeletedListContainer|Failed to load resources")}. ${e?.response?.data?.message}`, 30);
 		}
+		setLoading(false);
 	}
 
 	// Undelete the resource
