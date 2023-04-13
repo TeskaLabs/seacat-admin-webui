@@ -78,28 +78,30 @@ export default function RoleDropdown({props, tenantObj, selectedTenants, setSele
 			tenantObj['roles'] = response.data;
 			// arr = [...selectedTenants, tenantObj];
 			// setSelectedTenants(arr);
+			console.log('response data from API call: ', response.data.data);
 			setCount(response.data.count);
-			setDisplayRoles(response.data)
+			setDisplayRoles(response.data);
 		} catch (e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch roles")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
-	// const addRole = (roleId, index) => {
-	// 	let tenants = [...selectedTenants];
-	// 	let tenant = {...tenantObj};
-	// 	let displayTenantRoles = [...displayRoles.data];
-	// 	displayTenantRoles.splice(index, 1);
-	// 	setDisplayRoles({...displayRoles, data: displayTenantRoles});
-	// 	if (tenant.selectedRole) {
-	// 		Object.assign(tenant, {'selectedRole': [...tenant?.selectedRole, roleId] });
-	// 	} else {
-	// 		Object.assign(tenant, {'selectedRole': [ roleId] });
-	// 	};
-	// 	tenants[idx] = tenant;
-	// 	setSelectedTenants(tenants);
-	// };
+	const addRole = (roleId, index) => {
+		console.log('inside addRole Function: roleId: ', roleId, 'index: ', index);
+		let tenants = [...selectedTenants];
+		let tenant = {...tenantObj};
+		let displayTenantRoles = [...displayRoles.data];
+		displayTenantRoles.splice(index, 1);
+		setDisplayRoles({...displayRoles, data: displayTenantRoles});
+		if (tenant.selectedRole) {
+			Object.assign(tenant, {'selectedRole': [...tenant?.selectedRole, roleId] });
+		} else {
+			Object.assign(tenant, {'selectedRole': [ roleId] });
+		};
+		tenants[idx] = tenant;
+		setSelectedTenants(tenants);
+	};
 
 	const handleFilter = (e) => {
 		setLimit(5);

@@ -213,21 +213,6 @@ const BulkAssignmentContainer = (props) => {
 		};
 	};
 
-	// // fetch roles for Tenant dropdowns
-	// const retrieveRoleList = async (tenantObj) => {
-	// 	let response;
-	// 	let arr;
-	// 	try {
-	// 		response = await SeaCatAuthAPI.get(`/role/${tenantObj._id}`);
-	// 		tenantObj['roles'] = response.data;
-	// 		arr = [...selectedTenants, tenantObj];
-	// 		setSelectedTenants(arr);
-	// 	} catch (e) {
-	// 		console.error(e);
-	// 		props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch roles")}. ${e?.response?.data?.message}`, 30);
-	// 	}
-	// }
-
 	// fetch data for Tenants List from server
 	const retrieveTenants = async () => {
 		setLoadingTenants(true);
@@ -257,15 +242,34 @@ const BulkAssignmentContainer = (props) => {
 		/* adjustments to data structure. selectedTenants is an array of objects. Server expects credential_ids to be an object with
 		tenants as keys and array of roles as their values { tenant1: [role1, role2], tenant2: [], ...}
 		Unless we'd like to do bulk *unassignment*, then unassigning from tenant as a whole requires { tenant1: "UNASSIGN-TENANT", tenant2: [role1, role2,..], ...} */
+		let globalRoles = [];
 		selectedTenants.map((obj) => {
 			let roles = [];
+			let emptyArr = false;
 			if (obj.selectedRole && (obj.selectedRole.length > 0)) {
-				roles = obj.selectedRole;
+				//select global roles (if any)
+				let globalsInSelectedRoles = obj.selectedRole.filter(item => (/^[*]/).test(item));
+				globalsInSelectedRoles && globalRoles.push(...globalsInSelectedRoles);
+				console.log('globalsInSelectedRoles', globalsInSelectedRoles);
+				//if no global roles, use the array coming from obj.selectedRole as is, else filter selectedRoles and select non global roles
+				if(!globalsInSelectedRoles) {
+					roles = obj.selectedRole;
+				} else {
+					let nonGlobalRoles = obj.selectedRole.filter(item => !(/^[*]/).test(item));
+					// nonGlobalRoles
+					roles = nonGlobalRoles;
+				}
 			} else if (actionType === '/tenant_unassign_many') {
 				roles = "UNASSIGN-TENANT";
 			};
 			tenantObj[obj._id] = roles;
 		})
+		//assign global roles if any
+		if (globalRoles.length > 0) {
+			tenantObj['*'] = globalRoles;
+		}
+		console.log("credential_ids", credential_ids)
+		console.log("tenants", tenantObj )
 		try {
 			let response = await SeaCatAuthAPI.put(actionType, {"credential_ids": credential_ids, "tenants": tenantObj });
 			if (response.data.result !== "OK") {
@@ -278,7 +282,6 @@ const BulkAssignmentContainer = (props) => {
 			console.error(e);
 			setLoadingTenants(false);
 			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to perform bulk operation")}. ${e?.response?.data?.message}`, 30);
-
 		}
 	};
 
@@ -315,7 +318,6 @@ const BulkAssignmentContainer = (props) => {
 		tenantData[tenantIndex].selectedRole.splice(roleIndex, 1);
 		setSelectedTenants([...tenantData]);
 	};
-
 
 	return (
 		<div className='bulk-actions-wraper'>
