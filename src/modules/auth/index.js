@@ -20,7 +20,7 @@ import ResourcesListContainer from './resources/ResourcesListContainer';
 import ResourcesDetailContainer from './resources/ResourcesDetailContainer';
 import ResourcesCreateContainer from './resources/ResourcesCreateContainer';
 import ResourcesDeletedListContainer from './resources/ResourcesDeletedListContainer';
-import ResourcesDeletedDetailContainer from'./resources/ResourcesDeletedDetailContainer';
+import DeletedResourceDetailContainer from'./resources/ResourcesDeletedDetailContainer';
 
 import ClientListContainer from './clients/ClientListContainer';
 import ClientCreateContainer from './clients/ClientCreateContainer';
@@ -62,7 +62,7 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/resources-deleted/:resource_id',
 			exact: true,
 			name: 'Deleted resource detail',
-			component: ResourcesDeletedDetailContainer
+			component: DeletedResourceDetailContainer
 		});
 		app.Router.addRoute({
 			path: '/auth/resources/:resource_id',
