@@ -10,7 +10,7 @@ import {
 
 import { DateTime, ButtonWithAuthz } from 'asab-webui';
 
-const ResourceDetailContainer = (props) =>  {
+const DeletedResourceDetailContainer = (props) =>  {
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const [resource, setResource] = useState(undefined);
@@ -159,4 +159,4 @@ const ResourceDetailContainer = (props) =>  {
 	);
 }
 
-export default ResourceDetailContainer;
+export default DeletedResourceDetailContainer;
