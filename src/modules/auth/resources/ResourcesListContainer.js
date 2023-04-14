@@ -19,7 +19,7 @@ function ResourcesListContainer(props) {
 	const ref = useRef(null);
 	const { t } = useTranslation();
 
-	const deleteButtonResource = "seacat:resource:edit";
+	const deleteResource = "seacat:resource:edit";
 	const createResourceButtonResource = "authz:superuser"
 
 	const credentialsResources = useSelector(state => state.auth?.resources);
@@ -54,7 +54,7 @@ function ResourcesListContainer(props) {
 							color="danger"
 							outline
 							onClick={() => {terminateResourceForm(resource._id)}}
-							resource={deleteButtonResource}
+							resource={deleteResource}
 							resources={credentialsResources}
 						>
 							<i className="cil-x"></i>
@@ -96,12 +96,12 @@ function ResourcesListContainer(props) {
 	const terminateResourceForm = (resourceId) => {
 		var r = confirm(t('ResourcesListContainer|Do you want to delete this resource'));
 		if (r == true) {
-			deleteResource(resourceId);
+			deleteResourceFunction(resourceId);
 		}
 	}
 
 	// Terminate the resource
-	const deleteResource = async (resourceId) => {
+	const deleteResourceFunction = async (resourceId) => {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/resource/${resourceId}`);
 			if (response.data.result !== "OK") {
