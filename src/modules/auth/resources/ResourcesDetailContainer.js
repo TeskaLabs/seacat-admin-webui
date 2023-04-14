@@ -27,6 +27,8 @@ const ResourceDetailContainer = (props) =>  {
 	const registerDescription = register("resource_description");
 	const registerName = register("resource_name");
 
+	const editButtonResource = "authz:superuser";
+
 	const getResourceDetail = async (resourceId) => {
 		try {
 			let response = await SeaCatAuthAPI.get(`resource/${resourceId}`);
@@ -170,7 +172,7 @@ const ResourceDetailContainer = (props) =>  {
 									type="button"
 									onClick={(e) => (e.preventDefault(), setEditMode(true))}
 									resources={resources}
-									resource="authz:superuser"
+									resource={editButtonResource}
 								>
 									{t("Edit")}
 								</ButtonWithAuthz>
