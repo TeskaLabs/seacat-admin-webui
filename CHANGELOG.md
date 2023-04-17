@@ -2,6 +2,14 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[c7d682a](https://github.com/TeskaLabs/asab-webui/commit/c7d682ad8f08e432ddbed2c0d21f16a73b23bd58)] commit (INDIGO Sprint 230414, [!29](https://github.com/TeskaLabs/seacat-admin-webui/pull/29))
+
+### Bugfix
+
+- Version bump of ASAB WebUI with fix on userinfo loop when session expiration time is set to small values (INDIGO Sprint 230414, [!29](https://github.com/TeskaLabs/seacat-admin-webui/pull/29))
+
 ## v23.13-beta
 
 ### Compatibility
