@@ -20,7 +20,7 @@ function ResourcesListContainer(props) {
 	const { t } = useTranslation();
 
 	const deleteResource = "seacat:resource:edit";
-	const createResourceButtonResource = "authz:superuser"
+	const createResource = "authz:superuser"
 
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
@@ -129,7 +129,7 @@ function ResourcesListContainer(props) {
 				title={t("ResourcesListContainer|Create resource")}
 				color="primary"
 				onClick={() => {redirectToCreate()}}
-				resource={createResourceButtonResource}
+				resource={createResource}
 				resources={credentialsResources}
 				>
 				{t("ResourcesListContainer|Create resource")}

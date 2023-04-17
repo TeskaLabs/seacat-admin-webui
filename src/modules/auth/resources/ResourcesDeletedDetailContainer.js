@@ -17,7 +17,7 @@ const DeletedResourceDetailContainer = (props) =>  {
 	const [editMode, setEditMode] = useState(false);
 	const { resource_id } = props.match.params;
 
-	const editButtonResource = "authz:superuser";
+	const editResource = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 
 	useEffect(() => {
@@ -147,7 +147,7 @@ const DeletedResourceDetailContainer = (props) =>  {
 							type="button"
 							onClick={(e) => (e.preventDefault(), setEditMode(true))}
 							resources={resources}
-							resource={editButtonResource}
+							resource={editResource}
 							title={t("Edit")}
 						>
 							{t("Edit")}
