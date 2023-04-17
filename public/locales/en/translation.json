@@ -372,7 +372,7 @@
 		"Invalid format, resource cannot start with a underscore": "Invalid format, resource cannot start with a underscore",
 		"Invalid format, only letters, numbers, dash and underscore are allowed": "Invalid format, only letters, numbers, dash and underscore are allowed",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
-		"Something went wrong, failed to create resource": "Something went wrong, failed to create resource"
+		"Failed to create resource": "Failed to create resource"
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Resource",

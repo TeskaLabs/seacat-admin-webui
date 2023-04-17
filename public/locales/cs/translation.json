@@ -372,7 +372,7 @@
 		"Invalid format, resource cannot start with a underscore": "Nesprávný formát, zdroj nemůže začínat podtržítkem",
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Nesprávný formát, pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
-		"Something went wrong, failed to create resource": "Něco je špatně, nepodařilo se vytvořit zdroj"
+		"Failed to create resource": "Nepodařilo se vytvořit zdroj"
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Zdroj",
