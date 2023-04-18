@@ -82,13 +82,9 @@ const ResourcesDeletedListContainer = (props) => {
 	// Fetches deleted resources
 	const getResources = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/resource`, {params: {p:page, i:limit, include_deleted:true}});
-			let deletedResources = [];
-			response?.data?.data && response.data.data.map((item) => {
-				item.deleted === true ? deletedResources.push(item) : null;
-			})
-			setResources(deletedResources);
-			setCount(deletedResources.length || 0);
+			let response = await SeaCatAuthAPI.get(`/resource`, {params: {p:page, i:limit, include:'deleted'}});
+			setResources(response.data.data);
+			setCount(response.data.count || 0);
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("ResourcesDeletedListContainer|Failed to load resources")}. ${e?.response?.data?.message}`, 30);
