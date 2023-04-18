@@ -96,13 +96,14 @@
 		"Selected credentials": "Selected credentials",
 		"Unselect": "Unselect",
 		"Tenants": "Tenants",
-		"Selected tenants": "Selected tenants",
+		"Selected tenants and roles": "Selected tenants and roles",
 		"Assign in bulk": "Assign in bulk",
 		"Select credentials and tenants": "Select credentials and tenants",
 		"Remove assignment": "Remove assignment",
 		"Failed to fetch roles": "Failed to fetch roles",
 		"Add global role(s)": "Add global role(s)",
-		"Global roles have to be individually specified": "Global roles have to be individually specified"
+		"Global roles have to be individually specified": "Global roles have to be individually specified",
+		"Do you really want to leave this screen? Selected data will be lost": "Do you really want to leave this screen? Selected data will be lost"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
