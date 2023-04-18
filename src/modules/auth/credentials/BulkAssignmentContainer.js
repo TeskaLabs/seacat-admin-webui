@@ -15,26 +15,25 @@ const BulkAssignmentContainer = (props) => {
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(1);
 	const [limit, setLimit] = useState(0);
-	const [credentialsFilter, setCredentialsFilter] = useState("");
 	const [loading, setLoading] = useState(true);
+	const [credentialsFilter, setCredentialsFilter] = useState("");
 	const [selectedCredentials, setSelectedCredentials] = useState([]);
 
 	const [tenants, setTenants] = useState({});
-	const [tenantsCount, setTenantsCount] = useState(0);
 	const [tenantsPage, setTenantsPage] = useState(1);
+	const [tenantsCount, setTenantsCount] = useState(0);
 	const [tenantsLimit, setTenantsLimit] = useState(0);
 	const [tenantsFilter, setTenantsFilter] = useState("");
 	const [loadingTenants, setLoadingTenants] = useState(true);
-	const [selectedTenants, setSelectedTenants] = useState([]);
+	const [selectedTenants, setSelectedTenants] = useState([{_id: 'Global roles'}]);
 
 	const [show, setShow] = useState(false);
 	const [showTenantsContentLoader, setShowTenantsContentLoader] = useState(false);
 
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
-	const resourceAddToSelected = "authz:superuser";
+	const addResource = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
-
 
 	// headers for Credentails List
 	const headers = [
@@ -50,7 +49,7 @@ const BulkAssignmentContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => saveToSelectedCredentials(credential)}
-							resource={resourceAddToSelected}
+							resource={addResource}
 							resources={resources}
 							disabled={credential.assigned}
 						>
@@ -76,11 +75,8 @@ const BulkAssignmentContainer = (props) => {
 							: <span className="cil-user mr-1" />}
 						<Link
 							style={{color: obj.suspended === true && '#73818f'}}
-							to={{
-								pathname: `/auth/credentials/${obj._id}`,
-							}}
-							target="_blank"
-							rel="noopener noreferrer">
+							onClick={() => confirmForm(`/auth/credentials/${obj._id}`)}
+							>
 							{/* TODO: substitute with Credentials component, when it's ready */}
 							{obj.username ?? obj._id}
 						</Link>
@@ -104,7 +100,7 @@ const BulkAssignmentContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => saveToSelectedTenants(tenant)}
-							resource={resourceAddToSelected}
+							resource={addResource}
 							resources={resources}
 							disabled={tenant.assigned}
 						>
@@ -116,11 +112,12 @@ const BulkAssignmentContainer = (props) => {
 		},
 		{
 			name: '',
-			key: "_id",
-			link: {
-				key: "_id",
-				pathname: "/auth/tenant/",
-				target: "_blank"
+			customComponent: {
+				generate: (tenant) => (
+					<Link onClick={() => confirmForm(`/auth/tenant/${tenant._id}`)}>
+						{tenant._id}
+					</Link>
+				)
 			}
 		}
 	];
@@ -285,6 +282,14 @@ const BulkAssignmentContainer = (props) => {
 		}
 	};
 
+	// pops up confirmation prompt. The prompt notifies user about selected data loss after redirection to a credential/tenant detail screen
+	const confirmForm = (route) => {
+		var r = confirm(t('BulkAssignmentContainer|Do you really want to leave this screen? Selected data will be lost'));
+		if (r === true) {
+			props.history.push(route);
+		}
+	}
+
 	// add specific(selected) credential object to selectedCrenetials state
 	const saveToSelectedCredentials = (credentialObj) => {
 		setSelectedCredentials([...selectedCredentials, credentialObj]);
@@ -385,23 +390,25 @@ const BulkAssignmentContainer = (props) => {
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
 						<i className="cil-apps mr-2" />
-						{t("BulkAssignmentContainer|Selected tenants")}
+						{t("BulkAssignmentContainer|Selected tenants and roles")}
 					</div>
 				</CardHeader>
-				<CardBody>
+				<CardBody className="selected-roles-tenants">
 					{selectedTenants?.map((obj, idx) => {
 						return (
 							<>
 								<div className='d-flex flex-direction-row align-items-center selected-row'>
-									<Button
-										title={t("BulkAssignmentContainer|Unselect")}
-										outline
-										size="sm"
-										className="tenant-unselect-btn"
-										onClick={() => unselectTenant(idx)}
+									{(idx != 0) &&
+										<Button
+											title={t("BulkAssignmentContainer|Unselect")}
+											outline
+											size="sm"
+											className="tenant-unselect-btn"
+											onClick={() => unselectTenant(idx)}
 										>
 										<i className='cil-x'/>
-									</Button>
+										</Button>
+									}
 									<span className="ml-3">{obj._id}</span>
 									<RoleDropdown
 										props={props}
@@ -438,7 +445,7 @@ const BulkAssignmentContainer = (props) => {
 							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Assign in Bulk'}`)}
 							color="primary"
 							onClick={() => bulkAction('/tenant_assign_many')}
-							resource={resourceAddToSelected}
+							resource={addResource}
 							resources={resources}
 							disabled={(selectedCredentials.length === 0) || (selectedTenants.length === 0)}
 						>
@@ -451,7 +458,7 @@ const BulkAssignmentContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => bulkAction('/tenant_unassign_many')}
-							resource={resourceAddToSelected}
+							resource={addResource}
 							resources={resources}
 							disabled={(selectedCredentials.length === 0) || (selectedTenants.length === 0)}
 						>
