@@ -103,7 +103,10 @@
 		"Failed to fetch roles": "Failed to fetch roles",
 		"Add global role(s)": "Add global role(s)",
 		"Global roles have to be individually specified": "Global roles have to be individually specified",
-		"Do you really want to leave this screen? Selected data will be lost": "Do you really want to leave this screen? Selected data will be lost"
+		"Do you really want to leave this screen? Selected data will be lost": "Do you really want to leave this screen? Selected data will be lost",
+		"More": "More...",
+		"Select roles": "Select roles",
+		"Add role": "Add role"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
