@@ -2,13 +2,17 @@
 
 ## Release Candidate
 
-- ASAB WebUI submodule version bump [[ce85b29](https://github.com/TeskaLabs/asab-webui/commit/ce85b29a6feae89fbdb06770ff9a462ef44d8903)] commit (INDIGO Sprint 230331, [!28](https://github.com/TeskaLabs/seacat-admin-webui/pull/28))
+- ASAB WebUI submodule version bump [[c7d682a](https://github.com/TeskaLabs/asab-webui/commit/c7d682ad8f08e432ddbed2c0d21f16a73b23bd58)] commit (INDIGO Sprint 230414, [!29](https://github.com/TeskaLabs/seacat-admin-webui/pull/29))
 
 ### Features
 
 - Update access and edit resources in SeaCat Admin application (INDIGO Sprint 230331, [!28](https://github.com/TeskaLabs/seacat-admin-webui/pull/28))
 
 - Remove Homepage (INDIGO Sprint 230331, [!28](https://github.com/TeskaLabs/seacat-admin-webui/pull/28))
+
+### Bugfix
+
+- Version bump of ASAB WebUI with fix on userinfo loop when session expiration time is set to small values (INDIGO Sprint 230414, [!29](https://github.com/TeskaLabs/seacat-admin-webui/pull/29))
 
 ## v23.13-beta
 
