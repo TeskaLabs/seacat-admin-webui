@@ -20,7 +20,7 @@ function TenantListContainer(props) {
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
 
-	const resource = "seacat:tenant:edit";
+	const resource = "seacat:tenant:create";
 	const resources = useSelector(state => state.auth?.resources);
 
 	const headers = [

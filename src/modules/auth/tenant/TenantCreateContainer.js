@@ -19,7 +19,7 @@ function TenantCreateContainer(props) {
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const { t } = useTranslation();
 	const resources = useSelector(state => state.auth?.resources);
-	const resource = "seacat:tenant:edit";
+	const resource = "seacat:tenant:create";
 
 	const reg = register(
 		"id",
