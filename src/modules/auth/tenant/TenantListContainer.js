@@ -20,7 +20,8 @@ function TenantListContainer(props) {
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
 
-	const resource = "seacat:tenant:create";
+	// TODO: Resource "seacat:tenant:create" will be implemented in future iterations
+	const resource = "authz:superuser"; //"seacat:tenant:create";
 	const resources = useSelector(state => state.auth?.resources);
 
 	const headers = [

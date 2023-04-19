@@ -18,8 +18,9 @@ function TenantCreateContainer(props) {
 	const { handleSubmit, register, formState: { errors, isSubmitting }, setValue, getValues } = useForm();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const { t } = useTranslation();
+	// TODO: Resource "seacat:tenant:create" will be implemented in future iterations
+	const resource = "authz:superuser"; //"seacat:tenant:create";
 	const resources = useSelector(state => state.auth?.resources);
-	const resource = "seacat:tenant:create";
 
 	const reg = register(
 		"id",
