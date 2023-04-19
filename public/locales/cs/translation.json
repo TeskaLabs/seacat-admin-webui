@@ -78,7 +78,6 @@
 		"Clients": "Klienti",
 		"New client": "Nový klient",
 		"Client detail": "Detail klienta",
-		"Home": "Domů",
 		"About": "O Aplikaci",
 		"Access control": "Přístupová oprávnění"
 	},
@@ -281,12 +280,6 @@
 		"Send instructions to set password": "Zaslat instrukce k nastavení hesla",
 		"Required field": "Povinný údaj"
 	},
-	"HomeContainer": {
-		"Welcome!": "Vítejte!",
-		"This is TeskaLabs SeaCat Admin, cyber-security tool": "Toto je TeskaLabs SeaCat Admin, nástroj pro správu kybernetické bezpečnosti",
-		"SeaCat Admin is a comphrehensive security management tool": "SeaCat Admin je nástroj pro komplexní zabezpečení, organizaci a správu dat.",
-		"Please continue to desired agenda by navigating in the menu on the left": "Pokračujte prosím do požadované sekce pomocí nabídky na levé straně."
-	},
 	"ResetPasswordContainer": {
 		"Reset password": "Obnovení hesla",
 		"Username": "Uživatelské jméno",
@@ -466,6 +459,7 @@
 		"Do you want to remove the tenant?": "Opravdu chcete odstranit tenanta?",
 		"Do you want to unassign these credentials?": "Opravdu chcete odebrat uživatele?",
 		"Failed to remove the tenant": "Nepodařilo se odstranit tenanta",
+		"Tenant removed successfully, you will be logged out in a while": "Tenant úspěšně odstraněn, za moment budete odhlášeni",
 		"Tenant removed successfully": "Tenant úspěšně odstraněn",
 		"Tenant data updated successfully": "Tenant úspěšně aktualizován"
 	},
@@ -486,6 +480,13 @@
 		"Something went wrong, failed to create tenant": "Něco je špatně, nepodařilo se vytvořit tenanta",
 		"Something went wrong, can't propose tenant name": "Něco je špatně, není možné navrhnout jméno tenanta"
 	},
+	"HomeContainer": {
+		"Welcome!": "Vítejte!",
+		"This is TeskaLabs SeaCat Admin, cyber-security tool": "Toto je TeskaLabs SeaCat Admin, nástroj pro správu kybernetické bezpečnosti",
+		"SeaCat Admin is a comphrehensive security management tool": "SeaCat Admin je nástroj pro komplexní zabezpečení, organizaci a správu dat.",
+		"Please continue to desired agenda by navigating in the menu on the left": "Pokračujte prosím do požadované sekce pomocí nabídky na levé straně."
+	},
+
 	"UserInterfaceCard": {
 		"User interface": "Uživatelské rozhraní",
 		"Build date": "Datum sestavení",
@@ -498,8 +499,11 @@
 		"Select tenant": "Vyberte tenanta",
 		"Back to login": "Zpět na přihlášení"
 	},
+	"UnauthorizedAccessScreen": {
+		"Unauthorized access": "Neoprávněný přístup",
+		"You are not authorized to access this part of the application. Please ask your application administrator for following resource": "Nejste oprávněni k přístupu do této části aplikace. Prosím, kontaktujte administrátora aplikace. K udělení přístupu je potřeba následující zdroj"
+	},
 	"Sidebar": {
-		"Home": "Domů",
 		"About": "O Aplikaci",
 		"Auth": "Autorizace",
 		"Credentials": "Uživ. Identifikace",

@@ -6,14 +6,17 @@ import { useTranslation } from 'react-i18next';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Button, Form, FormGroup, FormText,
+	Form, FormGroup, FormText,
 	Input, Label, FormFeedback
 } from 'reactstrap';
+
+import { ButtonWithAuthz } from 'asab-webui';
 
 const RolesCreateContainer = (props) => {
 	const { handleSubmit, register, formState: { errors, isSubmitting }, getValues } = useForm();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
+	const resource = "seacat:role:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const currentTenant = useSelector(state => state.tenant?.current);
 
@@ -101,11 +104,13 @@ const RolesCreateContainer = (props) => {
 							<CardFooter>
 								<Row>
 									<Col>
-										<Button
+										<ButtonWithAuthz
 											color="primary"
 											type="submit"
 											disabled={isSubmitting}
-										>{t("RolesCreateContainer|Create role")}</Button>
+											resources={resources}
+											resource={resource}
+										>{t("RolesCreateContainer|Create role")}</ButtonWithAuthz>
 									</Col>
 								</Row>
 							</CardFooter>

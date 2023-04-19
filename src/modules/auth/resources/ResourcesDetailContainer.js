@@ -21,6 +21,7 @@ const ResourceDetailContainer = (props) =>  {
 	const { resource_id } = props.match.params;
 
 	const resources = useSelector(state => state.auth?.resources);
+	const resourceEdit = "seacat:resource:edit";
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
 
@@ -124,7 +125,7 @@ const ResourceDetailContainer = (props) =>  {
 											type="button"
 											onClick={(e) => (e.preventDefault(), setEditMode(true))}
 											resources={resources}
-											resource="authz:superuser"
+											resource={resourceEdit}
 										>
 											{t("Edit")}
 										</ButtonWithAuthz>
