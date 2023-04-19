@@ -183,7 +183,7 @@ function TenantDetailContainer(props) {
 			}
 			if (tenant_id == currentTenant) {
 				// Reload page when removing the current tenant
-				props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully, page will be reloaded in a while"));
+				props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully, you will be logged out in a while"));
 				setTimeout(() => {
 					window.location.reload();
 				}, 5000)
