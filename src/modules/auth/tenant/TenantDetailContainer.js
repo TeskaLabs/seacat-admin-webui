@@ -189,8 +189,8 @@ function TenantDetailContainer(props) {
 				}, 5000)
 			} else {
 				props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully"));
+				props.history.push("/auth/tenant");
 			}
-			props.history.push("/auth/tenant");
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("TenantDetailContainer|Failed to remove the tenant")}. ${e?.response?.data?.message}`, 30);
