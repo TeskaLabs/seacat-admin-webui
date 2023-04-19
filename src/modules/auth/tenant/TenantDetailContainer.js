@@ -31,6 +31,7 @@ function TenantDetailContainer(props) {
 	const resources = useSelector(state => state.auth?.resources);
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
+	const currentTenant = useSelector(state => state.tenant?.current);
 
 	const [count, setCount] = useState(0);
 	const timeoutRef = useRef(null);
@@ -180,7 +181,15 @@ function TenantDetailContainer(props) {
 			if (response.data.result !== "OK") {
 				throw new Error(t("TenantDetailContainer|Failed to remove tenant"));
 			}
-			props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully"));
+			if (tenant_id == currentTenant) {
+				// Reload page when removing the current tenant
+				props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully, page will be reloaded in a while"));
+				setTimeout(() => {
+					window.location.reload();
+				}, 5000)
+			} else {
+				props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully"));
+			}
 			props.history.push("/auth/tenant");
 		} catch(e) {
 			console.error(e);

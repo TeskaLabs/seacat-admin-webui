@@ -459,6 +459,7 @@
 		"Do you want to remove the tenant?": "Opravdu chcete odstranit tenanta?",
 		"Do you want to unassign these credentials?": "Opravdu chcete odebrat uživatele?",
 		"Failed to remove the tenant": "Nepodařilo se odstranit tenanta",
+		"Tenant removed successfully, page will be reloaded in a while": "Tenant úspěšně odstraněn, stránka se za moment obnoví",
 		"Tenant removed successfully": "Tenant úspěšně odstraněn",
 		"Tenant data updated successfully": "Tenant úspěšně aktualizován"
 	},
