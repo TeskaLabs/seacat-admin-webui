@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo } from "react"
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardHeader,
-	CardFooter, Button, ButtonGroup } from "reactstrap";
+	CardFooter, Button, ButtonGroup,
+	UncontrolledTooltip } from "reactstrap";
 import {DataTable, ButtonWithAuthz  } from 'asab-webui';
 import RoleDropdown from "../components/RoleDropdown";
 import { useSelector } from "react-redux";
@@ -242,7 +243,6 @@ const BulkAssignmentContainer = (props) => {
 		let globalRoles = [];
 		selectedTenants.map((obj) => {
 			let roles = [];
-			let emptyArr = false;
 			if (obj.selectedRole && (obj.selectedRole.length > 0)) {
 				//select global roles (if any)
 				let globalsInSelectedRoles = obj.selectedRole.filter(item => (/^[*]/).test(item));
@@ -304,15 +304,14 @@ const BulkAssignmentContainer = (props) => {
 
 	// add specific(selected) tenant object to selectedTenants state
 	const saveToSelectedTenants = (tenantObj) => {
-		// retrieveRoleList(tenantObj)
-		let arr = [...selectedTenants, tenantObj]
-		console.log('arr, ', arr)
+		let arr = [...selectedTenants];
+		arr.push(tenantObj);
 		setSelectedTenants([...arr])
 	};
 
 	// remove item from selectedTenants state
 	const unselectTenant = (idx) => {
-		let tenantData = selectedTenants;
+		let tenantData = [...selectedTenants];
 		tenantData.splice(idx, 1);
 		setSelectedTenants([...tenantData]);
 	};
@@ -410,6 +409,10 @@ const BulkAssignmentContainer = (props) => {
 										</Button>
 									}
 									<span className="ml-3">{obj._id}</span>
+									{/* <i className="cil-info ml-2" id={idx}/> */}
+									{/* <UncontrolledTooltip target={idx} placement="bottom">
+										{(obj.selectedRole && (obj.selectedRole.length > 0)) ? 'gucci' : 'nada' }
+									</UncontrolledTooltip> */}
 									<RoleDropdown
 										props={props}
 										tenantObj={obj}
@@ -439,7 +442,6 @@ const BulkAssignmentContainer = (props) => {
 					})}
 				</CardBody>
 				<CardFooter className="border-top">
-
 					<ButtonGroup>
 						<ButtonWithAuthz
 							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || (selectedTenants.length === 0)) ? 'Select credentials and tenants' : 'Assign in Bulk'}`)}
