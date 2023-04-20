@@ -2,9 +2,8 @@ import React, { useState, useEffect, useMemo } from "react"
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardHeader,
-	CardFooter, Button, ButtonGroup,
-	UncontrolledTooltip } from "reactstrap";
-import {DataTable, ButtonWithAuthz  } from 'asab-webui';
+	CardFooter, Button, ButtonGroup } from "reactstrap";
+import {DataTable, ButtonWithAuthz } from 'asab-webui';
 import RoleDropdown from "../components/RoleDropdown";
 import { useSelector } from "react-redux";
 
@@ -409,15 +408,6 @@ const BulkAssignmentContainer = (props) => {
 										</Button>
 									}
 									<span className="ml-3">{obj._id}</span>
-									{/* <span style={{textDecoration: "underline", color:"blue"}} hred="#" id={idx}><i className="cil-info ml-2"/></span>
-									<UncontrolledTooltip target={idx} placement="bottom">
-										{/* {(obj.selectedRole && (obj.selectedRole.length > 0)) ? 'gucci' : 'nada' } */}
-										{/* ahoj
-									</UncontrolledTooltip>
-									<p>Somewhere in here is a <span style={{textDecoration: "underline", color:"blue"}} href="#" id="UncontrolledTooltipExample">tooltip</span>.</p>
-									<UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
-										Hello world!
-								</UncontrolledTooltip> */}
 									<RoleDropdown
 										props={props}
 										tenantObj={obj}
