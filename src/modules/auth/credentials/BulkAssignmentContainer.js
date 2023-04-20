@@ -170,7 +170,7 @@ const BulkAssignmentContainer = (props) => {
 
 	const datatableTenantsData = useMemo(() => {
 		let tenantsTableData = [];
-		if (tenants.length > 0) {
+		if (tenants?.length > 0) {
 			tenants.map((tenantObj) => {
 				/* we are maping over `tenants` (state used for Tenants). Each element of `tenants` state is an object with property `_id` (among others).
 				We are trying to match the value of this property with any selectedTenants state's element's `_id` property.
@@ -243,7 +243,7 @@ const BulkAssignmentContainer = (props) => {
 		let globalRoles = [];
 		selectedTenants.map((obj) => {
 			let roles = [];
-			if (obj.selectedRole && (obj.selectedRole.length > 0)) {
+			if (obj.selectedRole && (obj.selectedRole?.length > 0)) {
 				//select global roles (if any)
 				let globalsInSelectedRoles = obj.selectedRole.filter(item => (/^[*]/).test(item));
 				globalsInSelectedRoles && globalRoles.push(...globalsInSelectedRoles);
@@ -409,10 +409,15 @@ const BulkAssignmentContainer = (props) => {
 										</Button>
 									}
 									<span className="ml-3">{obj._id}</span>
-									{/* <i className="cil-info ml-2" id={idx}/> */}
-									{/* <UncontrolledTooltip target={idx} placement="bottom">
-										{(obj.selectedRole && (obj.selectedRole.length > 0)) ? 'gucci' : 'nada' }
-									</UncontrolledTooltip> */}
+									{/* <span style={{textDecoration: "underline", color:"blue"}} hred="#" id={idx}><i className="cil-info ml-2"/></span>
+									<UncontrolledTooltip target={idx} placement="bottom">
+										{/* {(obj.selectedRole && (obj.selectedRole.length > 0)) ? 'gucci' : 'nada' } */}
+										{/* ahoj
+									</UncontrolledTooltip>
+									<p>Somewhere in here is a <span style={{textDecoration: "underline", color:"blue"}} href="#" id="UncontrolledTooltipExample">tooltip</span>.</p>
+									<UncontrolledTooltip placement="right" target="UncontrolledTooltipExample">
+										Hello world!
+								</UncontrolledTooltip> */}
 									<RoleDropdown
 										props={props}
 										tenantObj={obj}
