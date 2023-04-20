@@ -116,7 +116,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 
 	return (
 		<>
-			<span href="#" id={`tooltip-${idx}`}> <i className='cil-info ml-2'></i></span>
+			<span href="#" id={`tooltip-${idx}`}><i className='cil-info ml-2'></i></span>
 			<UncontrolledTooltip placement="auto" target={`tooltip-${idx}`}>
 				{message}
 			</UncontrolledTooltip>
