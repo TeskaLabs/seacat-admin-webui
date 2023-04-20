@@ -146,7 +146,8 @@ const BulkAssignmentContainer = (props) => {
 		}
 	}, [tenantsPage, tenantsFilter, tenantsLimit]);
 
-	// Actual adjusted data (compared with `selectedCredentials`) to be displayed in Credentials list data table
+	/* Actual modified data (this data set was compared compared with `selectedCredentials` and `assigned: true` was added to matching credentials. Assigned:true property
+	disables the "+"" button) to be displayed in Credentials list data table */
 	const datatableCredentialsData = useMemo(() => {
 		let credentialsTableData = [];
 		if (data) {
@@ -187,7 +188,7 @@ const BulkAssignmentContainer = (props) => {
 		return tenantsTableData
 	}, [tenants, selectedTenants]);
 
-	// fetched Credentials Data from server
+	// fetches Credentials Data from server
 	const retrieveData = async () => {
 		setLoading(true);
 		try {
@@ -197,16 +198,15 @@ const BulkAssignmentContainer = (props) => {
 			};
 			setData(response.data.data);
 			setCount(response.data.count);
-			setLoading(false);
 		} catch(e) {
 			console.error(e);
-			setLoading(false);
 			// error message for unauthorized access
 			if (e.response.status === 401) {
 				props.app.addAlert("warning", t("BulkAssignmentContainer|Can't fetch credentials, you don't have rights to display it"), 30);
 				return;
 			};
 			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch credentials")}. ${e?.response?.data?.message}`, 30);
+			setLoading(false);
 		};
 	};
 
@@ -220,12 +220,11 @@ const BulkAssignmentContainer = (props) => {
 			};
 			setTenants(response.data.data);
 			setTenantsCount(response.data.count);
-			setLoadingTenants(false);
 		} catch(e) {
 			console.error(e);
-			setLoadingTenants(false);
 			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch tenants")}. ${e?.response?.data?.message}`, 30);
 		}
+		setLoadingTenants(false);
 	};
 
 	// call to assign all selected tenants to all selected credentials
@@ -239,33 +238,17 @@ const BulkAssignmentContainer = (props) => {
 		/* adjustments to data structure. selectedTenants is an array of objects. Server expects credential_ids to be an object with
 		tenants as keys and array of roles as their values { tenant1: [role1, role2], tenant2: [], ...}
 		Unless we'd like to do bulk *unassignment*, then unassigning from tenant as a whole requires { tenant1: "UNASSIGN-TENANT", tenant2: [role1, role2,..], ...} */
-		let globalRoles = [];
+		// let globalRoles = [];
 		selectedTenants.map((obj) => {
 			let roles = [];
 			if (obj.selectedRole && (obj.selectedRole?.length > 0)) {
-				//select global roles (if any)
-				let globalsInSelectedRoles = obj.selectedRole.filter(item => (/^[*]/).test(item));
-				globalsInSelectedRoles && globalRoles.push(...globalsInSelectedRoles);
-				console.log('globalsInSelectedRoles', globalsInSelectedRoles);
-				//if no global roles, use the array coming from obj.selectedRole as is, else filter selectedRoles and select non global roles
-				if(!globalsInSelectedRoles) {
 					roles = obj.selectedRole;
-				} else {
-					let nonGlobalRoles = obj.selectedRole.filter(item => !(/^[*]/).test(item));
-					// nonGlobalRoles
-					roles = nonGlobalRoles;
-				}
 			} else if (actionType === '/tenant_unassign_many') {
 				roles = "UNASSIGN-TENANT";
 			};
-			tenantObj[obj._id] = roles;
+			// here in code, we are using `{_id: Global roles, ...}` which represents global roles, but the api call expects `_id: '*'` as a representation of global roles
+			tenantObj[obj._id === 'Global roles' ? '*' : obj._id] = roles;
 		})
-		//assign global roles if any
-		if (globalRoles.length > 0) {
-			tenantObj['*'] = globalRoles;
-		}
-		console.log("credential_ids", credential_ids)
-		console.log("tenants", tenantObj )
 		try {
 			let response = await SeaCatAuthAPI.put(actionType, {"credential_ids": credential_ids, "tenants": tenantObj });
 			if (response.data.result !== "OK") {
@@ -276,7 +259,6 @@ const BulkAssignmentContainer = (props) => {
 			setSelectedTenants([]);
 		} catch (e) {
 			console.error(e);
-			setLoadingTenants(false);
 			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to perform bulk operation")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
@@ -287,7 +269,7 @@ const BulkAssignmentContainer = (props) => {
 		if (r === true) {
 			props.history.push(route);
 		}
-	}
+	};
 
 	// add specific(selected) credential object to selectedCrenetials state
 	const saveToSelectedCredentials = (credentialObj) => {
@@ -421,7 +403,14 @@ const BulkAssignmentContainer = (props) => {
 										obj.selectedRole.map((role, i) => {
 											return (
 												<div className="role-item selected-row ml-4">
-													<Button className="btn-xs" size="sm" outline color="secondary" onClick={() => unselectRole(idx, i)}>
+													<Button
+														title={t("BulkAssignmentContainer|Unselect")}
+														className="btn-xs"
+														size="sm"
+														outline
+														color="secondary"
+														onClick={() => unselectRole(idx, i)}
+													>
 														<i className="cil-x"/>
 													</Button>
 													<span className="pl-2">{role}</span>
