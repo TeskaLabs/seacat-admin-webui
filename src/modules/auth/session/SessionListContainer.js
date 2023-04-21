@@ -18,6 +18,7 @@ const SessionListContainer = (props) => {
 	const [show, setShow] = useState(false);
 	const [limit, setLimit] = useState(15);
 
+	const resource = "seacat:session:terminate";
 	const resources = useSelector(state => state.auth?.resources);
 
 	const headers = [
@@ -65,7 +66,7 @@ const SessionListContainer = (props) => {
 							color="danger"
 							outline
 							onClick={() => {terminateSessionForm(session._id)}}
-							resource="authz:superuser"
+							resource={resource}
 							resources={resources}
 						>
 							<i className="cil-x"></i>
@@ -158,7 +159,7 @@ const SessionListContainer = (props) => {
 		title: t("SessionListContainer|Terminate all sessions"),
 		color:"danger",
 		onClick() {terminateAllSessionsForm()},
-		resource: "authz:superuser",
+		resource: "authz:superuser", // Only superusers can terminate all sessions
 		resources: resources,
 		children: t("SessionListContainer|Terminate all")
 	}

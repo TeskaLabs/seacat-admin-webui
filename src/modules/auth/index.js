@@ -43,19 +43,22 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/resources',
 			exact: true,
 			name: 'Resources',
-			component: ResourcesListContainer
+			component: ResourcesListContainer,
+			resource: "seacat:resource:access"
 		});
 		app.Router.addRoute({
 			path: '/auth/resources/!create',
 			exact: true,
 			name: 'New resource',
-			component: ResourcesCreateContainer
+			component: ResourcesCreateContainer,
+			resource: "seacat:resource:access"
 		});
 		app.Router.addRoute({
 			path: '/auth/resources/:resource_id',
 			exact: true,
 			name: 'Resource detail',
-			component: ResourcesDetailContainer
+			component: ResourcesDetailContainer,
+			resource: "seacat:resource:access"
 		});
 
 		// Roles
@@ -63,19 +66,22 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/roles',
 			exact: true,
 			name: 'Roles',
-			component: RolesListContainer
+			component: RolesListContainer,
+			resource: "seacat:role:access"
 		});
 		app.Router.addRoute({
 			path: '/auth/roles/!create',
 			exact: true,
 			name: 'New roles',
-			component: RolesCreateContainer
+			component: RolesCreateContainer,
+			resource: "seacat:role:access"
 		});
 		app.Router.addRoute({
 			path: '/auth/roles/:tenant_id/:role_name',
 			exact: true,
 			name: 'Role detail',
-			component: RolesDetailContainer
+			component: RolesDetailContainer,
+			resource: "seacat:role:access"
 		});
 
 		// Credentials
@@ -83,13 +89,15 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/credentials',
 			exact: true,
 			name: 'Credentials',
-			component: CredentialsListContainer
+			component: CredentialsListContainer,
+			resource: "seacat:credentials:access"
 		});
 
 		app.Router.addRoute({
 			path: '/auth/credentials/!create',
 			name: 'New credentials',
-			component: CredentialsCreateContainer
+			component: CredentialsCreateContainer,
+			resource: "seacat:credentials:access"
 		});
 
 		app.Router.addRoute({
@@ -103,14 +111,16 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/credentials/:credentials_id',
 			exact: true,
 			name: 'Credentials detail',
-			component: CredentialsDetailContainer
+			component: CredentialsDetailContainer,
+			resource: "seacat:credentials:access"
 		});
 
 		app.Router.addRoute({
 			path: '/auth/credentials/:credentials_id/passwordreset',
 			exact: true,
 			name: 'Reset password',
-			component: ResetPasswordContainer
+			component: ResetPasswordContainer,
+			resource: "seacat:credentials:access"
 		});
 
 
@@ -119,14 +129,16 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/session',
 			exact: true,
 			name: 'Sessions',
-			component: SessionListContainer
+			component: SessionListContainer,
+			resource: "seacat:session:access"
 		});
 
 		app.Router.addRoute({
 			path: '/auth/session/:session_id',
 			exact: true,
 			name: 'Session detail',
-			component: SessionDetailContainer
+			component: SessionDetailContainer,
+			resource: "seacat:session:access"
 		});
 
 
@@ -135,20 +147,23 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/tenant',
 			exact: true,
 			name: 'Tenants',
-			component: TenantListContainer
+			component: TenantListContainer,
+			resource: "seacat:tenant:access"
 		});
 
 		app.Router.addRoute({
 			path: '/auth/tenant/!create',
 			name: 'New tenant',
-			component: TenantCreateContainer
+			component: TenantCreateContainer,
+			resource: "seacat:tenant:access"
 		});
 
 		app.Router.addRoute({
 			path: '/auth/tenant/:tenant_id',
 			exact: true,
 			name: 'Tenant detail',
-			component: TenantDetailContainer
+			component: TenantDetailContainer,
+			resource: "seacat:tenant:access"
 		});
 
 		// Clients
@@ -156,28 +171,32 @@ export default class SeaCatAuthModule extends Module {
 			path: '/auth/clients',
 			exact: true,
 			name: 'Clients',
-			component: ClientListContainer
+			component: ClientListContainer,
+			resource: "seacat:client:access"
 		});
 
 		app.Router.addRoute({
 			path: '/auth/clients/!create',
 			exact: true,
 			name: 'New client',
-			component: ClientCreateContainer
+			component: ClientCreateContainer,
+			resource: "seacat:client:access"
 		});
 
 		app.Router.addRoute({
 			path: '/auth/clients/:client_id',
 			exact: true,
 			name: 'Client detail',
-			component: ClientDetailContainer
+			component: ClientDetailContainer,
+			resource: "seacat:client:access"
 		});
 
 		app.Router.addRoute({
 			path: '/auth/clients/:client_id/edit',
 			exact: true,
 			name: 'Edit',
-			component: ClientCreateContainer
+			component: ClientCreateContainer,
+			resource: "seacat:client:access"
 		});
 
 		// Navigation
@@ -189,34 +208,38 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Credentials',
 					url: '/auth/credentials',
-					icon: 'cil-people'
+					icon: 'cil-people',
+					resource: "seacat:credentials:access"
 				},
 				{
 					name: 'Tenants',
 					url: '/auth/tenant',
-					icon: 'cil-apps'
+					icon: 'cil-apps',
+					resource: "seacat:tenant:access"
 				},
 				{
 					name: 'Sessions',
 					url: '/auth/session',
 					icon: 'cil-link',
-					resource: 'authz:superuser' // Hide Sessions child in sidebar to users without authz:superuser rights
+					resource: "seacat:session:access"
 				},
 				{
 					name: 'Roles',
 					url: '/auth/roles',
-					icon: 'cil-user'
+					icon: 'cil-user',
+					resource: "seacat:role:access"
 				},
 				{
 					name: 'Resources',
 					url: '/auth/resources',
-					icon: 'cil-lock-unlocked'
+					icon: 'cil-lock-unlocked',
+					resource: "seacat:resource:access"
 				},
 				{
 					name: 'Clients',
 					url: '/auth/clients',
 					icon: 'cil-layers',
-					resource: 'authz:superuser' // Hide Clients child in sidebar to users without authz:superuser rights
+					resource: "seacat:client:access"
 				},
 			]
 		});

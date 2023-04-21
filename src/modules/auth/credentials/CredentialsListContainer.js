@@ -25,7 +25,7 @@ function CredentialsListContainer(props) {
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
 
-	const resourceCreateCredentials = "authz:tenant:admin";
+	const resourceCreateCredentials = "seacat:credentials:edit";
 	const resourceBulkActions = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);

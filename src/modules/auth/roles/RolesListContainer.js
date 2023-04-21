@@ -18,7 +18,7 @@ const RolesListcontainer = (props) => {
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
 
-	const resource = "authz:tenant:admin";
+	const resource = "seacat:role:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);
 
