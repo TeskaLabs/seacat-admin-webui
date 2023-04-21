@@ -15,6 +15,7 @@ import {
 const ResourceCreateContainer = (props) => {
 	const { handleSubmit, register, formState: { errors, isSubmitting }, getValues } = useForm();
 	const credentialsResources = useSelector(state => state.auth?.resources);
+	const resourceEdit = "seacat:resource:edit";
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const { t } = useTranslation();
 	const reg = register(
@@ -106,7 +107,7 @@ const ResourceCreateContainer = (props) => {
 									color="primary"
 									type="submit"
 									disabled={isSubmitting}
-									resource="authz:superuser"
+									resource={resourceEdit}
 									resources={credentialsResources}
 								>
 									{t("ResourcesCreateContainer|Create resource")}
