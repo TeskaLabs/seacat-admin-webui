@@ -21,6 +21,7 @@ const ResourceDetailContainer = (props) =>  {
 	const { resource_id } = props.match.params;
 
 	const resources = useSelector(state => state.auth?.resources);
+	const resourceEdit = "seacat:resource:edit";
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
 
@@ -155,51 +156,51 @@ const ResourceDetailContainer = (props) =>  {
 					</CardBody>
 
 					<CardFooter>
-							{editMode ?
-								<>
-									<ButtonGroup>
-											<Button color="primary" type="submit" >{t("Save")}</Button>
-											<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
-									</ButtonGroup>
-									<div className='actions-right'>
-										<Button color="danger" type="button" onClick={() => terminateResourceForm(resource._id)}>{t("ResourcesDetailContainer|Delete resource")}</Button>
-									</div>
-								</>
-							:
-								<ButtonWithAuthz
-									color="primary"
-									outline
-									type="button"
-									onClick={(e) => (e.preventDefault(), setEditMode(true))}
-									resources={resources}
-									resource={editButtonResource}
-								>
-									{t("Edit")}
-								</ButtonWithAuthz>
-							}
+						{editMode ?
+							<>
+								<ButtonGroup>
+										<Button color="primary" type="submit" >{t("Save")}</Button>
+										<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+								</ButtonGroup>
+								<div className='actions-right'>
+									<Button color="danger" type="button" onClick={() => terminateResourceForm(resource._id)}>{t("ResourcesDetailContainer|Delete resource")}</Button>
+								</div>
+							</>
+						:
+							<ButtonWithAuthz
+								color="primary"
+								outline
+								type="button"
+								onClick={(e) => (e.preventDefault(), setEditMode(true))}
+								resources={resources}
+								resource={resourceEdit}
+							>
+								{t("Edit")}
+							</ButtonWithAuthz>
+						}
 					</CardFooter>
 				</Form>
 			</Card>
 
-				{advmode &&
-						<Card>
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="cil-code pr-2"></i>
-									JSON
-								</div>
-							</CardHeader>
-							{resource &&
-								<CardBody>
-									<ReactJson
-										theme={theme === 'dark' ? "chalk" : "rjv-default"}
-										src={resource}
-										name={false}
-										collapsed={false}
-									/>
-								</CardBody>
-							}
-						</Card>
+			{advmode &&
+					<Card>
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-code pr-2"></i>
+								JSON
+							</div>
+						</CardHeader>
+						{resource &&
+							<CardBody>
+								<ReactJson
+									theme={theme === 'dark' ? "chalk" : "rjv-default"}
+									src={resource}
+									name={false}
+									collapsed={false}
+								/>
+							</CardBody>
+						}
+					</Card>
 				}
 		</Container>
 	);

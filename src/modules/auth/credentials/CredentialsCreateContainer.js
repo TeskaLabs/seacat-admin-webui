@@ -40,7 +40,7 @@ function CredentialsCreateContainer(props) {
 
 	const [activeTab, setActiveTab] = useState('create');
 
-	const resourceCreateCredentials = "authz:tenant:admin";
+	const resourceCreateCredentials = "seacat:credentials:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);
 

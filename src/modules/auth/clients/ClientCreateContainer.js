@@ -22,7 +22,7 @@ const ClientCreateContainer = (props) => {
 	const location = useLocation(); // tracking method in URL
 
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
-	const resource = "authz:superuser";
+	const resource = "seacat:client:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const theme = useSelector(state => state.theme);
 	const advmode = useSelector(state => state.advmode.enabled);

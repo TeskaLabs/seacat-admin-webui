@@ -16,6 +16,7 @@ function SessionDetailContainer(props) {
 	const { t } = useTranslation();
 	const history = useHistory();
 	const [data, setData] = useState({});
+	const resource = "seacat:session:terminate";
 	const resources = useSelector(state => state.auth?.resources);
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
@@ -60,7 +61,7 @@ function SessionDetailContainer(props) {
 							color="danger"
 							outline
 							onClick={() => {terminateSessionForm(session._id)}}
-							resource="authz:superuser"
+							resource={resource}
 							resources={resources}
 						>
 							<i className="cil-x"></i>
@@ -172,7 +173,7 @@ function SessionDetailContainer(props) {
 							color="danger"
 							outline
 							onClick={() => {terminateSessionForm(session_id)}}
-							resource="authz:superuser"
+							resource={resource}
 							resources={resources}
 						>
 							{t("SessionDetailContainer|Terminate session")}
