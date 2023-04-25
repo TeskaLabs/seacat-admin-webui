@@ -81,7 +81,7 @@ function ResourcesListContainer(props) {
 
 	const getResources = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/resource`, {params: {p:page, i:limit}});
+			let response = await SeaCatAuthAPI.get(`/resource`, {params: {exclude: "deleted", p:page, i:limit}});
 			setResources(response.data.data);
 			setCount(response.data.count || 0);
 			setLoading(false);

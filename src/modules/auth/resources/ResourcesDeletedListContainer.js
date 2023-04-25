@@ -82,7 +82,7 @@ const ResourcesDeletedListContainer = (props) => {
 	// Fetches deleted resources
 	const getResources = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/resource`, {params: {p:page, i:limit, include:'deleted'}});
+			let response = await SeaCatAuthAPI.get(`/resource`, {params: {exclude: "active", p:page, i:limit}});
 			setResources(response.data.data);
 			setCount(response.data.count || 0);
 		} catch(e) {
