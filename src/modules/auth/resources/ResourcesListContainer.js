@@ -116,14 +116,16 @@ function ResourcesListContainer(props) {
 
 	const customComponent = (
 		<div style={{display: "flex"}} >
-			<Button
+			<ButtonWithAuthz
 				title={t("ResourcesListContainer|Deleted resources")}
 				color="primary"
 				outline
+				resources={credentialsResources}
+				resource={deleteResource}
 				onClick={() => props.history.push('/auth/resources-deleted')}
 				>
 				{t("ResourcesListContainer|Deleted resources")}
-			</Button>
+			</ButtonWithAuthz>
 			<ButtonWithAuthz
 				title={t("ResourcesListContainer|Create resource")}
 				color="primary"
