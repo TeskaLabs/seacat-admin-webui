@@ -407,7 +407,7 @@ export default CredentialsDetailContainer;
 
 
 function CredentialsInfoCard(props) {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, resetField } = useForm();
 	const { t, i18n } = useTranslation();
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
@@ -468,7 +468,7 @@ function CredentialsInfoCard(props) {
 
 	return (
 		<Form className="cred-info-card" onSubmit={handleSubmit(onSubmit)}>
-			<Card className="h-100">
+			<Card className="h-100 info-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
 						<i className="cil-info pr-2"></i>
@@ -487,8 +487,8 @@ function CredentialsInfoCard(props) {
 				{editMode ?
 					<React.Fragment>
 						<ButtonGroup>
-							<Button color="primary" type="submit">{t("Save")}</Button>
-							<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+							<Button color="primary" disabled={errors?.phone?.message} type="submit">{t("Save")}</Button>
+							<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false), resetField('phone'))} >{t("Cancel")}</Button>
 						</ButtonGroup>
 					</React.Fragment>
 				:

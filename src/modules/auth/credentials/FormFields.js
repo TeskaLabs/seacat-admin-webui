@@ -1,13 +1,13 @@
-import React, { useState }  from 'react';
+import React, {useState} from 'react';
 import {
 	FormGroup, Input, Label,
 	Button, InputGroupAddon, InputGroup, FormFeedback, FormText
 } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 // TODO: Validation on phone number
 export function PhoneField(props) {
-	const { t } = useTranslation();
+	const {t} = useTranslation();
 	const disable = props.disable == undefined ? false : props.disable;
 	if (props.getValues("phone") == undefined) {
 		props.setValue("phone", "");
@@ -18,8 +18,8 @@ export function PhoneField(props) {
 			validate: {
 				emptyInput: value => (
 					props.getValues("email") === undefined ?
-					props.getValues("phone") !== "" :
-					props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Phone cannot be empty!"),
+						props.getValues("phone") !== "" :
+						props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Phone cannot be empty!"),
 				regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('FormFields|Invalid phone number format'),
 				lengthValidation: value => value.length >= 9 || value.length < 1 || t('FormFields|Phone number is too short')
 			},
@@ -49,7 +49,7 @@ export function PhoneField(props) {
 }
 
 export function EmailField(props) {
-	const { t } = useTranslation();
+	const {t} = useTranslation();
 	const disable = props.disable == undefined ? false : props.disable;
 	const reg = props.register(
 		"email", {
@@ -57,8 +57,8 @@ export function EmailField(props) {
 			validate: {
 				emptyInput: value => (
 					props.getValues("phone") === undefined ?
-					props.getValues("email") !== "" :
-					props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Email cannot be empty!"),
+						props.getValues("email") !== "" :
+						props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Email cannot be empty!"),
 			}
 		}
 	);
@@ -90,7 +90,7 @@ export function EmailField(props) {
 }
 
 export function UserNameField(props) {
-	const { t } = useTranslation();
+	const {t} = useTranslation();
 	const reg = props.register(
 		"username",
 		{
@@ -129,7 +129,7 @@ export function UserNameField(props) {
 // TODO: Password complexity check (configurable)
 // TODO: Another types of password validation (length, characters, etc.)
 export function PasswordField(props) {
-	const { t, i18n } = useTranslation();
+	const {t, i18n} = useTranslation();
 	const regPwd1 = props.register(
 		"password",
 		{
@@ -186,9 +186,10 @@ export function PasswordField(props) {
 						onBlur={regPwd1.onBlur}
 						innerRef={regPwd1.ref}
 					/>
-					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
-						<Button outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="cil-low-vision" />
+					<InputGroupAddon addonType="append" style={{marginLeft: 0}}>
+						<Button outline color="primary" size="sm" onClick={() => changeType()}
+						        onMouseDown={() => changeType()}>
+							<span className="cil-low-vision"/>
 						</Button>
 					</InputGroupAddon>
 					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
@@ -208,9 +209,10 @@ export function PasswordField(props) {
 						onBlur={regPwd2.onBlur}
 						innerRef={regPwd2.ref}
 					/>
-					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
-						<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
-							<span className="cil-low-vision" />
+					<InputGroupAddon addonType="append" style={{marginLeft: 0}}>
+						<Button outline color="primary" size="sm" onClick={() => changeType2()}
+						        onMouseDown={() => changeType2()}>
+							<span className="cil-low-vision"/>
 						</Button>
 					</InputGroupAddon>
 					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
@@ -222,7 +224,7 @@ export function PasswordField(props) {
 }
 
 export function PasswordLinkField(props) {
-	const { t, i18n } = useTranslation();
+	const {t, i18n} = useTranslation();
 	const reg = props.register("passwordlink");
 	return (
 		<FormGroup check>
