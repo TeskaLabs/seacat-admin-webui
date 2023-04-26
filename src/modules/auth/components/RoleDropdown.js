@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dropdown, DropdownToggle,
 	DropdownItem, DropdownMenu, Input,
@@ -15,13 +15,12 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	const [items, setItems] = useState(0);
 
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
-	let message;
 
 	useEffect(() => {
 		retrieveRoleList(tenantObj);
 	}, [limit]);
 
-	// TODO: this useEffect should match selected roles with the ones we want to display and re-add the ones which were removed from selected roles in BulkAssignmentContainer
+	// this useEffect should match selected roles with the ones we want to display and re-add the ones which were removed from selected roles in BulkAssignmentContainer
 	useEffect(() => {
 		if (tenantObj.selectedRole && (tenantObj?.selectedRole?.length > 0)) {
 			let display = {...displayTenantRoles};
@@ -43,7 +42,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 		}
 	}, [selectedTenants, items]);
 
-// uncomment, when search functionality in roles is enabled on the backend
+// TODO: uncomment, when search functionality in roles is enabled on the backend
 	// // sets 0.5s delay before triggering the search call when filtering through tennants
 	// useEffect(() => {
 	// 	if (timeoutRef.current !== null) {
@@ -103,16 +102,22 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 		setSelectedTenants(tenants);
 	};
 
-	// determins tooltip messages
-	if((tenantObj._id === "Global roles")) {
-		(tenantObj?.selectedRole && (tenantObj.selectedRole.length > 0)) ?
-			message = t("BulkAssignmentContainer|Selected global roles will be assignes to/unassigned from the selected credentials")
-			: message = t("BulkAssignmentContainer|If you wish to assign/unassign global roles, select individual roles. Otherwise leave it as is")
-	} else if (tenantObj?.selectedRole && (tenantObj.selectedRole.length > 0)) {
-		message = t("BulkAssignmentContainer|Tenant") + " '" + tenantObj._id + "' " + t("BulkAssignmentContainer|and selected roles will be assigned to/unassigned from selected credentials");
-	} else {
-		message = t("BulkAssignmentContainer|Selected credentials will be assigned to/removed from tenant") + " '" + tenantObj._id + "'"
-	}
+	// Determines tooltip messages
+	const message = useMemo(() => {
+		let msg = "";
+		if((tenantObj._id === "Global roles")) {
+			if (tenantObj?.selectedRole && (tenantObj.selectedRole.length > 0)) {
+				msg = t("BulkAssignmentContainer|Selected global roles will be assignes to/unassigned from the selected credentials");
+			} else {
+				msg = t("BulkAssignmentContainer|If you wish to assign/unassign global roles, select individual roles. Otherwise leave it as is");
+			}
+		} else if (tenantObj?.selectedRole && (tenantObj.selectedRole.length > 0)) {
+			msg = t("BulkAssignmentContainer|Tenant") + " '" + tenantObj._id + "' " + t("BulkAssignmentContainer|and selected roles will be assigned to/unassigned from selected credentials");
+		} else {
+			msg = t("BulkAssignmentContainer|Selected credentials will be assigned to/removed from tenant") + " '" + tenantObj._id + "'";
+		};
+		return msg;
+	}, [selectedTenants]);
 
 	return (
 		<>
@@ -128,14 +133,14 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 				<DropdownMenu  style={{maxHeight: "20em", overflowY: "auto"}} >
 					<DropdownItem header>{t("BulkAssignmentContainer|Select roles")}</DropdownItem>
 
-				{/* uncomment, when search functionality in roles is enabled on the backend
+				{/* TODO: uncomment, when search functionality in roles is enabled on the backend
 					<Input
 						placeholder={t("BulkAssignmentContainer|Search")}
 						className="m-0"
 						onChange={e => handleFilter(e)}
 						value={filter}
 					/> */}
-					{displayTenantRoles?.data && displayTenantRoles.data.map((role, i) => (
+					{displayTenantRoles?.data?.map((role, i) => (
 						<DropdownItem key={idx} onClick={() => addRole(role._id, i)}>
 							{role._id}
 						</DropdownItem>
