@@ -20,7 +20,7 @@ import ResourcesListContainer from './resources/ResourcesListContainer';
 import ResourcesDetailContainer from './resources/ResourcesDetailContainer';
 import ResourcesCreateContainer from './resources/ResourcesCreateContainer';
 import ResourcesDeletedListContainer from './resources/ResourcesDeletedListContainer';
-import DeletedResourceDetailContainer from'./resources/ResourcesDeletedDetailContainer';
+import DeletedResourceDetailContainer from'./resources/DeletedResourceDetailContainer';
 
 import ClientListContainer from './clients/ClientListContainer';
 import ClientCreateContainer from './clients/ClientCreateContainer';
