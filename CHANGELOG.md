@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[6f53eee](https://github.com/TeskaLabs/asab-webui/commit/6f53eee5d5c0ae8035172f5658d54c2e855e33b2)] commit (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
+
 ### Refactoring
 
 - Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
@@ -32,7 +36,7 @@ Tested with Seacat Auth service [v23.13-beta](https://github.com/TeskaLabs/seaca
 
 ### Features
 
-- ASAB WebUI submodule version bump [[ce85b29](https://github.com/TeskaLabs/asab-webui/commit/ce85b29a6feae89fbdb06770ff9a462ef44d8903)] commit (INDIGO Sprint 230331, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
+- ASAB WebUI submodule version bump [[1960466](https://github.com/TeskaLabs/asab-webui/commit/1960466a45d0c48ec279e703317ebf0a59fdcbda)] commit (INDIGO Sprint 230317, [!22](https://github.com/TeskaLabs/seacat-admin-webui/pull/22))
 
 ### Refactoring
 
