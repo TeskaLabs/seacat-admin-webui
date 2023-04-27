@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Lazy loading enabled in auth and home modules. (INDIGO Sprint 230428, [!31](https://github.com/TeskaLabs/seacat-admin-webui/pull/31))
+
 ## v23.13-beta
 
 ### Compatibility
