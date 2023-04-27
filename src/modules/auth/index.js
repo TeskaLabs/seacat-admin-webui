@@ -13,9 +13,9 @@ const TenantListContainer = lazy(() => import('./tenant/TenantListContainer'));
 const TenantCreateContainer = lazy(() => import('./tenant/TenantCreateContainer'));
 const TenantDetailContainer = lazy(() => import('./tenant/TenantDetailContainer'));
 
-import RolesCreateContainer from './roles/RolesCreateContainer';
-import RolesListContainer from './roles/RolesListContainer';
-import RolesDetailContainer from './roles/RolesDetailContainer';
+const RolesCreateContainer = lazy(() => import('./roles/RolesCreateContainer'));
+const RolesListContainer = lazy(() => import('./roles/RolesListContainer'));
+const RolesDetailContainer = lazy(() => import('./roles/RolesDetailContainer'));
 
 const ResourcesListContainer = lazy(() => import('./resources/ResourcesListContainer'));
 const ResourcesDetailContainer = lazy(() => import('./resources/ResourcesDetailContainer'));
