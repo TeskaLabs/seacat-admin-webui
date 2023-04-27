@@ -25,9 +25,13 @@ function TenantDetailContainer(props) {
 	const [customTenantData, setCustomTenantData] = useState({'': ''});
 	const [credentialsList, setCredentialsList] = useState([]);
 	const [assignedCredentialsDropdown, setAssignedCredentialsDropdown] = useState([]);
+	const resourceUnassign = "seacat:tenant:assign";
+	const resourceEdit = "seacat:tenant:edit";
+	const resourceDelete = "seacat:tenant:delete";
 	const resources = useSelector(state => state.auth?.resources);
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
+	const currentTenant = useSelector(state => state.tenant?.current);
 
 	const [count, setCount] = useState(0);
 	const timeoutRef = useRef(null);
@@ -84,7 +88,7 @@ function TenantDetailContainer(props) {
 							size="sm"
 							color="danger"
 							onClick={() => {unassignCredentialsForm(credentials._id)}}
-							resource="authz:tenant:admin"
+							resource={resourceUnassign}
 							resources={resources}
 						>
 							<i className="cil-x"></i>
@@ -177,8 +181,16 @@ function TenantDetailContainer(props) {
 			if (response.data.result !== "OK") {
 				throw new Error(t("TenantDetailContainer|Failed to remove tenant"));
 			}
-			props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully"));
-			props.history.push("/auth/tenant");
+			if (tenant_id == currentTenant) {
+				// Reload page when removing the current tenant
+				props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully, you will be logged out in a while"));
+				setTimeout(() => {
+					window.location.reload();
+				}, 5000)
+			} else {
+				props.app.addAlert("success", t("TenantDetailContainer|Tenant removed successfully"));
+				props.history.push("/auth/tenant");
+			}
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("TenantDetailContainer|Failed to remove the tenant")}. ${e?.response?.data?.message}`, 30);
@@ -257,7 +269,14 @@ function TenantDetailContainer(props) {
 
 	const assignNewCredentials = (
 		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
-			<DropdownToggle caret outline color="primary" className="card-header-dropdown">
+			<DropdownToggle
+				title={(resources.indexOf(resourceUnassign) == -1 && resources.indexOf("authz:superuser") == -1) && t("You do not have access rights to perform this action")}
+				disabled={(resources.indexOf(resourceUnassign) == -1 && resources.indexOf("authz:superuser") == -1)}
+				caret
+				outline
+				color="primary"
+				className="card-header-dropdown"
+			>
 				{t("TenantDetailContainer|Assign credentials")}
 			</DropdownToggle>
 			<DropdownMenu className="assign-credential-list-dropdown">
@@ -342,7 +361,7 @@ function TenantDetailContainer(props) {
 							color="danger"
 							outline
 							onClick={removeTenantForm}
-							resource="authz:superuser"
+							resource={resourceDelete}
 							resources={resources}
 						>
 							{t("TenantDetailContainer|Remove tenant")}
@@ -351,6 +370,7 @@ function TenantDetailContainer(props) {
 				</Card>
 
 				<CustomDataContainer
+					resource={resourceEdit}
 					resources={resources}
 					customData={customTenantData}
 					setCustomData={setCustomTenantData}

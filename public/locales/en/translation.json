@@ -78,7 +78,6 @@
 		"Clients": "Clients",
 		"New client": "New client",
 		"Client detail": "Client detail",
-		"Home": "Home",
 		"About": "About",
 		"Access control": "Access control"
 	},
@@ -280,12 +279,6 @@
 		"Send instructions to set password": "Send instructions to set password",
 		"Required field": "Required field"
 	},
-	"HomeContainer": {
-		"Welcome!": "Welcome!",
-		"This is TeskaLabs SeaCat Admin, cyber-security tool": "This is TeskaLabs SeaCat Admin, cyber-security tool",
-		"SeaCat Admin is a comphrehensive security management tool": "SeaCat Admin is a comphrehensive security management tool.",
-		"Please continue to desired agenda by navigating in the menu on the left": "Please continue to desired agenda by navigating in the menu on the left."
-	},
 	"ResetPasswordContainer": {
 		"Username": "Username",
 		"ID": "ID",
@@ -465,6 +458,7 @@
 		"Do you want to remove the tenant?": "Do you want to remove the tenant?",
 		"Do you want to unassign these credentials?": "Do you want to unassign these credentials?",
 		"Failed to remove the tenant": "Failed to remove the tenant",
+		"Tenant removed successfully, you will be logged out in a while": "Tenant removed successfully, you will be logged out in a while",
 		"Tenant removed successfully": "Tenant removed successfully",
 		"Tenant data updated successfully": "Tenant data updated successfully"
 	},
@@ -486,6 +480,13 @@
 		"Something went wrong, failed to create tenant": "Something went wrong, failed to create tenant",
 		"Something went wrong, can't propose tenant name": "Something went wrong, can't propose tenant name"
 	},
+	"HomeContainer": {
+		"Welcome!": "Welcome!",
+		"This is TeskaLabs SeaCat Admin, cyber-security tool": "This is TeskaLabs SeaCat Admin, cyber-security tool",
+		"SeaCat Admin is a comphrehensive security management tool": "SeaCat Admin is a comphrehensive security management tool.",
+		"Please continue to desired agenda by navigating in the menu on the left": "Please continue to desired agenda by navigating in the menu on the left."
+	},
+
 	"UserInterfaceCard": {
 		"User interface": "User interface",
 		"Build date": "Build date",
@@ -498,8 +499,11 @@
 		"Select tenant": "Select tenant",
 		"Back to login": "Back to login"
 	},
+	"UnauthorizedAccessScreen": {
+		"Unauthorized access": "Unauthorized access",
+		"You are not authorized to access this part of the application. Please ask your application administrator for following resource": "You are not authorized to access this part of the application. Please ask your application administrator for following resource"
+	},
 	"Sidebar": {
-		"Home": "Home",
 		"About": "About",
 		"Auth": "Auth",
 		"Credentials": "Credentials",

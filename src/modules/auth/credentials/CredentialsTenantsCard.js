@@ -107,7 +107,7 @@ function CredentialsTenantsCard(props) {
 			props.setRolesRefresh(prev => !prev);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsRolesCard|Failed to update tenants")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsTenantsCard|Failed to update tenants")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

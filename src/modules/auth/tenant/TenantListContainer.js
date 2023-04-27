@@ -20,6 +20,8 @@ function TenantListContainer(props) {
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
 
+	// TODO: Resource "seacat:tenant:create" will be implemented in future iterations
+	const resource = "authz:superuser"; //"seacat:tenant:create";
 	const resources = useSelector(state => state.auth?.resources);
 
 	const headers = [
@@ -71,7 +73,7 @@ function TenantListContainer(props) {
 			title={t("TenantDetailContainer|New tenant")}
 			color="primary"
 			onClick={() => redirectToCreate()}
-			resource="authz:superuser"
+			resource={resource}
 			resources={resources}
 		>
 			{t("TenantListContainer|New tenant")}

@@ -23,7 +23,8 @@ const RolesDetailContainer = (props) =>  {
 
 	const [credentialsList, setCredentialsList] = useState([]);
 	const [assignedCredentialsDropdown, setAssignedCredentialsDropdown] = useState([]);
-	const resource = tenant_id === "*" ? "authz:superuser" : "authz:tenant:admin";
+	const resourceAssign = tenant_id === "*" ? "authz:superuser" : "seacat:role:assign";
+	const resource = tenant_id === "*" ? "authz:superuser" : "seacat:role:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
@@ -78,7 +79,7 @@ const RolesDetailContainer = (props) =>  {
 							size="sm"
 							color="danger"
 							onClick={() => {unassignCredentialsForm(credentials._id)}}
-							resource="authz:tenant:admin"
+							resource={resourceAssign}
 							resources={resources}
 						>
 							<i className="cil-x"></i>
@@ -230,7 +231,14 @@ const RolesDetailContainer = (props) =>  {
 
 	const assignNewCredentials = (
 		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
-			<DropdownToggle caret outline className="card-header-dropdown" color="primary">
+			<DropdownToggle
+				title={(resources.indexOf(resourceAssign) == -1 && resources.indexOf("authz:superuser") == -1) && t("You do not have access rights to perform this action")}
+				disabled={(resources.indexOf(resourceAssign) == -1 && resources.indexOf("authz:superuser") == -1)}
+				caret
+				outline
+				className="card-header-dropdown"
+				color="primary"
+			>
 				{t("RolesDetailContainer|Assign credentials")}
 			</DropdownToggle>
 			<DropdownMenu className="assign-credential-list-dropdown">
