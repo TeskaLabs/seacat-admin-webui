@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
+
 ## v23.16-beta
 
 ### Compatibility
@@ -43,8 +47,6 @@ Tested with Seacat Auth service [v23.13-beta](https://github.com/TeskaLabs/seaca
 - Refactor Clients. Add new inputs `authorize_uri` and `redirect_uri_validation_method`. Refactor ClientDetail and ClientCreate to new format (divide to the cards). Update locales (INDIGO Sprint 230317, [!22](https://github.com/TeskaLabs/seacat-admin-webui/pull/22))
 
 - Update locales. Add missing and remove unused locales (INDIGO Sprint 230317, [!27](https://github.com/TeskaLabs/seacat-admin-webui/pull/27))
-
-- Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230317, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
 
 ### Bugfix
 
