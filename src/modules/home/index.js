@@ -1,5 +1,4 @@
-import { lazy } from 'react';
-const HomeContainer = lazy(() => import('./containers/HomeContainer'));
+import HomeContainer from './containers/HomeContainer'
 import Module from 'asab-webui/abc/Module';
 import "./containers/home.scss";
 
