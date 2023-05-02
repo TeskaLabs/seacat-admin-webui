@@ -53,7 +53,7 @@ const RolesDetailContainer = (props) =>  {
 							marginBottom: 0}}
 						>
 						{obj.suspended === true ?
-							<span className="cil-user-unfollow text-muted mr-1" title={t("RolesDetailContainer|Credentials suspended")}/>
+							<span className="at-user-xmark text-muted mr-1" title={t("RolesDetailContainer|Credentials suspended")}/>
 							: <span className="at-account mr-1" />}
 						<Link
 							style={{color: obj.suspended === true && '#73818f'}}
