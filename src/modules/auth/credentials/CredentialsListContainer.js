@@ -43,7 +43,7 @@ function CredentialsListContainer(props) {
 					>
 						{obj.suspended === true ?
 							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("CredentialsListContainer|Credentials invited") : t("CredentialsListContainer|Credentials suspended")}/>
-							: <span className="cil-user mr-1" />}
+							: <span className="at-account mr-1" />}
 						<Link
 							style={{color: obj.suspended === true && '#73818f'}}
 							to={{

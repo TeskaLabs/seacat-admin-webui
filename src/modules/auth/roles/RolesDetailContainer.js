@@ -54,7 +54,7 @@ const RolesDetailContainer = (props) =>  {
 						>
 						{obj.suspended === true ?
 							<span className="cil-user-unfollow text-muted mr-1" title={t("RolesDetailContainer|Credentials suspended")}/>
-							: <span className="cil-user mr-1" />}
+							: <span className="at-account mr-1" />}
 						<Link
 							style={{color: obj.suspended === true && '#73818f'}}
 							to={{
@@ -288,7 +288,7 @@ const RolesDetailContainer = (props) =>  {
 						<Card className="w-100">
 							<CardHeader className="border-bottom">
 								<div className="card-header-title">
-									<i className="cil-user pr-2"></i>
+									<i className="at-account pr-2"></i>
 									{t("RolesDetailContainer|Role")}
 								</div>
 							</CardHeader>

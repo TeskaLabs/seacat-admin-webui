@@ -218,7 +218,7 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Roles',
 					url: '/auth/roles',
-					icon: 'cil-user',
+					icon: 'at-account',
 					resource: "seacat:role:access"
 				},
 				{

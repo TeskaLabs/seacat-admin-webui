@@ -63,7 +63,7 @@ function TenantDetailContainer(props) {
 					>
 						{obj.suspended === true ?
 							<span className="cil-user-unfollow text-muted mr-1" title={t("TenantDetailContainer|Credentials suspended")} />
-							: <span className="cil-user mr-1" />}
+							: <span className="at-account mr-1" />}
 						<Link
 							style={{ color: obj.suspended === true && '#73818f' }}
 							to={{
