@@ -327,7 +327,7 @@ const RolesDetailContainer = (props) =>  {
 				</div>
 				<div className="role-detail-credentials-area">
 					<DataTable
-						title={{ text: t("RolesDetailContainer|Assigned credentials"), icon: "cil-storage" }}
+						title={{ text: t("RolesDetailContainer|Assigned credentials"), icon: "at-list-folder" }}
 						headers={headers}
 						data={credentialsList}
 						count={count}
@@ -345,7 +345,7 @@ const RolesDetailContainer = (props) =>  {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className="card-header-title">
-									<i className="cil-code pr-2"></i>
+									<i className="at-programming pr-2"></i>
 									JSON
 								</div>
 							</CardHeader>

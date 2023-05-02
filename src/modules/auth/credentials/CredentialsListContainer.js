@@ -219,7 +219,7 @@ function CredentialsListContainer(props) {
 		<div className="h-100" ref={ref}>
 			<Container>
 					<DataTable
-						title={{ text: t("CredentialsListContainer|Credentials"), icon: "cil-storage" }}
+						title={{ text: t("CredentialsListContainer|Credentials"), icon: "at-list-folder" }}
 						headers={headers}
 						data={data}
 						count={count}
@@ -227,7 +227,7 @@ function CredentialsListContainer(props) {
 						setLimit={setLimit}
 						currentPage={page}
 						setPage={setPage}
-						search={{ icon: 'cil-magnifying-glass', placeholder: t("CredentialsListContainer|Search") }}
+						search={{ icon: 'at-magnifying-glass', placeholder: t("CredentialsListContainer|Search") }}
 						onSearch={onSearch}
 						customComponent={createCredentialsComponent}
 						customRowClassName={suspendRow}

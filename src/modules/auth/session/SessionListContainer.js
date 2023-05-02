@@ -171,7 +171,7 @@ const SessionListContainer = (props) => {
 					key: "_id",
 					sublistKey: "children"
 				}}
-				title={{ text: t("SessionListContainer|Sessions"), icon: "cil-link" }}
+				title={{ text: t("SessionListContainer|Sessions"), icon: "at-link-chain" }}
 				headers={headers}
 				data={data}
 				count={count}

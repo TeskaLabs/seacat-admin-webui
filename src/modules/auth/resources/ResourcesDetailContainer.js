@@ -143,7 +143,7 @@ const ResourceDetailContainer = (props) =>  {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className="card-header-title">
-									<i className="cil-code pr-2"></i>
+									<i className="at-programming pr-2"></i>
 									JSON
 								</div>
 							</CardHeader>

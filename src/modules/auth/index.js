@@ -200,7 +200,7 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Credentials',
 					url: '/auth/credentials',
-					icon: 'cil-people',
+					icon: 'at-users',
 					resource: "seacat:credentials:access"
 				},
 				{
@@ -212,7 +212,7 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Sessions',
 					url: '/auth/session',
-					icon: 'cil-link',
+					icon: 'at-link-chain',
 					resource: "seacat:session:access"
 				},
 				{

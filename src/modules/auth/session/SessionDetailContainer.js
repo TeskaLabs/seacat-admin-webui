@@ -111,7 +111,7 @@ function SessionDetailContainer(props) {
 				<Card>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-link pr-2"></i>
+							<i className="at-link-chain pr-2"></i>
 							{t("SessionDetailContainer|Session")}
 						</div>
 					</CardHeader>
@@ -185,7 +185,7 @@ function SessionDetailContainer(props) {
 			{!data.parent_session_id && data.children &&
 				<div className="session-subsession-area">
 					<DataTable
-						title={{ text: t("SessionDetailContainer|Child sessions"), icon: "cil-link" }}
+						title={{ text: t("SessionDetailContainer|Child sessions"), icon: "at-link-chain" }}
 						headers={headers}
 						data={data.children.data}
 					/>
@@ -196,7 +196,7 @@ function SessionDetailContainer(props) {
 				<Card>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-link pr-2"></i>
+							<i className="at-link-chain pr-2"></i>
 							{t("SessionDetailContainer|Authorization")}
 						</div>
 					</CardHeader>
@@ -230,7 +230,7 @@ function SessionDetailContainer(props) {
 					<Card className="w-100 mt-2">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-code pr-2"></i>
+								<i className="at-programming pr-2"></i>
 								JSON
 							</div>
 						</CardHeader>

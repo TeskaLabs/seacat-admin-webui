@@ -121,7 +121,7 @@ function ClientListContainer(props) {
 					currentPage={page}
 					setPage={setPage}
 					customComponent={createClientComponent}
-					search={{ icon: 'cil-magnifying-glass', placeholder: t("ClientListContainer|Search") }}
+					search={{ icon: 'at-magnifying-glass', placeholder: t("ClientListContainer|Search") }}
 					onSearch={onSearch}
 					isLoading={loading}
 					contentLoader={show}

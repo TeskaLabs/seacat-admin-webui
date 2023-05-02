@@ -166,7 +166,7 @@ function ResetPasswordField(props){
 					/>
 					<InputGroupAddon addonType="append">
 						<Button color="secondary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="cil-low-vision" />
+							<span className="at-eye-minus" />
 						</Button>
 					</InputGroupAddon>
 					{props.errors.newpassword && <p>{props.errors.newpassword.message}</p>}

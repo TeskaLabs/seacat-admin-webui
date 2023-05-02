@@ -299,7 +299,7 @@ const ClientCreateContainer = (props) => {
 					<Card>
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-applications-settings pr-2"></i>
+								<i className="at-sliders pr-2"></i>
 								{t("ClientCreateContainer|Multidomain")}
 							</div>
 						</CardHeader>
@@ -331,7 +331,7 @@ const ClientCreateContainer = (props) => {
 					<Card className="mt-3">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-swap-horizontal pr-2"></i>
+								<i className="at-replay-arrow-left-right pr-2"></i>
 								{t("ClientCreateContainer|Authorization")}
 							</div>
 						</CardHeader>
@@ -352,7 +352,7 @@ const ClientCreateContainer = (props) => {
 					<Card className="mt-3">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-exit-to-app pr-2"></i>
+								<i className="at-arrow-down-to-square pr-2"></i>
 								{t("ClientCreateContainer|Access control")}
 							</div>
 						</CardHeader>
@@ -373,7 +373,7 @@ const ClientCreateContainer = (props) => {
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-code pr-2"></i>
+							<i className="at-programming pr-2"></i>
 							JSON
 						</div>
 					</CardHeader>
