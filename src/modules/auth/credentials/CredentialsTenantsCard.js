@@ -133,7 +133,7 @@ function CredentialsTenantsCard(props) {
 									 disabled={!editMode}
 									 size="sm" color="danger"
 									 onClick={(e) => removeTenant(tenant_id)}>
-									 <span className="cil-minus" />
+									 <span className="at-minus-circle" />
 								 </Button>
 							 }
 							<Tenant tenant={tenant_id} lookup={allTenants} />

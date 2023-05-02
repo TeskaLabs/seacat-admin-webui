@@ -195,7 +195,7 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 			/>
 			<InputGroupAddon addonType="append" className="ml-0">
 				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)}>
-					<span className="cil-minus" />
+					<span className="at-minus-circle" />
 				</Button>
 			</InputGroupAddon>
 			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}

@@ -116,7 +116,7 @@ function CredentialsRolesCard(props) {
 										size="sm"
 										color="danger"
 										onClick={() => removeRole(role)}>
-										<span className="cil-minus" />
+										<span className="at-minus-circle" />
 									</Button>
 								}
 								<Role role={role} lookup={rolesLookup}/>

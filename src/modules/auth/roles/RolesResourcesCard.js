@@ -96,7 +96,7 @@ const RolesResourcesCard = (props) => {
 										outline
 										className="mr-2"
 										onClick={() => unassignResource(resource)}>
-									<span className="cil-minus" />
+									<span className="at-minus-circle" />
 									</Button>
 								}
 								{resource}
