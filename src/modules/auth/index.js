@@ -194,7 +194,7 @@ export default class SeaCatAuthModule extends Module {
 		// Navigation
 		app.Navigation.addItem({
 			name: 'Auth',
-			icon: 'cil-address-book',
+			icon: 'at-phonebook-contacts',
 			resource: 'seacat:access', // Hide Auth item in sidebar to users without seacat:access rights
 			children: [
 				{
