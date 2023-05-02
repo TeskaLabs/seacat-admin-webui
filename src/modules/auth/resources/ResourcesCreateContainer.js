@@ -59,7 +59,7 @@ const ResourceCreateContainer = (props) => {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="cil-lock-unlocked pr-2"></i>
+									<i className="at-unlock-keyhole pr-2"></i>
 									{t("ResourcesCreateContainer|Create new resource")}
 								</div>
 							</CardHeader>

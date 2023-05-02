@@ -224,7 +224,7 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Resources',
 					url: '/auth/resources',
-					icon: 'cil-lock-unlocked',
+					icon: 'at-unlock-keyhole',
 					resource: "seacat:resource:access"
 				},
 				{

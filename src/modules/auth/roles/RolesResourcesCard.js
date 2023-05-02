@@ -74,7 +74,7 @@ const RolesResourcesCard = (props) => {
 		<Card>
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="cil-lock-unlocked pr-2"></i>
+					<i className="at-unlock-keyhole pr-2"></i>
 					{t("RolesResourcesCard|Assigned resources")}
 				</div>
 			</CardHeader>
