@@ -112,7 +112,7 @@ function ClientListContainer(props) {
 		<div className="h-100" ref={ref}>
 			<Container>
 				<DataTable
-					title={{ text: t("ClientListContainer|Clients"), icon: "cil-layers" }}
+					title={{ text: t("ClientListContainer|Clients"), icon: "at-layers" }}
 					headers={headers}
 					data={data}
 					count={count}

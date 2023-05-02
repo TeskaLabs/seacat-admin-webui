@@ -84,7 +84,7 @@ const ClientDetailContainer = (props) =>  {
 					<Card>
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-layers pr-2"></i>
+								<i className="at-layers pr-2"></i>
 								{t("ClientDetailContainer|Client")}
 							</div>
 						</CardHeader>

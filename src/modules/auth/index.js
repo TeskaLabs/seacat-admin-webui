@@ -230,7 +230,7 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Clients',
 					url: '/auth/clients',
-					icon: 'cil-layers',
+					icon: 'at-layers',
 					resource: "seacat:client:access"
 				},
 			]

@@ -201,7 +201,7 @@ const ClientCreateContainer = (props) => {
 					<Card>
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-layers pr-2"></i>
+								<i className="at-layers pr-2"></i>
 								{((client != undefined) && (editClient == true)) ?
 									t("ClientCreateContainer|Edit client")
 								:
