@@ -60,7 +60,7 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 				type="button"
 				onClick={() => {append({key: '', value: ''})}}
 			>
-				<span className="cil-plus" />
+				<span className="at-plus-circle" />
 			</Button>
 		</FormGroup>
 	)

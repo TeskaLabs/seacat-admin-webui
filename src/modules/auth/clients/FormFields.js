@@ -153,7 +153,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 						size="sm"
 						onClick={() => append({ value: ""})}
 					>
-						<span className="cil-plus" />
+						<span className="at-plus-circle" />
 					</Button>
 				</InputGroupAddon>
 				{errors && errors[name] && <FormFeedback>{errors[name].message}</FormFeedback>}

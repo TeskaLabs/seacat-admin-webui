@@ -136,7 +136,7 @@ function CredentialsRolesCard(props) {
 					</ButtonGroup>
 					<Dropdown isOpen={dropdownAddRoleOpen} toggle={toggleAddRole}>
 						<DropdownToggle caret outline color="primary">
-							<span className="cil-plus mr-2" />
+							<span className="at-plus-circle mr-2" />
 							{t("CredentialsRolesCard|Assign a new role")}
 						</DropdownToggle>
 						<DropdownMenu style={{maxHeight: "20em", overflowY: "auto"}} >

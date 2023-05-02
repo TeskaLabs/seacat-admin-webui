@@ -127,7 +127,7 @@ const RolesResourcesCard = (props) => {
 						</ButtonGroup>
 						<Dropdown isOpen={dropdownOpen} toggle={() => setDropdown(prev => !prev)}>
 							<DropdownToggle caret outline color="primary">
-								<span className="cil-plus mr-2" />
+								<span className="at-plus-circle mr-2" />
 								{t("RolesResourcesCard|Add resource")}
 							</DropdownToggle>
 							<DropdownMenu style={{maxHeight: "20em", overflowY: "auto"}} >
