@@ -322,7 +322,7 @@ function TenantDetailContainer(props) {
 				<Card className="tenant-general-info">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-apps pr-2"></i>
+							<i className="at-menu-square pr-2"></i>
 							{t("TenantDetailContainer|Tenant")}
 						</div>
 					</CardHeader>

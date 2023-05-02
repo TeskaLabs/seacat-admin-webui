@@ -206,7 +206,7 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Tenants',
 					url: '/auth/tenant',
-					icon: 'cil-apps',
+					icon: 'at-menu-square',
 					resource: "seacat:tenant:access"
 				},
 				{

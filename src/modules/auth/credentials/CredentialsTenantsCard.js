@@ -115,7 +115,7 @@ function CredentialsTenantsCard(props) {
 		<Card className="h-100 credential-tenant-area">
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="cil-apps pr-2"></i>
+					<i className="at-menu-square pr-2"></i>
 					{t("CredentialsTenantsCard|Tenants")}
 				</div>
 			</CardHeader>
