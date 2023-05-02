@@ -257,7 +257,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 								<span className="mt-1 pr-2 d-inline-block  selected-item" key={index}>
 									<span>{ optionItem }</span>
 									<span onClick={() => removeItem(optionItem)}>
-										<i className="cil-x"></i>
+										<i className="at-xmark-circle"></i>
 									</span>
 								</span>
 							))}

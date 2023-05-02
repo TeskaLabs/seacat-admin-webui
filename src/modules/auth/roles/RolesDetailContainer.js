@@ -82,7 +82,7 @@ const RolesDetailContainer = (props) =>  {
 							resource={resourceAssign}
 							resources={resources}
 						>
-							<i className="cil-x"></i>
+							<i className="at-xmark-circle"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
