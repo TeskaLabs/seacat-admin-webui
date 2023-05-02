@@ -8,6 +8,7 @@
 		"d d";
 	row-gap: 0.25rem;
 	column-gap: 0.25rem;
+	grid-template-rows: auto 1fr;
 
 	.role-detail-info {
 		grid-area: a;
@@ -38,7 +39,7 @@
 
 	.role-resource-card-area {
 		grid-area: c;
-		max-height: 300px;
+		// max-height: 300px;
 	}
 
 	.role-detail-json-area {
@@ -59,6 +60,7 @@
 			"c"
 			"d";
 		grid-template-columns: 1fr;
+		grid-template-rows: unset;
 
 		.role-detail-info {
 			width: 100%;

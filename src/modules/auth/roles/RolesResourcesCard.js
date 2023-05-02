@@ -71,7 +71,7 @@ const RolesResourcesCard = (props) => {
 	}
 
 	return (
-		<Card className="role-resource-card-area">
+		<Card>
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
 					<i className="cil-lock-unlocked pr-2"></i>
