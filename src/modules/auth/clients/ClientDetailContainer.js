@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Link } from "react-router-dom";
 
 import {
 	Container, Row, Col,
@@ -18,7 +17,7 @@ const ClientDetailContainer = (props) =>  {
 	const [client, setClient] = useState(null);
 	const { client_id } = props.match.params;
 
-	const resource = "authz:superuser";
+	const resource = "seacat:client:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const theme = useSelector(state => state.theme);
 	const advmode = useSelector(state => state.advmode.enabled);
@@ -129,17 +128,16 @@ const ClientDetailContainer = (props) =>  {
 						</CardBody>
 						<CardFooter>
 							<ButtonGroup>
-								<Link to={{pathname: `/auth/clients/${client_id}/edit`}}>
-									<ButtonWithAuthz
-										title={t("Edit")}
-										color="primary"
-										type="button"
-										resource={resource}
-										resources={resources}
-									>
-										{t("Edit")}
-									</ButtonWithAuthz>
-								</Link>
+								<ButtonWithAuthz
+									title={t("Edit")}
+									color="primary"
+									type="button"
+									resource={resource}
+									resources={resources}
+									onClick={() => props.history.push(`/auth/clients/${client_id}/edit`)}
+								>
+									{t("Edit")}
+								</ButtonWithAuthz>
 								<ButtonWithAuthz
 									outline
 									title={t("ClientDetailContainer|Remove client")}

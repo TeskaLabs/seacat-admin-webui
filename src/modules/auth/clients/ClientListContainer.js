@@ -22,7 +22,7 @@ function ClientListContainer(props) {
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
 
-	const resource = "authz:superuser";
+	const resource = "seacat:client:edit";
 	const resources = useSelector(state => state.auth?.resources);
 
 	const headers = [
