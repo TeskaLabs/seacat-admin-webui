@@ -468,7 +468,7 @@ function CredentialsInfoCard(props) {
 
 	return (
 		<Form className="cred-info-card" onSubmit={handleSubmit(onSubmit)}>
-			<Card className="h-100 info-card">
+			<Card className="h-100">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
 						<i className="cil-info pr-2"></i>
@@ -476,7 +476,7 @@ function CredentialsInfoCard(props) {
 					</div>
 				</CardHeader>
 
-				<CardBody>
+				<CardBody className="card-body-height">
 					<fieldset disabled={editMode ? "": "disabled"}>
 						<EmailField register={register} getValues={getValues} errors={errors} disable={disableEmail}/>
 						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disable={disablePhone}/>
