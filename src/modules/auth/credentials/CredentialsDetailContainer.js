@@ -487,7 +487,7 @@ function CredentialsInfoCard(props) {
 				{editMode ?
 					<React.Fragment>
 						<ButtonGroup>
-							<Button color="primary" disabled={errors?.phone?.message} type="submit">{t("Save")}</Button>
+							<Button color="primary" disabled={errors?.phone?.message || errors?.email?.message} type="submit">{t("Save")}</Button>
 							<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false), resetField('phone'), resetField('email'))} >{t("Cancel")}</Button>
 						</ButtonGroup>
 					</React.Fragment>
