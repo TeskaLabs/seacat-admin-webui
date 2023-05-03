@@ -2,6 +2,11 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Disabling the Save button for non-valid inputs, changing the relative value of the map, сlicking Cancel will clear both fields. (INDIGO Sprint 230428, [!30](https://github.com/TeskaLabs/seacat-admin-webui/pull/30))
+
+
 ## v23.16-beta
 
 ### Compatibility
