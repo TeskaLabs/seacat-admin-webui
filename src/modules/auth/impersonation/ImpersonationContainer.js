@@ -14,12 +14,17 @@ import {
 
 const ImpersonationContainer = (props) => {
 	const { handleSubmit, register, formState: { errors, isSubmitting }, getValues } = useForm();
+	const resources = useSelector(state => state.auth?.resources);
 	const resourceImpersonate = "authz:impersonate";
 	const SeaCatAuthAPI = props.app.axiosCreate("seacat_auth");
 	const { t } = useTranslation();
 
+	const registerRedirectUri = register("redirect_uri")
+	const registerCredentialsId = register("credentials_id")
+
 	const onSubmit = async (values) => {
 		try {
+			console.log("values ", values);
 			await SeaCatAuthAPI.put(`/impersonate`,
 				{
 					credentials_id:  values.credentials_id
@@ -57,6 +62,9 @@ const ImpersonationContainer = (props) => {
 										type="text"
 										autoComplete="off"
 										defaultValue="mongodb:ext:60eee70d6b47935cf7bacdda"
+										onChange={registerCredentialsId.onChange}
+										onBlur={registerCredentialsId.onBlur}
+										innerRef={registerCredentialsId.ref}
 									/>
 								</FormGroup>
 								<FormGroup>
@@ -67,6 +75,9 @@ const ImpersonationContainer = (props) => {
 										type="text"
 										autoComplete="off"
 										defaultValue="https://auth.local.loc/seacat/?tenant=default#/"
+										onChange={registerRedirectUri.onChange}
+										onBlur={registerRedirectUri.onBlur}
+										innerRef={registerRedirectUri.ref}
 									/>
 								</FormGroup>
 							</CardBody>
@@ -77,7 +88,7 @@ const ImpersonationContainer = (props) => {
 									type="submit"
 									disabled={isSubmitting}
 									resource={resourceImpersonate}
-									resources={credentialsResources}
+									resources={resources}
 								>
 									Go!
 								</ButtonWithAuthz>
