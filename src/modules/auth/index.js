@@ -24,6 +24,8 @@ import ClientListContainer from './clients/ClientListContainer';
 import ClientCreateContainer from './clients/ClientCreateContainer';
 import ClientDetailContainer from './clients/ClientDetailContainer';
 
+import ImpersonationContainer from './impersonation/ImpersonationContainer';
+
 // SCSS
 import './tenant/tenant.scss';
 import './roles/roles.scss';
@@ -32,6 +34,8 @@ import './credentials/credentials.scss';
 import './clients/clients.scss';
 import './components/customdata.scss';
 import './session/session.scss';
+
+import './impersonation/impersonation.scss';
 
 export default class SeaCatAuthModule extends Module {
 	constructor(app, name){
@@ -191,6 +195,14 @@ export default class SeaCatAuthModule extends Module {
 			resource: "seacat:client:access"
 		});
 
+		app.Router.addRoute({
+			path: '/auth/impersonation',
+			exact: true,
+			name: 'Impersonation',
+			component: ImpersonationContainer,
+			resource: "authz:impersonate"
+		});
+
 		// Navigation
 		app.Navigation.addItem({
 			name: 'Auth',
@@ -232,6 +244,12 @@ export default class SeaCatAuthModule extends Module {
 					url: '/auth/clients',
 					icon: 'cil-layers',
 					resource: "seacat:client:access"
+				},
+				{
+					name: 'Impersonation',
+					url: '/auth/impersonation',
+					icon: 'cil-fingerprint',
+					resource: "authz:impersonate"
 				},
 			]
 		});
