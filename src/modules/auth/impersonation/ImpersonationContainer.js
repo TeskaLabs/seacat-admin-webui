@@ -21,6 +21,11 @@ const ImpersonationContainer = (props) => {
 
 	const registerRedirectUri = register("redirect_uri")
 	const registerCredentialsId = register("credentials_id")
+	const registerClearStorage = register("clear_session_storage")
+
+	const defaultRedirectUri = "https://auth.local.loc/seacat"
+	// const defaultRedirectUri = "https://example.app.loc:8443/demo"
+	const defaultCredentialsId = "mongodb:ext:60eee70d6b47935cf7bacdda"
 
 	const onSubmit = async (values) => {
 		try {
@@ -36,7 +41,11 @@ const ImpersonationContainer = (props) => {
 			);
 			return;
 		}
+		if (values.credentials_id){
+			sessionStorage.clear();
+		}
 		window.location.replace(values.redirect_uri);
+		// window.location.reload();
 		await new Promise(r => setTimeout(r, 3600*1000));
 	}
 
@@ -61,7 +70,7 @@ const ImpersonationContainer = (props) => {
 										name="credentials_id"
 										type="text"
 										autoComplete="off"
-										defaultValue="mongodb:ext:60eee70d6b47935cf7bacdda"
+										defaultValue={defaultCredentialsId}
 										onChange={registerCredentialsId.onChange}
 										onBlur={registerCredentialsId.onBlur}
 										innerRef={registerCredentialsId.ref}
@@ -74,11 +83,24 @@ const ImpersonationContainer = (props) => {
 										name="redirect_uri"
 										type="text"
 										autoComplete="off"
-										defaultValue="https://auth.local.loc/seacat/?tenant=default#/"
+										defaultValue={defaultRedirectUri}
 										onChange={registerRedirectUri.onChange}
 										onBlur={registerRedirectUri.onBlur}
 										innerRef={registerRedirectUri.ref}
 									/>
+								</FormGroup>
+								<FormGroup check>
+									<Label check for="clear_session_storage">
+										<Input
+											name="clear_session_storage"
+											id="clear_session_storage"
+											type="checkbox"
+											onChange={registerClearStorage.onChange}
+											onBlur={registerClearStorage.onBlur}
+											innerRef={registerClearStorage.ref}
+										/>
+										Clear session storage
+									</Label>
 								</FormGroup>
 							</CardBody>
 
