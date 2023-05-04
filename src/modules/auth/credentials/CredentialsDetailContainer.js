@@ -407,7 +407,7 @@ export default CredentialsDetailContainer;
 
 
 function CredentialsInfoCard(props) {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue, resetField } = useForm();
+	const { handleSubmit, register, formState: { errors }, watch, getValues, setValue, resetField } = useForm({mode: 'onChange'});
 	const { t, i18n } = useTranslation();
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
@@ -419,6 +419,8 @@ function CredentialsInfoCard(props) {
 		setValue("phone", props.data.phone);
 		setOnUpdate(true);
 	}
+
+	const isValid = (watch("email") || watch("phone")) && !errors?.phone?.message && !errors?.email?.message;
 
 	// Update user
 	const onSubmit = async (values) => {
@@ -487,7 +489,7 @@ function CredentialsInfoCard(props) {
 				{editMode ?
 					<React.Fragment>
 						<ButtonGroup>
-							<Button color="primary" disabled={errors?.phone?.message || errors?.email?.message} type="submit">{t("Save")}</Button>
+							<Button color="primary" disabled={!isValid} type="submit">{t("Save")}</Button>
 							<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false), resetField('phone'), resetField('email'))} >{t("Cancel")}</Button>
 						</ButtonGroup>
 					</React.Fragment>

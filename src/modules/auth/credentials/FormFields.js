@@ -16,10 +16,6 @@ export function PhoneField(props) {
 		"phone",
 		{
 			validate: {
-				emptyInput: value => (
-					props.getValues("email") === undefined ?
-						props.getValues("phone") !== "" :
-						props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Phone cannot be empty!"),
 				regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('FormFields|Invalid phone number format'),
 				lengthValidation: value => value.length >= 9 || value.length < 1 || t('FormFields|Phone number is too short')
 			},
@@ -52,16 +48,7 @@ export function EmailField(props) {
 	const { t } = useTranslation();
 	const disable = props.disable == undefined ? false : props.disable;
 	const reg = props.register(
-		"email", {
-			required: props.required ? t("FormFields|Email cannot be empty!") : false,
-			validate: {
-				emptyInput: value => (
-					props.getValues("phone") === undefined ?
-						props.getValues("email") !== "" :
-						props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Email cannot be empty!"),
-			}
-		}
-	);
+		"email", { required: false, pattern:{value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u , message: "Please enter the correct email"}});
 	/*
 		TODO: Validation on email (default validation should be created and should
 		be overriden when there will be information for email validation from
