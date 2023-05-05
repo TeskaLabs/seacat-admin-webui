@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { DataTable, ButtonWithAuthz } from 'asab-webui';
-import { Container, Button } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 function ResourcesListContainer(props) {
 
