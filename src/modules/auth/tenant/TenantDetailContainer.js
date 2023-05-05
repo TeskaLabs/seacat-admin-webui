@@ -328,22 +328,22 @@ function TenantDetailContainer(props) {
 					</CardHeader>
 
 					<CardBody>
-						<Row className="card-body-row">
+						<Row>
 							<Col md={3}>{t("Name")}</Col>
 							<Col>{data._id}</Col>
 						</Row>
 
-						<Row className="mt-3 card-body-row">
+						<Row className="mt-3">
 							<Col md={3}>{t("Created at")}</Col>
 							<Col><DateTime value={data._c} /></Col>
 						</Row>
 
-						<Row className="card-body-row">
+						<Row>
 							<Col md={3}>{t("Modified at")}</Col>
 							<Col><DateTime value={data._m} /></Col>
 						</Row>
 						{data.created_by &&
-							<Row className="card-body-row">
+							<Row>
 								<Col md={3}>{t("Created by")}</Col>
 								<Col>
 									<Credentials

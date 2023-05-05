@@ -1,6 +1,6 @@
 .tenant-detail-container {
 	display: grid;
-	gap: 1rem;
+	gap: 0.25rem;
 	grid-template-areas:
 		"a b"
 		"c c";
@@ -11,7 +11,7 @@
 		grid-template-areas:
 			"i"
 			"q";
-		gap: 1rem;
+		gap: 0.25rem;
 
 		.tenant-general-info {
 			grid-area: i;
@@ -19,7 +19,7 @@
 	}
 
 	.custom-data-card {
-		margin-top: 1rem;
+		margin-top: 0.25rem;
 
 		.card-body {
 			height: 100%;
