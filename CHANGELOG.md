@@ -2,6 +2,11 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Changed icons from coreui.io icons to atlasicons. (INDIGO Sprint 230428, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
+
+
 ## v23.16-beta
 
 ### Compatibility
