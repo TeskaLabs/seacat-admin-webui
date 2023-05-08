@@ -388,14 +388,14 @@
 	},
 	"ResourcesDeletedDetailContainer": {
 		"Resource": "Zdroj",
-		"Hard-delete": "Navždy odstranit",
+		"Hard-delete": "Trvale odstranit",
 		"Retrieve": "Obnovit zdroj",
 		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
-		"Failed to hard-delete this resource": "Nepodařilo se navždy odstranit tento zdroj",
+		"Failed to hard-delete this resource": "Nepodařilo se trvale odstranit tento zdroj",
 		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
 		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
-		"Resource was successfully hard-deleted": "Zdroj byl úspěšně navždy odstranit",
-		"Do you really want to hard-delete this resource": "Opravdu si přejete navždy odstranit zdroj?",
+		"Resource was successfully hard-deleted": "Zdroj byl úspěšně trvale odstranit",
+		"Do you really want to hard-delete this resource": "Opravdu si přejete trvale odstranit zdroj?",
 		"Do you really want to retrieve this resource": "Opravdu si přejete obnovit zdroj?"
 	},
 	"ResourcesDeletedListContainer": {
