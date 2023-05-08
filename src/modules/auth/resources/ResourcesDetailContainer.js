@@ -4,15 +4,17 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
 
 import {
-	Container, Row, Col, Card, Input, Label,
-	CardHeader, CardBody, Form, Button, CardFooter, FormGroup, ButtonGroup
+	Container, Row, Col,
+	Card, Input, CardHeader,
+	CardBody, Form, Button,
+	CardFooter, FormGroup, ButtonGroup
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';
 import { DateTime, ButtonWithAuthz } from 'asab-webui';
 
 const ResourceDetailContainer = (props) =>  {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
+	const { handleSubmit, register, setValue } = useForm();
 	const { t } = useTranslation();
 	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const [ resource, setResource ] = useState(undefined);
@@ -157,11 +159,26 @@ const ResourceDetailContainer = (props) =>  {
 						{editMode ?
 							<>
 								<ButtonGroup>
-										<Button color="primary" type="submit" >{t("Save")}</Button>
+										<ButtonWithAuthz
+											color="primary"
+											type="submit"
+											resources={resources}
+											resource={resourceEdit}
+										>
+											{t("Save")}
+										</ButtonWithAuthz>
 										<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
 								</ButtonGroup>
 								<div className='actions-right'>
-									<Button color="danger" type="button" onClick={() => terminateResourceForm(resource._id)}>{t("ResourcesDetailContainer|Delete resource")}</Button>
+									<ButtonWithAuthz
+										type="button"
+										color="danger"
+										resources={resources}
+										resource={resourceEdit}
+										onClick={() => terminateResourceForm(resource._id)}
+									>
+										{t("ResourcesDetailContainer|Delete resource")}
+									</ButtonWithAuthz>
 								</div>
 							</>
 						:
