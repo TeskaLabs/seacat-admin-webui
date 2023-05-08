@@ -17,7 +17,7 @@ const DeletedResourceDetailContainer = (props) =>  {
 	const [editMode, setEditMode] = useState(false);
 	const { resource_id } = props.match.params;
 
-	const editResource = "authz:superuser";
+	const editResource = "seacat:resource:edit";
 	const resources = useSelector(state => state.auth?.resources);
 
 	useEffect(() => {
