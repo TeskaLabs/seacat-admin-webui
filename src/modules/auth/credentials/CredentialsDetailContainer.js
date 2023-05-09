@@ -420,8 +420,6 @@ function CredentialsInfoCard(props) {
 		setOnUpdate(true);
 	}
 
-	const isValid = (watch("email") || watch("phone")) && !errors?.phone?.message && !errors?.email?.message;
-
 	// Update user
 	const onSubmit = async (values) => {
 		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
@@ -489,7 +487,7 @@ function CredentialsInfoCard(props) {
 				{editMode ?
 					<React.Fragment>
 						<ButtonGroup>
-							<Button color="primary" disabled={!isValid} type="submit">{t("Save")}</Button>
+							<Button color="primary" disabled={!((watch("email") || watch("phone")) && !errors?.phone?.message && !errors?.email?.message)} type="submit">{t("Save")}</Button>
 							<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false), resetField('phone'), resetField('email'))} >{t("Cancel")}</Button>
 						</ButtonGroup>
 					</React.Fragment>

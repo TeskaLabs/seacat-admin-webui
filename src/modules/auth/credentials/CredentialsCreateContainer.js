@@ -29,7 +29,8 @@ function CredentialsCreateContainer(props) {
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const { t, i18n } = useTranslation();
 
-	const { handleSubmit, register, formState: { errors }, getValues, setValue, reset, resetField } = useForm({
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, reset, resetField, watch } = useForm({
+		mode: 'onChange',
 		defaultValues: {
 			'passwordlink': true,
 		}
@@ -238,9 +239,9 @@ function CredentialsCreateContainer(props) {
 										{(activeTab == "create") && (config !== undefined) && config.creation.map((item, idx) => {
 											switch(item.type) {
 												case 'username': return(<UserNameField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={item.policy === "required"} />)
-												case 'email': return(<EmailField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={item.policy === "required"} />)
+												case 'email': return(<EmailField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={true} />)
 												case 'password': return(<PasswordField key={idx} register={register} config={item} getValues={getValues} errors={errors} />)
-												case 'phone': return(<PhoneField key={idx} register={register} config={item} getValues={getValues} setValue={setValue} errors={errors} required={item.policy === "required"} />)
+												case 'phone': return(<PhoneField key={idx} register={register} config={item} getValues={getValues} setValue={setValue} errors={errors} required={true} />)
 												case 'passwordlink': return(<PasswordLinkField key={idx} register={register} config={item} getValues={getValues} errors={errors}/>)
 												default: return(<div key={idx}>Unknown item: "{item.type}"</div>)
 											}
@@ -260,15 +261,29 @@ function CredentialsCreateContainer(props) {
 								</TabPane>
 							</TabContent>
 							<CardFooter>
-								<ButtonWithAuthz
-									color="primary"
-									type="submit"
-									disabled={(activeTab == "create") && (provider == undefined)}
-									resource={resourceCreateCredentials}
-									resources={resources}
-								>
-									{activeTab == "create" ? t('CredentialsCreateContainer|Create credentials') : t('CredentialsCreateContainer|Invite')}
-								</ButtonWithAuthz>
+								{activeTab == "create" ?
+									<ButtonWithAuthz
+										color="primary"
+										type="submit"
+										disabled={!(watch("email") && watch("phone") && watch("username") && !errors?.phone?.message && !errors?.email?.message)}
+										resource={resourceCreateCredentials}
+										resources={resources}
+									>
+										{t('CredentialsCreateContainer|Create credentials')}
+									</ButtonWithAuthz>
+								:
+									<ButtonWithAuthz
+										color="primary"
+										type="submit"
+										disabled={!((watch("email") && !errors?.phone?.message && !errors?.email?.message))}
+										// disabled={true}
+										resource={resourceCreateCredentials}
+										resources={resources}
+									>
+										{/*{console.log(!((watch("email") && !errors?.phone?.message && !errors?.email?.message)))}*/}
+										{t('CredentialsCreateContainer|Invite')}
+									</ButtonWithAuthz>
+								}
 							</CardFooter>
 						</Card>
 					</Form>
