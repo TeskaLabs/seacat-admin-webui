@@ -6,6 +6,8 @@
 
 - ASAB WebUI submodule version bump [[6f53eee](https://github.com/TeskaLabs/asab-webui/commit/6f53eee5d5c0ae8035172f5658d54c2e855e33b2)] commit (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
 
+- Changing logo based on app's theme (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
+
 ### Refactoring
 
 - Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
