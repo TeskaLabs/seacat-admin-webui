@@ -4,7 +4,7 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[6f53eee](https://github.com/TeskaLabs/asab-webui/commit/6f53eee5d5c0ae8035172f5658d54c2e855e33b2)] commit (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
+- ASAB WebUI submodule version bump [[3dc54f1](https://github.com/TeskaLabs/asab-webui/commit/3dc54f169487b79c70b3f8b8cb9e5985f69775de)] commit (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
 
 - Changing logo based on app's theme (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
 
