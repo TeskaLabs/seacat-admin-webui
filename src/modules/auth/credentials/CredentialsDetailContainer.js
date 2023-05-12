@@ -98,7 +98,7 @@ function CredentialsDetailContainer(props) {
 			setSessions(response.data.data);
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("SessionListContainer|Something went wrong, failed to fetch user sessions")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to fetch user sessions")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -206,18 +206,18 @@ function CredentialsDetailContainer(props) {
 						{data !== null ?
 						<>
 							{data.username !== undefined ?
-							<Row className="card-body-row">
+							<Row>
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Username')}</Col>
 								<Col>{data.username}</Col>
 							</Row>
 							: null}
 
-							<Row className="card-body-row">
+							<Row>
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|ID')}</Col>
 								<Col><code>{data._id}</code></Col>
 							</Row>
 
-							<Row className="card-body-row">
+							<Row>
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Status')}</Col>
 								<Col>
 									{(data.suspended === false) || (data.suspended == undefined) ?
@@ -240,7 +240,7 @@ function CredentialsDetailContainer(props) {
 									</ButtonWithAuthz>
 									:
 									<ButtonWithAuthz
-										style={{padding: 0, borderWidth: 0, marginTop: "8px"}}
+										style={{padding: 0, borderWidth: 0}}
 										onClick={(e) => { e.preventDefault(); suspendUserForm((suspended === false) || (suspended === undefined)) }}
 										color="link"
 										resource={resourceManageCredentials}
@@ -256,12 +256,12 @@ function CredentialsDetailContainer(props) {
 								</Col>
 							</Row>
 
-							<Row className="card-body-row">
+							<Row>
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Created at')}</Col>
 								<Col><DateTime value={data._c} /></Col>
 							</Row>
 
-							<Row className="card-body-row">
+							<Row>
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Modified at')}</Col>
 								<Col><DateTime value={data._m} /></Col>
 							</Row>
@@ -305,7 +305,7 @@ function CredentialsDetailContainer(props) {
 						{data !== null ?
 						<CardBody>
 
-							<Row className="card-body-row">
+							<Row>
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Successful')}</Col>
 								{ (data._ll === undefined) || (data._ll.sat === undefined) ?
 									<Col>N/A</Col>
@@ -321,7 +321,7 @@ function CredentialsDetailContainer(props) {
 								}
 							</Row>
 
-							<Row className="card-body-row">
+							<Row>
 								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Failed')}</Col>
 								{ (data._ll === undefined) || (data._ll.fat === undefined) ?
 									<Col>N/A</Col>

@@ -82,12 +82,9 @@ const RolesResourcesCard = (props) => {
 			<CardBody className="card-body-scroll">
 				{assignedResources.length === 0 && !editMode && <Label className="mb-0">{t('RolesResourcesCard|No data')}</Label>}
 				{assignedResources.map((resource, idx) => (
-					<Row
-						key={idx}
-						className="mb-2"
-					>
+					<Row key={idx}>
 						<Col style={{overflow: "hidden", marginLeft: "15px", paddingLeft: "0"}}>
-							<span className="d-flex align-items-center btn-edit-mode">
+							<span className="d-flex align-items-center">
 								{editMode &&
 									<Button
 										disabled={!editMode}
