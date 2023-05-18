@@ -12,7 +12,7 @@
 
 - Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
 
-- Lazy loading enabled in auth and home modules. (INDIGO Sprint 230428, [!31](https://github.com/TeskaLabs/seacat-admin-webui/pull/31))
+- Lazy loading enabled in auth and home modules. Also, obsolete code removal for retrieving usernames in TenantDetailScreen. This functionality was substituted <Credentials /> component (INDIGO Sprint 230428, [!31](https://github.com/TeskaLabs/seacat-admin-webui/pull/31))
 
 ## v23.16-beta
 
