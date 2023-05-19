@@ -4,13 +4,15 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[3dc54f1](https://github.com/TeskaLabs/asab-webui/commit/3dc54f169487b79c70b3f8b8cb9e5985f69775de)] commit (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
+- ASAB WebUI submodule version bump [[9d75f67](https://github.com/TeskaLabs/asab-webui/commit/9d75f678d926973ea6295a78a8695b9e6876bd57)] commit (INDIGO Sprint 230512, [!31](https://github.com/TeskaLabs/seacat-admin-webui/pull/31))
 
 - Changing logo based on app's theme (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
 
 ### Refactoring
 
 - Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
+
+- Lazy loading enabled in auth and home modules. Also, obsolete code removal for retrieving usernames in TenantDetailScreen. This functionality was substituted with <Credentials /> component (INDIGO Sprint 230512, [!31](https://github.com/TeskaLabs/seacat-admin-webui/pull/31))
 
 ## v23.16-beta
 
