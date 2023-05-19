@@ -15,6 +15,8 @@ const RolesResourcesCard = (props) => {
 	const [unassignedResources, setUnassignedResources] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [dropdownOpen, setDropdown] = useState(false);
+	const [limit, setLimit] = useState(10);
+	const [count, setCount] = useState(0);
 	const { role_name, tenant_id } = props.params;
 	const roleId = props.role._id ? props.role._id : role_name;
 
@@ -22,31 +24,37 @@ const RolesResourcesCard = (props) => {
 
 	const { t } = useTranslation();
 
+	useEffect(() => console.log(limit), [limit]);
 	useEffect(() => fetchAssignedResources(), []);
-	useEffect(() => fetchUnassignedResources(), [assignedResources]);
+	useEffect(() => fetchUnassignedResources(), [assignedResources, limit]);
 
-	const fetchAssignedResources = () => {
-		SeaCatAuthAPI.get(`/role/${tenant_id}/${role_name}`)
-			.then(res => {
-				const assignedResources = res.data.resources;
-				setAssignedResources(assignedResources);
-			})
-			.catch((e) => props.app.addAlert("warning", `${t("RolesResourcesCard|Fetch of assigned resources failed")}. ${e?.response?.data?.message}`, 30));
+	const fetchAssignedResources = async () => {
+		try {
+			let response = await SeaCatAuthAPI.get(`/role/${tenant_id}/${role_name}`);
+			setAssignedResources(response.data.resources);
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("RolesResourcesCard|Fetch of assigned resources failed")}. ${e?.response?.data?.message}`, 30);
+			setEditMode(false);
+		}
 		if (editMode) setEditMode(false);
 	}
 
-	const fetchUnassignedResources = () => {
-		SeaCatAuthAPI.get(`/resource`)
-			.then(res => {
-				const allResources = res.data.data.map(resource => resource._id);
-				const unassignedResources = allResources.filter(resource => assignedResources.indexOf(resource) < 0);
-				// Remove authz:superuser from unassigned resources on every role, which is not global
-				if (roleId.indexOf('*/') == -1){
-					unassignedResources.splice(unassignedResources.indexOf('authz:superuser'), 1)
-				}
-				setUnassignedResources(unassignedResources);
-			})
-			.catch((e) => props.app.addAlert("warning", `${t("RolesResourcesCard|Fetch of all resources failed")}. ${e?.response?.data?.message}`, 30));
+	const fetchUnassignedResources = async () => {
+		try {
+			let response = await SeaCatAuthAPI.get(`/resource`, {params: { i: limit }});
+			const allResources = response.data.data.map(resource => resource._id);
+			const unassignedResources = allResources.filter(resource => assignedResources.indexOf(resource) < 0);
+			// Remove authz:superuser from unassigned resources on every role, which is not global
+			if (roleId.indexOf('*/') == -1){
+				unassignedResources.splice(unassignedResources.indexOf('authz:superuser'), 1);
+			}
+			setUnassignedResources(unassignedResources);
+			setCount(response.data.count);
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("RolesResourcesCard|Fetch of all resources failed")}. ${e?.response?.data?.message}`, 30);
+		}
 	}
 
 	const assignResource = (resource) => {
@@ -61,7 +69,7 @@ const RolesResourcesCard = (props) => {
 
 	const onSave = async () => {
 		try {
-			let response = await SeaCatAuthAPI.put(`/role/${tenant_id}/${role_name}`, { 'set': assignedResources });
+			await SeaCatAuthAPI.put(`/role/${tenant_id}/${role_name}`, { 'set': assignedResources });
 			props.app.addAlert("success", t("RolesResourcesCard|Role has been updated successfully"));
 			setEditMode(false);
 		} catch(e) {
@@ -134,6 +142,21 @@ const RolesResourcesCard = (props) => {
 										{resource}
 									</DropdownItem>
 								))}
+								{count > limit ?
+								<>
+									<DropdownItem divider />
+									<DropdownItem
+										onClick={() => {
+											setLimit(limit + 5);
+											// toggleAddRole();
+										}}
+									>
+										{t("RolesResourcesCard|More")}
+									</DropdownItem>
+								</>
+								:
+								null
+							}
 							</DropdownMenu>
 						</Dropdown>
 					</>
