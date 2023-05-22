@@ -13,7 +13,6 @@ const ResourcesDeletedListContainer = (props) => {
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(true);
-	const [show, setShow] = useState(false);
 	const [limit, setLimit] = useState(0);
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
@@ -69,14 +68,7 @@ const ResourcesDeletedListContainer = (props) => {
 	}, []);
 
 	useEffect(()=>{
-		setShow(false);
-		if (resources.length === 0) {
-			// Timeout delays appearance of content loader in DataTable. This measure prevents 'flickering effect' during fast fetch of data, where content loader appears just for a split second.
-			setTimeout(() => setShow(true), 500);
-		};
-		if (limit > 0) {
-			getResources();
-		}
+		if (limit > 0) getResources();
 	}, [page, limit]);
 
 	// Fetches deleted resources
@@ -143,7 +135,6 @@ const ResourcesDeletedListContainer = (props) => {
 					limit={limit}
 					setLimit={setLimit}
 					isLoading={loading}
-					contentLoader={show}
 					customComponent={goBackButton}
 					customRowClassName={customRowClassName}
 					height={height}

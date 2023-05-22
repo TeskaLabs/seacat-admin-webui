@@ -13,7 +13,6 @@ function ResourcesListContainer(props) {
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(true);
-	const [show, setShow] = useState(false);
 	const [limit, setLimit] = useState(0);
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
@@ -67,15 +66,8 @@ function ResourcesListContainer(props) {
 		setHeight(ref.current.clientHeight);
 	}, []);
 
-	useEffect(()=>{
-		setShow(false);
-		if (resources.length === 0) {
-			// Timeout delays appearance of content loader in DataTable. This measure prevents 'flickering effect' during fast fetch of data, where content loader appears just for a split second.
-			setTimeout(() => setShow(true), 500);
-		};
-		if (limit > 0) {
-			getResources();
-		}
+	useEffect(() => {
+		if (limit > 0) getResources();
 	}, [page, limit]);
 
 	const getResources = async () => {
@@ -160,7 +152,6 @@ function ResourcesListContainer(props) {
 					setLimit={setLimit}
 					customComponent={customComponent}
 					isLoading={loading}
-					contentLoader={show}
 					customRowClassName={customRowClassName}
 					height={height}
 				/>
