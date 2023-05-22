@@ -15,7 +15,7 @@ function CredentialsSessionCard(props) {
 
 	// Set terminate session dialog
 	const terminateSessionsForm = () => {
-		var r = confirm(t("CredentialsSessionCard|Do you want to terminate user sessions?"));
+		var r = confirm(t("CredentialsSessionCard|Do you really want to log the user out?"));
 		if (r == true) {
 			terminateSessions();
 		}
@@ -27,13 +27,13 @@ function CredentialsSessionCard(props) {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/sessions/${props.credentials_id}`);
 			if (response.data.result !== "OK") {
-				throw new Error(t("CredentialsSessionCard|Something went wrong when terminating sessions"));
+				throw new Error(t("CredentialsSessionCard|Unsuccessful log out"));
 			}
-			props.app.addAlert("success", t("CredentialsSessionCard|Sessions successfully terminated"));
+			props.app.addAlert("success", t("CredentialsSessionCard|Successfully logged out"));
 			props.retrieveSessions();
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("CredentialsSessionCard|Failed to terminate sessions")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("CredentialsSessionCard|Failed to log out")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 
@@ -48,7 +48,7 @@ function CredentialsSessionCard(props) {
 			<CardBody className="card-body-scroll">
 				{data.length > 0 ? data.map((session, idx) => {
 					return(
-						<Row className="card-body-row" key={idx}>
+						<Row key={idx}>
 							<Col style={{overflowX: "auto"}}>
 								<Link to={{ pathname:`/auth/session/${session._id}` }} className="user-session">
 									<i className="cil-link"></i>
@@ -70,7 +70,7 @@ function CredentialsSessionCard(props) {
 					resources={props.resources}
 					disabled={data.length == 0}
 				>
-					{t("CredentialsSessionCard|Terminate sessions")}
+					{t("CredentialsSessionCard|Log out")}
 				</ButtonWithAuthz>
 			</CardFooter>
 		</Card>

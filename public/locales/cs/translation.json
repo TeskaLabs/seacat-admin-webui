@@ -248,7 +248,7 @@
 	},
 	"CredentialsRolesCard": {
 		"More": "Více ...",
-		"Assigned roles": "Přiřazené role",
+		"Roles": "Role",
 		"Assign a new role": "Přidat novou roli",
 		"Select role to assign ...": "Vyberte roli k přiřazení ...",
 		"Roles updated successfully": "Role úspěšně aktualizované",
@@ -270,12 +270,11 @@
 	"CredentialsSessionCard": {
 		"Sessions": "Relace",
 		"No active sessions": "Žádné aktivní relace",
-		"Terminate user sessions": "Ukončit relace uživatele",
-		"Terminate sessions": "Ukončit relace",
-		"Do you want to terminate user sessions?": "Opravdu chcete ukončit relace uživatele?",
-		"Sessions successfully terminated": "Relace úspěšně ukončeny",
-		"Something went wrong when terminating sessions": "Něco se pokazilo při ukončování relací",
-		"Failed to terminate sessions": "Nepodařilo se ukončit relace"
+		"Log out": "Odhlásit",
+		"Do you really want to log the user out?": "Opravdu chcete odhlásit uživatele?",
+		"Successfully logged out": "Uživatel úspěšně odhlášen",
+		"Unsuccessful log out": "Nepodařilo se odhlásit uživatele",
+		"Failed to log out": "Odhlášení se nepodařilo"
 	},
 	"CredentialsListContainer": {
 		"Credentials": "Uživatelské údaje",

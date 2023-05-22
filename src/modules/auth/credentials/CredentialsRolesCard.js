@@ -98,16 +98,16 @@ function CredentialsRolesCard(props) {
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
 					<i className="cil-user pr-2"></i>
-					{t("CredentialsRolesCard|Assigned roles")}
+					{t("CredentialsRolesCard|Roles")}
 				</div>
 			</CardHeader>
 
 			<CardBody className="card-body-scroll">
 
 				{assignedRoles.map((role) => (
-					<Row key={role} className="mb-2">
+					<Row key={role}>
 						<Col style={{overflow: "hidden", marginLeft: "15px", paddingLeft: "0"}}>
-							<span className="d-flex align-items-center btn-edit-mode">
+							<span className="d-flex align-items-center">
 								{editMode &&
 									<Button
 										outline
