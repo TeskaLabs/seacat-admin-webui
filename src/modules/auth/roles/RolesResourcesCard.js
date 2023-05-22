@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
 	Row, Col, Card, CardHeader,
 	CardFooter, CardBody, Button,
-	Dropdown, DropdownToggle, DropdownMenu, DropdownItem, ButtonGroup, Label
+	Dropdown, DropdownToggle, DropdownMenu,
+	DropdownItem, ButtonGroup, Label,
+	Input
 } from 'reactstrap';
 
 import { ButtonWithAuthz } from 'asab-webui';
@@ -17,6 +19,7 @@ const RolesResourcesCard = (props) => {
 	const [dropdownOpen, setDropdown] = useState(false);
 	const [limit, setLimit] = useState(10);
 	const [count, setCount] = useState(0);
+	const [filter, setFilter] = useState('');
 	const { role_name, tenant_id } = props.params;
 	const roleId = props.role._id ? props.role._id : role_name;
 
@@ -24,9 +27,21 @@ const RolesResourcesCard = (props) => {
 
 	const { t } = useTranslation();
 
-	useEffect(() => console.log(limit), [limit]);
+	const timeoutRef = useRef(null);
+
 	useEffect(() => fetchAssignedResources(), []);
 	useEffect(() => fetchUnassignedResources(), [assignedResources, limit]);
+
+	//sets 0.5s delay before triggering the search call when filtering through tennants
+	useEffect(() => {
+		if (timeoutRef.current !== null) {
+			clearTimeout(timeoutRef.current);
+		}
+		timeoutRef.current = setTimeout(() => {
+			timeoutRef.current = null;
+			fetchUnassignedResources()
+		}, 500);
+	}, [filter]);
 
 	const fetchAssignedResources = async () => {
 		try {
@@ -42,7 +57,7 @@ const RolesResourcesCard = (props) => {
 
 	const fetchUnassignedResources = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/resource`, {params: { i: limit }});
+			let response = await SeaCatAuthAPI.get(`/resource`, {params: { f: filter, i: limit }});
 			const allResources = response.data.data.map(resource => resource._id);
 			const unassignedResources = allResources.filter(resource => assignedResources.indexOf(resource) < 0);
 			// Remove authz:superuser from unassigned resources on every role, which is not global
@@ -136,7 +151,15 @@ const RolesResourcesCard = (props) => {
 								{t("RolesResourcesCard|Add resource")}
 							</DropdownToggle>
 							<DropdownMenu style={{maxHeight: "20em", overflowY: "auto"}} >
-								<DropdownItem header>{t("RolesResourcesCard|Select resource")}</DropdownItem>
+								<DropdownItem header>
+									<Input
+										placeholder={t("RolesResourcesCard|Search")}
+										className="m-0"
+										onChange={e => setFilter(e.target.value)}
+										value={filter}
+									/>
+								</DropdownItem>
+								{/* <DropdownItem header>{t("RolesResourcesCard|Select resource")}</DropdownItem> */}
 								{unassignedResources.map((resource, idx) => (
 									<DropdownItem key={idx} onClick={() => assignResource(resource)}>
 										{resource}
@@ -148,7 +171,7 @@ const RolesResourcesCard = (props) => {
 									<DropdownItem
 										onClick={() => {
 											setLimit(limit + 5);
-											// toggleAddRole();
+											setDropdown(prev => !prev);
 										}}
 									>
 										{t("RolesResourcesCard|More")}
