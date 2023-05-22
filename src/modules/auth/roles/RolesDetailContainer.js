@@ -281,7 +281,7 @@ const RolesDetailContainer = (props) =>  {
 	if (!role) return null;
 
 	return (
-		<Container>
+		<Container fluid>
 			<div className="role-detail-wrapper">
 				<div className="role-detail-info">
 					<Card className="w-100">
