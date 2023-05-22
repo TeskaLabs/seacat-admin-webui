@@ -298,7 +298,7 @@ function TenantDetailContainer(props) {
 	);
 
 	return (
-		<Container className="tenant-detail-container tenant-detail-wrapper">
+		<Container fluid className="tenant-detail-container tenant-detail-wrapper">
 			<div className="tenant-detail-info">
 				<Card className="tenant-general-info">
 					<CardHeader className="border-bottom">
