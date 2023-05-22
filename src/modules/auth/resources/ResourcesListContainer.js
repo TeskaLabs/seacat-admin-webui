@@ -19,7 +19,6 @@ function ResourcesListContainer(props) {
 	const ref = useRef(null);
 	const { t } = useTranslation();
 
-	const deleteResource = "seacat:resource:edit";
 	const resourceEdit = "seacat:resource:edit";
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
@@ -53,7 +52,7 @@ function ResourcesListContainer(props) {
 							color="danger"
 							outline
 							onClick={() => {terminateResourceForm(resource._id)}}
-							resource={deleteResource}
+							resource={resourceEdit}
 							resources={credentialsResources}
 						>
 							<i className="cil-x"></i>
@@ -121,7 +120,7 @@ function ResourcesListContainer(props) {
 				color="primary"
 				outline
 				resources={credentialsResources}
-				resource={deleteResource}
+				resource={resourceEdit}
 				onClick={() => props.history.push('/auth/resources-deleted')}
 				>
 				{t("ResourcesListContainer|Deleted resources")}
