@@ -347,7 +347,9 @@
 		"Save": "Uložit",
 		"Cancel": "Zrušit",
 		"Edit": "Upravit",
-		"No data": "Žádná data"
+		"No data": "Žádná data",
+		"More": "Více...",
+		"Search": "Hledat"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Zdroj byl úspěšně vytvořen",

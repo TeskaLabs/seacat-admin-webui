@@ -347,7 +347,9 @@
 		"Save": "Save",
 		"Cancel": "Cancel",
 		"Edit": "Edit",
-		"No data": "No data"
+		"No data": "No data",
+		"More": "More...",
+		"Search": "Search"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Resource has been created",
