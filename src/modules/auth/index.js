@@ -1,30 +1,32 @@
+import { lazy } from 'react';
+import { componentLoader } from 'asab-webui';
 import Module from 'asab-webui/abc/Module';
 
-import CredentialsListContainer from './credentials/CredentialsListContainer';
-import CredentialsDetailContainer from './credentials/CredentialsDetailContainer';
-import CredentialsCreateContainer from './credentials/CredentialsCreateContainer';
-import ResetPasswordContainer from './credentials/ResetPasswordContainer';
+const CredentialsListContainer = lazy(() => componentLoader(() => import('./credentials/CredentialsListContainer')));
+const CredentialsDetailContainer = lazy(() => componentLoader(() => import('./credentials/CredentialsDetailContainer')));
+const CredentialsCreateContainer = lazy(() => componentLoader(() => import('./credentials/CredentialsCreateContainer')));
+const ResetPasswordContainer = lazy(() => componentLoader(() => import('./credentials/ResetPasswordContainer')));
 
-import SessionListContainer from './session/SessionListContainer';
-import SessionDetailContainer from './session/SessionDetailContainer';
+const SessionListContainer = lazy(() => componentLoader(() => import('./session/SessionListContainer')));
+const SessionDetailContainer = lazy(() => componentLoader(() => import('./session/SessionDetailContainer')));
 
-import TenantListContainer from './tenant/TenantListContainer';
-import TenantCreateContainer from './tenant/TenantCreateContainer';
-import TenantDetailContainer from './tenant/TenantDetailContainer';
+const TenantListContainer = lazy(() => componentLoader(() => import('./tenant/TenantListContainer')));
+const TenantCreateContainer = lazy(() => componentLoader(() => import('./tenant/TenantCreateContainer')));
+const TenantDetailContainer = lazy(() => componentLoader(() => import('./tenant/TenantDetailContainer')));
 
-import RolesCreateContainer from './roles/RolesCreateContainer';
-import RolesListContainer from './roles/RolesListContainer';
-import RolesDetailContainer from './roles/RolesDetailContainer';
+const RolesCreateContainer = lazy(() => componentLoader(() => import('./roles/RolesCreateContainer')));
+const RolesListContainer = lazy(() => componentLoader(() => import('./roles/RolesListContainer')));
+const RolesDetailContainer = lazy(() => componentLoader(() => import('./roles/RolesDetailContainer')));
 
-import ResourcesListContainer from './resources/ResourcesListContainer';
-import ResourcesDetailContainer from './resources/ResourcesDetailContainer';
-import ResourcesCreateContainer from './resources/ResourcesCreateContainer';
-import ResourcesDeletedListContainer from './resources/ResourcesDeletedListContainer';
-import DeletedResourceDetailContainer from'./resources/DeletedResourceDetailContainer';
+const ResourcesListContainer = lazy(() => componentLoader(() => import('./resources/ResourcesListContainer')));
+const ResourcesDetailContainer = lazy(() => componentLoader(() => import('./resources/ResourcesDetailContainer')));
+const ResourcesCreateContainer = lazy(() => componentLoader(() => import('./resources/ResourcesCreateContainer')));
+const ResourcesDeletedListContainer = lazy(() => componentLoader(() => import('./resources/ResourcesDeletedListContainer')));;
+const DeletedResourceDetailContainer = lazy(() => componentLoader(() => import('./resources/DeletedResourceDetailContainer')));;
 
-import ClientListContainer from './clients/ClientListContainer';
-import ClientCreateContainer from './clients/ClientCreateContainer';
-import ClientDetailContainer from './clients/ClientDetailContainer';
+const ClientListContainer = lazy(() => componentLoader(() => import('./clients/ClientListContainer')));
+const ClientCreateContainer = lazy(() => componentLoader(() => import('./clients/ClientCreateContainer')));
+const ClientDetailContainer = lazy(() => componentLoader(() => import('./clients/ClientDetailContainer')));
 
 // SCSS
 import './tenant/tenant.scss';

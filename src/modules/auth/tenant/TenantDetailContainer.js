@@ -38,8 +38,6 @@ function TenantDetailContainer(props) {
 	const [page, setPage] = useState(1);
 	const [filter, setFilter] = useState("");
 	const limit = 10;
-	const [username, setUsername] = useState();
-	const [edit, setEdit] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [loadingCustomData, setLoadingCustomData] = useState(true);
 	const [show, setShow] = useState(false);
@@ -124,10 +122,6 @@ function TenantDetailContainer(props) {
 		retrieveData();
 	}, []);
 
-	useEffect(() => {
-		data.created_by && retrieveUserName();
-	}, [data.created_by]);
-
 	const retrieveData = async () => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/tenant/${tenant_id}`);
@@ -140,19 +134,6 @@ function TenantDetailContainer(props) {
 			props.app.addAlert("warning", `${t("TenantDetailContainer|Something went wrong, failed to fetch tenant detail")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
-
-	const retrieveUserName = async () => {
-		try {
-			let response = await SeaCatAuthAPI.put(`usernames`, [data.created_by]);
-			if (response.data.result !== "OK") {
-				throw new Error(t("TenantDetailContainer|Something went wrong, failed to fetch assigned credentials"));
-			}
-			setUsername(response.data.data[data.created_by]);
-		} catch (e) {
-			console.error(e);
-			props.app.addAlert("warning", `${t("TenantDetailContainer|Something went wrong, failed to fetch assigned credentials")}. ${e?.response?.data?.message}`, 30);
-		}
-	}
 
 	const retrieveAssignedCredentials = async () => {
 		try {
