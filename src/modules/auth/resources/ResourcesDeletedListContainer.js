@@ -18,7 +18,7 @@ const ResourcesDeletedListContainer = (props) => {
 	const ref = useRef(null);
 	const { t } = useTranslation();
 
-	const retrieveButtonResource = "seacat:resource:edit";
+	const retrieveResource = "seacat:resource:edit";
 
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
@@ -52,7 +52,7 @@ const ResourcesDeletedListContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => {confirmationPrompt(resource._id)}}
-							resource={retrieveButtonResource}
+							resource={retrieveResource}
 							resources={credentialsResources}
 						>
 							<i className="cil-action-undo"></i>
@@ -85,7 +85,7 @@ const ResourcesDeletedListContainer = (props) => {
 	}
 
 	// Undelete the resource
-	const retrieveResource = async (resourceId) => {
+	const undeleteResource = async (resourceId) => {
 		try {
 			let response = await SeaCatAuthAPI.post(`/resource/${resourceId}`, {});
 			if (response.data.result !== "OK") {
@@ -103,7 +103,7 @@ const ResourcesDeletedListContainer = (props) => {
 	const confirmationPrompt = (resourceId) => {
 		var r = confirm(t('ResourcesDeletedListContainer|Do you really want to retrieve this resource'));
 		if (r == true) {
-			retrieveResource(resourceId);
+			undeleteResource(resourceId);
 		}
 	}
 
