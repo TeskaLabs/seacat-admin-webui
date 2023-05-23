@@ -30,9 +30,7 @@ const BulkAssignmentContainer = (props) => {
 	const [show, setShow] = useState(false);
 	const [showTenantsContentLoader, setShowTenantsContentLoader] = useState(false);
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
-
-	const addResource = "authz:superuser";
+	const resource = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 
 	// headers for Credentails List
@@ -49,7 +47,7 @@ const BulkAssignmentContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => saveToSelectedCredentials(credential)}
-							resource={addResource}
+							resource={resource}
 							resources={resources}
 							disabled={credential.assigned}
 						>
@@ -63,13 +61,7 @@ const BulkAssignmentContainer = (props) => {
 			name: '',
 			customComponent: {
 				generate: (obj) => (
-					<div
-						style={{whiteSpace: "nowrap",
-							maxWidth: "40ch",
-							textOverflow: "ellipsis",
-							overflow: "hidden",
-							marginBottom: 0}}
-					>
+					<div className="no-wrap-40ch">
 						{obj.suspended === true ?
 							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
 							: <span className="cil-user mr-1" />}
@@ -100,7 +92,7 @@ const BulkAssignmentContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => saveToSelectedTenants(tenant)}
-							resource={addResource}
+							resource={resource}
 							resources={resources}
 							disabled={tenant.assigned}
 						>
@@ -192,21 +184,23 @@ const BulkAssignmentContainer = (props) => {
 	const retrieveData = async () => {
 		setLoading(true);
 		try {
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 			let response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: credentialsFilter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to fetch credentials"));
 			};
 			setData(response.data.data);
 			setCount(response.data.count);
+			setLoading(false);
 		} catch(e) {
 			console.error(e);
+			setLoading(false);
 			// error message for unauthorized access
 			if (e.response.status === 401) {
 				props.app.addAlert("warning", t("BulkAssignmentContainer|Can't fetch credentials, you don't have rights to display it"), 30);
 				return;
 			};
 			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to fetch credentials")}. ${e?.response?.data?.message}`, 30);
-			setLoading(false);
 		};
 	};
 
@@ -214,10 +208,8 @@ const BulkAssignmentContainer = (props) => {
 	const retrieveTenants = async () => {
 		setLoadingTenants(true);
 		try {
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 			let response = await SeaCatAuthAPI.get("/tenants", {params: {p: tenantsPage, i: tenantsLimit, f: tenantsFilter}});
-			if (response.data.result !== "OK") {
-				throw new Error(t("BulkAssignmentContainer|Failed to fetch tenants"));
-			};
 			setTenants(response.data.data);
 			setTenantsCount(response.data.count);
 		} catch(e) {
@@ -250,6 +242,7 @@ const BulkAssignmentContainer = (props) => {
 			tenantObj[obj._id === 'Global roles' ? '*' : obj._id] = roles;
 		})
 		try {
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 			let response = await SeaCatAuthAPI.put(actionType, {"credential_ids": credential_ids, "tenants": tenantObj });
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to perform bulk operation"));
@@ -287,7 +280,7 @@ const BulkAssignmentContainer = (props) => {
 	const saveToSelectedTenants = (tenantObj) => {
 		let arr = [...selectedTenants];
 		arr.push(tenantObj);
-		setSelectedTenants([...arr])
+		setSelectedTenants([...arr]);
 	};
 
 	// remove item from selectedTenants state
@@ -299,7 +292,7 @@ const BulkAssignmentContainer = (props) => {
 
 	// removes selected Role
 	const unselectRole = (tenantIndex, roleIndex) => {
-		let tenantData = selectedTenants;
+		let tenantData = [...selectedTenants];
 		tenantData[tenantIndex].selectedRole.splice(roleIndex, 1);
 		setSelectedTenants([...tenantData]);
 	};
@@ -431,7 +424,7 @@ const BulkAssignmentContainer = (props) => {
 							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || ((selectedTenants.length === 1) && (selectedTenants[0].selectedRole.length === 0))) ? 'Select credentials and tenants' : 'Assign in bulk'}`)}
 							color="primary"
 							onClick={() => bulkAction('/tenant_assign_many')}
-							resource={addResource}
+							resource={resource}
 							resources={resources}
 							disabled={(selectedCredentials.length === 0) || ((selectedTenants.length === 1) && (selectedTenants[0].selectedRole.length === 0))}
 						>
@@ -444,7 +437,7 @@ const BulkAssignmentContainer = (props) => {
 							color="primary"
 							outline
 							onClick={() => bulkAction('/tenant_unassign_many')}
-							resource={addResource}
+							resource={resource}
 							resources={resources}
 							disabled={(selectedCredentials.length === 0) || ((selectedTenants.length === 1) && (selectedTenants[0].selectedRole.length === 0))}
 						>
