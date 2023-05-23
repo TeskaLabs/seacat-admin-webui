@@ -12,12 +12,11 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	const [count, setCount] = useState(0);
 	const [filter, setFilter] = useState("");
 	const [limit, setLimit] = useState(5);
-	const [items, setItems] = useState(0);
 
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
 	useEffect(() => {
-		retrieveRoleList(tenantObj);
+		retrieveRoleList(tenantObj._id);
 	}, [limit]);
 
 	// this useEffect should match selected roles with the ones we want to display and re-add the ones which were removed from selected roles in BulkAssignmentContainer
@@ -26,7 +25,6 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 			let display = {...displayTenantRoles};
 			// newDisplayData will hold roles coming from the service minus the ones we've already assigned
 			let newDisplayData = [];
-			// selectedTenants[idx]?.roles?.data.map((tenantRole) => {
 			tenantObj?.roles?.data.map((tenantRole) => {
 				// we are comparing already selected roles with all roles and keeping only the elements, which are not included in selectedRole(s)
 				let found = tenantObj?.selectedRole.find(el => el === tenantRole._id);
@@ -36,11 +34,11 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 			});
 			display['data'] = newDisplayData;
 			setDisplayTenantRoles(display);
-		}
-		if (tenantObj.selectedRole && tenantObj?.selectedRole?.length === 0) {
+		} else {
 			setDisplayTenantRoles(tenantObj.roles);
 		}
-	}, [selectedTenants, items]);
+		setCount(tenantObj?.roles?.count);
+	}, [selectedTenants]);
 
 // TODO: uncomment, when search functionality in roles is enabled on the backend
 	// // sets 0.5s delay before triggering the search call when filtering through tennants
@@ -50,7 +48,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	// 	}
 	// 	timeoutRef.current = setTimeout(() => {
 	// 		timeoutRef.current = null;
-	// 		retrieveRoleList(tenantObj);
+	// 		retrieveRoleList(tenantID);
 	// 	}, 500);
 	// }, [filter]);
 
@@ -60,22 +58,22 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	// }
 
 	// fetch roles for Tenant dropdowns
-	const retrieveRoleList = async (tenantObj) => {
+	const retrieveRoleList = async (tenantId) => {
 		let response;
-		let id = tenantObj._id;
+		let objCopy = selectedTenants.find(obj => obj._id === tenantId);
+		let id = tenantId;
 		let parameters = {f: filter, i: limit, exclude_global: true};
-		if (tenantObj._id === "Global roles") {
+		if (tenantId === "Global roles") {
 			id = '*';
 			parameters['exclude_global'] = false;
 		}
 		try {
 			response = await SeaCatAuthAPI.get(`/role/${id}`, {params: parameters});
-			tenantObj['roles'] = response.data;
+			let selectedTenantsCopy = [...selectedTenants];
+			let ten = {...objCopy, roles: response.data};
+			selectedTenantsCopy[idx] = ten;
+			setSelectedTenants(selectedTenantsCopy);
 			setCount(response.data.count);
-			/* this Items state was created just as a helper to cause triggering of useEffect
-			on line 23 when new roles were triggered after pressing the more button in role dropdown.
-			This is not the most elegant solution, I'm open for updgrade */
-			setItems(response?.data?.data.length);
 			setDisplayTenantRoles(response.data);
 		} catch (e) {
 			console.error(e);
