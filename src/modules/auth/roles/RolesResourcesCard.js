@@ -30,7 +30,7 @@ const RolesResourcesCard = (props) => {
 	const timeoutRef = useRef(null);
 
 	useEffect(() => fetchAssignedResources(), []);
-	useEffect(() => fetchUnassignedResources(), [assignedResources, limit]);
+	useEffect(() => fetchUnassignedResources(), [limit]);
 
 	//sets 0.5s delay before triggering the search call when filtering through tennants
 	useEffect(() => {
@@ -93,6 +93,11 @@ const RolesResourcesCard = (props) => {
 		}
 	}
 
+	const onCancel = () => {
+		fetchAssignedResources();
+		fetchUnassignedResources();
+	}
+
 	return (
 		<Card>
 			<CardHeader className="border-bottom">
@@ -140,7 +145,7 @@ const RolesResourcesCard = (props) => {
 							<Button
 								color="outline-primary"
 								type="button"
-								onClick={fetchAssignedResources}
+								onClick={onCancel}
 							>
 								{t("RolesResourcesCard|Cancel")}
 							</Button>
@@ -159,7 +164,6 @@ const RolesResourcesCard = (props) => {
 										value={filter}
 									/>
 								</DropdownItem>
-								{/* <DropdownItem header>{t("RolesResourcesCard|Select resource")}</DropdownItem> */}
 								{unassignedResources.map((resource, idx) => (
 									<DropdownItem key={idx} onClick={() => assignResource(resource)}>
 										{resource}
