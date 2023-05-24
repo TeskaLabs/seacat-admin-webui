@@ -18,7 +18,7 @@ const ResourcesDeletedListContainer = (props) => {
 	const ref = useRef(null);
 	const { t } = useTranslation();
 
-	const retrieveResource = "seacat:resource:edit";
+	const retrieveResource = "authz:superuser";
 
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
