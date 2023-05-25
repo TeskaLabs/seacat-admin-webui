@@ -182,8 +182,7 @@ const RolesResourcesCard = (props) => {
 									</DropdownItem>
 								</>
 								:
-								null
-							}
+								null}
 							</DropdownMenu>
 						</Dropdown>
 					</>
