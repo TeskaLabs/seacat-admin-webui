@@ -36,6 +36,8 @@ const RolesDetailContainer = (props) =>  {
 	const [loading, setLoading] = useState(true);
 	const [show, setShow] = useState(false);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [dropdownCount, setDropdownCount] = useState(0);
+	const [dropdownLimit, setDropdownLimit] = useState(10);
 
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 	const limit = 10;
@@ -118,6 +120,10 @@ const RolesDetailContainer = (props) =>  {
 		getRoleDetail();
 	}, []);
 
+	useEffect(() => {
+		retrieveCredentialsForDropdown();
+	}, [dropdownLimit]);
+
 
 	const getRoleDetail = async () => {
 		try {
@@ -170,11 +176,12 @@ const RolesDetailContainer = (props) =>  {
 	const retrieveCredentialsForDropdown = async () => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: filter}});
+			response = await SeaCatAuthAPI.get("/credentials", {params: {i: dropdownLimit, f: filter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("RolesDetailContainer|Something went wrong, failed to fetch data"));
 			}
 			setAssignedCredentialsDropdown(response.data.data);
+			setDropdownCount(response.data.count);
 			setLoading(false);
 		} catch(e) {
 			console.error(e);
@@ -230,7 +237,7 @@ const RolesDetailContainer = (props) =>  {
 	}
 
 	const assignNewCredentials = (
-		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
+		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
 			<DropdownToggle
 				title={(resources.indexOf(resourceAssign) == -1 && resources.indexOf("authz:superuser") == -1) && t("You do not have access rights to perform this action")}
 				disabled={(resources.indexOf(resourceAssign) == -1 && resources.indexOf("authz:superuser") == -1)}
@@ -272,6 +279,21 @@ const RolesDetailContainer = (props) =>  {
 							)
 						} else { return null }
 					}))
+				}
+				{dropdownCount > dropdownLimit ?
+					<>
+						<DropdownItem divider />
+						<DropdownItem
+							onClick={() => {
+								setDropdownLimit(dropdownLimit + 5);
+								toggleDropdown();
+							}}
+						>
+							{t("RolesDetailContainer|More")}
+						</DropdownItem>
+					</>
+					:
+					null
 				}
 				{assignedCredentialsDropdown.length === 0 && <DropdownItem><span>{t("RolesDetailContainer|No match")}</span></DropdownItem>}
 			</DropdownMenu>

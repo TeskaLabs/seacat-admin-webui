@@ -256,7 +256,7 @@ function TenantDetailContainer(props) {
 	}
 
 	const assignNewCredentials = (
-		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
+		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
 			<DropdownToggle
 				title={(resources.indexOf(resourceUnassign) == -1 && resources.indexOf("authz:superuser") == -1) && t("You do not have access rights to perform this action")}
 				disabled={(resources.indexOf(resourceUnassign) == -1 && resources.indexOf("authz:superuser") == -1)}
@@ -307,11 +307,12 @@ function TenantDetailContainer(props) {
 									toggleDropdown();
 								}}
 							>
-								{t("RolesResourcesCard|More")}
+								{t("TenantDetailContainer|More")}
 							</DropdownItem>
 						</>
 						:
-						null}
+						null
+					}
 				{assignedCredentialsDropdown.length === 0 && <DropdownItem><span>{t("TenantDetailContainer|No match")}</span></DropdownItem>}
 			</DropdownMenu>
 		</Dropdown>
