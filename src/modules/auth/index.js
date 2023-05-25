@@ -61,7 +61,7 @@ export default class SeaCatAuthModule extends Module {
 			exact: true,
 			name: 'Deleted resources',
 			component: ResourcesDeletedListContainer,
-			resource: 'seacat:resource:access'
+			resource: 'authz:superuser'
 		});
 		app.Router.addRoute({
 			path: '/auth/resources-deleted/:resource_id',
@@ -75,7 +75,7 @@ export default class SeaCatAuthModule extends Module {
 			exact: true,
 			name: 'Resource detail',
 			component: ResourcesDetailContainer,
-			resource: "authz:superuser"
+			resource: "seacat:resource:access"
 		});
 
 		// Roles
