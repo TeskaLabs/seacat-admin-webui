@@ -323,7 +323,8 @@
 		"Credentials suspended": "Uživatel suspendován",
 		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se získat přiřazené uživatelské údaje",
 		"Assign credentials": "Přiřadit uživatelské údaje",
-		"Assigned credentials": "Přiřazené uživatelské údaje"
+		"Assigned credentials": "Přiřazené uživatelské údaje",
+		"More": "Více ..."
 	},
 	"RolesCreateContainer": {
 		"Global role": "Globální role",
@@ -465,7 +466,8 @@
 		"Failed to remove the tenant": "Nepodařilo se odstranit tenanta",
 		"Tenant removed successfully, you will be logged out in a while": "Tenant úspěšně odstraněn, za moment budete odhlášeni",
 		"Tenant removed successfully": "Tenant úspěšně odstraněn",
-		"Tenant data updated successfully": "Tenant úspěšně aktualizován"
+		"Tenant data updated successfully": "Tenant úspěšně aktualizován",
+		"More": "Více..."
 	},
 	"TenantCreateContainer": {
 		"Tenant has been created": "Tenant byl vytvořen",

@@ -323,7 +323,8 @@
 		"Credentials suspended": "Credentials suspended",
 		"Something went wrong, failed to fetch assigned credentials": "Something went wrong, failed to fetch assigned credentials",
 		"Assign credentials": "Assign credentials",
-		"Assigned credentials": "Assigned credentials"
+		"Assigned credentials": "Assigned credentials",
+		"More": "More..."
 	},
 	"RolesCreateContainer": {
 		"Global role": "Global role",
@@ -465,7 +466,8 @@
 		"Failed to remove the tenant": "Failed to remove the tenant",
 		"Tenant removed successfully, you will be logged out in a while": "Tenant removed successfully, you will be logged out in a while",
 		"Tenant removed successfully": "Tenant removed successfully",
-		"Tenant data updated successfully": "Tenant data updated successfully"
+		"Tenant data updated successfully": "Tenant data updated successfully",
+		"More": "More..."
 	},
 	"TenantCreateContainer": {
 		"Tenant has been created": "Tenant has been created",
