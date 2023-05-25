@@ -115,7 +115,6 @@ const RolesDetailContainer = (props) =>  {
 		}
 	}, [role, page]);
 
-
 	useEffect(() => {
 		getRoleDetail();
 	}, []);
@@ -123,7 +122,6 @@ const RolesDetailContainer = (props) =>  {
 	useEffect(() => {
 		retrieveCredentialsForDropdown();
 	}, [dropdownLimit]);
-
 
 	const getRoleDetail = async () => {
 		try {
