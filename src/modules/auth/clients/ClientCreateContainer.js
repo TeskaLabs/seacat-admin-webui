@@ -255,14 +255,14 @@ const ClientCreateContainer = (props) => {
 						{((client != undefined) && (editClient == true)) ?
 							<>
 								<ButtonWithAuthz
-									title={t("ClientListContainer|Save")}
+									title={t("Save")}
 									color="primary"
 									type="submit"
 									disabled={isSubmitting}
 									resource={resource}
 									resources={resources}
 								>
-									{t("ClientListContainer|Save")}
+									{t("Save")}
 								</ButtonWithAuthz>
 								<ButtonWithAuthz
 									outline
