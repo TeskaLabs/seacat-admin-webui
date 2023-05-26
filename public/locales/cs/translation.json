@@ -66,10 +66,12 @@
 		"Resources": "Zdroje",
 		"New resource": "Nový zdroj",
 		"Resource detail": "Detail zdroje",
+		"Deleted resources": "Odstraněné zdroje",
+		"Deleted resource detail": "Detail odstraněného zdroje",
 		"Roles": "Role",
 		"New roles": "Nové role",
 		"Role detail": "Detail role",
-		"Credentials": "Uživ. Identifikace",
+		"Credentials": "Uživatelské údaje",
 		"New credentials": "Nové uživ. údaje",
 		"Credentials detail": "Detail uživ. údajů",
 		"Reset password": "Obnovení hesla",
@@ -365,18 +367,48 @@
 		"Invalid format, resource cannot start with a underscore": "Nesprávný formát, zdroj nemůže začínat podtržítkem",
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Nesprávný formát, pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
-		"Something went wrong, failed to create resource": "Něco je špatně, nepodařilo se vytvořit zdroj"
+		"Failed to create resource": "Nepodařilo se vytvořit zdroj"
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Zdroj",
+		"Delete resource": "Odstranit zdroj",
 		"Resource updated successfully": "Zdroj byl úspěšně aktualizován",
-		"Something went wrong, can't fetch resource details": "Něco je špatně, nepodařilo se načíst zdroj",
-		"Something went wrong, failed to update resource": "Něco je špatně, aktualizace zdroje se nezdařila"
+		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
+		"Failed to update resource": "Aktualizace zdroje se nezdařila",
+		"Failed to delete resource": "Odstranění zdroje se nezdařilo",
+		"Resource successfully deleted": "Zdroj byl úspěšně odstraněn",
+		"Do you really want to delete this resource": "Opravdu si přejete odstranit tento zdroj?"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Seznam zdrojů",
 		"Create resource": "Vytvořit zdroj",
-		"Something went wrong, failed to load resources": "Něco je špatně, nepodařilo se načíst zdroje"
+		"Delete resource": "Odstranit zdroj",
+		"Deleted resources": "Odstraněné zdroje",
+		"Failed to load resources": "Nepodařilo se načíst zdroje",
+		"Failed to delete the resource": "Nepodařilo se odstranit zdroj",
+		"Do you want to delete this resource": "Přejete si tento zdroj odstranit?",
+		"Resource successfully deleted": "Zdroj byl úspěšně odstraněn"
+	},
+	"ResourcesDeletedDetailContainer": {
+		"Resource": "Zdroj",
+		"Hard-delete": "Trvale odstranit",
+		"Retrieve": "Obnovit zdroj",
+		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
+		"Failed to hard-delete this resource": "Nepodařilo se trvale odstranit tento zdroj",
+		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
+		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
+		"Resource was successfully hard-deleted": "Zdroj byl úspěšně trvale odstranit",
+		"Do you really want to hard-delete this resource": "Opravdu si přejete trvale odstranit zdroj?",
+		"Do you really want to retrieve this resource": "Opravdu si přejete obnovit zdroj?"
+	},
+	"ResourcesDeletedListContainer": {
+		"Back": "Zpět",
+		"Retrieve resource": "Obnovit zdroj",
+		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
+		"Failed to load resources": "Nepodařilo se načíst zdroje",
+		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
+		"Deleted resources": "Seznam odstraněných zdrojů",
+		"Do you really want to retrieve this resource": "Opravdu si přejete obnovit zdroj?"
 	},
 	"SessionListContainer": {
 		"Credentials": "Uživ. Identifikace",
@@ -508,7 +540,7 @@
 	"Sidebar": {
 		"About": "O Aplikaci",
 		"Auth": "Autorizace",
-		"Credentials": "Uživ. Identifikace",
+		"Credentials": "Uživatelé",
 		"Tenants": "Tenanti",
 		"Sessions": "Relace",
 		"Roles": "Role",
