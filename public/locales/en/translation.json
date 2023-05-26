@@ -66,6 +66,8 @@
 		"Resources": "Resources",
 		"New resource": "New resource",
 		"Resource detail": "Resource detail",
+		"Deleted resources": "Deleted resources",
+		"Deleted resource detail": "Deleted resource detail",
 		"Roles": "Roles",
 		"New roles": "New roles",
 		"Role detail": "Role detail",
@@ -368,18 +370,47 @@
 		"Invalid format, resource cannot start with a underscore": "Invalid format, resource cannot start with a underscore",
 		"Invalid format, only letters, numbers, dash and underscore are allowed": "Invalid format, only letters, numbers, dash and underscore are allowed",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
-		"Something went wrong, failed to create resource": "Something went wrong, failed to create resource"
+		"Failed to create resource": "Failed to create resource"
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Resource",
+		"Delete resource": "Delete resource",
 		"Resource updated successfully": "Resource updated successfully",
-		"Something went wrong, can't fetch resource details": "Something went wrong, can't fetch resource details",
-		"Something went wrong, failed to update resource": "Something went wrong, failed to update resource"
+		"Can't fetch resource details": "Can't fetch resource details",
+		"Failed to update resource": "Failed to update resource",
+		"Failed to delete resource": "Failed to delete resource",
+		"Resource successfully deleted": "Resource successfully deleted",
+		"Do you really want to delete this resource": "Do you really want to delete this resource"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Resources list",
 		"Create resource": "Create resource",
-		"Something went wrong, failed to load resources": "Something went wrong, failed to load resources"
+		"Delete resource": "Delete resource",
+		"Deleted resources": "Deleted resources",
+		"Failed to load resources": "Failed to load resources",
+		"Failed to delete the resource": "Failed to delete the resource",
+		"Do you want to delete this resource": "Do you want to delete this resource?",
+		"Resource successfully deleted": "Resource successfully deleted"
+	},
+	"ResourcesDeletedDetailContainer": {
+		"Hard-delete": "Hard-delete",
+		"Retrieve": "Retrieve",
+		"Can't fetch resource details": "Can't fetch resource details",
+		"Failed to hard-delete this resource": "Failed to hard-delete this resource",
+		"Failed to retrieve resource": "Failed to retrieve resource",
+		"Resource retrieved successfuly": "Resource retrieved successfuly",
+		"Resource was successfully hard-deleted": "Resource was successfully hard-deleted",
+		"Do you really want to hard-delete this resource": "Do you really want to hard-delete this resource?",
+		"Do you really want to retrieve this resource": "Do you really want to retrieve this resource?"
+	},
+	"ResourcesDeletedListContainer": {
+		"Back": "Back",
+		"Retrieve resource": "Retrieve resource",
+		"Resource retrieved successfuly": "Resource retrieved successfuly",
+		"Failed to load resources": "Failed to load resources",
+		"Failed to retrieve resource": "Failed to retrieve resource",
+		"Deleted resources": "Deleted resources",
+		"Do you really want to retrieve this resource": "Do you really want to retrieve this resource?"
 	},
 	"SessionListContainer": {
 		"Credentials": "Credentials",

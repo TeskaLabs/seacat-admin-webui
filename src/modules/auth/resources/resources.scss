@@ -8,6 +8,21 @@
 	}
 }
 
+.resource-detail-description {
+	min-height: 90px;
+	grid-area: a;
+	width: 50vw;
+}
+
+.resource-container {
+	display: grid;
+	grid-template-areas:
+		"a"
+		"b";
+	gap: 0.25rem;
+	justify-content: center;
+}
+
 @media screen and (max-width: 1097px) {
 	.description-row {
 		.data-table-td:last-child {
@@ -25,5 +40,13 @@
 				width: 240px;
 			}
 		}
+	}
+
+	.resource-container {
+		width: 100%;
+		justify-content: unset;
+	}
+	.resource-detail-description {
+		width: 100%;
 	}
 }

@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 
 import {
-	Row, Col,
-	Card, CardHeader, CardFooter, CardBody
+	Row, Col, CardHeader,
+	Card, CardFooter, CardBody
 } from 'reactstrap';
 
 import { ButtonWithAuthz } from 'asab-webui';
@@ -61,7 +61,7 @@ function CredentialsSessionCard(props) {
 			</CardBody>
 			<CardFooter>
 				<ButtonWithAuthz
-					title={t("CredentialsSessionCard|Terminate user sessions")}
+					title={t("CredentialsSessionCard|Log out")}
 					id={props.credentials_id}
 					color="danger"
 					outline

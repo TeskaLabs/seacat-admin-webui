@@ -46,6 +46,8 @@ Tested with Seacat Auth service [v23.13-beta](https://github.com/TeskaLabs/seaca
 
 - ASAB WebUI submodule version bump [[1960466](https://github.com/TeskaLabs/asab-webui/commit/1960466a45d0c48ec279e703317ebf0a59fdcbda)] commit (INDIGO Sprint 230317, [!22](https://github.com/TeskaLabs/seacat-admin-webui/pull/22))
 
+- Resources actions extended. Added posibility to rename, delete, hard-delete and retrieve resources (INDIGO Sprint 230217, [!19](https://github.com/TeskaLabs/seacat-admin-webui/pull/19))
+
 ### Refactoring
 
 - Dropdown menu used to assign `tenants` nad `roles` to specific `Credentials` has been refactored to offer more data than the initial limit, upon clicking the 'More ...' button. (INDIGO Sprint 230203, [!14](https://github.com/TeskaLabs/seacat-admin-webui/pull/14))

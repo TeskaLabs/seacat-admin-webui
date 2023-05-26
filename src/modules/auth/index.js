@@ -18,9 +18,11 @@ const RolesCreateContainer = lazy(() => componentLoader(() => import('./roles/Ro
 const RolesListContainer = lazy(() => componentLoader(() => import('./roles/RolesListContainer')));
 const RolesDetailContainer = lazy(() => componentLoader(() => import('./roles/RolesDetailContainer')));
 
-const ResourcesListContainer =lazy(() => componentLoader(() => import('./resources/ResourcesListContainer')));
-const ResourcesDetailContainer =lazy(() => componentLoader(() => import('./resources/ResourcesDetailContainer')));
-const ResourcesCreateContainer =lazy(() => componentLoader(() => import('./resources/ResourcesCreateContainer')));
+const ResourcesListContainer = lazy(() => componentLoader(() => import('./resources/ResourcesListContainer')));
+const ResourcesDetailContainer = lazy(() => componentLoader(() => import('./resources/ResourcesDetailContainer')));
+const ResourcesCreateContainer = lazy(() => componentLoader(() => import('./resources/ResourcesCreateContainer')));
+const ResourcesDeletedListContainer = lazy(() => componentLoader(() => import('./resources/ResourcesDeletedListContainer')));;
+const DeletedResourceDetailContainer = lazy(() => componentLoader(() => import('./resources/DeletedResourceDetailContainer')));;
 
 const ClientListContainer = lazy(() => componentLoader(() => import('./clients/ClientListContainer')));
 const ClientCreateContainer = lazy(() => componentLoader(() => import('./clients/ClientCreateContainer')));
@@ -53,6 +55,20 @@ export default class SeaCatAuthModule extends Module {
 			name: 'New resource',
 			component: ResourcesCreateContainer,
 			resource: "seacat:resource:access"
+		});
+		app.Router.addRoute({
+			path: '/auth/resources-deleted',
+			exact: true,
+			name: 'Deleted resources',
+			component: ResourcesDeletedListContainer,
+			resource: 'authz:superuser'
+		});
+		app.Router.addRoute({
+			path: '/auth/resources-deleted/:resource_id',
+			exact: true,
+			name: 'Deleted resource detail',
+			component: DeletedResourceDetailContainer,
+			resource: 'authz:superuser'
 		});
 		app.Router.addRoute({
 			path: '/auth/resources/:resource_id',
