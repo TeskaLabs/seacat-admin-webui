@@ -73,6 +73,7 @@ const RolesResourcesCard = (props) => {
 			setAssignedResources([...assignedResources, resource]);
 		} else {
 			setDropdown(prev => !prev);
+			props.app.addAlert("warning", `${t("RolesResourcesCard|Resource")} ${resource} ${t("RolesResourcesCard|already selected")}`, 5);
 		}
 	}
 
@@ -93,7 +94,6 @@ const RolesResourcesCard = (props) => {
 
 	const onCancel = () => {
 		fetchAssignedResources();
-		// fetchUnassignedResources();
 	}
 
 	return (
