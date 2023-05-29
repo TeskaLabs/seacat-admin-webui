@@ -59,12 +59,7 @@ const RolesResourcesCard = (props) => {
 		try {
 			let response = await SeaCatAuthAPI.get(`/resource`, {params: { f: filter, i: limit }});
 			const allResources = response.data.data.map(resource => resource._id);
-			const unassignedResources = allResources.filter(resource => assignedResources.indexOf(resource) < 0);
-			// Remove authz:superuser from unassigned resources on every role, which is not global
-			if (roleId.indexOf('*/') == -1){
-				unassignedResources.splice(unassignedResources.indexOf('authz:superuser'), 1);
-			}
-			setUnassignedResources(unassignedResources);
+			setUnassignedResources(allResources);
 			setCount(response.data.count);
 		} catch(e) {
 			console.error(e);
@@ -73,13 +68,16 @@ const RolesResourcesCard = (props) => {
 	}
 
 	const assignResource = (resource) => {
-		setAssignedResources([...assignedResources, resource]);
-		setUnassignedResources(unassignedResources.filter(currentResource => currentResource !== resource));
+		// checks if the resource is already assigned to prevent selecting the same resource twice
+		if (assignedResources.indexOf(resource) === -1 ) {
+			setAssignedResources([...assignedResources, resource]);
+		} else {
+			setDropdown(prev => !prev);
+		}
 	}
 
 	const unassignResource = (resource) => {
 		setAssignedResources(assignedResources.filter(currentResource => currentResource !== resource));
-		setUnassignedResources([...unassignedResources, resource]);
 	}
 
 	const onSave = async () => {
@@ -95,7 +93,7 @@ const RolesResourcesCard = (props) => {
 
 	const onCancel = () => {
 		fetchAssignedResources();
-		fetchUnassignedResources();
+		// fetchUnassignedResources();
 	}
 
 	return (
