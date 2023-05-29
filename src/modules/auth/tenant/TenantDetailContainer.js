@@ -280,23 +280,19 @@ function TenantDetailContainer(props) {
 					<DropdownItem><span>{t("TenantDetailContainer|Loading...")}</span></DropdownItem>
 					:
 					(assignedCredentialsDropdown && Object.keys(assignedCredentialsDropdown).map((item, i) => {
-						let checkCredentialsAvailability = credentialsList.findIndex(elem => elem._id === assignedCredentialsDropdown[item]._id);
-						if (checkCredentialsAvailability === -1) {
-							// Display only if the credentials is not already assigned
-							return (
-								<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => assignCredentials(assignedCredentialsDropdown[item]._id)}>
-									{assignedCredentialsDropdown[item].username ?
-										<span>{assignedCredentialsDropdown[item].username}</span>
-										:
-										<Credentials
-											className="disabled-link"
-											app={props.app}
-											credentials_ids={assignedCredentialsDropdown[item]._id}
-										/>
-									}
-								</DropdownItem>
-							)
-						} else { return null }
+						return (
+							<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => assignCredentials(assignedCredentialsDropdown[item]._id)}>
+								{assignedCredentialsDropdown[item].username ?
+									<span>{assignedCredentialsDropdown[item].username}</span>
+									:
+									<Credentials
+										className="disabled-link"
+										app={props.app}
+										credentials_ids={assignedCredentialsDropdown[item]._id}
+									/>
+								}
+							</DropdownItem>
+						)
 					}))}
 					{dropdownCount > dropdownLimit ?
 						<>
