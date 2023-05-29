@@ -355,7 +355,9 @@
 		"Edit": "Edit",
 		"No data": "No data",
 		"More": "More...",
-		"Search": "Search"
+		"Search": "Search",
+		"Resource": "Resource",
+		"already selected": "already selected"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Resource has been created",

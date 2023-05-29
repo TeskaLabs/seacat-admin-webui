@@ -355,7 +355,9 @@
 		"Edit": "Upravit",
 		"No data": "Žádná data",
 		"More": "Více...",
-		"Search": "Hledat"
+		"Search": "Hledat",
+		"Resource": "Zdroj",
+		"already selected": "byl již zvolen"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Zdroj byl úspěšně vytvořen",
