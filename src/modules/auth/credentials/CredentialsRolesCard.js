@@ -69,6 +69,8 @@ function CredentialsRolesCard(props) {
 		let x = assignedRoles.find((existing) => { return existing == role });
 		if (x == null) {
 			setAssignedRoles(assignedRoles.concat(role))
+		} else {
+			props.app.addAlert("warning", `${t("CredentialsRolesCard|Role")} ${role} ${t("CredentialsRolesCard|already selected")}`, 5);
 		}
 	}
 
@@ -142,15 +144,11 @@ function CredentialsRolesCard(props) {
 						<DropdownMenu style={{maxHeight: "20em", overflowY: "auto"}} >
 							<DropdownItem header>{t("CredentialsRolesCard|Select role to assign ...")}</DropdownItem>
 							{Object.values(rolesLookup).map((role_id, i) => {
-								let x = assignedRoles.find((existing) => { return existing == role_id._id });
-								if (x == null) {
-									// Add only if the role is not already assigned
 									return (
 										<DropdownItem key={i} onClick={() => assignRole(role_id._id)}>
 											<Role role={role_id._id} lookup={rolesLookup} />
 										</DropdownItem>
 									)
-								} else { return null }
 							})}
 							{count > limit ?
 								<>

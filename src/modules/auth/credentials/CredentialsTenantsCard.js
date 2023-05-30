@@ -68,6 +68,8 @@ function CredentialsTenantsCard(props) {
 		let x = assignedTenants.find((existing) => { return existing == tenant_id });
 		if (x == null) {
 			setAssignedTenants(assignedTenants.concat(tenant_id))
+		} else {
+			props.app.addAlert("warning", `${t("CredentialsTenantsCard|Tenant")} ${tenant_id} ${t("CredentialsTenantsCard|already selected")}`, 5);
 		}
 	}
 
@@ -185,9 +187,6 @@ function CredentialsTenantsCard(props) {
 									/>
 								</DropdownItem>
 								{(allTenants.length > 0) && allTenants.map((tenant, i) => {
-									let aleadyAssignedTenant = assignedTenants.find((existing) => { return existing == tenant._id });
-									if (aleadyAssignedTenant == null) {
-										// Display only if the tenant is not already assigned
 										return (
 											<DropdownItem
 												key={tenant._id}
@@ -199,7 +198,6 @@ function CredentialsTenantsCard(props) {
 												/>
 											</DropdownItem>
 										)
-									} else { return null }
 								})}
 								{(count > limit) ?
 									<>
