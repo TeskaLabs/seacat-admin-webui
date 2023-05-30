@@ -221,16 +221,19 @@
 	},
 	"CredentialsRolesCard": {
 		"More": "More...",
+		"Role": "Role",
 		"Roles": "Roles",
 		"Assign a new role": "Assign a new role",
 		"Select role to assign ...": "Select role to assign ...",
 		"Roles updated successfully": "Roles updated successfully",
 		"Failed to update roles": "Failed to update roles",
 		"Something went wrong, failed to fetch roles": "Something went wrong, failed to fetch roles",
-		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles"
+		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles",
+		"already selected": "already selected"
 	},
 	"CredentialsTenantsCard": {
 		"More": "More...",
+		"Tenant": "Tenant",
 		"Tenants": "Tenants",
 		"Assign a tenant": "Assign a tenant",
 		"Search": "Search",
@@ -238,7 +241,8 @@
 		"Failed to update tenants": "Failed to update tenants",
 		"Something went wrong, failed to fetch tenants": "Something went wrong, failed to fetch tenants",
 		"Something went wrong, failed to fetch assigned tenants": "Something went wrong, failed to fetch assigned tenants",
-		"No match": "No match"
+		"No match": "No match",
+		"already selected": "already selected"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Sessions",
