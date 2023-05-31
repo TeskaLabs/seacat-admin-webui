@@ -195,177 +195,173 @@ const ClientCreateContainer = (props) => {
 	}
 
 	return (
-		<Container className="client-wrapper">
-			<Form className="client-cards-wrapper" onSubmit={(client == undefined) ? handleSubmit(onSubmitNewClient) : handleSubmit(onSubmitEditClient)}>
-				<div className="client-main-info">
-					<Card>
-						<CardHeader className="border-bottom">
-							<div className="card-header-title">
-								<i className="cil-layers pr-2"></i>
-								{((client != undefined) && (editClient == true)) ?
-									t("ClientCreateContainer|Edit client")
-								:
-									t("ClientCreateContainer|Create new client")
-								}
-							</div>
-						</CardHeader>
-
-						<CardBody>
-							<TextInput
-								name="client_name"
-								register={register}
-								required={true}
-								disabled={disabled}
-								labelName={`${t("ClientCreateContainer|Client name")}*`}
-							/>
-							<URiInput
-								name="redirect_uris_main"
-								templateName="redirect_uris"
-								invalid={errors?.redirect_uris_main && true}
-								disabled={disabled}
-								errors={errors}
-								append={append}
-								remove={remove}
-								fields={fields}
-								register={register}
-								reg={regRedirectUrisMain}
-								labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
-							/>
-							{(metaData != undefined) && metaData["properties"] && metaData["properties"]["redirect_uri_validation_method"] &&
-								<RadioInput
-									key="redirect_uri_validation_method"
-									name="redirect_uri_validation_method"
-									register={register}
-									valueList={metaData["properties"]["redirect_uri_validation_method"]["enum"]}
-									disabled={disabled}
-									labelName={t('ClientCreateContainer|Redirect URI validation method')}
-									editing={(client != undefined)}
-								/>}
-							{(client == undefined) &&
-								<TextInput
-									name="preferred_client_id"
-									register={register}
-									errors={errors}
-									disabled={disabled}
-									labelName={t('ClientCreateContainer|Preferred client ID')}
-								/>
-							}
-							<TextInput name="client_uri" register={register} disabled={disabled} labelName={t('ClientCreateContainer|Client URI')}/>
-						</CardBody>
-						<CardFooter>
-							<ButtonGroup>
+		<Container className="">
+			<Form className="client-wrapper" onSubmit={(client == undefined) ? handleSubmit(onSubmitNewClient) : handleSubmit(onSubmitEditClient)}>
+				<Card className='client-main-info-card'>
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-layers pr-2"></i>
 							{((client != undefined) && (editClient == true)) ?
-								<>
-									<ButtonWithAuthz
-										title={t("ClientListContainer|Save")}
-										color="primary"
-										type="submit"
-										disabled={isSubmitting}
-										resource={resource}
-										resources={resources}
-									>
-										{t("ClientListContainer|Save")}
-									</ButtonWithAuthz>
-									<ButtonWithAuthz
-										outline
-										title={t("Cancel")}
-										color="primary"
-										type="submit"
-										disabled={isSubmitting}
-										resource={resource}
-										resources={resources}
-										onClick={() => props.history.push(`/auth/clients/${client_id}`)}
-									>
-										{t("Cancel")}
-									</ButtonWithAuthz>
-								</>
+								t("ClientCreateContainer|Edit client")
 							:
+								t("ClientCreateContainer|Create new client")
+							}
+						</div>
+					</CardHeader>
+					<CardBody>
+						<TextInput
+							name="client_name"
+							register={register}
+							required={true}
+							disabled={disabled}
+							labelName={`${t("ClientCreateContainer|Client name")}*`}
+						/>
+						<URiInput
+							name="redirect_uris_main"
+							templateName="redirect_uris"
+							invalid={errors?.redirect_uris_main && true}
+							disabled={disabled}
+							errors={errors}
+							append={append}
+							remove={remove}
+							fields={fields}
+							register={register}
+							reg={regRedirectUrisMain}
+							labelName={`${t("ClientCreateContainer|Redirect URIs")}*`}
+						/>
+						{(metaData != undefined) && metaData["properties"] && metaData["properties"]["redirect_uri_validation_method"] &&
+							<RadioInput
+								key="redirect_uri_validation_method"
+								name="redirect_uri_validation_method"
+								register={register}
+								valueList={metaData["properties"]["redirect_uri_validation_method"]["enum"]}
+								disabled={disabled}
+								labelName={t('ClientCreateContainer|Redirect URI validation method')}
+								editing={(client != undefined)}
+							/>}
+						{(client == undefined) &&
+							<TextInput
+								name="preferred_client_id"
+								register={register}
+								errors={errors}
+								disabled={disabled}
+								labelName={t('ClientCreateContainer|Preferred client ID')}
+							/>
+						}
+						<TextInput name="client_uri" register={register} disabled={disabled} labelName={t('ClientCreateContainer|Client URI')}/>
+					</CardBody>
+					<CardFooter>
+						<ButtonGroup>
+						{((client != undefined) && (editClient == true)) ?
+							<>
 								<ButtonWithAuthz
-									title={t("ClientCreateContainer|Create")}
+									title={t("Save")}
 									color="primary"
 									type="submit"
 									disabled={isSubmitting}
 									resource={resource}
 									resources={resources}
 								>
-									{t("ClientCreateContainer|Create")}
+									{t("Save")}
 								</ButtonWithAuthz>
-							}
-							</ButtonGroup>
-						</CardFooter>
-					</Card>
-				</div>
-				<div className="client-right-cards">
-					<Card>
-						<CardHeader className="border-bottom">
-							<div className="card-header-title">
-								<i className="cil-applications-settings pr-2"></i>
-								{t("ClientCreateContainer|Multidomain")}
-							</div>
-						</CardHeader>
-						<CardBody>
-							<TextInput
-								name="login_uri"
-								register={register}
-								errors={errors}
-								disabled={disabled}
-								labelName={t('ClientCreateContainer|Login URI')}
-							/>
-							<TextInput
-								name="cookie_domain"
-								register={register}
-								errors={errors}
-								disabled={disabled}
-								labelName={t('ClientCreateContainer|Cookie domain')}
-							/>
-							<TextInput
-								name="authorize_uri"
-								register={register}
-								errors={errors}
-								disabled={disabled}
-								labelName={t('ClientCreateContainer|Authorize URI')}
-							/>
-						</CardBody>
-					</Card>
+								<ButtonWithAuthz
+									outline
+									title={t("Cancel")}
+									color="primary"
+									type="submit"
+									disabled={isSubmitting}
+									resource={resource}
+									resources={resources}
+									onClick={() => props.history.push(`/auth/clients/${client_id}`)}
+								>
+									{t("Cancel")}
+								</ButtonWithAuthz>
+							</>
+						:
+							<ButtonWithAuthz
+								title={t("ClientCreateContainer|Create")}
+								color="primary"
+								type="submit"
+								disabled={isSubmitting}
+								resource={resource}
+								resources={resources}
+							>
+								{t("ClientCreateContainer|Create")}
+							</ButtonWithAuthz>
+						}
+						</ButtonGroup>
+					</CardFooter>
+				</Card>
 
-					<Card className="mt-3">
-						<CardHeader className="border-bottom">
-							<div className="card-header-title">
-								<i className="cil-swap-horizontal pr-2"></i>
-								{t("ClientCreateContainer|Authorization")}
-							</div>
-						</CardHeader>
-						<CardBody>
-							{(metaData != undefined) && metaData["properties"] && metaData["properties"]["code_challenge_method"] &&
-								<RadioInput
-									key="code_challenge_method"
-									name="code_challenge_method"
-									register={register}
-									valueList={metaData["properties"]["code_challenge_method"]["enum"]}
-									disabled={disabled}
-									labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}
-									editing={(client != undefined)}
-								/>}
-						</CardBody>
-					</Card>
+				<Card className='client-multidomain-card'>
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-applications-settings pr-2"></i>
+							{t("ClientCreateContainer|Multidomain")}
+						</div>
+					</CardHeader>
+					<CardBody>
+						<TextInput
+							name="login_uri"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Login URI')}
+						/>
+						<TextInput
+							name="cookie_domain"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Cookie domain')}
+						/>
+						<TextInput
+							name="authorize_uri"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Authorize URI')}
+						/>
+					</CardBody>
+				</Card>
 
-					<Card className="mt-3">
-						<CardHeader className="border-bottom">
-							<div className="card-header-title">
-								<i className="cil-exit-to-app pr-2"></i>
-								{t("ClientCreateContainer|Access control")}
-							</div>
-						</CardHeader>
-						<CardBody>
-							<SingleCheckboxInput
-								name="authorize_anonymous_users"
+				<Card className="client-authorization-card">
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-swap-horizontal pr-2"></i>
+							{t("ClientCreateContainer|Authorization")}
+						</div>
+					</CardHeader>
+					<CardBody>
+						{(metaData != undefined) && metaData["properties"] && metaData["properties"]["code_challenge_method"] &&
+							<RadioInput
+								key="code_challenge_method"
+								name="code_challenge_method"
 								register={register}
+								valueList={metaData["properties"]["code_challenge_method"]["enum"]}
 								disabled={disabled}
-								checkboxText={t('ClientCreateContainer|Authorize anonymous users')}
-							/>
-						</CardBody>
-					</Card>
-				</div>
+								labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}
+								editing={(client != undefined)}
+							/>}
+					</CardBody>
+				</Card>
+
+				<Card className="client-access-control-card">
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-exit-to-app pr-2"></i>
+							{t("ClientCreateContainer|Access control")}
+						</div>
+					</CardHeader>
+					<CardBody>
+						<SingleCheckboxInput
+							name="authorize_anonymous_users"
+							register={register}
+							disabled={disabled}
+							checkboxText={t('ClientCreateContainer|Authorize anonymous users')}
+						/>
+					</CardBody>
+				</Card>
 			</Form>
 
 			{/*Display the card when the client is being edited*/}

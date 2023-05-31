@@ -8,6 +8,8 @@
 
 - Changing logo based on app's theme (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
 
+- Pagination via `More..` button in dropdowns. Clients refactored to easily maintainable css grid. (INDIGO 230526, [!35](https://github.com/TeskaLabs/seacat-admin-webui/pull/35))
+
 ### Refactoring
 
 - Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
