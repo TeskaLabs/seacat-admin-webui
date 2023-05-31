@@ -16,8 +16,6 @@
 
 - Add locales for the ended session, version bump asab-webui (INDIGO Sprint 230512, [!34](https://github.com/TeskaLabs/seacat-admin-webui/pull/34))
 
-- Version bump asab-webui (INDIGO Sprint 230526, [!36](https://github.com/TeskaLabs/seacat-admin-webui/pull/36))
-
 ## v23.16-beta
 
 ### Compatibility
