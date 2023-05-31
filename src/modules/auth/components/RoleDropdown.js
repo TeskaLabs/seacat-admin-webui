@@ -16,7 +16,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 
 	useEffect(() => {
-		retrieveRoleList(tenantObj._id);
+		retrieveRoleList(tenantObj._id ?? undefined);
 	}, [limit]);
 
 	// this useEffect should match selected roles with the ones we want to display and re-add the ones which were removed from selected roles in BulkAssignmentContainer
@@ -40,7 +40,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 		setCount(tenantObj?.roles?.count);
 	}, [selectedTenants]);
 
-// TODO: uncomment, when search functionality in roles is enabled on the backend
+	// TODO: uncomment, when search functionality in roles is enabled on the backend
 	// // sets 0.5s delay before triggering the search call when filtering through tennants
 	// useEffect(() => {
 	// 	if (timeoutRef.current !== null) {
@@ -60,12 +60,15 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	// fetch roles for Tenant dropdowns
 	const retrieveRoleList = async (tenantId) => {
 		let response;
-		let objCopy = selectedTenants.find(obj => obj._id === tenantId);
+		let objCopy;
 		let id = tenantId;
 		let parameters = {f: filter, i: limit, exclude_global: true};
-		if (tenantId === "Global roles") {
+		if (tenantId === undefined) {
 			id = '*';
 			parameters['exclude_global'] = false;
+			objCopy = {...tenantObj};
+		} else {
+			objCopy = selectedTenants.find(obj => obj._id === tenantId);
 		}
 		try {
 			response = await SeaCatAuthAPI.get(`/role/${id}`, {params: parameters});
@@ -85,6 +88,9 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	const addRole = (roleId, index) => {
 		let tenants = [...selectedTenants];
 		let tenant = {...tenantObj};
+		if (roleId.substring(0, 1) === '*') {
+			Object.assign(tenant, {global: true })
+		};
 		//create a copy of displayed roles
 		let displayTenantRolesCopy = [...displayTenantRoles?.data];
 		// remove selected item from the copy of displayed roles
