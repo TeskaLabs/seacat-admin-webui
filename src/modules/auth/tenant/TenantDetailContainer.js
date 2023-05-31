@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
@@ -34,9 +34,11 @@ function TenantDetailContainer(props) {
 	const currentTenant = useSelector(state => state.tenant?.current);
 
 	const [count, setCount] = useState(0);
+	const [dropdownCount, setDropdownCount] = useState(0);
 	const timeoutRef = useRef(null);
 	const [page, setPage] = useState(1);
 	const [filter, setFilter] = useState("");
+	const [dropdownLimit, setDropdownLimit] = useState(10);
 	const limit = 10;
 	const [loading, setLoading] = useState(true);
 	const [loadingCustomData, setLoadingCustomData] = useState(true);
@@ -100,6 +102,10 @@ function TenantDetailContainer(props) {
 	const suspendRow = { condition: (row) => (row.suspended === true), className: "bg-light" };
 
 	useEffect(() => {
+		retrieveData();
+	}, []);
+
+	useEffect(() => {
 		if (timeoutRef.current !== null) {
 			clearTimeout(timeoutRef.current);
 		}
@@ -118,9 +124,9 @@ function TenantDetailContainer(props) {
 		retrieveAssignedCredentials();
 	}, [page]);
 
-	useEffect(() => {
-		retrieveData();
-	}, []);
+	useEffect(() => {
+		retrieveCredentialsForDropdown();
+	}, [dropdownLimit]);
 
 	const retrieveData = async () => {
 		try {
@@ -182,11 +188,12 @@ function TenantDetailContainer(props) {
 	const retrieveCredentialsForDropdown = async () => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: filter}});
+			response = await SeaCatAuthAPI.get("/credentials", {params: {i: dropdownLimit, f: filter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("TenantDetailContainer|Something went wrong, failed to fetch data"));
 			}
 			setAssignedCredentialsDropdown(response.data.data);
+			setDropdownCount(response.data.count);
 			setLoading(false);
 		} catch(e) {
 			console.error(e);
@@ -249,7 +256,7 @@ function TenantDetailContainer(props) {
 	}
 
 	const assignNewCredentials = (
-		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
+		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
 			<DropdownToggle
 				title={(resources.indexOf(resourceUnassign) == -1 && resources.indexOf("authz:superuser") == -1) && t("You do not have access rights to perform this action")}
 				disabled={(resources.indexOf(resourceUnassign) == -1 && resources.indexOf("authz:superuser") == -1)}
@@ -273,32 +280,42 @@ function TenantDetailContainer(props) {
 					<DropdownItem><span>{t("TenantDetailContainer|Loading...")}</span></DropdownItem>
 					:
 					(assignedCredentialsDropdown && Object.keys(assignedCredentialsDropdown).map((item, i) => {
-						let checkCredentialsAvailability = credentialsList.findIndex(elem => elem._id === assignedCredentialsDropdown[item]._id);
-						if (checkCredentialsAvailability === -1) {
-							// Display only if the credentials is not already assigned
-							return (
-								<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => assignCredentials(assignedCredentialsDropdown[item]._id)}>
-									{assignedCredentialsDropdown[item].username ?
-										<span>{assignedCredentialsDropdown[item].username}</span>
-										:
-										<Credentials
-											className="disabled-link"
-											app={props.app}
-											credentials_ids={assignedCredentialsDropdown[item]._id}
-										/>
-									}
-								</DropdownItem>
-							)
-						} else { return null }
-					}))
-				}
+						return (
+							<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => assignCredentials(assignedCredentialsDropdown[item]._id)}>
+								{assignedCredentialsDropdown[item].username ?
+									<span>{assignedCredentialsDropdown[item].username}</span>
+									:
+									<Credentials
+										className="disabled-link"
+										app={props.app}
+										credentials_ids={assignedCredentialsDropdown[item]._id}
+									/>
+								}
+							</DropdownItem>
+						)
+					}))}
+					{dropdownCount > dropdownLimit ?
+						<>
+							<DropdownItem divider />
+							<DropdownItem
+								onClick={() => {
+									setDropdownLimit(dropdownLimit + 5);
+									toggleDropdown();
+								}}
+							>
+								{t("TenantDetailContainer|More")}
+							</DropdownItem>
+						</>
+						:
+						null
+					}
 				{assignedCredentialsDropdown.length === 0 && <DropdownItem><span>{t("TenantDetailContainer|No match")}</span></DropdownItem>}
 			</DropdownMenu>
 		</Dropdown>
 	);
 
 	return (
-		<Container className="tenant-detail-container tenant-detail-wrapper">
+		<Container fluid className="tenant-detail-container tenant-detail-wrapper">
 			<div className="tenant-detail-info">
 				<Card className="tenant-general-info">
 					<CardHeader className="border-bottom">

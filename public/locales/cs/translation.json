@@ -221,16 +221,19 @@
 	},
 	"CredentialsRolesCard": {
 		"More": "Více ...",
+		"Role": "Role",
 		"Roles": "Role",
 		"Assign a new role": "Přidat novou roli",
 		"Select role to assign ...": "Vyberte roli k přiřazení ...",
 		"Roles updated successfully": "Role úspěšně aktualizované",
 		"Failed to update roles": "Role se nepodařilo aktualizovat",
 		"Something went wrong, failed to fetch roles": "Něco je špatně, nepodařilo se získat role",
-		"Something went wrong, failed to fetch assigned roles": "Něco je špatně, nepodařilo se získat přiřazené role"
+		"Something went wrong, failed to fetch assigned roles": "Něco je špatně, nepodařilo se získat přiřazené role",
+		"already selected": "byl již zvolen"
 	},
 	"CredentialsTenantsCard": {
 		"More": "Více ...",
+		"Tenant": "Tenant",
 		"Tenants": "Tenanti",
 		"Assign a tenant": "Přiřadit tenanta",
 		"Search": "Vyhledat",
@@ -238,7 +241,8 @@
 		"Failed to update tenants": "Tenanty se nepodařilo aktualizovat",
 		"Something went wrong, failed to fetch tenants": "Něco je špatně, nepodařilo se získat tenanty",
 		"Something went wrong, failed to fetch assigned tenants": "Něco je špatně, nepodařilo se získat přiřazené tenanty",
-		"No match": "Shoda nenalezena"
+		"No match": "Shoda nenalezena",
+		"already selected": "byl již zvolen"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Relace",
@@ -325,7 +329,8 @@
 		"Credentials suspended": "Uživatel suspendován",
 		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se získat přiřazené uživatelské údaje",
 		"Assign credentials": "Přiřadit uživatelské údaje",
-		"Assigned credentials": "Přiřazené uživatelské údaje"
+		"Assigned credentials": "Přiřazené uživatelské údaje",
+		"More": "Více ..."
 	},
 	"RolesCreateContainer": {
 		"Global role": "Globální role",
@@ -352,7 +357,11 @@
 		"Save": "Uložit",
 		"Cancel": "Zrušit",
 		"Edit": "Upravit",
-		"No data": "Žádná data"
+		"No data": "Žádná data",
+		"More": "Více...",
+		"Search": "Hledat",
+		"Resource": "Zdroj",
+		"already selected": "byl již zvolen"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Zdroj byl úspěšně vytvořen",
@@ -495,7 +504,8 @@
 		"Failed to remove the tenant": "Nepodařilo se odstranit tenanta",
 		"Tenant removed successfully, you will be logged out in a while": "Tenant úspěšně odstraněn, za moment budete odhlášeni",
 		"Tenant removed successfully": "Tenant úspěšně odstraněn",
-		"Tenant data updated successfully": "Tenant úspěšně aktualizován"
+		"Tenant data updated successfully": "Tenant úspěšně aktualizován",
+		"More": "Více..."
 	},
 	"TenantCreateContainer": {
 		"Tenant has been created": "Tenant byl vytvořen",

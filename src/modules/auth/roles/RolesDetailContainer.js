@@ -36,6 +36,8 @@ const RolesDetailContainer = (props) =>  {
 	const [loading, setLoading] = useState(true);
 	const [show, setShow] = useState(false);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [dropdownCount, setDropdownCount] = useState(0);
+	const [dropdownLimit, setDropdownLimit] = useState(10);
 
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 	const limit = 10;
@@ -113,11 +115,13 @@ const RolesDetailContainer = (props) =>  {
 		}
 	}, [role, page]);
 
-
 	useEffect(() => {
 		getRoleDetail();
 	}, []);
 
+	useEffect(() => {
+		retrieveCredentialsForDropdown();
+	}, [dropdownLimit]);
 
 	const getRoleDetail = async () => {
 		try {
@@ -170,11 +174,12 @@ const RolesDetailContainer = (props) =>  {
 	const retrieveCredentialsForDropdown = async () => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: filter}});
+			response = await SeaCatAuthAPI.get("/credentials", {params: {i: dropdownLimit, f: filter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("RolesDetailContainer|Something went wrong, failed to fetch data"));
 			}
 			setAssignedCredentialsDropdown(response.data.data);
+			setDropdownCount(response.data.count);
 			setLoading(false);
 		} catch(e) {
 			console.error(e);
@@ -230,7 +235,7 @@ const RolesDetailContainer = (props) =>  {
 	}
 
 	const assignNewCredentials = (
-		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
+		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
 			<DropdownToggle
 				title={(resources.indexOf(resourceAssign) == -1 && resources.indexOf("authz:superuser") == -1) && t("You do not have access rights to perform this action")}
 				disabled={(resources.indexOf(resourceAssign) == -1 && resources.indexOf("authz:superuser") == -1)}
@@ -254,24 +259,35 @@ const RolesDetailContainer = (props) =>  {
 					<DropdownItem><span>{t("RolesDetailContainer|Loading...")}</span></DropdownItem>
 					:
 					(assignedCredentialsDropdown && Object.keys(assignedCredentialsDropdown).map((item, i) => {
-						let checkCredentialsAvailability = credentialsList.findIndex(elem => elem._id === assignedCredentialsDropdown[item]._id);
-						if (checkCredentialsAvailability === -1) {
-							// Display only if the credentials is not already assigned
-							return (
-								<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => assignCredentials(assignedCredentialsDropdown[item]._id)}>
-									{assignedCredentialsDropdown[item].username ?
-										<span>{assignedCredentialsDropdown[item].username}</span>
-										:
-										<Credentials
-											className="disabled-link"
-											app={props.app}
-											credentials_ids={assignedCredentialsDropdown[item]._id}
-										/>
-									}
-								</DropdownItem>
-							)
-						} else { return null }
+						return (
+							<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => assignCredentials(assignedCredentialsDropdown[item]._id)}>
+								{assignedCredentialsDropdown[item].username ?
+									<span>{assignedCredentialsDropdown[item].username}</span>
+									:
+									<Credentials
+										className="disabled-link"
+										app={props.app}
+										credentials_ids={assignedCredentialsDropdown[item]._id}
+									/>
+								}
+							</DropdownItem>
+						)
 					}))
+				}
+				{dropdownCount > dropdownLimit ?
+					<>
+						<DropdownItem divider />
+						<DropdownItem
+							onClick={() => {
+								setDropdownLimit(dropdownLimit + 5);
+								toggleDropdown();
+							}}
+						>
+							{t("RolesDetailContainer|More")}
+						</DropdownItem>
+					</>
+					:
+					null
 				}
 				{assignedCredentialsDropdown.length === 0 && <DropdownItem><span>{t("RolesDetailContainer|No match")}</span></DropdownItem>}
 			</DropdownMenu>
@@ -281,7 +297,7 @@ const RolesDetailContainer = (props) =>  {
 	if (!role) return null;
 
 	return (
-		<Container>
+		<Container fluid>
 			<div className="role-detail-wrapper">
 				<div className="role-detail-info">
 					<Card className="w-100">
