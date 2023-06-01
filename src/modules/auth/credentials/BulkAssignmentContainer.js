@@ -368,9 +368,6 @@ const BulkAssignmentContainer = (props) => {
 					</div>
 				</CardHeader>
 				<CardBody className="selected-roles-tenants">
-
-
-
 					<div className='d-flex flex-direction-row align-items-center selected-row'>
 						<span className="ml-3">{t("BulkAssignmentContainer|Global roles")}</span>
 						<RoleDropdown
@@ -381,8 +378,6 @@ const BulkAssignmentContainer = (props) => {
 							idx={0}
 						/>
 					</div>
-
-
 					<div className="role-wrapper ml-2">
 						{globalRoles[0]?.selectedRole ?
 							globalRoles[0]?.selectedRole.map((role, i) => {
@@ -406,8 +401,6 @@ const BulkAssignmentContainer = (props) => {
 							null
 						}
 					</div>
-
-
 					{selectedTenants?.map((obj, idx) => {
 						return (
 							<>
@@ -460,25 +453,25 @@ const BulkAssignmentContainer = (props) => {
 				<CardFooter className="border-top">
 					<ButtonGroup>
 						<ButtonWithAuthz
-							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || ((selectedTenants.length === 0) && (selectedTenants[0]?.selectedRole?.length === 0))) ? 'Select credentials and tenants' : 'Assign in bulk'}`)}
+							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || ((selectedTenants.length === 1) && (globalRoles[0]?.selectedRole?.length === 0))) ? 'Select credentials and tenants' : 'Assign in bulk'}`)}
 							color="primary"
 							onClick={() => bulkAction('/tenant_assign_many')}
 							resource={resource}
 							resources={resources}
-							disabled={(selectedCredentials.length === 0) || ((selectedTenants.length === 1) && (selectedTenants[0]?.selectedRole?.length === 0))}
+							disabled={(selectedCredentials.length === 0) || ((selectedTenants.length === 0) && (globalRoles[0]?.selectedRole?.length === 0))}
 						>
 							{t('BulkAssignmentContainer|Assign in bulk')}
 						</ButtonWithAuthz>
 					</ButtonGroup>
 					<div className="actions-right">
 						<ButtonWithAuthz
-							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || ((selectedTenants.length === 0) && (selectedTenants[0]?.selectedRole?.length === 0))) ? 'Select credentials and tenants' : 'Remove assignment'}`)}
+							title={t(`BulkAssignmentContainer|${((selectedCredentials.length === 0) || ((selectedTenants.length === 0) && (globalRoles[0]?.selectedRole?.length === 0))) ? 'Select credentials and tenants' : 'Remove assignment'}`)}
 							color="primary"
 							outline
 							onClick={() => bulkAction('/tenant_unassign_many')}
 							resource={resource}
 							resources={resources}
-							disabled={(selectedCredentials.length === 0) || ((selectedTenants.length === 1) && (selectedTenants[0]?.selectedRole?.length === 0))}
+							disabled={(selectedCredentials.length === 0) || ((selectedTenants.length === 0) && (globalRoles[0]?.selectedRole?.length === 0))}
 						>
 							{t('BulkAssignmentContainer|Remove assignment')}
 						</ButtonWithAuthz>
