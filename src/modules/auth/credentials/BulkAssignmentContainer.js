@@ -28,9 +28,6 @@ const BulkAssignmentContainer = (props) => {
 	const [globalRoles, setGlobalRoles] = useState([{global: false, selectedRole: []}]);
 	const [selectedTenants, setSelectedTenants] = useState([]);
 
-	const [show, setShow] = useState(true);
-	const [showTenantsContentLoader, setShowTenantsContentLoader] = useState(true);
-
 	const resource = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 
@@ -63,11 +60,11 @@ const BulkAssignmentContainer = (props) => {
 			customComponent: {
 				generate: (obj) => (
 					<div className="no-wrap-40ch">
-						{obj.suspended === true ?
+						{(obj.suspended === true) ?
 							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
 							: <span className="cil-user mr-1" />}
 						<Link
-							style={{color: obj.suspended === true && '#73818f'}}
+							className={obj.suspended ? 'credentials-suspended' : null}
 							onClick={() => confirmForm(`/auth/credentials/${obj._id}`)}
 							>
 							{/* TODO: substitute with Credentials component, when it's ready */}
@@ -117,11 +114,6 @@ const BulkAssignmentContainer = (props) => {
 
 	// UseEffect to fetch data for Credentials List based on changes in page/credentialsFilter/limit
 	useEffect(() => {
-		setShow(false);
-		if (data?.length === 0) {
-			// Timeout delays appearance of content loader in DataTable. This measure prevents 'flickering effect' during fast fetch of data, where content loader appears just for a split second.
-			setTimeout(() => setShow(true), 500);
-		}
 		if (limit > 0) {
 			retrieveData();
 		}
@@ -129,11 +121,6 @@ const BulkAssignmentContainer = (props) => {
 
 	// UseEffect to fetch data for Tenants List based on changes in page/tenantsFilter/limit
 	useEffect(() => {
-		setShowTenantsContentLoader(false);
-		if (data?.length === 0) {
-			// Timeout delays appearance of content loader in DataTable. This measure prevents 'flickering effect' during fast fetch of data, where content loader appears just for a split second.
-			setTimeout(() => setShowTenantsContentLoader(true), 500);
-		}
 		if (limit > 0) {
 			retrieveTenants();
 		}
@@ -326,7 +313,7 @@ const BulkAssignmentContainer = (props) => {
 						search={{ icon: 'cil-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
 						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
-						contentLoader={show}
+						contentLoader={loading}
 					/>
 			</div>
 
@@ -369,7 +356,7 @@ const BulkAssignmentContainer = (props) => {
 					search={{ icon: 'cil-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
 					onSearch={(value) => setTenantsFilter(value)}
 					isLoading={loadingTenants}
-					contentLoader={showTenantsContentLoader}
+					contentLoader={loadingTenants}
 				/>
 			</div>
 
