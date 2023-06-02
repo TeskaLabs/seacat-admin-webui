@@ -73,8 +73,8 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 		try {
 			response = await SeaCatAuthAPI.get(`/role/${id}`, {params: parameters});
 			let selectedTenantsCopy = [...selectedTenants];
-			let ten = {...objCopy, roles: response.data};
-			selectedTenantsCopy[idx] = ten;
+			let tenantsRolesObject = {...objCopy, roles: response.data};
+			selectedTenantsCopy[idx] = tenantsRolesObject;
 			setSelectedTenants(selectedTenantsCopy);
 			setCount(response.data.count);
 			setDisplayTenantRoles(response.data);
