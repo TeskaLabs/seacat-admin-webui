@@ -119,6 +119,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 			msg = `${t("BulkAssignmentContainer|Tenant")} '${tenantObj._id}' ${t("BulkAssignmentContainer|and selected roles will be assigned to/unassigned from selected credentials")}`
 		} else {
 			msg = t("BulkAssignmentContainer|Selected credentials will be assigned to/removed from tenant") + " '" + tenantObj._id + "'";
+			msg = `${t("BulkAssignmentContainer|Selected credentials will be assigned to/removed from tenant")} '${tenantObj._id}'`;
 		};
 		return msg;
 	}, [selectedTenants]);
