@@ -19,7 +19,7 @@ const BulkAssignmentContainer = (props) => {
 	const [credentialsFilter, setCredentialsFilter] = useState("");
 	const [selectedCredentials, setSelectedCredentials] = useState([]);
 
-	const [tenants, setTenants] = useState({});
+	const [tenants, setTenants] = useState([]);
 	const [tenantsPage, setTenantsPage] = useState(1);
 	const [tenantsCount, setTenantsCount] = useState(0);
 	const [tenantsLimit, setTenantsLimit] = useState(0);
@@ -128,44 +128,31 @@ const BulkAssignmentContainer = (props) => {
 
 	/* Actual modified data (this data set was compared compared with `selectedCredentials` and `assigned: true` was added to matching credentials. Assigned:true property
 	disables the "+"" button) to be displayed in Credentials list data table */
-	const datatableCredentialsData = useMemo(() => {
-		let credentialsTableData = [];
+	const matchAssigned = (data, selectedEvent) => {
+		let tableData = [];
 		if (data) {
-			data.map((credObj) => {
-				/* we are maping over `data` (state used for Credentials). Each element of `data` state is an object with property `_id` (among others).
-				We are trying to match the value of this property with any selectedCredentials state's element's `_id` property.
-				If a match is found, a key value pair of `assigned: true` is assigned to that object */
-				let matchedObj = selectedCredentials.find(obj => obj._id === credObj._id);
+			data.map((dataObj) => {
+				let matchedObj = selectedEvent.find(obj => obj._id === dataObj._id);
 				if (matchedObj) {
 					matchedObj['assigned'] = true;
-					credentialsTableData.push(matchedObj);
+					tableData.push(matchedObj);
 				} else {
-					credObj['assigned'] = false;
-					credentialsTableData.push(credObj);
+					dataObj['assigned'] = false;
+					tableData.push(dataObj);
 				}
 			})
-		}
-		return credentialsTableData
+		};
+		return tableData;
+	};
+
+	/* Actual modified data (this data set was compared compared with `selectedCredentials`/`selectedTenants` and `assigned: true` was added to matching credentials/tenants. Assigned:true property
+	disables the "+"" button) to be displayed in Credentials & Tenants list data table */
+	const datatableCredentialsData = useMemo(() => {
+		return matchAssigned(data, selectedCredentials);
 	}, [data, selectedCredentials]);
 
 	const datatableTenantsData = useMemo(() => {
-		let tenantsTableData = [];
-		if (tenants?.length > 0) {
-			tenants.map((tenantObj) => {
-				/* we are maping over `tenants` (state used for Tenants). Each element of `tenants` state is an object with property `_id` (among others).
-				We are trying to match the value of this property with any selectedTenants state's element's `_id` property.
-				If a match is found, a key value pair of `assigned: true` is assigned to that object */
-				let matchObj = selectedTenants.find(obj => obj._id === tenantObj._id);
-				if (matchObj) {
-					matchObj['assigned'] = true;
-					tenantsTableData.push(matchObj);
-				} else {
-					tenantObj['assigned'] = false;
-					tenantsTableData.push(tenantObj);
-				}
-			})
-		}
-		return tenantsTableData
+		return matchAssigned(tenants, selectedTenants);
 	}, [tenants, selectedTenants]);
 
 	// fetches Credentials Data from server
