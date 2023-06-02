@@ -116,7 +116,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 				msg = t("BulkAssignmentContainer|If you wish to assign/unassign global roles, select individual roles. Otherwise leave it as is");
 			}
 		} else if (tenantObj?.selectedRole && (tenantObj.selectedRole.length > 0)) {
-			msg = t("BulkAssignmentContainer|Tenant") + " '" + tenantObj._id + "' " + t("BulkAssignmentContainer|and selected roles will be assigned to/unassigned from selected credentials");
+			msg = `${t("BulkAssignmentContainer|Tenant")} '${tenantObj._id}' ${t("BulkAssignmentContainer|and selected roles will be assigned to/unassigned from selected credentials")}`
 		} else {
 			msg = t("BulkAssignmentContainer|Selected credentials will be assigned to/removed from tenant") + " '" + tenantObj._id + "'";
 		};
