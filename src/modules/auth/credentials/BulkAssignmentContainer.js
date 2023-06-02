@@ -205,7 +205,6 @@ const BulkAssignmentContainer = (props) => {
 		/* adjustments to data structure. selectedTenants is an array of objects. Server expects credential_ids to be an object with
 		tenants as keys and array of roles as their values { tenant1: [role1, role2], tenant2: [], ...}
 		Unless we'd like to do bulk *unassignment*, then unassigning from tenant as a whole requires { tenant1: "UNASSIGN-TENANT", tenant2: [role1, role2,..], ...} */
-		// let globalRoles = [];
 		selectedTenants.map((obj) => {
 			let roles = [];
 			if (obj.selectedRole && (obj.selectedRole?.length > 0)) {
@@ -213,7 +212,7 @@ const BulkAssignmentContainer = (props) => {
 			} else if (actionType === '/tenant_unassign_many') {
 				roles = "UNASSIGN-TENANT";
 			};
-			// here in code, we are using `{_id: Global roles, ...}` which represents global roles, but the api call expects `_id: '*'` as a representation of global roles
+			// This part of the code uses {_id: Global roles, ...}, which is the representation of global roles, however the API call expects _id to be defined as an asterisk '*' as a representation of global roles
 			tenantObj[obj._id] = roles;
 		})
 		globalRoles[0].global ? tenantObj['*'] = globalRoles[0].selectedRole : null;
@@ -275,7 +274,6 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	const unselectGlobalRole = (roleIndex) => {
-		// [{global: false, selectedRole: []}]
 		let globalCopy = [...globalRoles];
 		globalCopy[0].selectedRole.splice(roleIndex, 1);
 		if (globalCopy[0].selectedRole.length === 0) {
