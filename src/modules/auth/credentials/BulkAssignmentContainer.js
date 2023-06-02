@@ -207,7 +207,6 @@ const BulkAssignmentContainer = (props) => {
 		Unless we'd like to do bulk *unassignment*, then unassigning from tenant as a whole requires { tenant1: "UNASSIGN-TENANT", tenant2: [role1, role2,..], ...} */
 		// let globalRoles = [];
 		selectedTenants.map((obj) => {
-			console.log('obj: ', obj);
 			let roles = [];
 			if (obj.selectedRole && (obj.selectedRole?.length > 0)) {
 					roles = obj.selectedRole;
