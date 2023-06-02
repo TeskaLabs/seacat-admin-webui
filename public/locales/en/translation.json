@@ -556,7 +556,8 @@
 		"Sessions": "Sessions",
 		"Roles": "Roles",
 		"Resources": "Resources",
-		"Clients": "Clients"
+		"Clients": "Clients",
+		"Home": "Homepage"
 	},
 	"Name": "Name",
 	"Description": "Description",

@@ -556,7 +556,8 @@
 		"Sessions": "Relace",
 		"Roles": "Role",
 		"Resources": "Zdroje",
-		"Clients": "Klienti"
+		"Clients": "Klienti",
+		"Home": "Domovská stránka"
 	},
 	"Name": "Název",
 	"Description": "Popis",
