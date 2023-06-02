@@ -84,7 +84,8 @@
 		"New client": "Nový klient",
 		"Client detail": "Detail klienta",
 		"About": "O Aplikaci",
-		"Access control": "Přístupová oprávnění"
+		"Access control": "Přístupová oprávnění",
+		"Home": "Domovská stránka"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",

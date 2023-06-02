@@ -84,7 +84,8 @@
 		"New client": "New client",
 		"Client detail": "Client detail",
 		"About": "About",
-		"Access control": "Access control"
+		"Access control": "Access control",
+		"Home": "Homepage"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
