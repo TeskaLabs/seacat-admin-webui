@@ -85,7 +85,7 @@
 		"Client detail": "Detail klienta",
 		"About": "O Aplikaci",
 		"Access control": "Přístupová oprávnění",
-		"Home": "Domů"
+		"Home": "Domovská stránka"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",
@@ -557,7 +557,7 @@
 		"Roles": "Role",
 		"Resources": "Zdroje",
 		"Clients": "Klienti",
-		"Home": "Domovská stránka"
+		"Home": "Domů"
 	},
 	"Name": "Název",
 	"Description": "Popis",

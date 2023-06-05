@@ -85,7 +85,7 @@
 		"Client detail": "Client detail",
 		"About": "About",
 		"Access control": "Access control",
-		"Home": "Home"
+		"Home": "Homepage"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
@@ -557,7 +557,7 @@
 		"Roles": "Roles",
 		"Resources": "Resources",
 		"Clients": "Clients",
-		"Home": "Homepage"
+		"Home": "Home"
 	},
 	"Name": "Name",
 	"Description": "Description",
