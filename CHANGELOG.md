@@ -18,6 +18,8 @@
 
 - Add locales for the ended session, version bump asab-webui (INDIGO Sprint 230512, [!34](https://github.com/TeskaLabs/seacat-admin-webui/pull/34))
 
+- Add missing locales for Home (INDIGO Sprint 230526, [!37](https://github.com/TeskaLabs/seacat-admin-webui/pull/37))
+
 ## v23.16-beta
 
 ### Compatibility
