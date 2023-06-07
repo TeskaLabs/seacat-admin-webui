@@ -109,7 +109,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	// Determines tooltip messages
 	const message = useMemo(() => {
 		let msg = "";
-		if((tenantObj._id === "Global roles")) {
+		if ((tenantObj._id === undefined)) {
 			if (tenantObj?.selectedRole && (tenantObj.selectedRole.length > 0)) {
 				msg = t("BulkAssignmentContainer|Selected global roles will be assignes to/unassigned from the selected credentials");
 			} else {
@@ -125,8 +125,8 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 
 	return (
 		<>
-			<span href="#" id={`tooltip-${idx}`}><i className='cil-info ml-2'></i></span>
-			<UncontrolledTooltip placement="auto" target={`tooltip-${idx}`}>
+			<span href="#" id={`tooltip-${(tenantObj._id === undefined) ? 'global' : idx}`}><i className='cil-info ml-2'></i></span>
+			<UncontrolledTooltip placement="auto" target={`tooltip-${(tenantObj._id === undefined) ? 'global' : idx}`}>
 				{message}
 			</UncontrolledTooltip>
 			<Dropdown className='ml-auto' size="sm" isOpen={dropdownOpen} toggle={() => setDropdownOpen(prev => !prev)}>
