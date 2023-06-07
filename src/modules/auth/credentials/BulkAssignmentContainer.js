@@ -215,7 +215,9 @@ const BulkAssignmentContainer = (props) => {
 			// This part of the code uses {_id: Global roles, ...}, which is the representation of global roles, however the API call expects _id to be defined as an asterisk '*' as a representation of global roles
 			tenantObj[obj._id] = roles;
 		})
-		globalRoles[0].global ? tenantObj['*'] = globalRoles[0].selectedRole : null;
+		if (globalRoles[0].global) {
+			tenantObj['*'] = globalRoles[0].selectedRole
+		};
 		try {
 			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 			let response = await SeaCatAuthAPI.put(actionType, {"credential_ids": credential_ids, "tenants": tenantObj });
