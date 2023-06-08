@@ -158,6 +158,29 @@ const ClientDetailContainer = (props) =>  {
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
 								<i className="cil-applications-settings pr-2"></i>
+								{t("ClientDetailContainer|Cookie")}
+							</div>
+						</CardHeader>
+						<CardBody>
+							<Row>
+								<Col md={5} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
+								<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="cookie_entry_uri">{t("ClientDetailContainer|Cookie entry URI")}</Col>
+								<Col>{client?.cookie_entry_uri ? client.cookie_entry_uri : "N/A"}</Col>
+							</Row>
+							<Row>
+								<Col md={5} title="cookie_webhook_uri">{t("ClientDetailContainer|Cookie webhook URI")}</Col>
+								<Col>{client?.cookie_webhook_uri ? client.cookie_webhook_uri : "N/A"}</Col>
+							</Row>
+						</CardBody>
+					</Card>
+
+					<Card className="mt-3">
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="cil-applications-settings pr-2"></i>
 								{t("ClientDetailContainer|Multidomain")}
 							</div>
 						</CardHeader>
@@ -165,10 +188,6 @@ const ClientDetailContainer = (props) =>  {
 							<Row>
 								<Col md={5} title="login_uri">{t("ClientDetailContainer|Login URI")}</Col>
 								<Col>{client?.login_uri ? client.login_uri : "N/A"}</Col>
-							</Row>
-							<Row>
-								<Col md={5} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
-								<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
 							</Row>
 							<Row>
 								<Col md={5} title="authorize_uri">{t("ClientDetailContainer|Authorize URI")}</Col>
@@ -228,6 +247,10 @@ const ClientDetailContainer = (props) =>  {
 									</Col>
 								</Row>
 							}
+							<Row>
+								<Col md={5} title="session_expiration">{t("ClientDetailContainer|Session expiration")}</Col>
+								<Col>{client?.session_expiration ? client.session_expiration : "N/A"}</Col>
+							</Row>
 						</CardBody>
 					</Card>
 
@@ -249,6 +272,11 @@ const ClientDetailContainer = (props) =>  {
 								/>{' '}
 								{t('ClientDetailContainer|Authorize anonymous users')}
 							</FormGroup>
+
+							<Row>
+								<Col md={5} title="anonymous_cid">{t("ClientDetailContainer|Anonymous credentials ID")}</Col>
+								<Col>{client?.anonymous_cid ? client.anonymous_cid : "N/A"}</Col>
+							</Row>
 						</CardBody>
 					</Card>
 				</div>
