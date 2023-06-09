@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Features
+
+- Changelog.md update after tag release (INDIGO Sprint 230526, [!38](https://github.com/TeskaLabs/seacat-admin-webui/pull/38))
+
 ## v23.23-alpha
 
 Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.23-beta)
