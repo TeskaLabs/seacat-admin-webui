@@ -6,7 +6,6 @@
 
 - ASAB WebUI submodule version bump [[80151df](https://github.com/TeskaLabs/asab-webui/commit/80151df2eb26bc683a6b5d31bfed9a0acd879c35)] commit (INDIGO Sprint 230609, [!38](https://github.com/TeskaLabs/seacat-admin-webui/pull/38))
 
-
 ## v23.23-alpha
 
 Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.23-beta)
