@@ -8,7 +8,7 @@ Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seaca
 
 ### Features
 
-- ASAB WebUI submodule version bump [[80151df](https://github.com/TeskaLabs/asab-webui/commit/80151df2eb26bc683a6b5d31bfed9a0acd879c35)] commit (INDIGO Sprint 230609, [!38](https://github.com/TeskaLabs/seacat-admin-webui/pull/38))
+- ASAB WebUI submodule version bump [[b193d29](https://github.com/TeskaLabs/asab-webui/commit/b193d29d6a54261ec93dcc0c203d0660c510c7df)] commit (INDIGO Sprint 230609, [!37](https://github.com/TeskaLabs/seacat-admin-webui/pull/37))
 
 - Changing logo based on app's theme (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
 
@@ -23,6 +23,8 @@ Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seaca
 - Lazy loading enabled in auth and home modules. Also, obsolete code removal for retrieving usernames in TenantDetailScreen. This functionality was substituted with <Credentials /> component (INDIGO Sprint 230512, [!31](https://github.com/TeskaLabs/seacat-admin-webui/pull/31))
 
 - Add locales for the ended session, version bump asab-webui (INDIGO Sprint 230512, [!34](https://github.com/TeskaLabs/seacat-admin-webui/pull/34))
+
+- Add missing locales for Home (INDIGO Sprint 230609, [!37](https://github.com/TeskaLabs/seacat-admin-webui/pull/37))
 
 ## v23.16-beta
 

@@ -86,7 +86,8 @@
 		"Client detail": "Detail klienta",
 		"About": "O Aplikaci",
 		"Access control": "Přístupová oprávnění",
-		"Bulk actions": "Hromadné akce"
+		"Bulk actions": "Hromadné akce",
+		"Homepage": "Domovská stránka"
 	},
 	"BulkAssignmentContainer" : {
 		"Credentials invited": "Uživatel pozván",
@@ -588,7 +589,8 @@
 		"Sessions": "Relace",
 		"Roles": "Role",
 		"Resources": "Zdroje",
-		"Clients": "Klienti"
+		"Clients": "Klienti",
+		"Home": "Domů"
 	},
 	"Name": "Název",
 	"Description": "Popis",

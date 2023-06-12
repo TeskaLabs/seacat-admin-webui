@@ -86,7 +86,8 @@
 		"Client detail": "Client detail",
 		"About": "About",
 		"Access control": "Access control",
-		"Bulk actions": "Bulk actions"
+		"Bulk actions": "Bulk actions",
+		"Homepage": "Homepage"
 	},
 	"BulkAssignmentContainer" : {
 		"Credentials invited": "Credentials invited",
@@ -588,7 +589,8 @@
 		"Sessions": "Sessions",
 		"Roles": "Roles",
 		"Resources": "Resources",
-		"Clients": "Clients"
+		"Clients": "Clients",
+		"Home": "Home"
 	},
 	"Name": "Name",
 	"Description": "Description",
