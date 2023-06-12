@@ -29,13 +29,25 @@ let ConfigDefaults = {
 	vendor: "TeskaLabs",
 	website: "https://teskalabs.com",
 	email: "info@teskalabs.com",
-	brand_image: {
-		full: "media/logo/header-full.svg",
-		minimized: "media/logo/header-minimized.svg",
+	brandImage: {
+		light: {
+			full: "media/logo/header-logo-full.svg",
+			minimized: "media/logo/header-logo-minimized.svg",
+		},
+		dark: {
+			full: "media/logo/header-logo-full-dark.svg",
+			minimized: "media/logo/header-logo-minimized-dark.svg",
+		}
 	},
 	sidebarLogo: {
-		full: "media/logo/sidebarlogo-full.svg",
-		minimized: "media/logo/sidebarlogo-minimized.svg"
+		light: {
+			full: "media/logo/sidebar-logo-full.svg",
+			minimized: "media/logo/sidebar-logo-minimized.svg"
+		},
+		dark: {
+			full: "media/logo/sidebar-logo-full-dark.svg",
+			minimized: "media/logo/sidebar-logo-minimized-dark.svg"
+		}
 	},
 	i18n: {
 		fallbackLng: 'en',

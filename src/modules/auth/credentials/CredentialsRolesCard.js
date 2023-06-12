@@ -69,6 +69,8 @@ function CredentialsRolesCard(props) {
 		let x = assignedRoles.find((existing) => { return existing == role });
 		if (x == null) {
 			setAssignedRoles(assignedRoles.concat(role))
+		} else {
+			props.app.addAlert("warning", `${t("CredentialsRolesCard|Role")} ${role} ${t("CredentialsRolesCard|already selected")}`, 5);
 		}
 	}
 
@@ -98,16 +100,16 @@ function CredentialsRolesCard(props) {
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
 					<i className="at-account pr-2"></i>
-					{t("CredentialsRolesCard|Assigned roles")}
+					{t("CredentialsRolesCard|Roles")}
 				</div>
 			</CardHeader>
 
 			<CardBody className="card-body-scroll">
 
 				{assignedRoles.map((role) => (
-					<Row key={role} className="mb-2">
+					<Row key={role}>
 						<Col style={{overflow: "hidden", marginLeft: "15px", paddingLeft: "0"}}>
-							<span className="d-flex align-items-center btn-edit-mode">
+							<span className="d-flex align-items-center">
 								{editMode &&
 									<Button
 										outline
@@ -142,15 +144,11 @@ function CredentialsRolesCard(props) {
 						<DropdownMenu style={{maxHeight: "20em", overflowY: "auto"}} >
 							<DropdownItem header>{t("CredentialsRolesCard|Select role to assign ...")}</DropdownItem>
 							{Object.values(rolesLookup).map((role_id, i) => {
-								let x = assignedRoles.find((existing) => { return existing == role_id._id });
-								if (x == null) {
-									// Add only if the role is not already assigned
 									return (
 										<DropdownItem key={i} onClick={() => assignRole(role_id._id)}>
 											<Role role={role_id._id} lookup={rolesLookup} />
 										</DropdownItem>
 									)
-								} else { return null }
 							})}
 							{count > limit ?
 								<>

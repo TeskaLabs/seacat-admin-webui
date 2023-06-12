@@ -6,6 +6,29 @@
 
 - Changed icons from coreui.io icons to atlasicons. (INDIGO Sprint 230428, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
 
+## v23.23-alpha2
+
+Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.23-beta)
+
+### Features
+
+- ASAB WebUI submodule version bump [[b193d29](https://github.com/TeskaLabs/asab-webui/commit/b193d29d6a54261ec93dcc0c203d0660c510c7df)] commit (INDIGO Sprint 230609, [!37](https://github.com/TeskaLabs/seacat-admin-webui/pull/37))
+
+- Changing logo based on app's theme (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
+
+- Pagination via `More..` button in dropdowns. Clients refactored to easily maintainable css grid. (INDIGO 230526, [!35](https://github.com/TeskaLabs/seacat-admin-webui/pull/35))
+
+- Bulk assignment sceen for miltuple tenants & roles to credentials assignment. (INDIGO 230526, [!21](https://github.com/TeskaLabs/seacat-admin-webui/pull/21))
+
+### Refactoring
+
+- Vertical spacing unification across seacat admin screens app. (INDIGO Sprint 230414, [!26](https://github.com/TeskaLabs/seacat-admin-webui/pull/26))
+
+- Lazy loading enabled in auth and home modules. Also, obsolete code removal for retrieving usernames in TenantDetailScreen. This functionality was substituted with <Credentials /> component (INDIGO Sprint 230512, [!31](https://github.com/TeskaLabs/seacat-admin-webui/pull/31))
+
+- Add locales for the ended session, version bump asab-webui (INDIGO Sprint 230512, [!34](https://github.com/TeskaLabs/seacat-admin-webui/pull/34))
+
+- Add missing locales for Home (INDIGO Sprint 230609, [!37](https://github.com/TeskaLabs/seacat-admin-webui/pull/37))
 
 ## v23.16-beta
 
@@ -34,6 +57,8 @@ Tested with Seacat Auth service [v23.13-beta](https://github.com/TeskaLabs/seaca
 ### Features
 
 - ASAB WebUI submodule version bump [[1960466](https://github.com/TeskaLabs/asab-webui/commit/1960466a45d0c48ec279e703317ebf0a59fdcbda)] commit (INDIGO Sprint 230317, [!22](https://github.com/TeskaLabs/seacat-admin-webui/pull/22))
+
+- Resources actions extended. Added posibility to rename, delete, hard-delete and retrieve resources (INDIGO Sprint 230217, [!19](https://github.com/TeskaLabs/seacat-admin-webui/pull/19))
 
 ### Refactoring
 

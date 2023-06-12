@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { DataTable, ButtonWithAuthz } from 'asab-webui';
 
-import {Container} from 'reactstrap';
+import {Container, Button} from 'reactstrap';
 
 function CredentialsListContainer(props) {
 
@@ -26,6 +26,7 @@ function CredentialsListContainer(props) {
 	const ref = useRef(null);
 
 	const resourceCreateCredentials = "seacat:credentials:edit";
+	const resourceBulkActions = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);
 
@@ -34,18 +35,13 @@ function CredentialsListContainer(props) {
 			name: t('CredentialsListContainer|Name'),
 			customComponent: {
 				generate: (obj) => (
-					<div
-						style={{whiteSpace: "nowrap",
-							maxWidth: "40ch",
-							textOverflow: "ellipsis",
-							overflow: "hidden",
-							marginBottom: 0}}
+					<div className='no-wrap-40ch'
 					>
 						{obj.suspended === true ?
 							<span className="at-user-xmark text-muted mr-1" title={(obj.registered === false) ? t("CredentialsListContainer|Credentials invited") : t("CredentialsListContainer|Credentials suspended")}/>
 							: <span className="at-account mr-1" />}
 						<Link
-							style={{color: obj.suspended === true && '#73818f'}}
+							className={obj.suspended ? 'credentials-suspended' : null}
 							to={{
 								pathname: `/auth/credentials/${obj._id}`,
 							}}>
@@ -200,15 +196,27 @@ function CredentialsListContainer(props) {
 	}
 
 	const createCredentialsComponent = (
-		<ButtonWithAuthz
-			title={t("CredentialsListContainer|Create new credentials")}
-			color="primary"
-			onClick={() => {redirectToCreate()}}
-			resource={resourceCreateCredentials}
-			resources={resources}
-		>
-			{t("CredentialsListContainer|Create new credentials")}
-		</ButtonWithAuthz>
+		<div className='d-flex'>
+			<ButtonWithAuthz
+				title={t("CredentialsListContainer|Bulk actions")}
+				outline
+				color="primary"
+				onClick={() => props.history.push('/auth/credentials/!bulk-assignment')}
+				resource={resourceBulkActions}
+				resources={resources}
+			>
+				{t("CredentialsListContainer|Bulk actions")}
+			</ButtonWithAuthz>
+			<ButtonWithAuthz
+				title={t("CredentialsListContainer|Create new credentials")}
+				color="primary"
+				onClick={() => {redirectToCreate()}}
+				resource={resourceCreateCredentials}
+				resources={resources}
+			>
+				{t("CredentialsListContainer|Create new credentials")}
+			</ButtonWithAuthz>
+		</div>
 	);
 
 	const redirectToCreate = () => {

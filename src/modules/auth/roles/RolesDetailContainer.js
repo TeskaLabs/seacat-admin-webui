@@ -36,6 +36,8 @@ const RolesDetailContainer = (props) =>  {
 	const [loading, setLoading] = useState(true);
 	const [show, setShow] = useState(false);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
+	const [dropdownCount, setDropdownCount] = useState(0);
+	const [dropdownLimit, setDropdownLimit] = useState(10);
 
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 	const limit = 10;
@@ -113,11 +115,13 @@ const RolesDetailContainer = (props) =>  {
 		}
 	}, [role, page]);
 
-
 	useEffect(() => {
 		getRoleDetail();
 	}, []);
 
+	useEffect(() => {
+		retrieveCredentialsForDropdown();
+	}, [dropdownLimit]);
 
 	const getRoleDetail = async () => {
 		try {
@@ -170,11 +174,12 @@ const RolesDetailContainer = (props) =>  {
 	const retrieveCredentialsForDropdown = async () => {
 		let response;
 		try {
-			response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: filter}});
+			response = await SeaCatAuthAPI.get("/credentials", {params: {i: dropdownLimit, f: filter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("RolesDetailContainer|Something went wrong, failed to fetch data"));
 			}
 			setAssignedCredentialsDropdown(response.data.data);
+			setDropdownCount(response.data.count);
 			setLoading(false);
 		} catch(e) {
 			console.error(e);
@@ -230,7 +235,7 @@ const RolesDetailContainer = (props) =>  {
 	}
 
 	const assignNewCredentials = (
-		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} onClick={() => retrieveCredentialsForDropdown()}>
+		<Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
 			<DropdownToggle
 				title={(resources.indexOf(resourceAssign) == -1 && resources.indexOf("authz:superuser") == -1) && t("You do not have access rights to perform this action")}
 				disabled={(resources.indexOf(resourceAssign) == -1 && resources.indexOf("authz:superuser") == -1)}
@@ -254,24 +259,35 @@ const RolesDetailContainer = (props) =>  {
 					<DropdownItem><span>{t("RolesDetailContainer|Loading...")}</span></DropdownItem>
 					:
 					(assignedCredentialsDropdown && Object.keys(assignedCredentialsDropdown).map((item, i) => {
-						let checkCredentialsAvailability = credentialsList.findIndex(elem => elem._id === assignedCredentialsDropdown[item]._id);
-						if (checkCredentialsAvailability === -1) {
-							// Display only if the credentials is not already assigned
-							return (
-								<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => assignCredentials(assignedCredentialsDropdown[item]._id)}>
-									{assignedCredentialsDropdown[item].username ?
-										<span>{assignedCredentialsDropdown[item].username}</span>
-										:
-										<Credentials
-											className="disabled-link"
-											app={props.app}
-											credentials_ids={assignedCredentialsDropdown[item]._id}
-										/>
-									}
-								</DropdownItem>
-							)
-						} else { return null }
+						return (
+							<DropdownItem key={assignedCredentialsDropdown[item]._id} onClick={() => assignCredentials(assignedCredentialsDropdown[item]._id)}>
+								{assignedCredentialsDropdown[item].username ?
+									<span>{assignedCredentialsDropdown[item].username}</span>
+									:
+									<Credentials
+										className="disabled-link"
+										app={props.app}
+										credentials_ids={assignedCredentialsDropdown[item]._id}
+									/>
+								}
+							</DropdownItem>
+						)
 					}))
+				}
+				{dropdownCount > dropdownLimit ?
+					<>
+						<DropdownItem divider />
+						<DropdownItem
+							onClick={() => {
+								setDropdownLimit(dropdownLimit + 5);
+								toggleDropdown();
+							}}
+						>
+							{t("RolesDetailContainer|More")}
+						</DropdownItem>
+					</>
+					:
+					null
 				}
 				{assignedCredentialsDropdown.length === 0 && <DropdownItem><span>{t("RolesDetailContainer|No match")}</span></DropdownItem>}
 			</DropdownMenu>
@@ -281,49 +297,53 @@ const RolesDetailContainer = (props) =>  {
 	if (!role) return null;
 
 	return (
-		<Container>
+		<Container fluid>
 			<div className="role-detail-wrapper">
-			<div className="role-detail-info">
-					<Row className="justify-content-md-center ml-0 mr-0">
-						<Card className="w-100">
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="at-account pr-2"></i>
-									{t("RolesDetailContainer|Role")}
-								</div>
-							</CardHeader>
-							<CardBody>
-								<Row className="card-body-row">
-									<Col md={3}>{t("Name")}</Col>
-									<Col>{role._id}</Col>
-								</Row>
-								<Row className="card-body-row">
-									<Col md={3}>{t("Created at")}</Col>
-									<Col><DateTime value={role._c} /></Col>
-								</Row>
-								<Row className="card-body-row">
-									<Col md={3}>{t("Modified at")}</Col>
-									<Col><DateTime value={role._m} /></Col>
-								</Row>
-							</CardBody>
-							<CardFooter>
-								<ButtonWithAuthz
-									className="mr-3"
-									title={t("RolesDetailContainer|Remove role")}
-									color="danger"
-									outline
-									onClick={removeRoleForm}
-									resource={resource}
-									resources={resources}
-								>
-									{t("RolesDetailContainer|Remove role")}
-								</ButtonWithAuthz>
-							</CardFooter>
-						</Card>
-					</Row>
-					<div className="role-resource-card-area">
-						<RolesResourcesCard app={props.app} role={role} params={props.match.params} resources={resources} resource={resource} />
-					</div>
+				<div className="role-detail-info">
+					<Card className="w-100">
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="at-account pr-2"></i>
+								{t("RolesDetailContainer|Role")}
+							</div>
+						</CardHeader>
+						<CardBody>
+							<Row>
+								<Col md={3}>{t("Name")}</Col>
+								<Col>{role._id}</Col>
+							</Row>
+							<Row className="mt-3">
+								<Col md={3}>{t("Created at")}</Col>
+								<Col><DateTime value={role._c} /></Col>
+							</Row>
+							<Row>
+								<Col md={3}>{t("Modified at")}</Col>
+								<Col><DateTime value={role._m} /></Col>
+							</Row>
+						</CardBody>
+						<CardFooter>
+							<ButtonWithAuthz
+								className="mr-3"
+								title={t("RolesDetailContainer|Remove role")}
+								color="danger"
+								outline
+								onClick={removeRoleForm}
+								resource={resource}
+								resources={resources}
+							>
+								{t("RolesDetailContainer|Remove role")}
+							</ButtonWithAuthz>
+						</CardFooter>
+					</Card>
+				</div>
+				<div className="role-resource-card-area">
+					<RolesResourcesCard
+						app={props.app}
+						role={role}
+						params={props.match.params}
+						resources={resources}
+						resource={resource}
+					/>
 				</div>
 				<div className="role-detail-credentials-area">
 					<DataTable
@@ -340,28 +360,27 @@ const RolesDetailContainer = (props) =>  {
 						contentLoader={show}
 					/>
 				</div>
-				<div className="mb-4 w-100 role-detail-json-area">
-					{advmode &&
-						<Card>
-							<CardHeader className="border-bottom">
-								<div className="card-header-title">
-									<i className="at-programming pr-2"></i>
-									JSON
-								</div>
-							</CardHeader>
-							{role &&
-								<CardBody>
-									<ReactJson
-										theme={theme === 'dark' ? "chalk" : "rjv-default"}
-										src={role}
-										name={false}
-										collapsed={false}
-									/>
-								</CardBody>
-							}
-						</Card>
-					}
-				</div>
+
+				{advmode &&
+					<Card  className="mb-4 w-100 role-detail-json-area">
+						<CardHeader className="border-bottom">
+							<div className="card-header-title">
+								<i className="at-programming pr-2"></i>
+								JSON
+							</div>
+						</CardHeader>
+						{role &&
+							<CardBody>
+								<ReactJson
+									theme={theme === 'dark' ? "chalk" : "rjv-default"}
+									src={role}
+									name={false}
+									collapsed={false}
+								/>
+							</CardBody>
+						}
+					</Card>
+				}
 			</div>
 		</Container>
 	);

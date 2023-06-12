@@ -29,7 +29,7 @@
 	"ASABAuthModule": {
 		"You are not authorized to use this application": "Nejste autorizováni k používání této aplikace",
 		"You are in DEV mode and using MOCK login parameters": "Jste v DEV režimu a používáte MOCK přihlašovací údaje",
-		"Your session has expired": "Vaše relace vypršela",
+		"You have been logged out due to inactivity.": "Byli jste odhlášeni z důvodu nečinnosti.",
 		"Your session will expire soon": "Vaše relace brzy vyprší"
 	},
 	"ASABTenantModule": {
@@ -59,14 +59,19 @@
 		"About": "O aplikaci",
 		"Logout": "Odhlásit"
 	},
+	"Alerts": {
+		"Continue to login": "Pokračujte na přihlášení"
+	},
 	"Breadcrumbs": {
 		"Resources": "Zdroje",
 		"New resource": "Nový zdroj",
 		"Resource detail": "Detail zdroje",
+		"Deleted resources": "Odstraněné zdroje",
+		"Deleted resource detail": "Detail odstraněného zdroje",
 		"Roles": "Role",
 		"New roles": "Nové role",
 		"Role detail": "Detail role",
-		"Credentials": "Uživ. Identifikace",
+		"Credentials": "Uživatelské údaje",
 		"New credentials": "Nové uživ. údaje",
 		"Credentials detail": "Detail uživ. údajů",
 		"Reset password": "Obnovení hesla",
@@ -75,11 +80,44 @@
 		"Tenants": "Tenanti",
 		"New tenant": "Nový tenant",
 		"Tenant detail": "Detail tenanta",
+		"Assign tenants": "Přiřadit tenanty",
 		"Clients": "Klienti",
 		"New client": "Nový klient",
 		"Client detail": "Detail klienta",
 		"About": "O Aplikaci",
-		"Access control": "Přístupová oprávnění"
+		"Access control": "Přístupová oprávnění",
+		"Bulk actions": "Hromadné akce",
+		"Homepage": "Domovská stránka"
+	},
+	"BulkAssignmentContainer" : {
+		"Credentials invited": "Uživatel pozván",
+		"Credentials suspended": "Uživatel suspendován",
+		"Failed to fetch credentials": "Nezdařilo se načíst uživatele",
+		"Can't fetch credentials, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
+		"Failed to perform bulk operation": "Nepodařilo se provést hromadnou operaci",
+		"Bulk action was successful": "Hromadná operace proběhla úspěšně",
+		"Credentials": "Uživatelé",
+		"Search": "Hledat",
+		"Selected credentials": "Vybraní uživatelé",
+		"Unselect": "Odebrat z výběru",
+		"Tenants": "Tenanti",
+		"Selected tenants and roles": "Zvolení tenanti a role",
+		"Assign in bulk": "Hromadně přiřadit",
+		"Select credentials and tenants": "Vyberte uživatele a tenanty",
+		"Remove assignment": "Hromadně odebrat",
+		"Failed to fetch roles": "Nepodařilo se získat role",
+		"Add global role(s)": "Přidat globální role",
+		"Global roles have to be individually specified": "Globální role musí být specifikovány",
+		"Do you really want to leave this screen? Selected data will be lost": "Přesunem na jinou stránku budou ztracena zvolená data.",
+		"More": "Více ...",
+		"Select roles": "Vybrat role",
+		"Add role": "Přidat role",
+		"If you wish to assign/unassign global roles, select individual roles. Otherwise leave it as is": "Přejete-li si přiřadit/odebrat globalní role, zvolte konkrétní role. V opačném případě nepřidávejte konkrétní globální role",
+		"Selected global roles will be assignes to/unassigned from the selected credentials": "Zvolené globální role budou přiřazeny k/odebrány od zvolených uživatelů",
+		"Tenant": "Tenant",
+		"and selected roles will be assigned to/unassigned from selected credentials": "a zvolené role budou přiřazeny/odebrány od zvolených uživatelů",
+		"Selected credentials will be assigned to/removed from tenant": "Zvolení uživatelé budou přiřazeni k/odebráni od tenanta",
+		"Global roles": "Globální role"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",
@@ -216,16 +254,19 @@
 	},
 	"CredentialsRolesCard": {
 		"More": "Více ...",
-		"Assigned roles": "Přiřazené role",
+		"Role": "Role",
+		"Roles": "Role",
 		"Assign a new role": "Přidat novou roli",
 		"Select role to assign ...": "Vyberte roli k přiřazení ...",
 		"Roles updated successfully": "Role úspěšně aktualizované",
 		"Failed to update roles": "Role se nepodařilo aktualizovat",
 		"Something went wrong, failed to fetch roles": "Něco je špatně, nepodařilo se získat role",
-		"Something went wrong, failed to fetch assigned roles": "Něco je špatně, nepodařilo se získat přiřazené role"
+		"Something went wrong, failed to fetch assigned roles": "Něco je špatně, nepodařilo se získat přiřazené role",
+		"already selected": "byl již zvolen"
 	},
 	"CredentialsTenantsCard": {
 		"More": "Více ...",
+		"Tenant": "Tenant",
 		"Tenants": "Tenanti",
 		"Assign a tenant": "Přiřadit tenanta",
 		"Search": "Vyhledat",
@@ -233,17 +274,17 @@
 		"Failed to update tenants": "Tenanty se nepodařilo aktualizovat",
 		"Something went wrong, failed to fetch tenants": "Něco je špatně, nepodařilo se získat tenanty",
 		"Something went wrong, failed to fetch assigned tenants": "Něco je špatně, nepodařilo se získat přiřazené tenanty",
-		"No match": "Shoda nenalezena"
+		"No match": "Shoda nenalezena",
+		"already selected": "byl již zvolen"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Relace",
 		"No active sessions": "Žádné aktivní relace",
-		"Terminate user sessions": "Ukončit relace uživatele",
-		"Terminate sessions": "Ukončit relace",
-		"Do you want to terminate user sessions?": "Opravdu chcete ukončit relace uživatele?",
-		"Sessions successfully terminated": "Relace úspěšně ukončeny",
-		"Something went wrong when terminating sessions": "Něco se pokazilo při ukončování relací",
-		"Failed to terminate sessions": "Nepodařilo se ukončit relace"
+		"Log out": "Odhlásit",
+		"Do you really want to log the user out?": "Opravdu chcete odhlásit uživatele?",
+		"Successfully logged out": "Uživatel úspěšně odhlášen",
+		"Unsuccessful log out": "Nepodařilo se odhlásit uživatele",
+		"Failed to log out": "Odhlášení se nepodařilo"
 	},
 	"CredentialsListContainer": {
 		"Credentials": "Uživatelské údaje",
@@ -257,7 +298,8 @@
 		"Roles": "Role",
 		"Something went wrong, failed to fetch data": "Něco je špatně, nepodařilo se získat data",
 		"Can't fetch the data, you don't have rights to display it": "Nepodařilo se získat data, nemáte dostatečná oprávnění k jejich zobrazení",
-		"Credentials invited": "Uživatel pozván"
+		"Credentials invited": "Uživatel pozván",
+		"Bulk actions": "Hromadné akce"
 	},
 	"FormFields": {
 		"Phone": "Telefon",
@@ -321,7 +363,8 @@
 		"Credentials suspended": "Uživatel suspendován",
 		"Something went wrong, failed to fetch assigned credentials": "Něco je špatně, nepodařilo se získat přiřazené uživatelské údaje",
 		"Assign credentials": "Přiřadit uživatelské údaje",
-		"Assigned credentials": "Přiřazené uživatelské údaje"
+		"Assigned credentials": "Přiřazené uživatelské údaje",
+		"More": "Více ..."
 	},
 	"RolesCreateContainer": {
 		"Global role": "Globální role",
@@ -348,7 +391,11 @@
 		"Save": "Uložit",
 		"Cancel": "Zrušit",
 		"Edit": "Upravit",
-		"No data": "Žádná data"
+		"No data": "Žádná data",
+		"More": "Více...",
+		"Search": "Hledat",
+		"Resource": "Zdroj",
+		"already selected": "byl již zvolen"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Zdroj byl úspěšně vytvořen",
@@ -363,18 +410,48 @@
 		"Invalid format, resource cannot start with a underscore": "Nesprávný formát, zdroj nemůže začínat podtržítkem",
 		"Invalid format, only lower-case letters, numbers, dash and underscore are allowed": "Nesprávný formát, pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Pouze malá písmena, číslice, pomlčka a podtržítko jsou povoleny",
-		"Something went wrong, failed to create resource": "Něco je špatně, nepodařilo se vytvořit zdroj"
+		"Failed to create resource": "Nepodařilo se vytvořit zdroj"
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Zdroj",
+		"Delete resource": "Odstranit zdroj",
 		"Resource updated successfully": "Zdroj byl úspěšně aktualizován",
-		"Something went wrong, can't fetch resource details": "Něco je špatně, nepodařilo se načíst zdroj",
-		"Something went wrong, failed to update resource": "Něco je špatně, aktualizace zdroje se nezdařila"
+		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
+		"Failed to update resource": "Aktualizace zdroje se nezdařila",
+		"Failed to delete resource": "Odstranění zdroje se nezdařilo",
+		"Resource successfully deleted": "Zdroj byl úspěšně odstraněn",
+		"Do you really want to delete this resource": "Opravdu si přejete odstranit tento zdroj?"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Seznam zdrojů",
 		"Create resource": "Vytvořit zdroj",
-		"Something went wrong, failed to load resources": "Něco je špatně, nepodařilo se načíst zdroje"
+		"Delete resource": "Odstranit zdroj",
+		"Deleted resources": "Odstraněné zdroje",
+		"Failed to load resources": "Nepodařilo se načíst zdroje",
+		"Failed to delete the resource": "Nepodařilo se odstranit zdroj",
+		"Do you want to delete this resource": "Přejete si tento zdroj odstranit?",
+		"Resource successfully deleted": "Zdroj byl úspěšně odstraněn"
+	},
+	"ResourcesDeletedDetailContainer": {
+		"Resource": "Zdroj",
+		"Hard-delete": "Trvale odstranit",
+		"Retrieve": "Obnovit zdroj",
+		"Can't fetch resource details": "Nepodařilo se načíst zdroj",
+		"Failed to hard-delete this resource": "Nepodařilo se trvale odstranit tento zdroj",
+		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
+		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
+		"Resource was successfully hard-deleted": "Zdroj byl úspěšně trvale odstranit",
+		"Do you really want to hard-delete this resource": "Opravdu si přejete trvale odstranit zdroj?",
+		"Do you really want to retrieve this resource": "Opravdu si přejete obnovit zdroj?"
+	},
+	"ResourcesDeletedListContainer": {
+		"Back": "Zpět",
+		"Retrieve resource": "Obnovit zdroj",
+		"Resource retrieved successfuly": "Obnova zdroje proběhla úspěšně",
+		"Failed to load resources": "Nepodařilo se načíst zdroje",
+		"Failed to retrieve resource": "Obnova zdroje se nezdařila",
+		"Deleted resources": "Seznam odstraněných zdrojů",
+		"Do you really want to retrieve this resource": "Opravdu si přejete obnovit zdroj?"
 	},
 	"SessionListContainer": {
 		"Credentials": "Uživ. Identifikace",
@@ -461,7 +538,8 @@
 		"Failed to remove the tenant": "Nepodařilo se odstranit tenanta",
 		"Tenant removed successfully, you will be logged out in a while": "Tenant úspěšně odstraněn, za moment budete odhlášeni",
 		"Tenant removed successfully": "Tenant úspěšně odstraněn",
-		"Tenant data updated successfully": "Tenant úspěšně aktualizován"
+		"Tenant data updated successfully": "Tenant úspěšně aktualizován",
+		"More": "Více..."
 	},
 	"TenantCreateContainer": {
 		"Tenant has been created": "Tenant byl vytvořen",
@@ -506,12 +584,13 @@
 	"Sidebar": {
 		"About": "O Aplikaci",
 		"Auth": "Autorizace",
-		"Credentials": "Uživ. Identifikace",
+		"Credentials": "Uživatelé",
 		"Tenants": "Tenanti",
 		"Sessions": "Relace",
 		"Roles": "Role",
 		"Resources": "Zdroje",
-		"Clients": "Klienti"
+		"Clients": "Klienti",
+		"Home": "Domů"
 	},
 	"Name": "Název",
 	"Description": "Popis",

@@ -29,7 +29,7 @@
 	"ASABAuthModule": {
 		"You are not authorized to use this application": "You are not authorized to use this application",
 		"You are in DEV mode and using MOCK login parameters": "You are in DEV mode and using MOCK login parameters",
-		"Your session has expired": "Your session has expired",
+		"You have been logged out due to inactivity.": "Your session has ended due to inactivity.",
 		"Your session will expire soon": "Your session will expire soon"
 	},
 	"ASABTenantModule": {
@@ -59,10 +59,15 @@
 		"About": "About",
 		"Logout": "Logout"
 	},
+	"Alerts": {
+		"Continue to login": "Continue to login"
+	},
 	"Breadcrumbs": {
 		"Resources": "Resources",
 		"New resource": "New resource",
 		"Resource detail": "Resource detail",
+		"Deleted resources": "Deleted resources",
+		"Deleted resource detail": "Deleted resource detail",
 		"Roles": "Roles",
 		"New roles": "New roles",
 		"Role detail": "Role detail",
@@ -75,11 +80,44 @@
 		"Tenants": "Tenants",
 		"New tenant": "New tenant",
 		"Tenant detail": "Tenant detail",
+		"Assign tenants": "Assign tenants",
 		"Clients": "Clients",
 		"New client": "New client",
 		"Client detail": "Client detail",
 		"About": "About",
-		"Access control": "Access control"
+		"Access control": "Access control",
+		"Bulk actions": "Bulk actions",
+		"Homepage": "Homepage"
+	},
+	"BulkAssignmentContainer" : {
+		"Credentials invited": "Credentials invited",
+		"Credentials suspended": "Credentials suspended",
+		"Failed to fetch credentials": "Failed to fetch credentials",
+		"Can't fetch credentials, you don't have rights to display it": "Can't fetch credentiasl, you don't have rights to display it",
+		"Failed to perform bulk operation": "Failed to perform bulk operation",
+		"Bulk action was successful": "Bulk action was successful",
+		"Credentials": "Credentials",
+		"Search": "Search",
+		"Selected credentials": "Selected credentials",
+		"Unselect": "Unselect",
+		"Tenants": "Tenants",
+		"Selected tenants and roles": "Selected tenants and roles",
+		"Assign in bulk": "Assign in bulk",
+		"Select credentials and tenants": "Select credentials and tenants",
+		"Remove assignment": "Remove assignment",
+		"Failed to fetch roles": "Failed to fetch roles",
+		"Add global role(s)": "Add global role(s)",
+		"Global roles have to be individually specified": "Global roles have to be individually specified",
+		"Do you really want to leave this screen? Selected data will be lost": "Do you really want to leave this screen? Selected data will be lost",
+		"More": "More...",
+		"Select roles": "Select roles",
+		"Add role": "Add role",
+		"If you wish to assign/unassign global roles, select individual roles. Otherwise leave it as is": "If you wish to assign/unassign global roles, select individual roles. Otherwise leave it as is",
+		"Selected global roles will be assignes to/unassigned from the selected credentials": "Selected global roles will be assignes to/unassigned from the selected credentials",
+		"Tenant": "Tenant",
+		"and selected roles will be assigned to/unassigned from selected credentials": "and selected roles will be assigned to/unassigned from selected credentials",
+		"Selected credentials will be assigned to/removed from tenant": "Selected credentials will be assigned to/removed from tenant",
+		"Global roles": "Global roles"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
@@ -216,16 +254,19 @@
 	},
 	"CredentialsRolesCard": {
 		"More": "More...",
-		"Assigned roles": "Assigned roles",
+		"Role": "Role",
+		"Roles": "Roles",
 		"Assign a new role": "Assign a new role",
 		"Select role to assign ...": "Select role to assign ...",
 		"Roles updated successfully": "Roles updated successfully",
 		"Failed to update roles": "Failed to update roles",
 		"Something went wrong, failed to fetch roles": "Something went wrong, failed to fetch roles",
-		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles"
+		"Something went wrong, failed to fetch assigned roles": "Something went wrong, failed to fetch assigned roles",
+		"already selected": "already selected"
 	},
 	"CredentialsTenantsCard": {
 		"More": "More...",
+		"Tenant": "Tenant",
 		"Tenants": "Tenants",
 		"Assign a tenant": "Assign a tenant",
 		"Search": "Search",
@@ -233,17 +274,17 @@
 		"Failed to update tenants": "Failed to update tenants",
 		"Something went wrong, failed to fetch tenants": "Something went wrong, failed to fetch tenants",
 		"Something went wrong, failed to fetch assigned tenants": "Something went wrong, failed to fetch assigned tenants",
-		"No match": "No match"
+		"No match": "No match",
+		"already selected": "already selected"
 	},
 	"CredentialsSessionCard": {
 		"Sessions": "Sessions",
 		"No active sessions": "No active sessions",
-		"Terminate user sessions": "Terminate user sessions",
-		"Terminate sessions": "Terminate sessions",
-		"Do you want to terminate user sessions?": "Do you want to terminate user sessions?",
-		"Sessions successfully terminated": "Sessions successfully terminated",
-		"Something went wrong when terminating sessions": "Something went wrong when terminating sessions",
-		"Failed to terminate sessions": "Failed to terminate sessions"
+		"Log out": "Log out",
+		"Do you really want to log the user out?": "Do you really want to log the user out?",
+		"Successfully logged out": "Successfully logged out",
+		"Unsuccessful log out": "Unsuccessful log out",
+		"Failed to log out": "Failed to log out"
 	},
 	"CredentialsListContainer": {
 		"Credentials": "Credentials",
@@ -257,7 +298,8 @@
 		"Roles": "Roles",
 		"Something went wrong, failed to fetch data": "Something went wrong, failed to fetch data",
 		"Can't fetch the data, you don't have rights to display it": "Can't fetch the data, you don't have rights to display it",
-		"Credentials invited": "Credentials invited"
+		"Credentials invited": "Credentials invited",
+		"Bulk actions": "Bulk actions"
 	},
 	"FormFields": {
 		"Phone": "Phone",
@@ -321,7 +363,8 @@
 		"Credentials suspended": "Credentials suspended",
 		"Something went wrong, failed to fetch assigned credentials": "Something went wrong, failed to fetch assigned credentials",
 		"Assign credentials": "Assign credentials",
-		"Assigned credentials": "Assigned credentials"
+		"Assigned credentials": "Assigned credentials",
+		"More": "More..."
 	},
 	"RolesCreateContainer": {
 		"Global role": "Global role",
@@ -348,7 +391,11 @@
 		"Save": "Save",
 		"Cancel": "Cancel",
 		"Edit": "Edit",
-		"No data": "No data"
+		"No data": "No data",
+		"More": "More...",
+		"Search": "Search",
+		"Resource": "Resource",
+		"already selected": "already selected"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Resource has been created",
@@ -363,18 +410,47 @@
 		"Invalid format, resource cannot start with a underscore": "Invalid format, resource cannot start with a underscore",
 		"Invalid format, only letters, numbers, dash and underscore are allowed": "Invalid format, only letters, numbers, dash and underscore are allowed",
 		"Only lower-case letters, numbers, dash and underscore are allowed": "Only lower-case letters, numbers, dash and underscore are allowed",
-		"Something went wrong, failed to create resource": "Something went wrong, failed to create resource"
+		"Failed to create resource": "Failed to create resource"
 	},
 	"ResourcesDetailContainer": {
 		"Resource": "Resource",
+		"Delete resource": "Delete resource",
 		"Resource updated successfully": "Resource updated successfully",
-		"Something went wrong, can't fetch resource details": "Something went wrong, can't fetch resource details",
-		"Something went wrong, failed to update resource": "Something went wrong, failed to update resource"
+		"Can't fetch resource details": "Can't fetch resource details",
+		"Failed to update resource": "Failed to update resource",
+		"Failed to delete resource": "Failed to delete resource",
+		"Resource successfully deleted": "Resource successfully deleted",
+		"Do you really want to delete this resource": "Do you really want to delete this resource"
 	},
 	"ResourcesListContainer": {
 		"Resources list": "Resources list",
 		"Create resource": "Create resource",
-		"Something went wrong, failed to load resources": "Something went wrong, failed to load resources"
+		"Delete resource": "Delete resource",
+		"Deleted resources": "Deleted resources",
+		"Failed to load resources": "Failed to load resources",
+		"Failed to delete the resource": "Failed to delete the resource",
+		"Do you want to delete this resource": "Do you want to delete this resource?",
+		"Resource successfully deleted": "Resource successfully deleted"
+	},
+	"ResourcesDeletedDetailContainer": {
+		"Hard-delete": "Hard-delete",
+		"Retrieve": "Retrieve",
+		"Can't fetch resource details": "Can't fetch resource details",
+		"Failed to hard-delete this resource": "Failed to hard-delete this resource",
+		"Failed to retrieve resource": "Failed to retrieve resource",
+		"Resource retrieved successfuly": "Resource retrieved successfuly",
+		"Resource was successfully hard-deleted": "Resource was successfully hard-deleted",
+		"Do you really want to hard-delete this resource": "Do you really want to hard-delete this resource?",
+		"Do you really want to retrieve this resource": "Do you really want to retrieve this resource?"
+	},
+	"ResourcesDeletedListContainer": {
+		"Back": "Back",
+		"Retrieve resource": "Retrieve resource",
+		"Resource retrieved successfuly": "Resource retrieved successfuly",
+		"Failed to load resources": "Failed to load resources",
+		"Failed to retrieve resource": "Failed to retrieve resource",
+		"Deleted resources": "Deleted resources",
+		"Do you really want to retrieve this resource": "Do you really want to retrieve this resource?"
 	},
 	"SessionListContainer": {
 		"Credentials": "Credentials",
@@ -461,7 +537,8 @@
 		"Failed to remove the tenant": "Failed to remove the tenant",
 		"Tenant removed successfully, you will be logged out in a while": "Tenant removed successfully, you will be logged out in a while",
 		"Tenant removed successfully": "Tenant removed successfully",
-		"Tenant data updated successfully": "Tenant data updated successfully"
+		"Tenant data updated successfully": "Tenant data updated successfully",
+		"More": "More..."
 	},
 	"TenantCreateContainer": {
 		"Tenant has been created": "Tenant has been created",
@@ -512,7 +589,8 @@
 		"Sessions": "Sessions",
 		"Roles": "Roles",
 		"Resources": "Resources",
-		"Clients": "Clients"
+		"Clients": "Clients",
+		"Home": "Home"
 	},
 	"Name": "Name",
 	"Description": "Description",

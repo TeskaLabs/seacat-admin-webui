@@ -1,18 +1,24 @@
 // wrap all cards in RolesDetailContainer
 .role-detail-wrapper {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		"a b"
+		"c b"
+		"d d";
+	row-gap: 0.25rem;
+	column-gap: 0.25rem;
+	grid-template-rows: auto 1fr;
 
 	.role-detail-info {
-		width: 50%;
-		display: inline-block;
-		padding-right: 15px;
+		grid-area: a;
 	}
 
 	.role-detail-credentials-area {
-		width: 50%;
-		display: inline-block;
-		padding-left: 15px;
+		grid-area: b;
+		& .data-table-card-body {
+			overflow: auto;
+		}
 		& .row {
 			height: auto !important;
 		}
@@ -32,11 +38,12 @@
 	}
 
 	.role-resource-card-area {
-		margin-top: 30px;
+		grid-area: c;
+		// max-height: 300px;
 	}
 
 	.role-detail-json-area {
-		margin-top: 30px;
+		grid-area: d;
 	}
 }
 
@@ -47,7 +54,13 @@
 
 @media (max-width: 994px) {
 	.role-detail-wrapper {
-		display: block;
+		grid-template-areas:
+			"a"
+			"b"
+			"c"
+			"d";
+		grid-template-columns: 1fr;
+		grid-template-rows: unset;
 
 		.role-detail-info {
 			width: 100%;
@@ -57,10 +70,6 @@
 		.role-detail-credentials-area {
 			width: 100%;
 			padding-left: 0;
-		}
-
-		.role-resource-card-area {
-			margin-bottom: 30px;
 		}
 	}
 }

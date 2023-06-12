@@ -36,18 +36,21 @@ const ResourceCreateContainer = (props) => {
 		let body = {};
 		body["description"] = values.resource_description;
 		try {
-			let res = await SeaCatAuthAPI.post(`/resource/${values.resource_id}`,
+			let response = await SeaCatAuthAPI.post(`/resource/${values.resource_id}`,
 				JSON.stringify(body),
 				{
 					headers: {
 						'Content-Type': 'application/json'
 					}
 				});
+			if (response.data.result != "OK"){
+				throw new Error(t('ResourcesCreateContainer|Failed to create resource'));
+			}
 			props.app.addAlert("success", t("ResourcesCreateContainer|Resource created"));
 			props.history.push("/auth/resources");
 		} catch(e) {
 			console.error(e);
-			props.app.addAlert("warning", `${t("ResourcesCreateContainer|Something went wrong, failed to create resource")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesCreateContainer|Failed to create resource")}. ${e?.response?.data?.message}`, 30);
 		}
 	}
 

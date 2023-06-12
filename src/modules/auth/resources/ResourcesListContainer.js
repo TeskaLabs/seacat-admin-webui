@@ -13,7 +13,6 @@ function ResourcesListContainer(props) {
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(true);
-	const [show, setShow] = useState(false);
 	const [limit, setLimit] = useState(0);
 	const [height, setHeight] = useState(0);
 	const ref = useRef(null);
@@ -39,6 +38,27 @@ function ResourcesListContainer(props) {
 		{
 			name: t("Description"),
 			key: 'description'
+		},
+		{
+			name: " ",
+			customComponent: {
+				generate: (resource) => (
+					<div className="d-flex justify-content-end">
+						<ButtonWithAuthz
+							title={t("ResourcesListContainer|Delete resource")}
+							id={resource._id}
+							size="sm"
+							color="danger"
+							outline
+							onClick={() => {terminateResourceForm(resource._id)}}
+							resource={resourceEdit}
+							resources={credentialsResources}
+						>
+							<i className="cil-x"></i>
+						</ButtonWithAuthz>
+					</div>
+				)
+			}
 		}
 	];
 
@@ -46,41 +66,68 @@ function ResourcesListContainer(props) {
 		setHeight(ref.current.clientHeight);
 	}, []);
 
-	useEffect(()=>{
-		setShow(false);
-		if (resources.length === 0) {
-			// Timeout delays appearance of content loader in DataTable. This measure prevents 'flickering effect' during fast fetch of data, where content loader appears just for a split second.
-			setTimeout(() => setShow(true), 500);
-		};
-		if (limit > 0) {
-			getResources();
-		}
+	useEffect(() => {
+		if (limit > 0) getResources();
 	}, [page, limit]);
 
 	const getResources = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/resource`, {params: {p:page, i:limit}});
+			let response = await SeaCatAuthAPI.get(`/resource`, {params: {exclude: "deleted", p:page, i:limit}});
 			setResources(response.data.data);
 			setCount(response.data.count || 0);
 			setLoading(false);
 		} catch(e) {
 			console.error(e);
 			setLoading(false);
-			props.app.addAlert("warning", `${t("ResourcesListContainer|Something went wrong, failed to load resources")}. ${e?.response?.data?.message}`, 30);
+			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to load resources")}. ${e?.response?.data?.message}`, 30);
+		}
+	}
+	// Set terminate resource dialog
+	const terminateResourceForm = (resourceId) => {
+		var r = confirm(t('ResourcesListContainer|Do you want to delete this resource'));
+		if (r == true) {
+			deleteResourceFunction(resourceId);
 		}
 	}
 
-	const createResourceComponent = (
-		<ButtonWithAuthz
-			title={t("ResourcesListContainer|Create resource")}
-			color="primary"
-			onClick={() => {redirectToCreate()}}
-			resource={resourceEdit}
-			resources={credentialsResources}
-		>
-			{t("ResourcesListContainer|Create resource")}
-		</ButtonWithAuthz>
-	)
+	// Terminate the resource
+	const deleteResourceFunction = async (resourceId) => {
+		try {
+			let response = await SeaCatAuthAPI.delete(`/resource/${resourceId}`);
+			if (response.data.result !== "OK") {
+				throw new Error(t("ResourcesListContainer|Failed to delete the resource"));
+			}
+			props.app.addAlert("success", t("ResourcesListContainer|Resource successfully deleted"));
+			props.history.push("/auth/resources-deleted");
+		} catch(e) {
+			console.error(e);
+			props.app.addAlert("warning", `${t("ResourcesListContainer|Failed to delete the resource")}. ${e?.response?.data?.message}`, 30);
+		}
+	}
+
+	const customComponent = (
+		<div style={{display: "flex"}} >
+			<ButtonWithAuthz
+				title={t("ResourcesListContainer|Deleted resources")}
+				color="primary"
+				outline
+				resources={credentialsResources}
+				resource={resourceEdit}
+				onClick={() => props.history.push('/auth/resources-deleted')}
+				>
+				{t("ResourcesListContainer|Deleted resources")}
+			</ButtonWithAuthz>
+			<ButtonWithAuthz
+				title={t("ResourcesListContainer|Create resource")}
+				color="primary"
+				onClick={() => {redirectToCreate()}}
+				resource={resourceEdit}
+				resources={credentialsResources}
+				>
+				{t("ResourcesListContainer|Create resource")}
+			</ButtonWithAuthz>
+		</div>
+	);
 
 	const redirectToCreate = () => {
 		props.history.push('/auth/resources/!create');
@@ -103,9 +150,8 @@ function ResourcesListContainer(props) {
 					setPage={setPage}
 					limit={limit}
 					setLimit={setLimit}
-					customComponent={createResourceComponent}
+					customComponent={customComponent}
 					isLoading={loading}
-					contentLoader={show}
 					customRowClassName={customRowClassName}
 					height={height}
 				/>
