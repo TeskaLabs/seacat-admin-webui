@@ -24,7 +24,7 @@ Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seaca
 
 - Add locales for the ended session, version bump asab-webui (INDIGO Sprint 230512, [!34](https://github.com/TeskaLabs/seacat-admin-webui/pull/34))
 
-- Add missing locales for Home (INDIGO Sprint 230526, [!37](https://github.com/TeskaLabs/seacat-admin-webui/pull/37))
+- Add missing locales for Home (INDIGO Sprint 230609, [!37](https://github.com/TeskaLabs/seacat-admin-webui/pull/37))
 
 ## v23.16-beta
 
