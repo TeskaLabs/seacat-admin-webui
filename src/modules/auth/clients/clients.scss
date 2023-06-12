@@ -14,26 +14,29 @@ $svg-arrow: var(--svg-arrow);
 
 .client-wrapper {
 	display: grid;
-	gap: 1rem;
+	gap: 0.25rem;
 	grid-template-areas:
-		"a"
-		"b";
-	grid-template-columns: 1fr;
+		"a b"
+		"a c"
+		"a d"
+		"e e";
+	grid-template-columns: 1fr 1fr;
 
-	& .client-cards-wrapper {
-		display: grid;
+	& .client-main-info-card {
 		grid-area: a;
-		grid-template-areas:
-			"i q";
-		gap: 1rem;
-		grid-template-columns: 1fr 1fr;
-		.client-main-info {
-			grid-area: i;
-		}
-		.client-right-cards{
-			grid-area: q;
+		align-self: start;
+	}
 
-		}
+	& .client-multidomain-card {
+		grid-area: b;
+	}
+
+	& .client-authorization-card {
+		grid-area: c;
+	}
+
+	& .client-access-control-card {
+		grid-area: d;
 	}
 
 
@@ -43,7 +46,7 @@ $svg-arrow: var(--svg-arrow);
 		margin-top: 8px;
 	}
 	.adv-card {
-		grid-area: b;
+		grid-area: e;
 	}
 
 }
@@ -97,11 +100,13 @@ $svg-arrow: var(--svg-arrow);
 
 @media (max-width: 994px) {
 	.client-wrapper {
-		& .client-cards-wrapper {
-			grid-template-areas:
-			"i"
-			"q";
-		}
+		grid-template-areas:
+		"a"
+		"b"
+		"c"
+		"d"
+		"e";
+		grid-template-columns: 1fr;
 	}
 }
 

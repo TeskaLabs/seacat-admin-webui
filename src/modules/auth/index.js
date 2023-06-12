@@ -5,6 +5,7 @@ import Module from 'asab-webui/abc/Module';
 const CredentialsListContainer = lazy(() => componentLoader(() => import('./credentials/CredentialsListContainer')));
 const CredentialsDetailContainer = lazy(() => componentLoader(() => import('./credentials/CredentialsDetailContainer')));
 const CredentialsCreateContainer = lazy(() => componentLoader(() => import('./credentials/CredentialsCreateContainer')));
+const BulkAssignmentContainer = lazy(() => componentLoader(() => import('./credentials/BulkAssignmentContainer')));
 const ResetPasswordContainer = lazy(() => componentLoader(() => import('./credentials/ResetPasswordContainer')));
 
 const SessionListContainer = lazy(() => componentLoader(() => import('./session/SessionListContainer')));
@@ -115,6 +116,13 @@ export default class SeaCatAuthModule extends Module {
 			name: 'New credentials',
 			component: CredentialsCreateContainer,
 			resource: "seacat:credentials:access"
+		});
+
+		app.Router.addRoute({
+			path: '/auth/credentials/!bulk-assignment',
+			name: 'Bulk actions',
+			component: BulkAssignmentContainer,
+			resource: 'authz:superuser'
 		});
 
 		app.Router.addRoute({

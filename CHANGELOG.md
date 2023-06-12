@@ -2,11 +2,19 @@
 
 ## Release Candidate
 
+## v23.23-alpha2
+
+Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.23-beta)
+
 ### Features
 
-- ASAB WebUI submodule version bump [[f1bd8a3](https://github.com/TeskaLabs/asab-webui/commit/f1bd8a3364171e7e731ecc9c52a19f3b8fd0bd78)] commit (INDIGO Sprint 230512, [!34](https://github.com/TeskaLabs/seacat-admin-webui/pull/34))
+- ASAB WebUI submodule version bump [[80151df](https://github.com/TeskaLabs/asab-webui/commit/80151df2eb26bc683a6b5d31bfed9a0acd879c35)] commit (INDIGO Sprint 230609, [!38](https://github.com/TeskaLabs/seacat-admin-webui/pull/38))
 
 - Changing logo based on app's theme (INDIGO Sprint 230428, [!12](https://github.com/TeskaLabs/seacat-admin-webui/pull/12))
+
+- Pagination via `More..` button in dropdowns. Clients refactored to easily maintainable css grid. (INDIGO 230526, [!35](https://github.com/TeskaLabs/seacat-admin-webui/pull/35))
+
+- Bulk assignment sceen for miltuple tenants & roles to credentials assignment. (INDIGO 230526, [!21](https://github.com/TeskaLabs/seacat-admin-webui/pull/21))
 
 ### Refactoring
 
