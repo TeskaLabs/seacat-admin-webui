@@ -232,19 +232,19 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Tenants',
 					url: '/auth/tenant',
-					icon: 'at-menu-square',
+					icon: 'at-house-key',
 					resource: "seacat:tenant:access"
 				},
 				{
 					name: 'Sessions',
 					url: '/auth/session',
-					icon: 'at-link-chain',
+					icon: 'at-stopwatch',
 					resource: "seacat:session:access"
 				},
 				{
 					name: 'Roles',
 					url: '/auth/roles',
-					icon: 'at-account',
+					icon: 'at-hierarchy-account-user',
 					resource: "seacat:role:access"
 				},
 				{
@@ -256,7 +256,7 @@ export default class SeaCatAuthModule extends Module {
 				{
 					name: 'Clients',
 					url: '/auth/clients',
-					icon: 'at-layers',
+					icon: 'at-pc',
 					resource: "seacat:client:access"
 				},
 			]
