@@ -91,7 +91,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 		<Card className={`custom-data-card ${edit ? " edit" : ""}`}>
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="at-menu-square pr-2"></i>
+					<i className="at-folder-list pr-2"></i>
 					{t("CustomDataContainer|Custom data")}
 				</div>
 			</CardHeader>
