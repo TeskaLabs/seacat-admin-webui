@@ -54,7 +54,7 @@ function ResourcesListContainer(props) {
 							resource={resourceEdit}
 							resources={credentialsResources}
 						>
-							<i className="cil-x"></i>
+							<i className="at-xmark-circle"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
