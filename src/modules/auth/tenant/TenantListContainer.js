@@ -88,7 +88,7 @@ function TenantListContainer(props) {
 		<div className="h-100" ref={ref}>
 			<Container>
 				<DataTable
-					title={{ text: t("TenantListContainer|Tenants"), icon: "at-menu-square" }}
+					title={{ text: t("TenantListContainer|Tenants"), icon: "at-house-key" }}
 					headers={headers}
 					data={data}
 					count={count}

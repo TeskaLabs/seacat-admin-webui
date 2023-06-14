@@ -320,7 +320,7 @@ function TenantDetailContainer(props) {
 				<Card className="tenant-general-info">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-menu-square pr-2"></i>
+							<i className="at-house-key pr-2"></i>
 							{t("TenantDetailContainer|Tenant")}
 						</div>
 					</CardHeader>
@@ -382,7 +382,7 @@ function TenantDetailContainer(props) {
 				<DataTable
 					title={{
 						text: t("TenantDetailContainer|Assigned credentials"),
-						icon: "at-list-folder"
+						icon: "at-user-clipboard"
 					}}
 					headers={headers}
 					data={credentialsList}
