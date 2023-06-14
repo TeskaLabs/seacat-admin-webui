@@ -49,7 +49,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={credential.assigned}
 						>
-							<i className="cil-plus"></i>
+							<i className="at-plus-circle"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -61,8 +61,8 @@ const BulkAssignmentContainer = (props) => {
 				generate: (obj) => (
 					<div className="no-wrap-40ch">
 						{(obj.suspended === true) ?
-							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
-							: <span className="cil-user mr-1" />}
+							<span className="at-user-xmark text-muted mr-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
+							: <span className="at-account mr-1" />}
 						<Link
 							className={obj.suspended ? 'credentials-suspended' : null}
 							onClick={() => confirmForm(`/auth/credentials/${obj._id}`)}
@@ -94,7 +94,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={tenant.assigned}
 						>
-							<i className="cil-plus"></i>
+							<i className="at-plus-circle"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -288,7 +288,7 @@ const BulkAssignmentContainer = (props) => {
 		<div className='bulk-actions-wraper'>
 			<div className='credentials-list'>
 					<DataTable
-						title={{ text: t("BulkAssignmentContainer|Credentials"), icon: "cil-people" }}
+						title={{ text: t("BulkAssignmentContainer|Credentials"), icon: "at-users" }}
 						headers={headers}
 						data={datatableCredentialsData}
 						count={count}
@@ -296,7 +296,7 @@ const BulkAssignmentContainer = (props) => {
 						setLimit={setLimit}
 						currentPage={page}
 						setPage={setPage}
-						search={{ icon: 'cil-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
+						search={{ icon: 'at-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
 						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
 						contentLoader={loading}
@@ -306,7 +306,7 @@ const BulkAssignmentContainer = (props) => {
 			<Card className="credentials-selection">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-people mr-2" />
+						<i className="at-users mr-2" />
 						{t("BulkAssignmentContainer|Selected credentials")}
 					</div>
 				</CardHeader>
@@ -320,9 +320,9 @@ const BulkAssignmentContainer = (props) => {
 									size="sm"
 									onClick={() => unselectCredential(idx)}
 								>
-									<i className='cil-x'/>
+									<i className='at-xmark-circle'/>
 								</Button>
-								<i className="cil-user mr-1 ml-3"/>{obj.username ?? obj._id}
+								<i className="at-account mr-1 ml-3"/>{obj.username ?? obj._id}
 							</div>
 						)
 					})}
@@ -331,7 +331,7 @@ const BulkAssignmentContainer = (props) => {
 
 			<div className='tenant-list'>
 				<DataTable
-					title={{ text: t("BulkAssignmentContainer|Tenants"), icon: "cil-apps" }}
+					title={{ text: t("BulkAssignmentContainer|Tenants"), icon: "at-house-key" }}
 					headers={tenantHeaders}
 					data={datatableTenantsData}
 					count={tenantsCount}
@@ -339,7 +339,7 @@ const BulkAssignmentContainer = (props) => {
 					setLimit={setTenantsLimit}
 					currentPage={tenantsPage}
 					setPage={setTenantsPage}
-					search={{ icon: 'cil-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
+					search={{ icon: 'at-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
 					onSearch={(value) => setTenantsFilter(value)}
 					isLoading={loadingTenants}
 					contentLoader={loadingTenants}
@@ -349,7 +349,7 @@ const BulkAssignmentContainer = (props) => {
 			<Card className="tenant-selection">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-apps mr-2" />
+						<i className="at-house-key mr-2" />
 						{t("BulkAssignmentContainer|Selected tenants and roles")}
 					</div>
 				</CardHeader>
@@ -377,7 +377,7 @@ const BulkAssignmentContainer = (props) => {
 											color="secondary"
 											onClick={() => unselectGlobalRole(i)}
 										>
-											<i className="cil-x"/>
+											<i className="at-xmark-circle"/>
 										</Button>
 										<span className="pl-2">{role}</span>
 									</div>
@@ -398,7 +398,7 @@ const BulkAssignmentContainer = (props) => {
 										className="tenant-unselect-btn"
 										onClick={() => unselectTenant(idx)}
 									>
-										<i className='cil-x'/>
+										<i className='at-xmark-circle'/>
 									</Button>
 									<span className="ml-3">{obj._id}</span>
 									<RoleDropdown
@@ -422,7 +422,7 @@ const BulkAssignmentContainer = (props) => {
 														color="secondary"
 														onClick={() => unselectRole(idx, i)}
 													>
-														<i className="cil-x"/>
+														<i className="at-xmark-circle"/>
 													</Button>
 													<span className="pl-2">{role}</span>
 												</div>

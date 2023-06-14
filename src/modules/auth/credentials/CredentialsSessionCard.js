@@ -41,7 +41,7 @@ function CredentialsSessionCard(props) {
 		<Card className="h-100 credential-session-area">
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="at-link-chain pr-2"></i>
+					<i className="at-stopwatch pr-2"></i>
 					{t("CredentialsSessionCard|Sessions")}
 				</div>
 			</CardHeader>
@@ -51,7 +51,7 @@ function CredentialsSessionCard(props) {
 						<Row key={idx}>
 							<Col style={{overflowX: "auto"}}>
 								<Link to={{ pathname:`/auth/session/${session._id}` }} className="user-session">
-									<i className="at-link-chain"></i>
+									<i className="at-stopwatch"></i>
 									{' '}
 									{session._id}
 								</Link>

@@ -99,7 +99,7 @@ function CredentialsRolesCard(props) {
 		<Card className="h-100 credential-role-area">
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="at-account pr-2"></i>
+					<i className="at-hierarchy-account-user pr-2"></i>
 					{t("CredentialsRolesCard|Roles")}
 				</div>
 			</CardHeader>
