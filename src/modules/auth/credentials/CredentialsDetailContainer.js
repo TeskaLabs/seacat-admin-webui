@@ -407,7 +407,7 @@ export default CredentialsDetailContainer;
 
 
 function CredentialsInfoCard(props) {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue, watch, setError, clearErrors, resetField } = useForm({mode: "onChange"})
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, watch, setError, clearErrors, resetField } = useForm()
 	const { t, i18n } = useTranslation();
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);

@@ -29,7 +29,7 @@ function CredentialsCreateContainer(props) {
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const { t, i18n } = useTranslation();
 
-	const { handleSubmit, register, formState: { errors }, getValues, setValue, reset, resetField } = useForm({
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, reset, resetField, watch, setError, clearErrors } = useForm({
 		defaultValues: {
 			'passwordlink': true,
 		}
@@ -43,6 +43,9 @@ function CredentialsCreateContainer(props) {
 	const resourceCreateCredentials = "seacat:credentials:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);
+
+	const emailValue = watch('email');
+	const phoneValue = watch('phone');
 
 	useEffect(() => {
 		retrieveProviders();
@@ -238,9 +241,9 @@ function CredentialsCreateContainer(props) {
 										{(activeTab == "create") && (config !== undefined) && config.creation.map((item, idx) => {
 											switch(item.type) {
 												case 'username': return(<UserNameField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={item.policy === "required"} />)
-												case 'email': return(<EmailField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={item.policy === "required"} />)
+												case 'email': return(<EmailField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={item.policy === "required"} phoneValue={phoneValue} setError={setError} clearErrors={clearErrors} />)
 												case 'password': return(<PasswordField key={idx} register={register} config={item} getValues={getValues} errors={errors} />)
-												case 'phone': return(<PhoneField key={idx} register={register} config={item} getValues={getValues} setValue={setValue} errors={errors} required={item.policy === "required"} />)
+												case 'phone': return(<PhoneField key={idx} register={register} config={item} getValues={getValues} setValue={setValue} errors={errors} required={item.policy === "required"} emailValue={emailValue} setError={setError} clearErrors={clearErrors} />)
 												case 'passwordlink': return(<PasswordLinkField key={idx} register={register} config={item} getValues={getValues} errors={errors}/>)
 												default: return(<div key={idx}>Unknown item: "{item.type}"</div>)
 											}
@@ -252,9 +255,9 @@ function CredentialsCreateContainer(props) {
 									<CardBody>
 										{(activeTab == "invite") &&
 										<>
-											<EmailField register={register} getValues={getValues} errors={errors} required={true} />
+											<EmailField register={register} getValues={getValues} errors={errors} required={true} phoneValue={phoneValue} setError={setError} clearErrors={clearErrors} />
 											<UserNameField register={register} getValues={getValues} errors={errors} required={false} />
-											<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} required={false} />
+											<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} required={false} emailValue={emailValue} setError={setError} clearErrors={clearErrors} />
 										</>}
 									</CardBody>
 								</TabPane>

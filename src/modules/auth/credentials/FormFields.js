@@ -53,6 +53,7 @@ export function PhoneField({register, getValues, setValue, errors, disableField,
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
+				required={required ? true : false}
 			/>
 			{errors.phone && <FormFeedback>{errors.phone.message}</FormFeedback>}
 		</FormGroup>
@@ -64,7 +65,6 @@ export function EmailField({register, getValues, errors, disableField, phoneValu
 	const disable = disableField == undefined ? false : disableField;
 	const reg = register(
 		"email", {
-			required: required ? t("FormFields|Email cannot be empty!") : false,
 			validate: {
 				emptyInput: value => {
 					const isPhoneEmpty = phoneValue === undefined || phoneValue === '';
@@ -81,7 +81,8 @@ export function EmailField({register, getValues, errors, disableField, phoneValu
 
 					return !isEmailEmpty || t('FormFields|Email cannot be empty!');
 				},
-			}
+			},
+			required: required ? t("FormFields|Email cannot be empty!") : false,
 		}
 	);
 	/*
@@ -105,6 +106,7 @@ export function EmailField({register, getValues, errors, disableField, phoneValu
 				onChange={reg.onChange}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
+				required={required ? true : false}
 			/>
 			{errors.email && <FormFeedback>{errors.email.message}</FormFeedback>}
 		</FormGroup>
