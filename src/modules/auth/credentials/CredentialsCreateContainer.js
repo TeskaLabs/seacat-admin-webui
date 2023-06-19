@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
