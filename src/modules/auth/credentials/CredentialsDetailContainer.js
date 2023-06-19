@@ -15,7 +15,7 @@ import {
 } from './FormFields';
 
 import ReactJson from 'react-json-view';
-import { DateTime, ButtonWithAuthz, CellContentLoader } from 'asab-webui';
+import { DateTime, ButtonWithAuthz } from 'asab-webui';
 
 import CredentialsRolesCard from './CredentialsRolesCard';
 import CredentialsTenantsCard from './CredentialsTenantsCard';
