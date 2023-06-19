@@ -481,8 +481,8 @@ function CredentialsInfoCard(props) {
 
 				<CardBody className="card-body-height">
 					<fieldset disabled={editMode ? "": "disabled"}>
-						<EmailField register={register} getValues={getValues} errors={errors} disable={disableEmail} phoneValue={phoneValue} setError={setError} clearErrors={clearErrors}/>
-						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disable={disablePhone} emailValue={emailValue} setError={setError} clearErrors={clearErrors}/>
+						<EmailField register={register} getValues={getValues} errors={errors} disableField={disableEmail} phoneValue={phoneValue} setError={setError} clearErrors={clearErrors}/>
+						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disableField={disablePhone} emailValue={emailValue} setError={setError} clearErrors={clearErrors}/>
 					</fieldset>
 				</CardBody>
 
