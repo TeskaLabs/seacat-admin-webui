@@ -407,12 +407,13 @@ export default CredentialsDetailContainer;
 
 
 function CredentialsInfoCard(props) {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue, watch, setError, clearErrors } = useForm()
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, watch, setError, clearErrors, resetField } = useForm({mode: "onChange"})
 	const { t, i18n } = useTranslation();
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
 	const disableEmail = props.updateFeatures.some(feature => feature.type === "email") ? false : true;
 	const disablePhone = props.updateFeatures.some(feature => feature.type === "phone") ? false : true;
+	const disableSaveButton = errors.email || errors.phone;
 
 	const emailValue = watch('email');
 	const phoneValue = watch('phone');
@@ -490,7 +491,7 @@ function CredentialsInfoCard(props) {
 				{editMode ?
 					<React.Fragment>
 						<ButtonGroup>
-							<Button color="primary" type="submit">{t("Save")}</Button>
+							<Button color="primary" type="submit" disabled={disableSaveButton}>{t("Save")}</Button>
 							<Button
 								color="outline-primary"
 								type="button"
