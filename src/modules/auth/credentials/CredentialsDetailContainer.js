@@ -407,12 +407,15 @@ export default CredentialsDetailContainer;
 
 
 function CredentialsInfoCard(props) {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, watch, setError, clearErrors } = useForm()
 	const { t, i18n } = useTranslation();
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
 	const disableEmail = props.updateFeatures.some(feature => feature.type === "email") ? false : true;
 	const disablePhone = props.updateFeatures.some(feature => feature.type === "phone") ? false : true;
+
+	const emailValue = watch('email');
+	const phoneValue = watch('phone');
 
 	if (props.data != null && onUpdate === false) {
 		setValue("email", props.data.email);
@@ -476,10 +479,10 @@ function CredentialsInfoCard(props) {
 					</div>
 				</CardHeader>
 
-				<CardBody>
+				<CardBody className="card-body-height">
 					<fieldset disabled={editMode ? "": "disabled"}>
-						<EmailField register={register} getValues={getValues} errors={errors} disable={disableEmail}/>
-						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disable={disablePhone}/>
+						<EmailField register={register} getValues={getValues} errors={errors} disable={disableEmail} phoneValue={phoneValue} setError={setError} clearErrors={clearErrors}/>
+						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disable={disablePhone} emailValue={emailValue} setError={setError} clearErrors={clearErrors}/>
 					</fieldset>
 				</CardBody>
 
@@ -488,7 +491,18 @@ function CredentialsInfoCard(props) {
 					<React.Fragment>
 						<ButtonGroup>
 							<Button color="primary" type="submit">{t("Save")}</Button>
-							<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+							<Button
+								color="outline-primary"
+								type="button"
+								onClick={(e) => (
+									setEditMode(false),
+									setOnUpdate(false),
+									clearErrors('email'),
+									clearErrors('phone')
+								)}
+							>
+								{t("Cancel")}
+							</Button>
 						</ButtonGroup>
 					</React.Fragment>
 				:
