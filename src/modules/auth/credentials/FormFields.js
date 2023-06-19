@@ -16,10 +16,21 @@ export function PhoneField(props) {
 		"phone",
 		{
 			validate: {
-				emptyInput: value => (
-					props.getValues("email") === undefined ?
-					props.getValues("phone") !== "" :
-					props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Phone cannot be empty!"),
+				emptyInput: value => {
+					const isEmailEmpty = props.emailValue === undefined || props.emailValue === '';
+					const isPhoneEmpty = value === '';
+
+					if (isEmailEmpty && isPhoneEmpty) {
+						props.setError('email', {
+							type: 'required',
+							message: t('FormFields|Email cannot be empty!'),
+						});
+					} else {
+						props.clearErrors('email');
+					}
+
+					return !isPhoneEmpty || t('FormFields|Phone cannot be empty!');
+				},
 				regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('FormFields|Invalid phone number format'),
 				lengthValidation: value => value.length >= 9 || value.length < 1 || t('FormFields|Phone number is too short')
 			},
@@ -55,10 +66,21 @@ export function EmailField(props) {
 		"email", {
 			required: props.required ? t("FormFields|Email cannot be empty!") : false,
 			validate: {
-				emptyInput: value => (
-					props.getValues("phone") === undefined ?
-					props.getValues("email") !== "" :
-					props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Email cannot be empty!"),
+				emptyInput: value => {
+					const isPhoneEmpty = props.phoneValue === undefined || props.phoneValue === '';
+					const isEmailEmpty = value === '';
+
+					if (isPhoneEmpty && isEmailEmpty) {
+						props.setError('phone', {
+							type: 'required',
+							message: t('FormFields|Phone cannot be empty!'),
+						});
+					} else {
+						props.clearErrors('phone');
+					}
+
+					return !isEmailEmpty || t('FormFields|Email cannot be empty!');
+				},
 			}
 		}
 	);
