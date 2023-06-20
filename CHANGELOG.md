@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[3a35738](https://github.com/TeskaLabs/asab-webui/commit/3a3573806e2964efbf5e5bb02c15acc9af41c8ac)] commit (INDIGO Sprint 230609, [!40](https://github.com/TeskaLabs/seacat-admin-webui/pull/40))
+
 ### Refactoring
 
 - Changed icons from coreui.io icons to atlasicons. (INDIGO Sprint 230428, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
