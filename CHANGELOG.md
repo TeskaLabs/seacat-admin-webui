@@ -8,7 +8,7 @@
 
 ### Refactoring
 
-- Changed button title from "Create New Credentials" to "New Credentials. (INDIGO 230609, [!42](https://github.com/TeskaLabs/seacat-admin-webui/pull/42)) 
+- Changed button title from "Create New Credentials" to "New Credentials". (INDIGO 230609, [!42](https://github.com/TeskaLabs/seacat-admin-webui/pull/42)) 
 
 ## v23.23-alpha2
 
