@@ -288,7 +288,7 @@
 	},
 	"CredentialsListContainer": {
 		"Credentials": "Uživatelské údaje",
-		"Create new credentials": "Vytvořit nové údaje",
+		"New credentials": "Nové údaje",
 		"Name": "Jméno",
 		"Provider": "Provider",
 		"Type": "Typ",
