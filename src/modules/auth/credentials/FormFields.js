@@ -1,46 +1,43 @@
-import React, { useState }  from 'react';
+import React, {useState}  from 'react';
 import {
 	FormGroup, Input, Label,
-	Button, InputGroupAddon, InputGroup, FormFeedback, FormText
+	Button, InputGroupAddon, InputGroup,
+	FormFeedback, FormText
 } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 // TODO: Validation on phone number
-export function PhoneField({register, getValues, setValue, errors, disableField, emailValue, setError, clearErrors, required}) {
+export function PhoneField(props) {
 	const { t } = useTranslation();
-	const disable = disableField == undefined ? false : disableField;
-	if (getValues("phone") == undefined) {
-		setValue("phone", "");
+	const disable = props.disable == undefined ? false : props.disable;
+	if (props.getValues("phone") == undefined) {
+		props.setValue("phone", "");
 	}
-	const reg = register(
+
+	const validatePhone = (value) => {
+		if (!props.emailValue) {
+			return value !== "" || t("FormFields|Phone cannot be empty!");
+		} else {
+			return value !== "" || props.emailValue !== "" || t("FormFields|Phone cannot be empty!");
+		}
+	};
+
+
+	const reg = props.register(
 		"phone",
 		{
 			validate: {
-				emptyInput: value => {
-					const isEmailEmpty = emailValue === undefined || emailValue === '';
-					const isPhoneEmpty = value === '';
-
-					if (isEmailEmpty && isPhoneEmpty) {
-						setError('email', {
-							type: 'required',
-							message: t('FormFields|Email cannot be empty!'),
-						});
-					} else {
-						clearErrors('email');
-					}
-
-					return !isPhoneEmpty || t('FormFields|Phone cannot be empty!');
-				},
+				emptyInput: validatePhone,
 				regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('FormFields|Invalid phone number format'),
 				lengthValidation: value => value.length >= 9 || value.length < 1 || t('FormFields|Phone number is too short')
 			},
-			required: required ? t("FormFields|Phone cannot be empty!") : false
+			required: props.required ? t("FormFields|Phone cannot be empty!") : false
 		}
 	);
 	return (
 		<FormGroup>
-			<Label title={required && t("FormFields|Required field")} for="phone">
-				{t("FormFields|Phone")}{required && '*'}
+			<Label title={props.required && t("FormFields|Required field")} for="phone">
+				{t("FormFields|Phone")}{props.required && '*'}
 			</Label>
 			<Input
 				title={disable && t("FormFields|Phone editing is not allowed within these credentials")}
@@ -49,40 +46,38 @@ export function PhoneField({register, getValues, setValue, errors, disableField,
 				type="text"
 				maxLength="17"
 				disabled={disable}
-				invalid={errors.phone}
-				onChange={reg.onChange}
+				invalid={props.errors.phone}
+				onChange={(e) => {
+					reg.onChange(e);
+					props.trigger("email");
+					props.trigger("phone");
+				}}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
-				required={required ? true : false}
 			/>
-			{errors.phone && <FormFeedback>{errors.phone.message}</FormFeedback>}
+			{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
 		</FormGroup>
 	)
 }
 
-export function EmailField({register, getValues, errors, disableField, phoneValue, setError, clearErrors, required}) {
+export function EmailField(props) {
 	const { t } = useTranslation();
-	const disable = disableField == undefined ? false : disableField;
-	const reg = register(
+	const disable = props.disable == undefined ? false : props.disable;
+
+	const validateEmail = (value) => {
+		if (!props.phoneValue) {
+			return value !== "" || t("FormFields|Email cannot be empty!");
+		} else {
+			return value !== "" || props.phoneValue !== "" || t("FormFields|Email cannot be empty!");
+		}
+	};
+
+	const reg = props.register(
 		"email", {
+			required: props.required ? t("FormFields|Email cannot be empty!") : false,
 			validate: {
-				emptyInput: value => {
-					const isPhoneEmpty = phoneValue === undefined || phoneValue === '';
-					const isEmailEmpty = value === '';
-
-					if (isPhoneEmpty && isEmailEmpty) {
-						setError('phone', {
-							type: 'required',
-							message: t('FormFields|Phone cannot be empty!'),
-						});
-					} else {
-						clearErrors('phone');
-					}
-
-					return !isEmailEmpty || t('FormFields|Email cannot be empty!');
-				},
-			},
-			required: required ? t("FormFields|Email cannot be empty!") : false,
+				emptyInput: validateEmail,
+			}
 		}
 	);
 	/*
@@ -92,8 +87,8 @@ export function EmailField({register, getValues, errors, disableField, phoneValu
 	*/
 	return (
 		<FormGroup>
-			<Label title={required && t("FormFields|Required field")} for="email">
-				{t("FormFields|Email")}{required && '*'}
+			<Label title={props.required && t("FormFields|Required field")} for="email">
+				{t("FormFields|Email")}{props.required && '*'}
 			</Label>
 			<Input
 				title={disable && t("FormFields|Email editing is not allowed within these credentials")}
@@ -102,13 +97,16 @@ export function EmailField({register, getValues, errors, disableField, phoneValu
 				type="email"
 				autoComplete="email"
 				disabled={disable}
-				invalid={errors.email}
-				onChange={reg.onChange}
+				invalid={props.errors.email}
+				onChange={(e) => {
+					reg.onChange(e);
+					props.trigger("email");
+					props.trigger("phone");
+				}}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
-				required={required ? true : false}
 			/>
-			{errors.email && <FormFeedback>{errors.email.message}</FormFeedback>}
+			{props.errors.email && <FormFeedback>{props.errors.email.message}</FormFeedback>}
 		</FormGroup>
 	)
 }

@@ -407,8 +407,8 @@ export default CredentialsDetailContainer;
 
 
 function CredentialsInfoCard(props) {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue, watch, setError, clearErrors, resetField } = useForm()
-	const { t, i18n } = useTranslation();
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, clearErrors, watch, trigger } = useForm();
+	const { t } = useTranslation();
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
 	const disableEmail = props.updateFeatures.some(feature => feature.type === "email") ? false : true;
@@ -482,8 +482,8 @@ function CredentialsInfoCard(props) {
 
 				<CardBody className="card-body-height">
 					<fieldset disabled={editMode ? "": "disabled"}>
-						<EmailField register={register} getValues={getValues} errors={errors} disableField={disableEmail} phoneValue={phoneValue} setError={setError} clearErrors={clearErrors}/>
-						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disableField={disablePhone} emailValue={emailValue} setError={setError} clearErrors={clearErrors}/>
+						<EmailField register={register} getValues={getValues} errors={errors} disable={disableEmail} phoneValue={phoneValue} trigger={trigger}/>
+						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disable={disablePhone} emailValue={emailValue} trigger={trigger}/>
 					</fieldset>
 				</CardBody>
 
@@ -498,8 +498,7 @@ function CredentialsInfoCard(props) {
 								onClick={(e) => (
 									setEditMode(false),
 									setOnUpdate(false),
-									clearErrors('email'),
-									clearErrors('phone')
+									clearErrors(["email", "phone"])
 								)}
 							>
 								{t("Cancel")}
