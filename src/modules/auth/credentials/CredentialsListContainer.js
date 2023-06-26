@@ -208,13 +208,13 @@ function CredentialsListContainer(props) {
 				{t("CredentialsListContainer|Bulk actions")}
 			</ButtonWithAuthz>
 			<ButtonWithAuthz
-				title={t("CredentialsListContainer|Create new credentials")}
+				title={t("CredentialsListContainer|New credentials")}
 				color="primary"
 				onClick={() => {redirectToCreate()}}
 				resource={resourceCreateCredentials}
 				resources={resources}
 			>
-				{t("CredentialsListContainer|Create new credentials")}
+				{t("CredentialsListContainer|New credentials")}
 			</ButtonWithAuthz>
 		</div>
 	);
