@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
@@ -29,7 +28,7 @@ function CredentialsCreateContainer(props) {
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
 	const { t, i18n } = useTranslation();
 
-	const { handleSubmit, register, formState: { errors }, getValues, setValue, reset, resetField } = useForm({
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, reset, resetField, trigger, watch } = useForm({
 		defaultValues: {
 			'passwordlink': true,
 		}
@@ -43,6 +42,9 @@ function CredentialsCreateContainer(props) {
 	const resourceCreateCredentials = "seacat:credentials:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);
+
+	const emailValue = watch('email');
+	const phoneValue = watch('phone');
 
 	useEffect(() => {
 		retrieveProviders();
@@ -238,9 +240,9 @@ function CredentialsCreateContainer(props) {
 										{(activeTab == "create") && (config !== undefined) && config.creation.map((item, idx) => {
 											switch(item.type) {
 												case 'username': return(<UserNameField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={item.policy === "required"} />)
-												case 'email': return(<EmailField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={item.policy === "required"} />)
+												case 'email': return(<EmailField key={idx} register={register} config={item} getValues={getValues} errors={errors} required={item.policy === "required"} trigger={trigger} phoneValue={phoneValue} />)
 												case 'password': return(<PasswordField key={idx} register={register} config={item} getValues={getValues} errors={errors} />)
-												case 'phone': return(<PhoneField key={idx} register={register} config={item} getValues={getValues} setValue={setValue} errors={errors} required={item.policy === "required"} />)
+												case 'phone': return(<PhoneField key={idx} register={register} config={item} getValues={getValues} setValue={setValue} errors={errors} required={item.policy === "required"} trigger={trigger} emailValue={emailValue} />)
 												case 'passwordlink': return(<PasswordLinkField key={idx} register={register} config={item} getValues={getValues} errors={errors}/>)
 												default: return(<div key={idx}>Unknown item: "{item.type}"</div>)
 											}
@@ -251,11 +253,11 @@ function CredentialsCreateContainer(props) {
 								<TabPane tabId="invite">
 									<CardBody>
 										{(activeTab == "invite") &&
-										<>
-											<EmailField register={register} getValues={getValues} errors={errors} required={true} />
-											<UserNameField register={register} getValues={getValues} errors={errors} required={false} />
-											<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} required={false} />
-										</>}
+											<>
+												<EmailField register={register} getValues={getValues} errors={errors} required={true} trigger={trigger} phoneValue={phoneValue} />
+												<UserNameField register={register} getValues={getValues} errors={errors} required={false} />
+												<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} required={false} trigger={trigger} emailValue={emailValue} />
+											</>}
 									</CardBody>
 								</TabPane>
 							</TabContent>
@@ -280,3 +282,4 @@ function CredentialsCreateContainer(props) {
 }
 
 export default CredentialsCreateContainer;
+

@@ -8,7 +8,11 @@
 
 ### Refactoring
 
-- Changed button title from "Create New Credentials" to "New Credentials". (INDIGO 230609, [!42](https://github.com/TeskaLabs/seacat-admin-webui/pull/42)) 
+- Changed button title from "Create New Credentials" to "New Credentials". (INDIGO 230609, [!42](https://github.com/TeskaLabs/seacat-admin-webui/pull/42))
+
+### Bugfix
+
+- Fix CredentialsInfoCard, card will not resize when an error occurs in an input, disable `Save` button if hint about wrong input is present, error hint message be cleaned when user click on `Cancel` button (INDIGO 230623, [!41](https://github.com/TeskaLabs/seacat-admin-webui/pull/41))
 
 ## v23.23-alpha2
 
