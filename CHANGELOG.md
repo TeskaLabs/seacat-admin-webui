@@ -4,7 +4,7 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[3a35738](https://github.com/TeskaLabs/asab-webui/commit/3a3573806e2964efbf5e5bb02c15acc9af41c8ac)] commit (INDIGO Sprint 230609, [!40](https://github.com/TeskaLabs/seacat-admin-webui/pull/40))
+- ASAB WebUI submodule version bump [[4a4810f](https://github.com/TeskaLabs/asab-webui/commit/4a4810f4659def7004467ec923432653fdd4ed56)] commit (INDIGO Sprint 230609, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
 
 ### Refactoring
 
