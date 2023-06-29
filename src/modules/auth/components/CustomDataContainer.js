@@ -162,7 +162,10 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 						title={t("CustomDataContainer|Edit data")}
 						color="primary"
 						outline
-						onClick={() => setEdit(true)}
+						onClick={() => {
+							setEdit(true);
+							append({key: '', value: ''});
+						}}
 						resource={resource}
 						resources={resources}
 						hideOnUnauthorizedAccess={false}

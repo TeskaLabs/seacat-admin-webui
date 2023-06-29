@@ -16,6 +16,8 @@
 
 - Fix CredentialsInfoCard, card will not resize when an error occurs in an input, disable `Save` button if hint about wrong input is present, error hint message be cleaned when user click on `Cancel` button (INDIGO 230623, [!41](https://github.com/TeskaLabs/seacat-admin-webui/pull/41))
 
+- CustomDataContainer inital render in edit mode bug. The container only rendered the first item in the list of custom data. (INDIGO Sprint 230623, [!44](https://github.com/TeskaLabs/seacat-admin-webui/pull/44))
+
 ## v23.23-alpha2
 
 Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.23-beta)
