@@ -35,12 +35,13 @@ export function PhoneField(props) {
 		}
 	);
 	return (
-		<FormGroup>
-			<Label title={props.required && t("FormFields|Required field")} for="phone">
+		<>
+			<Label title={props.required && t("FormFields|Required field")} for="phone" className='mb-2'>
 				{t("FormFields|Phone")}{props.required && '*'}
 			</Label>
 			<Input
 				title={disable && t("FormFields|Phone editing is not allowed within these credentials")}
+				className='mb-3'
 				id="phone"
 				name="phone"
 				type="text"
@@ -56,7 +57,7 @@ export function PhoneField(props) {
 				innerRef={reg.ref}
 			/>
 			{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
-		</FormGroup>
+		</>
 	)
 }
 
@@ -86,12 +87,13 @@ export function EmailField(props) {
 		config.item [from site])
 	*/
 	return (
-		<FormGroup>
-			<Label title={props.required && t("FormFields|Required field")} for="email">
+		<>
+			<Label title={props.required && t("FormFields|Required field")} for="email" className='mb-2'>
 				{t("FormFields|Email")}{props.required && '*'}
 			</Label>
 			<Input
 				title={disable && t("FormFields|Email editing is not allowed within these credentials")}
+				className='mb-3'
 				id="email"
 				name="email"
 				type="email"
@@ -107,7 +109,7 @@ export function EmailField(props) {
 				innerRef={reg.ref}
 			/>
 			{props.errors.email && <FormFeedback>{props.errors.email.message}</FormFeedback>}
-		</FormGroup>
+		</>
 	)
 }
 
