@@ -18,6 +18,8 @@ const BulkAssignmentContainer = (props) => {
 	const [loading, setLoading] = useState(true);
 	const [credentialsFilter, setCredentialsFilter] = useState("");
 	const [selectedCredentials, setSelectedCredentials] = useState([]);
+	const [selectAll, setSelectAll] = useState(false);
+	// const [checked, setChecked] = useState(false)
 
 	const [tenants, setTenants] = useState([]);
 	const [tenantsPage, setTenantsPage] = useState(1);
@@ -73,7 +75,8 @@ const BulkAssignmentContainer = (props) => {
 					</div>
 				)
 			},
-		}
+		},
+		{ name: 'Actions', checkbox: true}
 	];
 
 	// headers for Tenants List
@@ -117,6 +120,7 @@ const BulkAssignmentContainer = (props) => {
 		if (limit > 0) {
 			retrieveData();
 		}
+		// setSelectAll(false);
 	}, [page, credentialsFilter, limit]);
 
 	// UseEffect to fetch data for Tenants List based on changes in page/tenantsFilter/limit
@@ -130,6 +134,7 @@ const BulkAssignmentContainer = (props) => {
 	disables the "+"" button) to be displayed in Credentials list data table */
 	const matchAssigned = (data, selectedEvent) => {
 		let tableData = [];
+		let allAssigned = true;
 		if (data) {
 			data.map((dataObj) => {
 				let matchedObj = selectedEvent.find(obj => obj._id === dataObj._id);
@@ -137,11 +142,16 @@ const BulkAssignmentContainer = (props) => {
 					matchedObj['assigned'] = true;
 					tableData.push(matchedObj);
 				} else {
+					allAssigned = false;
 					dataObj['assigned'] = false;
 					tableData.push(dataObj);
 				}
 			})
+			if (allAssigned) {
+				// setChecked(true);
+			}
 		};
+		console.log('allAssigned: ,', allAssigned)
 		return tableData;
 	};
 
@@ -284,6 +294,26 @@ const BulkAssignmentContainer = (props) => {
 		setGlobalRoles(globalCopy);
 	}
 
+	useEffect(() => {
+		console.log('selectAll: ', selectAll);
+		if(selectAll) {
+			let items = [];
+			data.map((item) => {
+				if (item['assigned'] !== true) {
+					items.push(item);
+				}
+			})
+			// datatableCredentialsData.map((item, i) => {
+				// console.log('saving to selected: ', item);
+				// saveToSelectedCredentials(item);
+				setSelectedCredentials([...selectedCredentials, ...items])
+			// })
+		} else {
+			// unselectCredential()
+			console.warn('unselect them haters')
+		}
+	}, [selectAll]);
+
 	return (
 		<div className='bulk-actions-wraper'>
 			<div className='credentials-list'>
@@ -300,6 +330,9 @@ const BulkAssignmentContainer = (props) => {
 						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
 						contentLoader={loading}
+						checkbox={{title: 'Select all', selectAll: selectAll }}
+						// onCheckbox={() => console.log('yooooo: ', selectAll)}
+						onCheckbox={() => setSelectAll(prev => !prev)}
 					/>
 			</div>
 
