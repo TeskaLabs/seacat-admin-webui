@@ -2,6 +2,8 @@
 
 ## Release Candidate
 
+## v23.27-beta
+
 ### Compatibility
 
 To display last successful and unsuccessful login information, Seacat Auth service [v23.27-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.27-beta) and newer must be used.
