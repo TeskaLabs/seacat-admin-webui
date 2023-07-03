@@ -2,6 +2,12 @@
 
 ## Release Candidate
 
+## v23.27-beta
+
+### Compatibility
+
+To display last successful and unsuccessful login information, Seacat Auth service [v23.27-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.27-beta) and newer must be used.
+
 ### Features
 
 - ASAB WebUI submodule version bump [[3a35738](https://github.com/TeskaLabs/asab-webui/commit/3a3573806e2964efbf5e5bb02c15acc9af41c8ac)] commit (INDIGO Sprint 230609, [!40](https://github.com/TeskaLabs/seacat-admin-webui/pull/40))
@@ -9,6 +15,8 @@
 ### Refactoring
 
 - Changed button title from "Create New Credentials" to "New Credentials". (INDIGO 230609, [!42](https://github.com/TeskaLabs/seacat-admin-webui/pull/42))
+
+- Add parameter `last_login=yes` to `GET /credentials/{cred_id}` endpoint to retrieve last login info. (INDIGO 230623, [!45](https://github.com/TeskaLabs/seacat-admin-webui/pull/45))
 
 ### Bugfix
 
