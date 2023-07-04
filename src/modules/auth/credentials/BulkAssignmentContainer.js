@@ -19,7 +19,7 @@ const BulkAssignmentContainer = (props) => {
 	const [credentialsFilter, setCredentialsFilter] = useState("");
 	const [selectedCredentials, setSelectedCredentials] = useState([]);
 	const [selectAll, setSelectAll] = useState(false);
-	// const [checked, setChecked] = useState(false)
+	// const [allAssigned, setAllAssigned] = useState(false);
 
 	const [tenants, setTenants] = useState([]);
 	const [tenantsPage, setTenantsPage] = useState(1);
@@ -76,7 +76,6 @@ const BulkAssignmentContainer = (props) => {
 				)
 			},
 		},
-		{ name: 'Actions', checkbox: true}
 	];
 
 	// headers for Tenants List
@@ -120,7 +119,6 @@ const BulkAssignmentContainer = (props) => {
 		if (limit > 0) {
 			retrieveData();
 		}
-		// setSelectAll(false);
 	}, [page, credentialsFilter, limit]);
 
 	// UseEffect to fetch data for Tenants List based on changes in page/tenantsFilter/limit
@@ -134,7 +132,7 @@ const BulkAssignmentContainer = (props) => {
 	disables the "+"" button) to be displayed in Credentials list data table */
 	const matchAssigned = (data, selectedEvent) => {
 		let tableData = [];
-		let allAssigned = true;
+		let allSelected = true;
 		if (data) {
 			data.map((dataObj) => {
 				let matchedObj = selectedEvent.find(obj => obj._id === dataObj._id);
@@ -142,16 +140,14 @@ const BulkAssignmentContainer = (props) => {
 					matchedObj['assigned'] = true;
 					tableData.push(matchedObj);
 				} else {
-					allAssigned = false;
+					allSelected = false;
 					dataObj['assigned'] = false;
 					tableData.push(dataObj);
-				}
-			})
-			if (allAssigned) {
-				// setChecked(true);
-			}
+				};
+			});
+			// setAllAssigned(allSelected);
+			setSelectAll(allSelected)
 		};
-		console.log('allAssigned: ,', allAssigned)
 		return tableData;
 	};
 
@@ -294,25 +290,40 @@ const BulkAssignmentContainer = (props) => {
 		setGlobalRoles(globalCopy);
 	}
 
-	useEffect(() => {
-		console.log('selectAll: ', selectAll);
-		if(selectAll) {
-			let items = [];
-			data.map((item) => {
+	const handleCheckbox = () => {
+		console.log('selectAll na zacatku handleCheckbox funkce: ', selectAll);
+		let items = [];
+		if(!selectAll) {
+			datatableCredentialsData.map((item) => {
 				if (item['assigned'] !== true) {
 					items.push(item);
 				}
 			})
-			// datatableCredentialsData.map((item, i) => {
-				// console.log('saving to selected: ', item);
-				// saveToSelectedCredentials(item);
+			// console.log('allassigned 358: ', allAssigned);
+			if(!selectAll) {
+				console.log('items ln 315: ', items);
 				setSelectedCredentials([...selectedCredentials, ...items])
-			// })
-		} else {
-			// unselectCredential()
-			console.warn('unselect them haters')
+			}
 		}
-	}, [selectAll]);
+		else {
+			datatableCredentialsData.map((item) => {
+				let matchedIdx = selectedCredentials.findIndex(obj => obj._id === item._id);
+
+				if (matchedIdx > -1) {
+					console.log('found: ', matchedIdx, item);
+					unselectCredential(matchedIdx);
+					// matchedObj['assigned'] = false;
+					// items.push(matchedObj);
+				} else {
+					console.warn('nOt mAtCheD', item);
+					// allSelected = false;
+					// item['assigned'] = false;
+					// items.push(item);
+				}
+			})
+		}
+		setSelectAll(prev => !prev);
+	}
 
 	return (
 		<div className='bulk-actions-wraper'>
@@ -330,9 +341,8 @@ const BulkAssignmentContainer = (props) => {
 						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
 						contentLoader={loading}
-						checkbox={{title: 'Select all', selectAll: selectAll }}
-						// onCheckbox={() => console.log('yooooo: ', selectAll)}
-						onCheckbox={() => setSelectAll(prev => !prev)}
+						checkbox={{title: 'Select all', active: selectAll }}
+						onCheckbox={handleCheckbox}
 					/>
 			</div>
 
@@ -342,6 +352,7 @@ const BulkAssignmentContainer = (props) => {
 						<i className="cil-people mr-2" />
 						{t("BulkAssignmentContainer|Selected credentials")}
 					</div>
+					<Button outline secondary disabled={(selectedCredentials.length === 0)} onClick={() => setSelectedCredentials([])}>Clear selection</Button>
 				</CardHeader>
 				<CardBody>
 					{selectedCredentials.map((obj, idx) => {
