@@ -97,10 +97,14 @@
 		"Failed to perform bulk operation": "Nepodařilo se provést hromadnou operaci",
 		"Bulk action was successful": "Hromadná operace proběhla úspěšně",
 		"Credentials": "Uživatelé",
+		"Add credential": "Vybrat uživatele",
+		"Credential already assigned": "Uživatel byl již vybrán",
 		"Search": "Hledat",
 		"Selected credentials": "Vybraní uživatelé",
 		"Unselect": "Odebrat z výběru",
 		"Tenants": "Tenanti",
+		"Add tenant": "Vybrat tenanta",
+		"Tenant already assigned": "Tenant byl již vybrán",
 		"Selected tenants and roles": "Zvolení tenanti a role",
 		"Assign in bulk": "Hromadně přiřadit",
 		"Select credentials and tenants": "Vyberte uživatele a tenanty",
@@ -117,7 +121,9 @@
 		"Tenant": "Tenant",
 		"and selected roles will be assigned to/unassigned from selected credentials": "a zvolené role budou přiřazeny/odebrány od zvolených uživatelů",
 		"Selected credentials will be assigned to/removed from tenant": "Zvolení uživatelé budou přiřazeni k/odebráni od tenanta",
-		"Global roles": "Globální role"
+		"Global roles": "Globální role",
+		"Select all": "Vybrat vše",
+		"Clear selection": "Odebrat výběr"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",
