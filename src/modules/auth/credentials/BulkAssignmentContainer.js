@@ -325,7 +325,7 @@ const BulkAssignmentContainer = (props) => {
 						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
 						contentLoader={loading}
-						checkbox={{title: 'Select all', active: selectAll }}
+						checkbox={{title: t("BulkAssignmentContainer|Select all"), active: selectAll }}
 						onCheckbox={handleCheckbox}
 					/>
 			</div>
@@ -336,7 +336,7 @@ const BulkAssignmentContainer = (props) => {
 						<i className="cil-people mr-2" />
 						{t("BulkAssignmentContainer|Selected credentials")}
 					</div>
-					<Button outline secondary disabled={(selectedCredentials.length === 0)} onClick={() => setSelectedCredentials([])}>Clear selection</Button>
+					<Button outline secondary disabled={(selectedCredentials.length === 0)} onClick={() => setSelectedCredentials([])}>{t("BulkAssignmentContainer|Clear selection")}</Button>
 				</CardHeader>
 				<CardBody>
 					{selectedCredentials.map((obj, idx) => {
