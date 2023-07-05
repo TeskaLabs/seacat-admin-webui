@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardHeader,
 	CardFooter, Button, ButtonGroup } from "reactstrap";
-import {DataTable, ButtonWithAuthz } from 'asab-webui';
+import { DataTable, ButtonWithAuthz } from 'asab-webui';
 import RoleDropdown from "../components/RoleDropdown";
 import { useSelector } from "react-redux";
 
@@ -19,7 +19,6 @@ const BulkAssignmentContainer = (props) => {
 	const [credentialsFilter, setCredentialsFilter] = useState("");
 	const [selectedCredentials, setSelectedCredentials] = useState([]);
 	const [selectAll, setSelectAll] = useState(false);
-	// const [allAssigned, setAllAssigned] = useState(false);
 
 	const [tenants, setTenants] = useState([]);
 	const [tenantsPage, setTenantsPage] = useState(1);
@@ -145,7 +144,6 @@ const BulkAssignmentContainer = (props) => {
 					tableData.push(dataObj);
 				};
 			});
-			// setAllAssigned(allSelected);
 			setSelectAll(allSelected)
 		};
 		return tableData;
@@ -291,7 +289,6 @@ const BulkAssignmentContainer = (props) => {
 	}
 
 	const handleCheckbox = () => {
-		console.log('selectAll na zacatku handleCheckbox funkce: ', selectAll);
 		let items = [];
 		if(!selectAll) {
 			datatableCredentialsData.map((item) => {
@@ -299,26 +296,13 @@ const BulkAssignmentContainer = (props) => {
 					items.push(item);
 				}
 			})
-			// console.log('allassigned 358: ', allAssigned);
-			if(!selectAll) {
-				console.log('items ln 315: ', items);
-				setSelectedCredentials([...selectedCredentials, ...items])
-			}
+			setSelectedCredentials([...selectedCredentials, ...items])
 		}
 		else {
 			datatableCredentialsData.map((item) => {
 				let matchedIdx = selectedCredentials.findIndex(obj => obj._id === item._id);
-
 				if (matchedIdx > -1) {
-					console.log('found: ', matchedIdx, item);
 					unselectCredential(matchedIdx);
-					// matchedObj['assigned'] = false;
-					// items.push(matchedObj);
-				} else {
-					console.warn('nOt mAtCheD', item);
-					// allSelected = false;
-					// item['assigned'] = false;
-					// items.push(item);
 				}
 			})
 		}
