@@ -2,6 +2,14 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[4675693](https://github.com/TeskaLabs/asab-webui/commit/46756931bf295b40d00cf23ab8849233c35fed24)] commit (INDIGO Sprint 230623, [!46](https://github.com/TeskaLabs/seacat-admin-webui/pull/46))
+
+### Refactoring
+
+- Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
+
 ## v23.27-beta
 
 ### Compatibility
