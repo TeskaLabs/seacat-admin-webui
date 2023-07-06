@@ -38,14 +38,13 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 						<InputGroupAddon addonType="append" className="custom-data-remove-button" >
 							<Button
 								key={idx}
-								className="custom-data-remove-btn"
 								title={(fields.length === 1) && (fields[0].key === "") ? t("CustomDataContainer|Nothing to remove") : t("CustomDataContainer|Remove input")}
 								color="danger"
 								outline
 								size="sm"
 								disabled={(fields.length === 1) && ((fields[0].key === ""))} // Disable button if he number of inputs is 1  and no text added
 								onClick={() => {(fields.length === 1) ? replace({key: '', value: ''}) : remove(idx)}}
-								>
+							>
 								<span className="cil-minus" />
 							</Button>
 						</InputGroupAddon>
