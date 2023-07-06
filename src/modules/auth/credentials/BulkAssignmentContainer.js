@@ -144,7 +144,7 @@ const BulkAssignmentContainer = (props) => {
 					tableData.push(dataObj);
 				};
 			});
-			setSelectAll(allSelected)
+			setSelectAll(allSelected);
 		};
 		return tableData;
 	};
