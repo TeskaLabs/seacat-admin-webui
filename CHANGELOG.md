@@ -4,13 +4,13 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[309a833](https://github.com/TeskaLabs/asab-webui/commit/06af558428a2106e14d00d3fdb0b9457b761f787)] commit (INDIGO Sprint 230623, [!49](https://github.com/TeskaLabs/seacat-admin-webui/pull/49))
+- ASAB WebUI submodule version bump [[06af558](https://github.com/TeskaLabs/asab-webui/commit/06af558428a2106e14d00d3fdb0b9457b761f787)] commit (INDIGO Sprint 230623, [!49](https://github.com/TeskaLabs/seacat-admin-webui/pull/49))
 
 ### Refactoring
 
 - Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
 
-- Submodule update - refactored dynamic locales (INDIGO Sprint 230623, [!432](https://github.com/TeskaLabs/asab-webui/pull/432))
+- Refactored dynamic locales (INDIGO Sprint 230623, [!432](https://github.com/TeskaLabs/asab-webui/pull/432))
 
 ## v23.27-beta
 
