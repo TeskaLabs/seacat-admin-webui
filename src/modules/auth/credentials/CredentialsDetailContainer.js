@@ -62,7 +62,7 @@ function CredentialsDetailContainer(props) {
 
 	const retrieveData = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/credentials/${credentials_id}`);
+			let response = await SeaCatAuthAPI.get(`/credentials/${credentials_id}?last_login=yes`);
 			setData(response.data);
 			setSuspended(response.data.suspended);
 			setProviderID(response.data._provider_id);

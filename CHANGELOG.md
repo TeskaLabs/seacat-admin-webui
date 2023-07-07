@@ -4,13 +4,29 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[4a4810f](https://github.com/TeskaLabs/asab-webui/commit/4a4810f4659def7004467ec923432653fdd4ed56)] commit (INDIGO Sprint 230609, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
+- ASAB WebUI submodule version bump [[4675693](https://github.com/TeskaLabs/asab-webui/commit/46756931bf295b40d00cf23ab8849233c35fed24)] commit (INDIGO Sprint 230623, [!46](https://github.com/TeskaLabs/seacat-admin-webui/pull/46))
+
+### Refactoring
+
+- Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
+
+- Favicon update with new TeskaLabs logo (INDIGO Sprion 230623, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
+
+## v23.27-beta
+
+### Compatibility
+
+To display last successful and unsuccessful login information, Seacat Auth service [v23.27-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.27-beta) and newer must be used.
+
+### Features
+
+- ASAB WebUI submodule version bump [[3a35738](https://github.com/TeskaLabs/asab-webui/commit/3a3573806e2964efbf5e5bb02c15acc9af41c8ac)] commit (INDIGO Sprint 230609, [!40](https://github.com/TeskaLabs/seacat-admin-webui/pull/40))
 
 ### Refactoring
 
 - Changed button title from "Create New Credentials" to "New Credentials". (INDIGO 230609, [!42](https://github.com/TeskaLabs/seacat-admin-webui/pull/42))
 
-- Favicon update with new TeskaLabs logo (INDIGO Sprion 230623, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
+- Add parameter `last_login=yes` to `GET /credentials/{cred_id}` endpoint to retrieve last login info. (INDIGO 230623, [!45](https://github.com/TeskaLabs/seacat-admin-webui/pull/45))
 
 ### Bugfix
 
