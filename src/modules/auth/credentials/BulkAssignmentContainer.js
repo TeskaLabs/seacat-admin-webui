@@ -74,7 +74,7 @@ const BulkAssignmentContainer = (props) => {
 					</div>
 				)
 			},
-		},
+		}
 	];
 
 	// headers for Tenants List
