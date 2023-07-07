@@ -10,6 +10,10 @@
 
 - Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
 
+### Bugfix
+
+- Refactor HelpComponent, remove HelpService (INDIGO Sprint 230609, [!418](https://github.com/TeskaLabs/asab-webui/pull/418))
+
 ## v23.27-beta
 
 ### Compatibility
