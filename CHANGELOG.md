@@ -10,6 +10,8 @@
 
 - Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
 
+- Favicon update with new TeskaLabs logo (INDIGO Sprion 230623, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
+
 ## v23.27-beta
 
 ### Compatibility
