@@ -18,7 +18,6 @@ const BulkAssignmentContainer = (props) => {
 	const [loading, setLoading] = useState(true);
 	const [credentialsFilter, setCredentialsFilter] = useState("");
 	const [selectedCredentials, setSelectedCredentials] = useState([]);
-	const [selectAll, setSelectAll] = useState(false);
 
 	const [tenants, setTenants] = useState([]);
 	const [tenantsPage, setTenantsPage] = useState(1);
@@ -131,7 +130,6 @@ const BulkAssignmentContainer = (props) => {
 	disables the "+"" button) to be displayed in Credentials list data table */
 	const matchAssigned = (data, selectedEvent) => {
 		let tableData = [];
-		let allSelected = true;
 		if (data) {
 			data.map((dataObj) => {
 				let matchedObj = selectedEvent.find(obj => obj._id === dataObj._id);
@@ -139,12 +137,10 @@ const BulkAssignmentContainer = (props) => {
 					matchedObj['assigned'] = true;
 					tableData.push(matchedObj);
 				} else {
-					allSelected = false;
 					dataObj['assigned'] = false;
 					tableData.push(dataObj);
 				};
 			});
-			setSelectAll(allSelected);
 		};
 		return tableData;
 	};
@@ -288,27 +284,6 @@ const BulkAssignmentContainer = (props) => {
 		setGlobalRoles(globalCopy);
 	}
 
-	const handleCheckbox = () => {
-		let items = [];
-		if(!selectAll) {
-			datatableCredentialsData.map((item) => {
-				if (item['assigned'] !== true) {
-					items.push(item);
-				}
-			})
-			setSelectedCredentials([...selectedCredentials, ...items])
-		}
-		else {
-			datatableCredentialsData.map((item) => {
-				let matchedIdx = selectedCredentials.findIndex(obj => obj._id === item._id);
-				if (matchedIdx > -1) {
-					unselectCredential(matchedIdx);
-				}
-			})
-		}
-		setSelectAll(prev => !prev);
-	}
-
 	return (
 		<div className='bulk-actions-wraper'>
 			<div className='credentials-list'>
@@ -325,8 +300,7 @@ const BulkAssignmentContainer = (props) => {
 						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
 						contentLoader={loading}
-						checkbox={{title: t("BulkAssignmentContainer|Select all"), active: selectAll }}
-						onCheckbox={handleCheckbox}
+						checkbox={{title: t("BulkAssignmentContainer|Select displayed"), checked: selectedCredentials, setChecked: setSelectedCredentials }}
 					/>
 			</div>
 
