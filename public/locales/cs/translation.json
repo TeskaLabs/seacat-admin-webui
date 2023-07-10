@@ -122,7 +122,7 @@
 		"and selected roles will be assigned to/unassigned from selected credentials": "a zvolené role budou přiřazeny/odebrány od zvolených uživatelů",
 		"Selected credentials will be assigned to/removed from tenant": "Zvolení uživatelé budou přiřazeni k/odebráni od tenanta",
 		"Global roles": "Globální role",
-		"Select all": "Vybrat vše",
+		"Select displayed": "Vybrat zobrazené",
 		"Clear selection": "Odebrat výběr"
 	},
 	"ClientListContainer": {

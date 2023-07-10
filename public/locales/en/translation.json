@@ -122,7 +122,7 @@
 		"and selected roles will be assigned to/unassigned from selected credentials": "and selected roles will be assigned to/unassigned from selected credentials",
 		"Selected credentials will be assigned to/removed from tenant": "Selected credentials will be assigned to/removed from tenant",
 		"Global roles": "Global roles",
-		"Select all": "Select all",
+		"Select displayed": "Select displayed",
 		"Clear selection": "Clear selection"
 	},
 	"ClientListContainer": {
