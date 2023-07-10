@@ -151,29 +151,6 @@ const ClientDetailContainer = (props) =>  {
 				</CardFooter>
 			</Card>
 
-			<Card className="client-cookie-card">
-				<CardHeader className="border-bottom">
-					<div className="card-header-title">
-						<i className="cil-applications-settings pr-2"></i>
-						{t("ClientDetailContainer|Cookie")}
-					</div>
-				</CardHeader>
-				<CardBody>
-					<Row>
-						<Col md={5} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
-						<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
-					</Row>
-					<Row>
-						<Col md={5} title="cookie_entry_uri">{t("ClientDetailContainer|Cookie entry URI")}</Col>
-						<Col>{client?.cookie_entry_uri ? client.cookie_entry_uri : "N/A"}</Col>
-					</Row>
-					<Row>
-						<Col md={5} title="cookie_webhook_uri">{t("ClientDetailContainer|Cookie webhook URI")}</Col>
-						<Col>{client?.cookie_webhook_uri ? client.cookie_webhook_uri : "N/A"}</Col>
-					</Row>
-				</CardBody>
-			</Card>
-
 			<Card className="client-multidomain-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
@@ -189,6 +166,33 @@ const ClientDetailContainer = (props) =>  {
 					<Row>
 						<Col md={5} title="authorize_uri">{t("ClientDetailContainer|Authorize URI")}</Col>
 						<Col>{client?.authorize_uri ? client.authorize_uri : "N/A"}</Col>
+					</Row>
+				</CardBody>
+			</Card>
+
+			<Card className="client-cookie-card">
+				<CardHeader className="border-bottom">
+					<div className="card-header-title">
+						<i className="cil-paperclip pr-2"></i>
+						{t("ClientDetailContainer|Cookie")}
+					</div>
+				</CardHeader>
+				<CardBody>
+					<Row>
+						<Col md={5} title="cookie_name">{t("ClientDetailContainer|Cookie name")}</Col>
+						<Col title="cookie_name">{client?.cookie_name ? client.cookie_name : "N/A"}</Col>
+					</Row>
+					<Row>
+						<Col md={5} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
+						<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
+					</Row>
+					<Row>
+						<Col md={5} title="cookie_entry_uri">{t("ClientDetailContainer|Cookie entry URI")}</Col>
+						<Col>{client?.cookie_entry_uri ? client.cookie_entry_uri : "N/A"}</Col>
+					</Row>
+					<Row>
+						<Col md={5} title="cookie_webhook_uri">{t("ClientDetailContainer|Cookie webhook URI")}</Col>
+						<Col>{client?.cookie_webhook_uri ? client.cookie_webhook_uri : "N/A"}</Col>
 					</Row>
 				</CardBody>
 			</Card>

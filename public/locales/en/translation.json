@@ -180,6 +180,7 @@
 		"Response types": "Response types",
 		"Grant types": "Grant types",
 		"Token endpoint auth. method": "Token endpoint auth. method",
+		"Cookie name": "Cookie name",
 		"Cookie domain": "Cookie domain",
 		"Cookie entry URI": "Cookie entry URI",
 		"Cookie webhook URI": "Cookie webhook URI",
