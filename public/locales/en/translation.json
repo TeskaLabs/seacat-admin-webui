@@ -86,7 +86,8 @@
 		"Client detail": "Client detail",
 		"About": "About",
 		"Access control": "Access control",
-		"Bulk actions": "Bulk actions"
+		"Bulk actions": "Bulk actions",
+		"Homepage": "Homepage"
 	},
 	"BulkAssignmentContainer" : {
 		"Credentials invited": "Credentials invited",
@@ -292,7 +293,7 @@
 	},
 	"CredentialsListContainer": {
 		"Credentials": "Credentials",
-		"Create new credentials": "Create new credentials",
+		"New credentials": "New credentials",
 		"Name": "Name",
 		"Provider": "Provider",
 		"Type": "Type",
@@ -593,7 +594,8 @@
 		"Sessions": "Sessions",
 		"Roles": "Roles",
 		"Resources": "Resources",
-		"Clients": "Clients"
+		"Clients": "Clients",
+		"Home": "Home"
 	},
 	"Name": "Name",
 	"Description": "Description",

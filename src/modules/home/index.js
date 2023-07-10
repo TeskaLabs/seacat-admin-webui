@@ -10,7 +10,7 @@ export default class HomeModule extends Module {
 	constructor(app, name){
 		super(app, "HomeModule");
 
-		app.Router.addRoute({ path: '/home', exact: true, name: 'Home', component: HomeContainer });
+		app.Router.addRoute({ path: '/home', exact: true, name: 'Homepage', component: HomeContainer });
 
 		app.Navigation.addItem({
 			name: 'Home',
