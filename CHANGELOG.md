@@ -4,13 +4,15 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[4675693](https://github.com/TeskaLabs/asab-webui/commit/46756931bf295b40d00cf23ab8849233c35fed24)] commit (INDIGO Sprint 230623, [!46](https://github.com/TeskaLabs/seacat-admin-webui/pull/46))
+- ASAB WebUI submodule version bump [[ce33c8b](https://github.com/TeskaLabs/asab-webui/commit/ce33c8bc9a23e92adbd0af77d83b67b3bb4100a1)] commit (INDIGO Sprint 230623, [!48](https://github.com/TeskaLabs/seacat-admin-webui/pull/48))
 
 ### Refactoring
 
 - Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
 
-- Favicon update with new TeskaLabs logo (INDIGO Sprion 230623, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
+- Favicon update with new TeskaLabs logo (INDIGO Sprint 230623, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
+
+- Refactor HelpComponent, remove HelpService (INDIGO Sprint 230609, [!418](https://github.com/TeskaLabs/asab-webui/pull/418))
 
 ## v23.27-beta
 
