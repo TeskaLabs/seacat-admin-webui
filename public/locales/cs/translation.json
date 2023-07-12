@@ -35,6 +35,10 @@
 	"ASABTenantModule": {
 		"Invalid tenant": "Neplatný tenant :-("
 	},
+	"HelpButton": {
+		"Show help info": "Zobrazit informace o nápovědě",
+		"Help": "Nápověda"
+	},
 	"ASABConfig" : {
 		"Nothing has been selected yet": "Zatím nebylo nic vybráno",
 		"Please select the configuration from tree menu on the left side of the screen": "Prosím vyberte konfiguraci z nabídky na levé straně obrazovky",
