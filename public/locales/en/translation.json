@@ -35,6 +35,10 @@
 	"ASABTenantModule": {
 		"Invalid tenant": "Invalid tenant :-("
 	},
+	"HelpButton": {
+		"Show help info": "Show help info",
+		"Help": "Help"
+	},
 	"ASABConfig" : {
 		"Nothing has been selected yet": "Nothing has been selected yet",
 		"Please select the configuration from tree menu on the left side of the screen": "Please select the configuration from tree menu on the left side of the screen",
