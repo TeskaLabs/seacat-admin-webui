@@ -8,6 +8,8 @@
 
 ### Refactoring
 
+- Replace all underscores in names/api's with dashes (INDIGO Sprint 230623, [!51](https://github.com/TeskaLabs/seacat-admin-webui/pull/51))
+
 - Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
 
 - Refactored dynamic locales (INDIGO Sprint 230623, [!432](https://github.com/TeskaLabs/asab-webui/pull/432))
