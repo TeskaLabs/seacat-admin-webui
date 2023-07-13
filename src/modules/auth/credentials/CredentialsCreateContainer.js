@@ -25,7 +25,7 @@ import {
 
 function CredentialsCreateContainer(props) {
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { t, i18n } = useTranslation();
 
 	const { handleSubmit, register, formState: { errors }, getValues, setValue, reset, resetField, trigger, watch } = useForm({

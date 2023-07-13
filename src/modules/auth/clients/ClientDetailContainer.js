@@ -13,7 +13,7 @@ import { DateTime, ButtonWithAuthz } from 'asab-webui';
 
 const ClientDetailContainer = (props) =>  {
 	const { t } = useTranslation();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const [client, setClient] = useState(null);
 	const { client_id } = props.match.params;
 

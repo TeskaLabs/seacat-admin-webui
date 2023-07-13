@@ -14,7 +14,7 @@ import { ButtonWithAuthz } from 'asab-webui';
 
 const RolesCreateContainer = (props) => {
 	const { handleSubmit, register, formState: { errors, isSubmitting }, getValues } = useForm();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const resource = "seacat:role:edit";
 	const resources = useSelector(state => state.auth?.resources);

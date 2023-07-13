@@ -7,7 +7,7 @@ import { Container } from 'reactstrap';
 
 const RolesListcontainer = (props) => {
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const [roles, setRoles] = useState([]);
 	const [count, setCount] = useState(0);

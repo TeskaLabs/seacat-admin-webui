@@ -18,9 +18,9 @@ module.exports = {
 	webpackDevServer: {
 		port: 3000,
 		proxy: {
-			'/api/seacat_auth': {
+			'/api/seacat-auth': {
 				target: "http://127.0.0.1:8080",
-				pathRewrite: { '^/api/seacat_auth': ''}
+				pathRewrite: { '^/api/seacat-auth': ''}
 			},
 			'/api/openidconnect': {
 				target: "http://127.0.0.1:8081",

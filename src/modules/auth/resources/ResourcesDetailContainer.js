@@ -16,7 +16,7 @@ import { DateTime, ButtonWithAuthz } from 'asab-webui';
 const ResourceDetailContainer = (props) =>  {
 	const { handleSubmit, register, setValue } = useForm();
 	const { t } = useTranslation();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const [ resource, setResource ] = useState(undefined);
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);

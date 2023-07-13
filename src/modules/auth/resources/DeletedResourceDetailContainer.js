@@ -12,7 +12,7 @@ import { DateTime, ButtonWithAuthz } from 'asab-webui';
 
 const DeletedResourceDetailContainer = (props) =>  {
 	const { t } = useTranslation();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat_-uth');
 	const [resource, setResource] = useState(undefined);
 	const [editMode, setEditMode] = useState(false);
 	const { resource_id } = props.match.params;

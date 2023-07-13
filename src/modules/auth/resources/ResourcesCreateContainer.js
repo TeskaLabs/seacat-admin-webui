@@ -16,7 +16,7 @@ const ResourceCreateContainer = (props) => {
 	const { handleSubmit, register, formState: { errors, isSubmitting }, getValues } = useForm();
 	const credentialsResources = useSelector(state => state.auth?.resources);
 	const resourceEdit = "seacat:resource:edit";
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { t } = useTranslation();
 	const reg = register(
 			"resource_id",

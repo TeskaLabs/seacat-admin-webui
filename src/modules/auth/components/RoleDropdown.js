@@ -13,7 +13,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	const [filter, setFilter] = useState("");
 	const [limit, setLimit] = useState(5);
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	useEffect(() => {
 		retrieveRoleList(tenantObj._id ?? undefined);
