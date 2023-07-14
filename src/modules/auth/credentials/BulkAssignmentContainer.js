@@ -155,6 +155,15 @@ const BulkAssignmentContainer = (props) => {
 		return matchAssigned(tenants, selectedTenants);
 	}, [tenants, selectedTenants]);
 
+	const allSelected = useMemo(() => {
+		for (let i = 0; i < datatableCredentialsData.length; i++) {
+			if (datatableCredentialsData[i].assigned === false) {
+				return false;
+			}
+		}
+		return true;
+	}, [datatableCredentialsData]);
+
 	// fetches Credentials Data from server
 	const retrieveData = async () => {
 		setLoading(true);
@@ -234,6 +243,29 @@ const BulkAssignmentContainer = (props) => {
 		}
 	};
 
+	// selects all data visible in the CredentialsList DataTable or removes all already selected data shown in Credentials list from Selected Credentials Card
+	const bulkSelection = (action) => {
+		let items = [];
+		if(action === 'add') {
+			datatableCredentialsData.map((item) => {
+				if (item['assigned'] !== true) {
+					items.push(item);
+				}
+			})
+			setSelectedCredentials([...selectedCredentials, ...items]);
+		} else {
+			datatableCredentialsData.map((item) => {
+				let matchedIdx = selectedCredentials.findIndex(obj => obj._id === item._id);
+				if (matchedIdx > -1) {
+					// removes items from selection
+					let selectedData = selectedCredentials;
+					selectedData.splice(matchedIdx, 1);
+					setSelectedCredentials([...selectedData]);
+				}
+			})
+		}
+	};
+
 	// pops up confirmation prompt. The prompt notifies user about selected data loss after redirection to a credential/tenant detail screen
 	const confirmForm = (route) => {
 		var r = confirm(t('BulkAssignmentContainer|Do you really want to leave this screen? Selected data will be lost'));
@@ -300,8 +332,31 @@ const BulkAssignmentContainer = (props) => {
 						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
 						contentLoader={loading}
-						checkbox={{title: t("BulkAssignmentContainer|Select displayed"), checked: selectedCredentials, setChecked: setSelectedCredentials }}
 					/>
+			</div>
+
+			<div className='credentials-actions'>
+				<Button
+					primary
+					outline
+					onClick={() => bulkSelection('add')}
+					title={t("BulkAssignmentContainer|Select all displayed credentials")}
+					disabled={allSelected}
+				>
+					<span>
+
+					<i class="cil-chevron-double-right"></i>
+					</span>
+				</Button>
+				<Button
+					primary
+					outline
+					onClick={bulkSelection}
+					title={t("BulkAssignmentContainer|Remove from selection")}
+					disabled={(selectedCredentials.length === 0)}
+				>
+					<i class="cil-chevron-double-left"></i>
+				</Button>
 			</div>
 
 			<Card className="credentials-selection">
