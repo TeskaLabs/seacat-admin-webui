@@ -334,7 +334,7 @@ const BulkAssignmentContainer = (props) => {
 						contentLoader={loading}
 					/>
 			</div>
-
+		{/* TODO: Rotate icons on small screen */}
 			<div className='credentials-actions'>
 				<Button
 					primary
