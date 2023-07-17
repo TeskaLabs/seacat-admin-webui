@@ -34,6 +34,9 @@ const RolesCreateContainer = (props) => {
 		);
 	const regGlobalRole = register("global");
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const onSubmit = async (values) => {
 		const tenant = values.global && resources.includes("authz:superuser") ? '*' : currentTenant;
 		try {

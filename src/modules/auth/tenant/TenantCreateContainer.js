@@ -36,6 +36,9 @@ function TenantCreateContainer(props) {
 		}
 	);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const onSubmit = async (values) => {
 		try {
 			let response = await SeaCatAuthAPI.post('/tenant',

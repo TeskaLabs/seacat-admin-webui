@@ -46,6 +46,9 @@ function CredentialsCreateContainer(props) {
 	const emailValue = watch('email');
 	const phoneValue = watch('phone');
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	useEffect(() => {
 		retrieveProviders();
 	}, []);
