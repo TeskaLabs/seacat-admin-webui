@@ -31,8 +31,8 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 		return false;
 	}
 	return (
-		<FormGroup key={name}>
-			{labelName && <Label for={name} title={(name === "client_name") && t("ClientFormField|Required field")}>{labelName}</Label>}
+		<div key={name} className='mb-3'>
+			{labelName && <Label className='form-label' for={name} title={(name === "client_name") && t("ClientFormField|Required field")}>{labelName}</Label>}
 			<Input
 				id={name}
 				name={name}
@@ -46,7 +46,7 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 			/>
 			{name === "preferred_client_id" && (errors.preferred_client_id != undefined && <FormFeedback>{errors.preferred_client_id?.message}</FormFeedback>)}
 			{name === "cookie_domain" && (errors?.cookie_domain && <FormFeedback>{errors.cookie_domain?.message}</FormFeedback>)}
-		</FormGroup>
+		</div>
 	)
 }
 
@@ -56,9 +56,9 @@ export function SelectInput ({ name, register, valueList, labelName, disabled })
 	const reg = register(name);
 
 	return (
-		<FormGroup key={name}>
+		<div key={name} className='mb-3'>
 			{labelName &&
-				<Label for={name} title={name}>{labelName}</Label>}
+				<Label className='form-label' for={name} title={name}>{labelName}</Label>}
 			<Input
 				id={name}
 				name={name}
@@ -73,7 +73,7 @@ export function SelectInput ({ name, register, valueList, labelName, disabled })
 					<option key={idx} value={optionItem}>{optionItem}</option>
 				))}
 			</Input>
-		</FormGroup>
+		</div>
 	)
 }
 
@@ -83,8 +83,8 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 	const reg = register(name);
 
 	return (
-		<FormGroup check>
-			<Label for={name}>
+		<div className='mb-3'>
+			<Label className='form-label' for={name}>
 				<Input
 					id={name}
 					name={name}
@@ -96,7 +96,7 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 				/>{' '}
 				{checkboxText}
 			</Label>
-		</FormGroup>
+		</div>
 	)
 }
 
@@ -104,8 +104,8 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 export function RadioInput ({ name, valueList, register, labelName, disabled, editing }) {
 
 	return (
-		<FormGroup key={name}>
-			{labelName && <Label for={name} title={name}>{labelName}</Label>}
+		<div key={name} className='mb-3'>
+			{labelName && <Label for={name} title={name} className='form-label'>{labelName}</Label>}
 			<div title={name}>
 				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
@@ -120,11 +120,11 @@ export function RadioInput ({ name, valueList, register, labelName, disabled, ed
 							{...register(name)}
 							defaultChecked={!editing && (key == 0)}
 						/>
-						<div className="ml-4">{item}</div>
+						<div className="ml-2">{item}</div>
 					</InputGroup>
 				))}
 			</div>
-		</FormGroup>
+		</div>
 	)
 }
 
@@ -133,8 +133,8 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 	const { t } = useTranslation();
 
 	return (
-		<FormGroup>
-			<Label title={t("ClientFormField|Required field")} for={name}>{labelName}</Label>
+		<div className='mb-3' >
+			<Label title={t("ClientFormField|Required field")} for={name} className='form-label'>{labelName}</Label>
 			<InputGroup>
 				<Input
 					id={name}
@@ -146,16 +146,15 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					invalid={invalid}
 					disabled={disabled}
 				/>
-				<InputGroupAddon addonType="append" className="ml-0">
-					<Button
-						outline
-						color="primary"
-						size="sm"
-						onClick={() => append({ value: ""})}
-					>
-						<span className="cil-plus" />
-					</Button>
-				</InputGroupAddon>
+				<Button
+					outline
+					color="primary"
+					size="sm"
+					className='ml-0'
+					onClick={() => append({ value: ""})}
+				>
+					<span className="cil-plus" />
+				</Button>
 				{errors && errors[name] && <FormFeedback>{errors[name].message}</FormFeedback>}
 			</InputGroup>
 			{fields && fields.map((item, i) => (
@@ -169,7 +168,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					disabled={disabled}
 				/>
 			))}
-		</FormGroup>
+		</div>
 	)
 }
 
@@ -193,11 +192,11 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 				innerRef={regMail.ref}
 				invalid={errors[name]?.[index]?.value && true}
 			/>
-			<InputGroupAddon addonType="append" className="ml-0">
+			{/* <InputGroupAddon addonType="append" className="ml-0"> */}
 				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)}>
 					<span className="cil-minus" />
 				</Button>
-			</InputGroupAddon>
+			{/* </InputGroupAddon> */}
 			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}
 		</InputGroup>
 	)
@@ -241,8 +240,8 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 	}
 
 	return (
-		<FormGroup key={name}>
-			{labelName && <Label for={name}>{labelName}</Label>}
+		<div key={name} className='mb-3'>
+			{labelName && <Label for={name} className='form-label'>{labelName}</Label>}
 			<Controller
 				name={name}
 				control={control}
@@ -278,7 +277,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 				:
 				null
 			}
-		</FormGroup>
+		</div>
 	)
 };
 
@@ -340,12 +339,12 @@ export function MultiCheckbox ({ name, valueList, assignValue, setValue, labelNa
 	};
 
 	return (
-		<FormGroup key={name}>
-			{labelName && <Label for={name} title={name}>{labelName}</Label>}
+		<div key={name} className='mb-3'>
+			{labelName && <Label for={name} title={name} className='form-label'>{labelName}</Label>}
 			<div title={name}>
 				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
-						<div className="ml-4">{item}</div>
+						<div className="ml-2">{item}</div>
 						<Input
 							id={item}
 							name={item}
@@ -360,6 +359,6 @@ export function MultiCheckbox ({ name, valueList, assignValue, setValue, labelNa
 					</InputGroup>
 				))}
 			</div>
-		</FormGroup>
+		</div>
 	)
 };
