@@ -35,6 +35,10 @@
 	"ASABTenantModule": {
 		"Invalid tenant": "Invalid tenant :-("
 	},
+	"HelpButton": {
+		"Show help info": "Show help info",
+		"Help": "Help"
+	},
 	"ASABConfig" : {
 		"Nothing has been selected yet": "Nothing has been selected yet",
 		"Please select the configuration from tree menu on the left side of the screen": "Please select the configuration from tree menu on the left side of the screen",
@@ -609,9 +613,10 @@
 	"Edit": "Edit",
 	"Something wrong": "Something went wrong!",
 	"Failed fetch": "Failed to fetch the object.",
-	"Showing item(s)": "{{ from }} - {{ to }} of {{ total }} item(s)",
+	"of": "of",
+	"item(s)": "item(s)",
 	"You do not have access rights to perform this action": "You do not have access rights to perform this action",
 	"Items per page": "Items per page",
-	"Page": "of {{pages}} page",
-	"Pages": "of {{pages}} pages"
+	"Page": "Page",
+	"Pages": "Pages"
 }
