@@ -60,8 +60,8 @@ const RolesCreateContainer = (props) => {
 							</CardHeader>
 
 							<CardBody>
-								<FormGroup>
-									<Label for="roleName">{t("Name")}</Label>
+								<Col className='mb-3'>
+									<Label className="form-label" for="roleName">{t("Name")}</Label>
 									<Input
 										id="roleName"
 										name="roleName"
@@ -79,12 +79,12 @@ const RolesCreateContainer = (props) => {
 										:
 										<FormText>{t("RolesCreateContainer|Only letters, numbers, dash and underscore are allowed")}</FormText>
 									}
-								</FormGroup>
+								</Col>
 
 								{resources.includes("authz:superuser") && (
-									<FormGroup check>
+									<Row>
 										<Label
-											check
+											className="form-label"
 											for="global"
 										>
 											<Input
@@ -97,7 +97,7 @@ const RolesCreateContainer = (props) => {
 											/> {' '}
 											{t("RolesCreateContainer|Global role")}
 										</Label>
-									</FormGroup>
+									</Row>
 								)}
 							</CardBody>
 
