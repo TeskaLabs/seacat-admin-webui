@@ -82,7 +82,7 @@ const DeletedResourceDetailContainer = (props) =>  {
 
 	return (
 		<Container className="resource-container">
-			<Card className='reosurce-detail-description'>
+			<Card className='resource-detail-description'>
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
 						<i className="cil-lock-locked pr-2"></i>
@@ -105,7 +105,7 @@ const DeletedResourceDetailContainer = (props) =>  {
 					</Row>
 					<Row className='mt-3'>
 						<Col sm={3}>{t("Description")}</Col>
-						<Col sm={6} className="resource-detail-description">{resource?.description}</Col>
+						<Col sm={9}>{resource?.description}</Col>
 					</Row>
 				</CardBody>
 
