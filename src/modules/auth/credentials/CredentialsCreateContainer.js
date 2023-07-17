@@ -221,8 +221,8 @@ function CredentialsCreateContainer(props) {
 									<CardBody>
 
 										{Object.keys(providers).length > 1 &&
-											<FormGroup>
-												<Label for="provider">{t('CredentialsCreateContainer|Provider')}</Label>
+											<Col>
+												<Label for="provider" className='form-label'>{t('CredentialsCreateContainer|Provider')}</Label>
 													<Input
 														id="provider"
 														type="select"
@@ -234,7 +234,7 @@ function CredentialsCreateContainer(props) {
 														<option key={index} value={key}>{providers[key]._provider_id} ({providers[key]._type == 'm2m' ? "Machine-to-Machine" : "Human"})</option>
 													))}
 													</Input>
-											</FormGroup>
+											</Col>
 										}
 
 										{(activeTab == "create") && (config !== undefined) && config.creation.map((item, idx) => {

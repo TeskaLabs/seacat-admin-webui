@@ -36,7 +36,7 @@ export function PhoneField(props) {
 	);
 	return (
 		<>
-			<Label title={props.required && t("FormFields|Required field")} for="phone" className='mb-2'>
+			<Label title={props.required && t("FormFields|Required field")} for="phone" className='mb-2 form-label'>
 				{t("FormFields|Phone")}{props.required && '*'}
 			</Label>
 			<Input
@@ -88,7 +88,7 @@ export function EmailField(props) {
 	*/
 	return (
 		<>
-			<Label title={props.required && t("FormFields|Required field")} for="email" className='mb-2'>
+			<Label title={props.required && t("FormFields|Required field")} for="email" className='mb-2 form-label'>
 				{t("FormFields|Email")}{props.required && '*'}
 			</Label>
 			<Input
@@ -126,8 +126,8 @@ export function UserNameField(props) {
 		}
 	);
 	return (
-		<FormGroup>
-			<Label title={props.required && t("FormFields|Required field")} for="username">
+		<div className='pb-3'>
+			<Label title={props.required && t("FormFields|Required field")} for="username" className='form-label'>
 				{t("FormFields|Username")}{props.required && '*'}
 			</Label>
 			<Input
@@ -144,7 +144,7 @@ export function UserNameField(props) {
 				:
 				<FormText>{t("FormFields|Only lower-case letters, numbers, dash and underscore are allowed")}</FormText>
 			}
-		</FormGroup>
+		</div>
 	)
 }
 
@@ -197,8 +197,8 @@ export function PasswordField(props) {
 	};
 	return (
 		<React.Fragment>
-			<FormGroup>
-				<Label for="password">{label}</Label>
+			<div>
+				<Label for="password" className='form-label'>{label}</Label>
 				<InputGroup>
 					<Input
 						id="password"
@@ -210,16 +210,16 @@ export function PasswordField(props) {
 						onBlur={regPwd1.onBlur}
 						innerRef={regPwd1.ref}
 					/>
-					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
+					{/* <InputGroupAddon addonType="append" style={{ marginLeft: 0 }}> */}
 						<Button outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
 							<span className="cil-low-vision" />
 						</Button>
-					</InputGroupAddon>
+					{/* </InputGroupAddon> */}
 					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
 				</InputGroup>
-			</FormGroup>
+			</div>
 
-			<FormGroup>
+			<div>
 				<Label for="password2">{t("FormFields|Password again")}</Label>
 				<InputGroup>
 					<Input
@@ -232,14 +232,14 @@ export function PasswordField(props) {
 						onBlur={regPwd2.onBlur}
 						innerRef={regPwd2.ref}
 					/>
-					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
+					{/* <InputGroupAddon addonType="append" style={{ marginLeft: 0 }}> */}
 						<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
 							<span className="cil-low-vision" />
 						</Button>
-					</InputGroupAddon>
+					{/* </InputGroupAddon> */}
 					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
 				</InputGroup>
-			</FormGroup>
+			</div>
 
 		</React.Fragment>
 	)
@@ -249,8 +249,8 @@ export function PasswordLinkField(props) {
 	const { t, i18n } = useTranslation();
 	const reg = props.register("passwordlink");
 	return (
-		<FormGroup check>
-			<Label for="passwordlink">
+		<div>
+			<Label for="passwordlink" className='form-label'>
 				<Input
 					id="passwordlink"
 					name="passwordlink"
@@ -261,7 +261,7 @@ export function PasswordLinkField(props) {
 				/>{' '}
 				{t("FormFields|Send instructions to set password")}
 			</Label>
-		</FormGroup>
+		</div>
 	)
 }
 
