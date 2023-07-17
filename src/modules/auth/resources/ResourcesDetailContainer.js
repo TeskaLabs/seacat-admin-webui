@@ -136,23 +136,23 @@ const ResourceDetailContainer = (props) =>  {
 							<Col><DateTime value={resource?._m} /></Col>
 						</Row>
 
-							<FormGroup row className="mt-3">
-								<Col sm={3}>{t("Description")}</Col>
-								<Col sm={6} className="resource-detail-description">
-									{editMode ?
-										<Input
-											id="resource_description"
-											name="resource_description"
-											type="textarea"
-											rows={3}
-											autoComplete="off"
-											onChange={registerDescription.onChange}
-											onBlur={registerDescription.onBlur}
-											innerRef={registerDescription.ref}
-										/>
-									: resource?.description }
-								</Col>
-							</FormGroup>
+						<Row className="mt-3">
+							<Col sm={3}>{t("Description")}</Col>
+							<Col sm={9}>
+								{editMode ?
+									<Input
+										id="resource_description"
+										name="resource_description"
+										type="textarea"
+										rows={3}
+										autoComplete="off"
+										onChange={registerDescription.onChange}
+										onBlur={registerDescription.onBlur}
+										innerRef={registerDescription.ref}
+									/>
+								: resource?.description }
+							</Col>
+						</Row>
 					</CardBody>
 
 					<CardFooter>
