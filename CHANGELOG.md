@@ -16,6 +16,8 @@
 
 - Refactor HelpComponent, remove HelpService (INDIGO Sprint 230609, [!418](https://github.com/TeskaLabs/asab-webui/pull/418))
 
+- Add addHelpButton method for all screens in the Seacat-admin-webui app (INDIGO Sprint 230713, [!52](https://github.com/TeskaLabs/seacat-admin-webui/pull/52))
+
 ### Bugfix
 
 - Add missing locales for HelpButton (INDIGO Sprint 230623, [!50](https://github.com/TeskaLabs/seacat-admin-webui/pull/50))
