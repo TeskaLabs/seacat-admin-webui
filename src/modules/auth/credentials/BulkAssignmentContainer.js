@@ -31,6 +31,9 @@ const BulkAssignmentContainer = (props) => {
 	const resource = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	// headers for Credentails List
 	const headers = [
 		{
