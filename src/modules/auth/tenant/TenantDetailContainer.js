@@ -47,6 +47,9 @@ function TenantDetailContainer(props) {
 
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const headers = [
 		{
 			name: t('TenantDetailContainer|Name'),

@@ -38,6 +38,9 @@ const ClientCreateContainer = (props) => {
 		}
 	});
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const { fields, append, remove, update } = useFieldArray({ control, name: "redirect_uris" });
 
 	useEffect(() => {

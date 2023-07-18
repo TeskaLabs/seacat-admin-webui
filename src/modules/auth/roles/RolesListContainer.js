@@ -24,6 +24,9 @@ const RolesListcontainer = (props) => {
 
 	const { t } = useTranslation();
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const title = {
 		text: `${t("RolesListContainer|Roles overview")} (${tenant})`,
 		icon: "cil-user"
