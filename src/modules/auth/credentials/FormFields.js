@@ -197,7 +197,7 @@ export function PasswordField(props) {
 	};
 	return (
 		<React.Fragment>
-			<div>
+			{/* <> */}
 				<Label for="password" className='form-label'>{label}</Label>
 				<InputGroup>
 					<Input
@@ -217,9 +217,9 @@ export function PasswordField(props) {
 					{/* </InputGroupAddon> */}
 					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
 				</InputGroup>
-			</div>
+			{/* </> */}
 
-			<div>
+			{/* <> */}
 				<Label for="password2">{t("FormFields|Password again")}</Label>
 				<InputGroup>
 					<Input
@@ -239,7 +239,7 @@ export function PasswordField(props) {
 					{/* </InputGroupAddon> */}
 					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
 				</InputGroup>
-			</div>
+			{/* </> */}
 
 		</React.Fragment>
 	)
@@ -249,7 +249,7 @@ export function PasswordLinkField(props) {
 	const { t, i18n } = useTranslation();
 	const reg = props.register("passwordlink");
 	return (
-		<div>
+		<>
 			<Label for="passwordlink" className='form-label'>
 				<Input
 					id="passwordlink"
@@ -261,7 +261,7 @@ export function PasswordLinkField(props) {
 				/>{' '}
 				{t("FormFields|Send instructions to set password")}
 			</Label>
-		</div>
+		</>
 	)
 }
 
