@@ -127,7 +127,9 @@
 		"Selected credentials will be assigned to/removed from tenant": "Selected credentials will be assigned to/removed from tenant",
 		"Global roles": "Global roles",
 		"Select displayed": "Select displayed",
-		"Clear selection": "Clear selection"
+		"Clear selection": "Clear selection",
+		"Select all displayed credentials": "Select all displayed credentials",
+		"Remove from selection": "Remove from selection"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",

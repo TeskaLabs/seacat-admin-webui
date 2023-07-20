@@ -127,7 +127,9 @@
 		"Selected credentials will be assigned to/removed from tenant": "Zvolení uživatelé budou přiřazeni k/odebráni od tenanta",
 		"Global roles": "Globální role",
 		"Select displayed": "Vybrat zobrazené",
-		"Clear selection": "Odebrat výběr"
+		"Clear selection": "Odebrat výběr",
+		"Select all displayed credentials": "Vybrat všechny zobrazené",
+		"Remove from selection": "Odebrat z výběru"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",
