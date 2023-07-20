@@ -8,7 +8,7 @@ import { Container } from 'reactstrap';
 import { DataTable, ButtonWithAuthz } from 'asab-webui';
 
 function ClientListContainer(props) {
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const { t } = useTranslation();
 

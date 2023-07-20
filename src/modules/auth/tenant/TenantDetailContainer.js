@@ -18,7 +18,7 @@ import { CustomDataContainer } from '../components/CustomDataContainer';
 function TenantDetailContainer(props) {
 	let tenant_id = props.match.params.tenant_id;
 	const { t } = useTranslation();
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const [data, setData] = useState({
 		'_id': ''
 	});
