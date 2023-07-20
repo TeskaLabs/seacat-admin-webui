@@ -52,7 +52,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={credential.assigned}
 						>
-							<i className="cil-plus"></i>
+							<i className="cil-chevron-right"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -97,7 +97,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={tenant.assigned}
 						>
-							<i className="cil-plus"></i>
+							<i className="cil-chevron-right"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -337,7 +337,7 @@ const BulkAssignmentContainer = (props) => {
 						contentLoader={loading}
 					/>
 			</div>
-		{/* TODO: Rotate icons on small screen */}
+
 			<div className='credentials-actions'>
 				<Button
 					primary
@@ -380,7 +380,7 @@ const BulkAssignmentContainer = (props) => {
 									size="sm"
 									onClick={() => unselectCredential(idx)}
 								>
-									<i className='cil-x'/>
+									<i className='cil-chevron-left'/>
 								</Button>
 								<i className="cil-user mr-1 ml-3"/>{obj.username ?? obj._id}
 							</div>
@@ -458,7 +458,7 @@ const BulkAssignmentContainer = (props) => {
 										className="tenant-unselect-btn"
 										onClick={() => unselectTenant(idx)}
 									>
-										<i className='cil-x'/>
+										<i className='cil-chevron-left'/>
 									</Button>
 									<span className="ml-3">{obj._id}</span>
 									<RoleDropdown
