@@ -21,6 +21,9 @@ const SessionListContainer = (props) => {
 	const resource = "seacat:session:terminate";
 	const resources = useSelector(state => state.auth?.resources);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const headers = [
 		{
 			name: t("SessionListContainer|Session"),

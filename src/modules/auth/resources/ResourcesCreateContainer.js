@@ -30,7 +30,10 @@ const ResourceCreateContainer = (props) => {
 				}
 			}
 		);
-	const reg_description = register("resource_description")
+	const reg_description = register("resource_description");
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const onSubmit = async (values) => {
 		let body = {};

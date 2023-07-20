@@ -21,6 +21,9 @@ function ResourcesListContainer(props) {
 	const resourceEdit = "seacat:resource:edit";
 	const credentialsResources = useSelector(state => state.auth?.resources);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const headers = [
 		{
 			name: t("Name"),
