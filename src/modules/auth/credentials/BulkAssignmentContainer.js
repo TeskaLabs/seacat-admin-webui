@@ -171,7 +171,7 @@ const BulkAssignmentContainer = (props) => {
 	const retrieveData = async () => {
 		setLoading(true);
 		try {
-			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 			let response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: credentialsFilter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to fetch credentials"));
@@ -195,7 +195,7 @@ const BulkAssignmentContainer = (props) => {
 	const retrieveTenants = async () => {
 		setLoadingTenants(true);
 		try {
-			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 			let response = await SeaCatAuthAPI.get("/tenants", {params: {p: tenantsPage, i: tenantsLimit, f: tenantsFilter}});
 			setTenants(response.data.data);
 			setTenantsCount(response.data.count);
@@ -231,7 +231,7 @@ const BulkAssignmentContainer = (props) => {
 			tenantObj['*'] = globalRoles[0].selectedRole
 		};
 		try {
-			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 			let response = await SeaCatAuthAPI.put(actionType, {"credential_ids": credential_ids, "tenants": tenantObj });
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to perform bulk operation"));

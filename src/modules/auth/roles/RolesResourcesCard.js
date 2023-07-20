@@ -23,7 +23,7 @@ const RolesResourcesCard = (props) => {
 	const { role_name, tenant_id } = props.params;
 	const roleId = props.role._id ? props.role._id : role_name;
 
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const { t } = useTranslation();
 

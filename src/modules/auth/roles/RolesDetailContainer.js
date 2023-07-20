@@ -18,7 +18,7 @@ import RolesResourcesCard from './RolesResourcesCard';
 const RolesDetailContainer = (props) =>  {
 	const { t } = useTranslation();
 	const [role, setRole] = useState(null);
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { role_name, tenant_id } = props.match.params;
 
 	const [credentialsList, setCredentialsList] = useState([]);

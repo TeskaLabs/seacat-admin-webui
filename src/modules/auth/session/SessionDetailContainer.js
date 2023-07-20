@@ -21,7 +21,7 @@ function SessionDetailContainer(props) {
 	const advmode = useSelector(state => state.advmode?.enabled);
 	const theme = useSelector(state => state.theme);
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	// Display a modal window with description
 	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");

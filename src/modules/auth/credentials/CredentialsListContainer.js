@@ -144,7 +144,7 @@ function CredentialsListContainer(props) {
 	}, [data]);
 
 	const retrieveData = async () => {
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		setLoading(true);
 		try {
@@ -170,7 +170,7 @@ function CredentialsListContainer(props) {
 		let credentialIds = (data !== undefined) && data.map((item, idx) => {
 			return item._id ? item._id : "N/A";
 		})
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		try {
 			response = await SeaCatAuthAPI.put("/tenants",  credentialIds);
@@ -186,7 +186,7 @@ function CredentialsListContainer(props) {
 		let credentialIds = (data !== undefined) && data.map((item, idx) => {
 			return item._id ? item._id : "N/A";
 		})
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		try {
 			response = await SeaCatAuthAPI.put(`/roles/${tenant}`,  credentialIds);
