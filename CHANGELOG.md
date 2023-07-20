@@ -2,13 +2,19 @@
 
 ## Release Candidate
 
+## v23.29-alpha
+
+### Breaking change
+
+- All service names need to be updaded in nginx configuration according following example: `seacat_auth` -> `seacat-auth`
+
 ### Features
 
-- ASAB WebUI submodule version bump [[cd34964](https://github.com/TeskaLabs/asab-webui/commit/cd349640ad6c61e3556a43fed87388dc10967228)] commit (INDIGO Sprint 230623, [!49](https://github.com/TeskaLabs/seacat-admin-webui/pull/49))
+- ASAB WebUI submodule version bump [[31b7bb5](https://github.com/TeskaLabs/asab-webui/commit/31b7bb5519f7b8fa6f71853ba83f71e9dabc0ef4)] commit (INDIGO Sprint 230713, [!51](https://github.com/TeskaLabs/seacat-admin-webui/pull/51))
 
 ### Refactoring
 
-- Replace all underscores in names/api's with dashes (INDIGO Sprint 230623, [!51](https://github.com/TeskaLabs/seacat-admin-webui/pull/51))
+- Replace all underscores in names/api's with dashes (INDIGO Sprint 230713, [!51](https://github.com/TeskaLabs/seacat-admin-webui/pull/51))
 
 - Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
 
