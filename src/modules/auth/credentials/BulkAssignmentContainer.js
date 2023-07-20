@@ -346,10 +346,7 @@ const BulkAssignmentContainer = (props) => {
 					title={t("BulkAssignmentContainer|Select all displayed credentials")}
 					disabled={allSelected}
 				>
-					<span>
-
-					<i class="cil-chevron-double-right"></i>
-					</span>
+					<i class="cil-chevron-double-right"/>
 				</Button>
 				<Button
 					primary
@@ -358,7 +355,7 @@ const BulkAssignmentContainer = (props) => {
 					title={t("BulkAssignmentContainer|Remove from selection")}
 					disabled={(selectedCredentials.length === 0)}
 				>
-					<i class="cil-chevron-double-left"></i>
+					<i class="cil-chevron-double-left"/>
 				</Button>
 			</div>
 
