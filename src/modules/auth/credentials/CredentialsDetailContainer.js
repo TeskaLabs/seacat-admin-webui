@@ -46,6 +46,9 @@ function CredentialsDetailContainer(props) {
 	const displaySessions = resources ? ((resources.indexOf("seacat:session:access") != -1) || (resources.indexOf("authz:superuser") != -1)) : false;
 	const credentials_id = props.match.params.credentials_id;
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	useEffect(() => {
 		retrieveData();
 		if (displaySessions) {

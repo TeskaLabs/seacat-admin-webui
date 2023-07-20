@@ -30,6 +30,9 @@ const ResourceDetailContainer = (props) =>  {
 	const registerDescription = register("resource_description");
 	const registerName = register("resource_name");
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const getResourceDetail = async (resourceId) => {
 		try {
 			let response = await SeaCatAuthAPI.get(`resource/${resourceId}`);

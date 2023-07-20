@@ -42,6 +42,9 @@ const RolesDetailContainer = (props) =>  {
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 	const limit = 10;
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const headers = [
 		{
 			name: t('RolesDetailContainer|Name'),

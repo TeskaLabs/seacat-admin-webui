@@ -30,6 +30,9 @@ function CredentialsListContainer(props) {
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const headers = [
 		{
 			name: t('CredentialsListContainer|Name'),

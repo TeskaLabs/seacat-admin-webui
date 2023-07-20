@@ -22,6 +22,9 @@ const ClientDetailContainer = (props) =>  {
 	const theme = useSelector(state => state.theme);
 	const advmode = useSelector(state => state.advmode.enabled);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	useEffect(() => {
 		getClientDetail();
 	}, []);

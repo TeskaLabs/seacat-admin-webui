@@ -23,6 +23,9 @@ function SessionDetailContainer(props) {
 
 	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	useEffect(() => {
 		retrieveData();
 	}, [session_id]);
