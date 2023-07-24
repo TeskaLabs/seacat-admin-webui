@@ -135,6 +135,8 @@
 		"Application type": "Application type",
 		"Failed to fetch clients": "Failed to fetch clients",
 		"Client name": "Client name",
+		"Client ID": "Client ID",
+		"Client URI": "Client URI",
 		"New client": "New client",
 		"Clients": "Clients",
 		"Search": "Search"

@@ -135,6 +135,8 @@
 		"Application type": "Typ aplikace",
 		"Failed to fetch clients": "Nepodařilo se načíst klienty",
 		"Client name": "Název klienta",
+		"Client ID": "ID klienta",
+		"Client URI": "URI klienta",
 		"New client": "Nový klient",
 		"Clients": "Klienti",
 		"Search": "Vyhledat"
