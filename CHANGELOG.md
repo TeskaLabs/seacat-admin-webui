@@ -4,11 +4,35 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[4675693](https://github.com/TeskaLabs/asab-webui/commit/46756931bf295b40d00cf23ab8849233c35fed24)] commit (INDIGO Sprint 230623, [!46](https://github.com/TeskaLabs/seacat-admin-webui/pull/46))
+- Select all feature for credentials in bulk assignment screen. (INDIGO Sprint 230713, [!47](https://github.com/TeskaLabs/seacat-admin-webui/pull/47))
+
+## v23.29-alpha
+
+### Breaking change
+
+- All service names need to be updaded in nginx configuration according following example: `seacat_auth` -> `seacat-auth`
+
+### Features
+
+- ASAB WebUI submodule version bump [[31b7bb5](https://github.com/TeskaLabs/asab-webui/commit/31b7bb5519f7b8fa6f71853ba83f71e9dabc0ef4)] commit (INDIGO Sprint 230713, [!51](https://github.com/TeskaLabs/seacat-admin-webui/pull/51))
 
 ### Refactoring
 
+- Replace all underscores in names/api's with dashes (INDIGO Sprint 230713, [!51](https://github.com/TeskaLabs/seacat-admin-webui/pull/51))
+
 - Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
+
+- Refactored dynamic locales (INDIGO Sprint 230623, [!432](https://github.com/TeskaLabs/asab-webui/pull/432))
+
+- Favicon update with new TeskaLabs logo (INDIGO Sprint 230623, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
+
+- Refactor HelpComponent, remove HelpService (INDIGO Sprint 230609, [!418](https://github.com/TeskaLabs/asab-webui/pull/418))
+
+- Add addHelpButton method for all screens in the Seacat-admin-webui app (INDIGO Sprint 230713, [!52](https://github.com/TeskaLabs/seacat-admin-webui/pull/52))
+
+### Bugfix
+
+- Add missing locales for HelpButton (INDIGO Sprint 230623, [!50](https://github.com/TeskaLabs/seacat-admin-webui/pull/50))
 
 ## v23.27-beta
 

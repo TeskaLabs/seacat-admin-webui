@@ -24,7 +24,7 @@ import { CustomDataContainer } from '../components/CustomDataContainer';
 
 function CredentialsDetailContainer(props) {
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { t, i18n } = useTranslation();
 
 	const [data, setData] = useState(null);
@@ -45,6 +45,9 @@ function CredentialsDetailContainer(props) {
 	const resourceManageCredentials = "seacat:credentials:edit";
 	const displaySessions = resources ? ((resources.indexOf("seacat:session:access") != -1) || (resources.indexOf("authz:superuser") != -1)) : false;
 	const credentials_id = props.match.params.credentials_id;
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	useEffect(() => {
 		retrieveData();
@@ -426,7 +429,7 @@ function CredentialsInfoCard(props) {
 
 	// Update user
 	const onSubmit = async (values) => {
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 		// If one of the fields (phone or email) is not met, it will be sent 'null' to the body
 		if (values.phone === "") {

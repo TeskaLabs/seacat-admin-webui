@@ -35,6 +35,10 @@
 	"ASABTenantModule": {
 		"Invalid tenant": "Invalid tenant :-("
 	},
+	"HelpButton": {
+		"Show help info": "Show help info",
+		"Help": "Help"
+	},
 	"ASABConfig" : {
 		"Nothing has been selected yet": "Nothing has been selected yet",
 		"Please select the configuration from tree menu on the left side of the screen": "Please select the configuration from tree menu on the left side of the screen",
@@ -97,10 +101,14 @@
 		"Failed to perform bulk operation": "Failed to perform bulk operation",
 		"Bulk action was successful": "Bulk action was successful",
 		"Credentials": "Credentials",
+		"Add credential": "Add credential",
+		"Credential already assigned": "Credential already assigned",
 		"Search": "Search",
 		"Selected credentials": "Selected credentials",
 		"Unselect": "Unselect",
 		"Tenants": "Tenants",
+		"Add tenant": "Add tenant",
+		"Tenant already assigned": "Tenant already assigned",
 		"Selected tenants and roles": "Selected tenants and roles",
 		"Assign in bulk": "Assign in bulk",
 		"Select credentials and tenants": "Select credentials and tenants",
@@ -117,7 +125,11 @@
 		"Tenant": "Tenant",
 		"and selected roles will be assigned to/unassigned from selected credentials": "and selected roles will be assigned to/unassigned from selected credentials",
 		"Selected credentials will be assigned to/removed from tenant": "Selected credentials will be assigned to/removed from tenant",
-		"Global roles": "Global roles"
+		"Global roles": "Global roles",
+		"Select displayed": "Select displayed",
+		"Clear selection": "Clear selection",
+		"Select all displayed credentials": "Select all displayed credentials",
+		"Remove from selection": "Remove from selection"
 	},
 	"ClientListContainer": {
 		"Application type": "Application type",
@@ -608,9 +620,10 @@
 	"Edit": "Edit",
 	"Something wrong": "Something went wrong!",
 	"Failed fetch": "Failed to fetch the object.",
-	"Showing item(s)": "{{ from }} - {{ to }} of {{ total }} item(s)",
+	"of": "of",
+	"item(s)": "item(s)",
 	"You do not have access rights to perform this action": "You do not have access rights to perform this action",
 	"Items per page": "Items per page",
-	"Page": "of {{pages}} page",
-	"Pages": "of {{pages}} pages"
+	"Page": "Page",
+	"Pages": "Pages"
 }

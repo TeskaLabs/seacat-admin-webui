@@ -13,7 +13,7 @@ import { DateTime, ButtonWithAuthz } from 'asab-webui';
 
 const ClientDetailContainer = (props) =>  {
 	const { t } = useTranslation();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const [client, setClient] = useState(null);
 	const { client_id } = props.match.params;
 
@@ -21,6 +21,9 @@ const ClientDetailContainer = (props) =>  {
 	const resources = useSelector(state => state.auth?.resources);
 	const theme = useSelector(state => state.theme);
 	const advmode = useSelector(state => state.advmode.enabled);
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	useEffect(() => {
 		getClientDetail();

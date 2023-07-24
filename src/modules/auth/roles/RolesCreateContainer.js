@@ -14,7 +14,7 @@ import { ButtonWithAuthz } from 'asab-webui';
 
 const RolesCreateContainer = (props) => {
 	const { handleSubmit, register, formState: { errors, isSubmitting }, getValues } = useForm();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const resource = "seacat:role:edit";
 	const resources = useSelector(state => state.auth?.resources);
@@ -33,6 +33,9 @@ const RolesCreateContainer = (props) => {
 			}
 		);
 	const regGlobalRole = register("global");
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const onSubmit = async (values) => {
 		const tenant = values.global && resources.includes("authz:superuser") ? '*' : currentTenant;

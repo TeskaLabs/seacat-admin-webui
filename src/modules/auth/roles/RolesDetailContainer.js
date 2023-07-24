@@ -18,7 +18,7 @@ import RolesResourcesCard from './RolesResourcesCard';
 const RolesDetailContainer = (props) =>  {
 	const { t } = useTranslation();
 	const [role, setRole] = useState(null);
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { role_name, tenant_id } = props.match.params;
 
 	const [credentialsList, setCredentialsList] = useState([]);
@@ -41,6 +41,9 @@ const RolesDetailContainer = (props) =>  {
 
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
 	const limit = 10;
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const headers = [
 		{

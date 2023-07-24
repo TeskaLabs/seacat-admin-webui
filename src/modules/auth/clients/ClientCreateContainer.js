@@ -21,7 +21,7 @@ const ClientCreateContainer = (props) => {
 	const { client_id } = props.match.params;
 	const location = useLocation(); // tracking method in URL
 
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const resource = "seacat:client:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const theme = useSelector(state => state.theme);
@@ -37,6 +37,9 @@ const ClientCreateContainer = (props) => {
 			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientCreateContainer|URL hash has to be empty"),
 		}
 	});
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const { fields, append, remove, update } = useFieldArray({ control, name: "redirect_uris" });
 

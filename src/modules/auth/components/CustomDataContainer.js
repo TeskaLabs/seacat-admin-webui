@@ -23,7 +23,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 		control,
 		name: 'customData'
 	});
-	let SeaCatAuthAPI = app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = app.axiosCreate('seacat-auth');
 
 	useEffect(() => {
 		let formattedPrevData = { customData: [customData] }
