@@ -7,7 +7,7 @@ import { Container } from 'reactstrap';
 
 function ResourcesListContainer(props) {
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const [resources, setResources] = useState([]);
 	const [count, setCount] = useState(0);
@@ -20,6 +20,9 @@ function ResourcesListContainer(props) {
 
 	const resourceEdit = "seacat:resource:edit";
 	const credentialsResources = useSelector(state => state.auth?.resources);
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const headers = [
 		{

@@ -35,6 +35,10 @@
 	"ASABTenantModule": {
 		"Invalid tenant": "Neplatný tenant :-("
 	},
+	"HelpButton": {
+		"Show help info": "Zobrazit informace o nápovědě",
+		"Help": "Nápověda"
+	},
 	"ASABConfig" : {
 		"Nothing has been selected yet": "Zatím nebylo nic vybráno",
 		"Please select the configuration from tree menu on the left side of the screen": "Prosím vyberte konfiguraci z nabídky na levé straně obrazovky",
@@ -97,10 +101,14 @@
 		"Failed to perform bulk operation": "Nepodařilo se provést hromadnou operaci",
 		"Bulk action was successful": "Hromadná operace proběhla úspěšně",
 		"Credentials": "Uživatelé",
+		"Add credential": "Vybrat uživatele",
+		"Credential already assigned": "Uživatel byl již vybrán",
 		"Search": "Hledat",
 		"Selected credentials": "Vybraní uživatelé",
 		"Unselect": "Odebrat z výběru",
 		"Tenants": "Tenanti",
+		"Add tenant": "Vybrat tenanta",
+		"Tenant already assigned": "Tenant byl již vybrán",
 		"Selected tenants and roles": "Zvolení tenanti a role",
 		"Assign in bulk": "Hromadně přiřadit",
 		"Select credentials and tenants": "Vyberte uživatele a tenanty",
@@ -117,7 +125,11 @@
 		"Tenant": "Tenant",
 		"and selected roles will be assigned to/unassigned from selected credentials": "a zvolené role budou přiřazeny/odebrány od zvolených uživatelů",
 		"Selected credentials will be assigned to/removed from tenant": "Zvolení uživatelé budou přiřazeni k/odebráni od tenanta",
-		"Global roles": "Globální role"
+		"Global roles": "Globální role",
+		"Select displayed": "Vybrat zobrazené",
+		"Clear selection": "Odebrat výběr",
+		"Select all displayed credentials": "Vybrat všechny zobrazené",
+		"Remove from selection": "Odebrat z výběru"
 	},
 	"ClientListContainer": {
 		"Application type": "Typ aplikace",
@@ -603,9 +615,10 @@
 	"Edit": "Upravit",
 	"Something wrong": "Něco je špatně!",
 	"Failed fetch": "Získání dat selhalo.",
-	"Showing item(s)": "{{ from }} - {{ to }} z {{ total }} položek",
+	"of": "z",
+	"item(s)": "položek",
 	"You do not have access rights to perform this action": "Váš přístup je omezen, nemáte dostatečná oprávnění",
 	"Items per page": "Položek na stránku",
-	"Page": "z {{pages}} stránky",
-	"Pages": "z {{pages}} stránek"
+	"Page": "Stránky",
+	"Pages": "Stránek"
 }

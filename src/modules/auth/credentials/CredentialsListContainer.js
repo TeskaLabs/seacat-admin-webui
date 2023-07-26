@@ -30,6 +30,9 @@ function CredentialsListContainer(props) {
 	const resources = useSelector(state => state.auth?.resources);
 	const tenant = useSelector(state => state.tenant?.current);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	const headers = [
 		{
 			name: t('CredentialsListContainer|Name'),
@@ -141,7 +144,7 @@ function CredentialsListContainer(props) {
 	}, [data]);
 
 	const retrieveData = async () => {
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		setLoading(true);
 		try {
@@ -167,7 +170,7 @@ function CredentialsListContainer(props) {
 		let credentialIds = (data !== undefined) && data.map((item, idx) => {
 			return item._id ? item._id : "N/A";
 		})
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		try {
 			response = await SeaCatAuthAPI.put("/tenants",  credentialIds);
@@ -183,7 +186,7 @@ function CredentialsListContainer(props) {
 		let credentialIds = (data !== undefined) && data.map((item, idx) => {
 			return item._id ? item._id : "N/A";
 		})
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		let response;
 		try {
 			response = await SeaCatAuthAPI.put(`/roles/${tenant}`,  credentialIds);

@@ -26,7 +26,7 @@ function CredentialsTenantsCard(props) {
 
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggleDropdown = () => setDropdownOpen(prevState => !prevState);
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const resources = props.resources;
 	const resource = props.resource;

@@ -7,7 +7,7 @@ import { Container } from 'reactstrap';
 import { DataTable, ButtonWithAuthz } from 'asab-webui';
 
 const SessionListContainer = (props) => {
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const { t } = useTranslation();
 
@@ -20,6 +20,9 @@ const SessionListContainer = (props) => {
 
 	const resource = "seacat:session:terminate";
 	const resources = useSelector(state => state.auth?.resources);
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const headers = [
 		{

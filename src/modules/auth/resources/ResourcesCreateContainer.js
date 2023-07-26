@@ -15,7 +15,7 @@ const ResourceCreateContainer = (props) => {
 	const { handleSubmit, register, formState: { errors, isSubmitting }, getValues } = useForm();
 	const credentialsResources = useSelector(state => state.auth?.resources);
 	const resourceEdit = "seacat:resource:edit";
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { t } = useTranslation();
 	const reg = register(
 			"resource_id",
@@ -29,7 +29,10 @@ const ResourceCreateContainer = (props) => {
 				}
 			}
 		);
-	const reg_description = register("resource_description")
+	const reg_description = register("resource_description");
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const onSubmit = async (values) => {
 		let body = {};
