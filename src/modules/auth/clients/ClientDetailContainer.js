@@ -110,7 +110,7 @@ const ClientDetailContainer = (props) =>  {
 						<Col md={5} title="redirect_uris">{t("ClientDetailContainer|Redirect URIs")}</Col>
 						<Col title="redirect_uris" className="redirect_uris">
 							{client?.redirect_uris.map((item, idx) => (
-								<div key={idx} className="redirect-uris-item">{item}</div>))
+								<div key={idx} className="redirect-uris-item"><a target="_blank" href={item}>{item}</a></div>))
 							}
 						</Col>
 					</Row>
@@ -120,7 +120,7 @@ const ClientDetailContainer = (props) =>  {
 					</Row>
 					<Row>
 						<Col md={5} title="client_uri">{t("ClientDetailContainer|Client URI")}</Col>
-						<Col>{client?.client_uri ? client.client_uri : "N/A"}</Col>
+						<Col>{client?.client_uri ? <a target="_blank" href={client.client_uri}>{client.client_uri}</a> : "N/A"}</Col>
 					</Row>
 					<Row>
 						<Col md={5} title="application_type">{t("ClientDetailContainer|Application type")}</Col>
@@ -183,7 +183,7 @@ const ClientDetailContainer = (props) =>  {
 				<CardBody>
 					<Row>
 						<Col md={5} title="cookie_name">{t("ClientDetailContainer|Cookie name")}</Col>
-						<Col title="cookie_name">{client?.cookie_name ? client.cookie_name : "N/A"}</Col>
+						<Col title="cookie_name"><code>{client?.cookie_name ? client.cookie_name : "N/A"}</code></Col>
 					</Row>
 					<Row>
 						<Col md={5} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
@@ -276,10 +276,6 @@ const ClientDetailContainer = (props) =>  {
 						/>{' '}
 						{t('ClientDetailContainer|Authorize anonymous users')}
 					</FormGroup>
-					<Row>
-						<Col md={5} title="anonymous_cid">{t("ClientDetailContainer|Anonymous credentials ID")}</Col>
-						<Col>{client?.anonymous_cid ? client.anonymous_cid : "N/A"}</Col>
-					</Row>
 				</CardBody>
 			</Card>
 

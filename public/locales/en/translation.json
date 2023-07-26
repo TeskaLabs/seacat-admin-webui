@@ -205,7 +205,6 @@
 		"Login URI": "Login URI",
 		"Authorize URI": "Authorize URI",
 		"Authorize anonymous users": "Authorize anonymous users",
-		"Anonymous credentials ID": "Anonymous credentials ID",
 		"Session expiration": "Session expiration",
 		"Redirect URI must be in absolute format without a fragment component.": "Redirect URI must be in absolute format without a fragment component.",
 		"Remove client": "Remove client",
