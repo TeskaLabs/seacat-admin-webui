@@ -18,13 +18,14 @@ $svg-arrow: var(--svg-arrow);
 	grid-template-areas:
 		"a b"
 		"a c"
-		"a d"
+		"f d"
 		"e e";
 	grid-template-columns: 1fr 1fr;
 
 	& .client-main-info-card {
 		grid-area: a;
 		align-self: start;
+		height: 100%;
 	}
 
 	& .client-multidomain-card {
@@ -37,6 +38,10 @@ $svg-arrow: var(--svg-arrow);
 
 	& .client-access-control-card {
 		grid-area: d;
+	}
+
+	& .client-cookie-card {
+		grid-area: f;
 	}
 
 
@@ -102,6 +107,7 @@ $svg-arrow: var(--svg-arrow);
 	.client-wrapper {
 		grid-template-areas:
 		"a"
+		"f"
 		"b"
 		"c"
 		"d"
