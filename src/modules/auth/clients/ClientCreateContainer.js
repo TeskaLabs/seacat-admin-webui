@@ -140,6 +140,14 @@ const ClientCreateContainer = (props) => {
 			setValue("cookie_domain", obj.cookie_domain);
 		}
 
+		if (obj?.cookie_webhook_uri?.length > 0) {
+			setValue("cookie_webhook_uri", obj.cookie_webhook_uri);
+		}
+
+		if (obj?.cookie_entry_uri?.length > 0) {
+			setValue("cookie_entry_uri", obj.cookie_entry_uri);
+		}
+
 		setValue("client_name", obj?.client_name);
 		setValue("client_uri", obj?.client_uri);
 		setValue("login_uri", obj?.login_uri);
@@ -312,18 +320,43 @@ const ClientCreateContainer = (props) => {
 							labelName={t('ClientCreateContainer|Login URI')}
 						/>
 						<TextInput
-							name="cookie_domain"
-							register={register}
-							errors={errors}
-							disabled={disabled}
-							labelName={t('ClientCreateContainer|Cookie domain')}
-						/>
-						<TextInput
 							name="authorize_uri"
 							register={register}
 							errors={errors}
 							disabled={disabled}
 							labelName={t('ClientCreateContainer|Authorize URI')}
+						/>
+					</CardBody>
+				</Card>
+
+				<Card className="client-cookie-card">
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-paperclip pr-2"></i>
+							{t("ClientDetailContainer|Cookie")}
+						</div>
+					</CardHeader>
+					<CardBody>
+						<TextInput
+							name="cookie_entry_uri"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Cookie entry URI')}
+						/>
+						<TextInput
+							name="cookie_webhook_uri"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Cookie webhook URI')}
+						/>
+						<TextInput
+							name="cookie_domain"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Cookie domain')}
 						/>
 					</CardBody>
 				</Card>
