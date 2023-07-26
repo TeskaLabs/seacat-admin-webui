@@ -2,6 +2,8 @@
 
 ## Release Candidate
 
+## v23.30-alpha
+
 ### Features
 
 - Select all feature for credentials in bulk assignment screen. (INDIGO Sprint 230713, [!47](https://github.com/TeskaLabs/seacat-admin-webui/pull/47))
