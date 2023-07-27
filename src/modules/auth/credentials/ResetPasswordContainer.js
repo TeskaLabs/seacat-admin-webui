@@ -152,7 +152,7 @@ function ResetPasswordField(props){
 
 	return(
 		<Row>
-			<Label sm={3} for="newpassword">{t("ResetPasswordContainer|Password")}</Label>
+			<Label sm={3} className='form-label' for="newpassword">{t("ResetPasswordContainer|Password")}</Label>
 			<Col sm={6}>
 				<InputGroup>
 					<Input

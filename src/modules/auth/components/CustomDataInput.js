@@ -8,7 +8,7 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 
 	return (
 		<>
-			{labelName && <Label for={name} title={name}>{labelName}</Label>}
+			{labelName && <Label for={name} title={name} className='form-label'>{labelName}</Label>}
 			{fields && fields.map((item, idx) => {
 				if (fields[idx].key === "undefined") {
 					return

@@ -220,7 +220,7 @@ export function PasswordField(props) {
 			{/* </> */}
 
 			{/* <> */}
-				<Label for="password2">{t("FormFields|Password again")}</Label>
+				<Label className='form-label' for="password2">{t("FormFields|Password again")}</Label>
 				<InputGroup>
 					<Input
 						id="password2"

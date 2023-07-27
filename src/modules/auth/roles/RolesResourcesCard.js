@@ -106,7 +106,7 @@ const RolesResourcesCard = (props) => {
 			</CardHeader>
 
 			<CardBody className="card-body-scroll">
-				{assignedResources.length === 0 && !editMode && <Label className="mb-0">{t('RolesResourcesCard|No data')}</Label>}
+				{assignedResources.length === 0 && !editMode && <Label className="mb-0 form-label">{t('RolesResourcesCard|No data')}</Label>}
 				{assignedResources.map((resource, idx) => (
 					<Row key={idx}>
 						<Col style={{overflow: "hidden", marginLeft: "15px", paddingLeft: "0"}}>

@@ -102,7 +102,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 						<CellContentLoader cols={2} rows={5} />
 					:
 						!edit && (data.length === 1) && (data[0].key === '') ?
-							<Label className="mb-0">{t('CustomDataContainer|No data')}</Label>
+							<Label className="mb-0 form-label">{t('CustomDataContainer|No data')}</Label>
 						:
 							!edit && <Row className="custom-data-headers">
 								<Col sm={"4"} md={edit ? "4" : "3"} ><h6>{t('CustomDataContainer|Name')}</h6></Col>
