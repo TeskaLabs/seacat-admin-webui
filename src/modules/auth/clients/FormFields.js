@@ -19,7 +19,7 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 		:
 		(name === "cookie_domain") && {
 			validate: {
-				validation: value => (/^[a-z0-9\.-]{1,61}\.[a-z]{2,}$|^$/).test(value) || t("ClientFormField|Invalid format for cookie_domain"),
+				validation: value => value === undefined || (/^[a-z0-9\.-]{1,61}\.[a-z]{2,}$|^$/).test(value) || t("ClientFormField|Invalid format for cookie_domain"),
 			}
 		}
 	);
