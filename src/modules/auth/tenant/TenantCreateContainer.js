@@ -79,7 +79,7 @@ function TenantCreateContainer(props) {
 
 							<CardBody>
 								<div>
-									<Label for="id">{t("TenantCreateContainer|Name")}</Label>
+									<Label className='form-label' for="id">{t("TenantCreateContainer|Name")}</Label>
 									<Input
 										id="id"
 										name="id"
