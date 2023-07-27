@@ -9,7 +9,7 @@ import { ButtonWithAuthz } from 'asab-webui';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, FormGroup, Input, Label,
+	Form, Input, Label,
 	Nav, NavLink, NavItem, ButtonGroup,
 	TabPane, TabContent
 } from 'reactstrap';

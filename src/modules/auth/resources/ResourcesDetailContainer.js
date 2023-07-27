@@ -7,7 +7,7 @@ import {
 	Container, Row, Col,
 	Card, Input, CardHeader,
 	CardBody, Form, Button,
-	CardFooter, FormGroup, ButtonGroup
+	CardFooter, ButtonGroup
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';

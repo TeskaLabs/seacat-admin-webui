@@ -7,7 +7,7 @@ import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter,
 	CardBody, Button, Form,
-	FormGroup, Input, Label,
+	Input, Label,
 	ButtonGroup, FormFeedback, FormText
 } from 'reactstrap';
 
@@ -78,7 +78,7 @@ function TenantCreateContainer(props) {
 							</CardHeader>
 
 							<CardBody>
-								<FormGroup>
+								<div>
 									<Label for="id">{t("TenantCreateContainer|Name")}</Label>
 									<Input
 										id="id"
@@ -97,7 +97,7 @@ function TenantCreateContainer(props) {
 										:
 										<FormText>{t("TenantCreateContainer|Only lower-case letters, numbers, dash and underscore are allowed")}</FormText>
 									}
-								</FormGroup>
+								</div>
 							</CardBody>
 
 							<CardFooter>

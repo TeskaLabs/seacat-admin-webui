@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-	FormGroup, Input, Label, Button,
+	Input, Label, Button,
 	InputGroupAddon, InputGroup, FormFeedback
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';

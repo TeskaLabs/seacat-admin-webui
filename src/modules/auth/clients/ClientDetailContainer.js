@@ -239,16 +239,16 @@ const ClientDetailContainer = (props) =>  {
 					</div>
 				</CardHeader>
 				<CardBody>
-					<FormGroup check>
+					<div>
 						<Input
 							id="authorize_anonymous_users"
 							name="authorize_anonymous_users"
 							type="checkbox"
 							disabled={true}
 							checked={(client?.authorize_anonymous_users == true) ? true : false}
-						/>{' '}
+							/>{' '}
 						{t('ClientDetailContainer|Authorize anonymous users')}
-					</FormGroup>
+					</div>
 				</CardBody>
 			</Card>
 

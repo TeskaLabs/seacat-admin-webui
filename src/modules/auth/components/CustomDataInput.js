@@ -1,5 +1,5 @@
 import {useTranslation} from "react-i18next";
-import {Button, FormFeedback, FormGroup, Input, InputGroup, Label} from "reactstrap";
+import {Button, FormFeedback, Input, InputGroup, Label} from "reactstrap";
 import {Controller} from "react-hook-form";
 import React, { useEffect } from "react";
 
@@ -7,7 +7,7 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 	const { t } = useTranslation();
 
 	return (
-		<FormGroup>
+		<>
 			{labelName && <Label for={name} title={name}>{labelName}</Label>}
 			{fields && fields.map((item, idx) => {
 				if (fields[idx].key === "undefined") {
@@ -61,6 +61,6 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 			>
 				<span className="cil-plus" />
 			</Button>
-		</FormGroup>
+		</>
 	)
 }

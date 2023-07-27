@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, FormGroup, FormText,
+	Form, FormText,
 	Input, Label, FormFeedback
 } from 'reactstrap';
 

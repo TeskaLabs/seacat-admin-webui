@@ -1,6 +1,6 @@
 import React, {useState}  from 'react';
 import {
-	FormGroup, Input, Label,
+	Input, Label,
 	Button, InputGroupAddon, InputGroup,
 	FormFeedback, FormText
 } from 'reactstrap';

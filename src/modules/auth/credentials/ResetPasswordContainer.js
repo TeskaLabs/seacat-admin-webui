@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody, CardTitle,
-	Form, FormGroup, Label,
+	Form, Label,
 	Button, Input, InputGroup, InputGroupAddon,
 } from 'reactstrap';
 
@@ -151,7 +151,7 @@ function ResetPasswordField(props){
 	};
 
 	return(
-		<FormGroup row >
+		<Row>
 			<Label sm={3} for="newpassword">{t("ResetPasswordContainer|Password")}</Label>
 			<Col sm={6}>
 				<InputGroup>
@@ -172,7 +172,7 @@ function ResetPasswordField(props){
 					{props.errors.newpassword && <p>{props.errors.newpassword.message}</p>}
 				</InputGroup>
 			</Col>
-		</FormGroup>
+		</Row>
 	);
 
 }
