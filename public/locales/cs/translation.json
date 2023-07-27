@@ -142,7 +142,6 @@
 		"Search": "Vyhledat"
 	},
 	"ClientCreateContainer": {
-		"Something went wrong, failed to fetch clients": "Něco je špatně, nepodařilo se získat klienty",
 		"Something went wrong, failed to fetch client features": "Něco je špatně, nepodařilo se získat možnosti klienta",
 		"Something went wrong, failed to fetch client info": "Něco je špatně, nepodařilo se získat informace o klientovi",
 		"Client updated successfully": "Klient úspěšně aktualizován",
