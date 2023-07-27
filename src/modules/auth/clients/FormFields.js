@@ -114,13 +114,13 @@ export function RadioInput ({ name, valueList, register, labelName, disabled, ed
 							name={item}
 							title={item}
 							type="radio"
-							className="ml-0 client-radio-input"
+							className="ms-0 client-radio-input"
 							value={item}
 							disabled={disabled}
 							{...register(name)}
 							defaultChecked={!editing && (key == 0)}
 						/>
-						<div className="ml-2">{item}</div>
+						<div className="ms-2">{item}</div>
 					</InputGroup>
 				))}
 			</div>
@@ -150,7 +150,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					outline
 					color="primary"
 					size="sm"
-					className='ml-0'
+					className='ms-0'
 					onClick={() => append({ value: ""})}
 				>
 					<span className="cil-plus" />
@@ -192,7 +192,7 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 				innerRef={regMail.ref}
 				invalid={errors[name]?.[index]?.value && true}
 			/>
-			{/* <InputGroupAddon addonType="append" className="ml-0"> */}
+			{/* <InputGroupAddon addonType="append" className="ms-0"> */}
 				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)}>
 					<span className="cil-minus" />
 				</Button>
@@ -253,7 +253,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 								<button className="cursor-pointer custom-dropdown-btn"></button>
 							</div>
 							{selectedItems && selectedItems.map((optionItem, index) => (
-								<span className="mt-1 pr-2 d-inline-block  selected-item" key={index}>
+								<span className="mt-1 pe-2 d-inline-block  selected-item" key={index}>
 									<span>{ optionItem }</span>
 									<span onClick={() => removeItem(optionItem)}>
 										<i className="cil-x"></i>
@@ -344,13 +344,13 @@ export function MultiCheckbox ({ name, valueList, assignValue, setValue, labelNa
 			<div title={name}>
 				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
-						<div className="ml-2">{item}</div>
+						<div className="ms-2">{item}</div>
 						<Input
 							id={item}
 							name={item}
 							title={item}
 							type="checkbox"
-							className="ml-0"
+							className="ms-0"
 							value={item}
 							disabled={disabled}
 							checked={checkedState[key]}

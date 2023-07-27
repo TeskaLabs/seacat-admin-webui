@@ -85,7 +85,7 @@ const DeletedResourceDetailContainer = (props) =>  {
 			<Card className='resource-detail-description'>
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-lock-locked pr-2"></i>
+						<i className="cil-lock-locked pe-2"></i>
 						{t("ResourcesDeletedDetailContainer|Resource")}
 					</div>
 				</CardHeader>

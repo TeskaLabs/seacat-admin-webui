@@ -57,7 +57,7 @@ const RolesCreateContainer = (props) => {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className="card-header-title">
-									<i className="cil-user pr-2"></i>
+									<i className="cil-user pe-2"></i>
 									{t("RolesCreateContainer|Create new role")}
 								</div>
 							</CardHeader>

@@ -200,7 +200,7 @@ function CredentialsDetailContainer(props) {
 					<Card className="general-info-card">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-people pr-2"></i>
+								<i className="cil-people pe-2"></i>
 								{t("CredentialsDetailContainer|Credentials")}
 							</div>
 						</CardHeader>
@@ -210,18 +210,18 @@ function CredentialsDetailContainer(props) {
 						<>
 							{data.username !== undefined ?
 							<Row>
-								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Username')}</Col>
+								<Col sm={3} className="pe-0">{t('CredentialsDetailContainer|Username')}</Col>
 								<Col>{data.username}</Col>
 							</Row>
 							: null}
 
 							<Row>
-								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|ID')}</Col>
+								<Col sm={3} className="pe-0">{t('CredentialsDetailContainer|ID')}</Col>
 								<Col><code>{data._id}</code></Col>
 							</Row>
 
 							<Row>
-								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Status')}</Col>
+								<Col sm={3} className="pe-0">{t('CredentialsDetailContainer|Status')}</Col>
 								<Col>
 									{(data.suspended === false) || (data.suspended == undefined) ?
 										<span className="credential-status credential-active-status">{t('CredentialsDetailContainer|Active')}</span>
@@ -260,12 +260,12 @@ function CredentialsDetailContainer(props) {
 							</Row>
 
 							<Row>
-								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Created at')}</Col>
+								<Col sm={3} className="pe-0">{t('CredentialsDetailContainer|Created at')}</Col>
 								<Col><DateTime value={data._c} /></Col>
 							</Row>
 
 							<Row>
-								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Modified at')}</Col>
+								<Col sm={3} className="pe-0">{t('CredentialsDetailContainer|Modified at')}</Col>
 								<Col><DateTime value={data._m} /></Col>
 							</Row>
 						</>
@@ -301,7 +301,7 @@ function CredentialsDetailContainer(props) {
 					<Card className="login-info-card">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-people pr-2"></i>
+								<i className="cil-people pe-2"></i>
 								{t('CredentialsDetailContainer|Last logins')}
 							</div>
 						</CardHeader>
@@ -309,12 +309,12 @@ function CredentialsDetailContainer(props) {
 						<CardBody>
 
 							<Row>
-								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Successful')}</Col>
+								<Col sm={3} className="pe-0">{t('CredentialsDetailContainer|Successful')}</Col>
 								{ (data._ll === undefined) || (data._ll.sat === undefined) ?
 									<Col>N/A</Col>
 								:
 									<React.Fragment>
-										<Col className="pr-0">
+										<Col className="pe-0">
 											<DateTime value={data._ll.sat} />
 										</Col>
 										{data._ll.sfi !== undefined && <Col xs={11} sm={4}>
@@ -325,12 +325,12 @@ function CredentialsDetailContainer(props) {
 							</Row>
 
 							<Row>
-								<Col sm={3} className="pr-0">{t('CredentialsDetailContainer|Failed')}</Col>
+								<Col sm={3} className="pe-0">{t('CredentialsDetailContainer|Failed')}</Col>
 								{ (data._ll === undefined) || (data._ll.fat === undefined) ?
 									<Col>N/A</Col>
 								:
 									<React.Fragment>
-										<Col className="pr-0">
+										<Col className="pe-0">
 											<DateTime value={data._ll.fat} />
 										</Col>
 										{data._ll.ffi !== undefined && <Col>
@@ -383,7 +383,7 @@ function CredentialsDetailContainer(props) {
 				{(advmode == true) && <Card className="h-100">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-code pr-2"></i>
+								<i className="cil-code pe-2"></i>
 								JSON
 							</div>
 						</CardHeader>
@@ -478,7 +478,7 @@ function CredentialsInfoCard(props) {
 			<Card className="h-100">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-info pr-2"></i>
+						<i className="cil-info pe-2"></i>
 						{t("CredentialsDetailContainer|Information")}
 					</div>
 				</CardHeader>

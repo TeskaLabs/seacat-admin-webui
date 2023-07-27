@@ -41,8 +41,8 @@ function CredentialsListContainer(props) {
 					<div className='no-wrap-40ch'
 					>
 						{obj.suspended === true ?
-							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("CredentialsListContainer|Credentials invited") : t("CredentialsListContainer|Credentials suspended")}/>
-							: <span className="cil-user mr-1" />}
+							<span className="cil-user-unfollow text-muted me-1" title={(obj.registered === false) ? t("CredentialsListContainer|Credentials invited") : t("CredentialsListContainer|Credentials suspended")}/>
+							: <span className="cil-user me-1" />}
 						<Link
 							className={obj.suspended ? 'credentials-suspended' : null}
 							to={{

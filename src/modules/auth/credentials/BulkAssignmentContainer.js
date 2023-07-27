@@ -64,8 +64,8 @@ const BulkAssignmentContainer = (props) => {
 				generate: (obj) => (
 					<div className="no-wrap-40ch">
 						{(obj.suspended === true) ?
-							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
-							: <span className="cil-user mr-1" />}
+							<span className="cil-user-unfollow text-muted me-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
+							: <span className="cil-user me-1" />}
 						<Link
 							className={obj.suspended ? 'credentials-suspended' : null}
 							onClick={() => confirmForm(`/auth/credentials/${obj._id}`)}
@@ -362,7 +362,7 @@ const BulkAssignmentContainer = (props) => {
 			<Card className="credentials-selection">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-people mr-2" />
+						<i className="cil-people me-2" />
 						{t("BulkAssignmentContainer|Selected credentials")}
 					</div>
 					<Button outline secondary disabled={(selectedCredentials.length === 0)} onClick={() => setSelectedCredentials([])}>{t("BulkAssignmentContainer|Clear selection")}</Button>
@@ -379,7 +379,7 @@ const BulkAssignmentContainer = (props) => {
 								>
 									<i className='cil-chevron-left'/>
 								</Button>
-								<i className="cil-user mr-1 ml-3"/>{obj.username ?? obj._id}
+								<i className="cil-user me-1 ms-3"/>{obj.username ?? obj._id}
 							</div>
 						)
 					})}
@@ -406,13 +406,13 @@ const BulkAssignmentContainer = (props) => {
 			<Card className="tenant-selection">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-apps mr-2" />
+						<i className="cil-apps me-2" />
 						{t("BulkAssignmentContainer|Selected tenants and roles")}
 					</div>
 				</CardHeader>
 				<CardBody className="selected-roles-tenants">
 					<div className='d-flex flex-direction-row align-items-center selected-row'>
-						<span className="ml-3">{t("BulkAssignmentContainer|Global roles")}</span>
+						<span className="ms-3">{t("BulkAssignmentContainer|Global roles")}</span>
 						<RoleDropdown
 							props={props}
 							tenantObj={globalRoles[0]}
@@ -421,11 +421,11 @@ const BulkAssignmentContainer = (props) => {
 							idx={0}
 						/>
 					</div>
-					<div className="role-wrapper ml-2">
+					<div className="role-wrapper ms-2">
 						{globalRoles[0]?.selectedRole ?
 							globalRoles[0]?.selectedRole.map((role, i) => {
 								return (
-									<div className="role-item selected-row ml-4">
+									<div className="role-item selected-row ms-4">
 										<Button
 											title={t("BulkAssignmentContainer|Unselect")}
 											className="btn-xs"
@@ -436,7 +436,7 @@ const BulkAssignmentContainer = (props) => {
 										>
 											<i className="cil-x"/>
 										</Button>
-										<span className="pl-2">{role}</span>
+										<span className="ps-2">{role}</span>
 									</div>
 								)
 							})
@@ -457,7 +457,7 @@ const BulkAssignmentContainer = (props) => {
 									>
 										<i className='cil-chevron-left'/>
 									</Button>
-									<span className="ml-3">{obj._id}</span>
+									<span className="ms-3">{obj._id}</span>
 									<RoleDropdown
 										props={props}
 										tenantObj={obj}
@@ -466,11 +466,11 @@ const BulkAssignmentContainer = (props) => {
 										idx={idx}
 									/>
 								</div>
-								<div className="role-wrapper ml-2">
+								<div className="role-wrapper ms-2">
 									{obj?.selectedRole ?
 										obj.selectedRole.map((role, i) => {
 											return (
-												<div className="role-item selected-row ml-4">
+												<div className="role-item selected-row ms-4">
 													<Button
 														title={t("BulkAssignmentContainer|Unselect")}
 														className="btn-xs"
@@ -481,7 +481,7 @@ const BulkAssignmentContainer = (props) => {
 													>
 														<i className="cil-x"/>
 													</Button>
-													<span className="pl-2">{role}</span>
+													<span className="ps-2">{role}</span>
 												</div>
 											)
 										})

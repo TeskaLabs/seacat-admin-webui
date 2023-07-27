@@ -100,7 +100,7 @@ const RolesResourcesCard = (props) => {
 		<Card>
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="cil-lock-unlocked pr-2"></i>
+					<i className="cil-lock-unlocked pe-2"></i>
 					{t("RolesResourcesCard|Assigned resources")}
 				</div>
 			</CardHeader>
@@ -117,7 +117,7 @@ const RolesResourcesCard = (props) => {
 										size="sm"
 										color="danger"
 										outline
-										className="mr-2"
+										className="me-2"
 										onClick={() => unassignResource(resource)}>
 									<span className="cil-minus" />
 									</Button>
@@ -150,7 +150,7 @@ const RolesResourcesCard = (props) => {
 						</ButtonGroup>
 						<Dropdown isOpen={dropdownOpen} toggle={() => setDropdown(prev => !prev)}>
 							<DropdownToggle caret outline color="primary">
-								<span className="cil-plus mr-2" />
+								<span className="cil-plus me-2" />
 								{t("RolesResourcesCard|Add resource")}
 							</DropdownToggle>
 							<DropdownMenu style={{maxHeight: "20em", overflowY: "auto"}} >

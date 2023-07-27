@@ -65,8 +65,8 @@ function TenantDetailContainer(props) {
 						}}
 					>
 						{obj.suspended === true ?
-							<span className="cil-user-unfollow text-muted mr-1" title={t("TenantDetailContainer|Credentials suspended")} />
-							: <span className="cil-user mr-1" />}
+							<span className="cil-user-unfollow text-muted me-1" title={t("TenantDetailContainer|Credentials suspended")} />
+							: <span className="cil-user me-1" />}
 						<Link
 							style={{ color: obj.suspended === true && '#73818f' }}
 							to={{
@@ -323,7 +323,7 @@ function TenantDetailContainer(props) {
 				<Card className="tenant-general-info">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-apps pr-2"></i>
+							<i className="cil-apps pe-2"></i>
 							{t("TenantDetailContainer|Tenant")}
 						</div>
 					</CardHeader>
@@ -403,7 +403,7 @@ function TenantDetailContainer(props) {
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-code pr-2"></i>
+							<i className="cil-code pe-2"></i>
 							JSON
 						</div>
 					</CardHeader>

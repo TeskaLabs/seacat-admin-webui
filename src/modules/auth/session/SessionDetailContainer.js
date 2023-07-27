@@ -114,7 +114,7 @@ function SessionDetailContainer(props) {
 				<Card>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-link pr-2"></i>
+							<i className="cil-link pe-2"></i>
 							{t("SessionDetailContainer|Session")}
 						</div>
 					</CardHeader>
@@ -199,14 +199,14 @@ function SessionDetailContainer(props) {
 				<Card>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-link pr-2"></i>
+							<i className="cil-link pe-2"></i>
 							{t("SessionDetailContainer|Authorization")}
 						</div>
 					</CardHeader>
 					<CardBody>
 						<Row>
 							<Col md={5} sm={3} xs={4}><span className="authz-heading">{t("SessionDetailContainer|Tenant")}</span></Col>
-							<Col className="pl-0" style={{overflowX: "auto"}}><span className="authz-heading">{t("SessionDetailContainer|Resource")}</span></Col>
+							<Col className="ps-0" style={{overflowX: "auto"}}><span className="authz-heading">{t("SessionDetailContainer|Resource")}</span></Col>
 						</Row>
 						{data?.authz && Object.keys(data.authz).map((key, idx) => {
 							return(
@@ -233,7 +233,7 @@ function SessionDetailContainer(props) {
 					<Card className="w-100 mt-2">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-code pr-2"></i>
+								<i className="cil-code pe-2"></i>
 								JSON
 							</div>
 						</CardHeader>
