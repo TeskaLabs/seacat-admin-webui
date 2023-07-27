@@ -16,9 +16,9 @@ $svg-arrow: var(--svg-arrow);
 	display: grid;
 	gap: 0.25rem;
 	grid-template-areas:
-		"a b"
 		"a c"
-		"f d"
+		"a f"
+		"d b"
 		"e e";
 	grid-template-columns: 1fr 1fr;
 
