@@ -92,11 +92,11 @@ const ClientDetailContainer = (props) =>  {
 				<CardBody>
 					<Row>
 						<Col md={5} title="client_name">{t("ClientDetailContainer|Client name")}</Col>
-						<Col title="client_name">{client?.client_name ? client.client_name : "N/A"}</Col>
+						<Col title="client_name">{client?.client_name ? client.client_name : "-"}</Col>
 					</Row>
 					<Row>
 						<Col md={5} title="client_id">{t("ClientDetailContainer|Client ID")}</Col>
-						<Col><code>{client?.client_id ? client.client_id : "N/A"}</code></Col>
+						<Col><code>{client?.client_id ? client.client_id : "-"}</code></Col>
 					</Row>
 					<Row className="mt-3">
 						<Col md={5} title="created_at">{t("Created at")}</Col>
@@ -116,11 +116,11 @@ const ClientDetailContainer = (props) =>  {
 					</Row>
 					<Row>
 						<Col md={5} title="redirect_uri_validation_method">{t("ClientDetailContainer|Redirect URI validation method")}</Col>
-						<Col>{client?.redirect_uri_validation_method ? client.redirect_uri_validation_method : "N/A"}</Col>
+						<Col>{client?.redirect_uri_validation_method ? client.redirect_uri_validation_method : "-"}</Col>
 					</Row>
 					<Row>
 						<Col md={5} title="client_uri">{t("ClientDetailContainer|Client URI")}</Col>
-						<Col>{client?.client_uri ? <a target="_blank" href={client.client_uri}>{client.client_uri}</a> : "N/A"}</Col>
+						<Col>{client?.client_uri ? <a target="_blank" href={client.client_uri}>{client.client_uri}</a> : "-"}</Col>
 					</Row>
 					<Row>
 						<Col md={5} title="application_type">{t("ClientDetailContainer|Application type")}</Col>
@@ -164,11 +164,11 @@ const ClientDetailContainer = (props) =>  {
 				<CardBody>
 					<Row>
 						<Col md={5} title="login_uri">{t("ClientDetailContainer|Login URI")}</Col>
-						<Col>{client?.login_uri ? client.login_uri : "N/A"}</Col>
+						<Col>{client?.login_uri ? client.login_uri : "-"}</Col>
 					</Row>
 					<Row>
 						<Col md={5} title="authorize_uri">{t("ClientDetailContainer|Authorize URI")}</Col>
-						<Col>{client?.authorize_uri ? client.authorize_uri : "N/A"}</Col>
+						<Col>{client?.authorize_uri ? client.authorize_uri : "-"}</Col>
 					</Row>
 				</CardBody>
 			</Card>
@@ -183,19 +183,19 @@ const ClientDetailContainer = (props) =>  {
 				<CardBody>
 					<Row>
 						<Col md={5} title="cookie_name">{t("ClientDetailContainer|Cookie name")}</Col>
-						<Col title="cookie_name"><code>{client?.cookie_name ? client.cookie_name : "N/A"}</code></Col>
-					</Row>
-					<Row>
-						<Col md={5} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
-						<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "N/A"}</Col>
+						<Col title="cookie_name"><code>{client?.cookie_name ? client.cookie_name : "-"}</code></Col>
 					</Row>
 					<Row>
 						<Col md={5} title="cookie_entry_uri">{t("ClientDetailContainer|Cookie entry URI")}</Col>
-						<Col>{client?.cookie_entry_uri ? client.cookie_entry_uri : "N/A"}</Col>
+						<Col>{client?.cookie_entry_uri ? client.cookie_entry_uri : "-"}</Col>
 					</Row>
 					<Row>
 						<Col md={5} title="cookie_webhook_uri">{t("ClientDetailContainer|Cookie webhook URI")}</Col>
-						<Col>{client?.cookie_webhook_uri ? client.cookie_webhook_uri : "N/A"}</Col>
+						<Col>{client?.cookie_webhook_uri ? client.cookie_webhook_uri : "-"}</Col>
+					</Row>
+					<Row>
+						<Col md={5} title="cookie_domain">{t("ClientDetailContainer|Cookie domain")}</Col>
+						<Col title="cookie_domain">{client?.cookie_domain ? client.cookie_domain : "-"}</Col>
 					</Row>
 				</CardBody>
 			</Card>
@@ -210,7 +210,7 @@ const ClientDetailContainer = (props) =>  {
 				<CardBody>
 					<Row>
 						<Col md={5} title="code_challenge_method">{t("ClientDetailContainer|Code challenge method (PKCE)")}</Col>
-						<Col title="code_challenge_method">{client?.code_challenge_method ? client.code_challenge_method : "N/A"}</Col>
+						<Col title="code_challenge_method">{client?.code_challenge_method ? client.code_challenge_method : "-"}</Col>
 					</Row>
 					<Row>
 						<Col md={5} title="response_types">{t("ClientDetailContainer|Response types")}</Col>
@@ -240,7 +240,7 @@ const ClientDetailContainer = (props) =>  {
 						<Row>
 							<Col md={5} title="client_secret">{t("ClientDetailContainer|Client secret")}</Col>
 							<Col>
-								<code>{client?.client_secret ? client.client_secret : "N/A"}</code>
+								<code>{client?.client_secret ? client.client_secret : "-"}</code>
 								<Button
 									color="link"
 									onClick={() => resetSecretConfirm()}
@@ -253,7 +253,7 @@ const ClientDetailContainer = (props) =>  {
 					}
 					<Row>
 						<Col md={5} title="session_expiration">{t("ClientDetailContainer|Session expiration")}</Col>
-						<Col>{client?.session_expiration ? client.session_expiration : "N/A"}</Col>
+						<Col>{client?.session_expiration ? client.session_expiration : "-"}</Col>
 					</Row>
 				</CardBody>
 			</Card>
