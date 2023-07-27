@@ -142,7 +142,7 @@
 		"Search": "Search"
 	},
 	"ClientCreateContainer": {
-		"Something went wrong, failed to fetch clients": "Something went wrong, failed to fetch clients",
+		"Something went wrong, failed to fetch client features": "Something went wrong, failed to fetch client features",
 		"Something went wrong, failed to fetch client info": "Something went wrong, failed to fetch client info",
 		"Client updated successfully": "Client updated successfully",
 		"Something went wrong, failed to update client": "Something went wrong, failed to update client",

@@ -74,8 +74,8 @@ const ClientCreateContainer = (props) => {
 			let response = await SeaCatAuthAPI.get('/client/features');
 			setMetaData(response.data["metadata_schema"]);
 		} catch (e) {
-			console.error("Failed to retrieve providers from server: ", e);
-			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, failed to fetch clients")}. ${e?.response?.data?.message}`, 30);
+			console.error("Failed to retrieve client features: ", e);
+			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, failed to fetch client features")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
