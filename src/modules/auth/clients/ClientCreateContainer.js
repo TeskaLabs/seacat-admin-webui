@@ -333,7 +333,7 @@ const ClientCreateContainer = (props) => {
 				<Card className="client-cookie-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-paperclip pr-2"></i>
+							<i className="cil-blur-circular  pr-2"></i>
 							{t("ClientDetailContainer|Cookie")}
 						</div>
 					</CardHeader>
