@@ -46,19 +46,30 @@ function ClientListContainer(props) {
 			customHeaderStyle: { width: "25%" }
 		},
 		{
+			name: t("ClientListContainer|Client ID"),
+			customComponent: {
+				generate: (obj) => (
+					<code>
+						{obj?._id}
+					</code>
+				)
+			},
+			customHeaderStyle: { width: "25%" }
+		},
+		{
 			name: t("Created at"),
 			key: '_c',
 			datetime: true,
 			customHeaderStyle: { width: "25%" }
 		},
 		{
-			name: t('ClientListContainer|Application type'),
+			name: t('ClientListContainer|Client URI'),
 			customComponent: {
 				generate: (obj) => (
-					obj["application_type"] && <div>{obj["application_type"]}</div>
+					obj?.client_uri ? <a target="_blank" href={obj.client_uri}>{obj.client_uri}</a> : "-"
 				)
 			},
-			customHeaderStyle: { width: "50%", minWidth: '155px' }
+			customHeaderStyle: { width: "25%", minWidth: '155px' }
 		}
 	];
 
