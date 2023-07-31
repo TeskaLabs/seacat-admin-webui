@@ -12,6 +12,7 @@ const RolesListcontainer = (props) => {
 	const [roles, setRoles] = useState([]);
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(1);
+	const [filter, setFilter] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [show, setShow] = useState(false);
 	const [limit, setLimit] = useState(0);
@@ -59,7 +60,12 @@ const RolesListcontainer = (props) => {
 		>
 			{t("RolesListContainer|Create role")}
 		</ButtonWithAuthz>
-	)
+	);
+
+	// Filter the value
+	const onSearch = (value) => {
+		setFilter(value);
+	};
 
 	useEffect(() => {
 		setHeight(ref.current.clientHeight);
@@ -74,11 +80,11 @@ const RolesListcontainer = (props) => {
 		if (limit > 0) {
 			getRoles();
 		}
-	}, [page, limit]);
+	}, [page, filter, limit]);
 
 	const getRoles = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/role/${tenant}`, {params: {p:page, i:limit}});
+			let response = await SeaCatAuthAPI.get(`/role/${tenant}`, {params: {p:page, i:limit, f: filter}});
 			setRoles(response.data.data);
 			setCount(response.data.count);
 			setLoading(false);
@@ -105,6 +111,8 @@ const RolesListcontainer = (props) => {
 					setLimit={setLimit}
 					currentPage={page}
 					setPage={setPage}
+					search={{ icon: 'cil-magnifying-glass', placeholder: t("RolesListContainer|Search") }}
+					onSearch={onSearch}
 					customComponent={createRoleComponent}
 					isLoading={loading}
 					contentLoader={show}

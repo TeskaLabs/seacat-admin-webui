@@ -350,7 +350,8 @@
 		"Roles overview": "Přehled rolí",
 		"Create role": "Vytvořit roli",
 		"Role": "Role",
-		"Something went wrong, failed to fetch roles": "Něco je špatně, nepodařilo se získat role"
+		"Something went wrong, failed to fetch roles": "Něco je špatně, nepodařilo se získat role",
+		"Search": "Vyhledat"
 	},
 	"RolesDetailContainer": {
 		"Role removed successfully": "Role úspěšně odstraněna",
@@ -442,7 +443,8 @@
 		"Failed to load resources": "Nepodařilo se načíst zdroje",
 		"Failed to delete the resource": "Nepodařilo se odstranit zdroj",
 		"Do you want to delete this resource": "Přejete si tento zdroj odstranit?",
-		"Resource successfully deleted": "Zdroj byl úspěšně odstraněn"
+		"Resource successfully deleted": "Zdroj byl úspěšně odstraněn",
+		"Search": "Vyhledat"
 	},
 	"ResourcesDeletedDetailContainer": {
 		"Resource": "Zdroj",
@@ -482,7 +484,8 @@
 		"Something went wrong when terminating all sessions": "Něco se pokazilo při ukončování všech relací",
 		"Failed to terminate all sessions": "Nepodařilo se ukončit všechny relace",
 		"Access denied, you do not have a right to perform this action": "Přístup odepřen, nemáte dostatečná oprávnění",
-		"Session": "Relace"
+		"Session": "Relace",
+		"Search": "Vyhledat"
 	},
 	"SessionDetailContainer": {
 		"Failed to fetch details": "Nepodařilo se načíst relace",
@@ -504,7 +507,8 @@
 	"TenantListContainer": {
 		"Failed to fetch tenants": "Nepodařilo se načíst tenanty",
 		"Tenants": "Tenanti",
-		"New tenant": "Nový tenant"
+		"New tenant": "Nový tenant",
+		"Search": "Vyhledat"
 	},
 	"CustomDataContainer": {
 		"Custom data": "Vlastní data",

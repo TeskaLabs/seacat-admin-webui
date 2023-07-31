@@ -14,6 +14,7 @@ function TenantListContainer(props) {
 	const [page, setPage] = useState(1);
 	const [data, setData] = useState([]);
 	const [count, setCount] = useState(0);
+	const [filter, setFilter] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [show, setShow] = useState(false);
 	const [limit, setLimit] = useState(0);
@@ -43,6 +44,11 @@ function TenantListContainer(props) {
 		}
 	];
 
+	// Filter the value
+	const onSearch = (value) => {
+		setFilter(value);
+	};
+
 	useEffect(() => {
 		setHeight(ref.current.clientHeight);
 	}, []);
@@ -56,11 +62,11 @@ function TenantListContainer(props) {
 		if (limit > 0) {
 			retrieveData();
 		}
-	}, [page, limit]);
+	}, [page, filter, limit]);
 
 	const retrieveData = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get("/tenants", {params: {p:page, i:limit}});
+			let response = await SeaCatAuthAPI.get("/tenants", {params: {p:page, i:limit, f: filter}});
 			setData(response.data.data);
 			setCount(response.data.count);
 			setLoading(false);
@@ -99,6 +105,8 @@ function TenantListContainer(props) {
 					setLimit={setLimit}
 					currentPage={page}
 					setPage={setPage}
+					search={{ icon: 'cil-magnifying-glass', placeholder: t("TenantListContainer|Search") }}
+					onSearch={onSearch}
 					customComponent={createTenantComponent}
 					isLoading={loading}
 					contentLoader={show}

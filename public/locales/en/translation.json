@@ -350,7 +350,8 @@
 		"Roles overview": "Roles overview",
 		"Create role": "Create role",
 		"Role": "Role",
-		"Something went wrong, failed to fetch roles": "Something went wrong, failed to fetch roles"
+		"Something went wrong, failed to fetch roles": "Something went wrong, failed to fetch roles",
+		"Search": "Search"
 	},
 	"RolesDetailContainer": {
 		"Role removed successfully": "Role removed successfully",
@@ -442,7 +443,8 @@
 		"Failed to load resources": "Failed to load resources",
 		"Failed to delete the resource": "Failed to delete the resource",
 		"Do you want to delete this resource": "Do you want to delete this resource?",
-		"Resource successfully deleted": "Resource successfully deleted"
+		"Resource successfully deleted": "Resource successfully deleted",
+		"Search": "Search"
 	},
 	"ResourcesDeletedDetailContainer": {
 		"Hard-delete": "Hard-delete",
@@ -481,7 +483,8 @@
 		"Something went wrong when terminating all sessions": "Something went wrong when terminating all sessions",
 		"Failed to terminate all sessions": "Failed to terminate all sessions",
 		"Access denied, you do not have a right to perform this action": "Access denied, you do not have a right to perform this action",
-		"Session": "Session"
+		"Session": "Session",
+		"Search": "Search"
 	},
 	"SessionDetailContainer": {
 		"Failed to fetch details": "Failed to fetch details",
@@ -503,7 +506,8 @@
 	"TenantListContainer": {
 		"Failed to fetch tenants": "Failed to fetch tenants",
 		"Tenants": "Tenants",
-		"New tenant": "New tenant"
+		"New tenant": "New tenant",
+		"Search": "Search"
 	},
 	"CustomDataContainer": {
 		"Custom data": "Custom data",

@@ -12,6 +12,7 @@ function ResourcesListContainer(props) {
 	const [resources, setResources] = useState([]);
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(1);
+	const [filter, setFilter] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [limit, setLimit] = useState(0);
 	const [height, setHeight] = useState(0);
@@ -65,17 +66,22 @@ function ResourcesListContainer(props) {
 		}
 	];
 
+	// Filter the value
+	const onSearch = (value) => {
+		setFilter(value);
+	};
+
 	useEffect(() => {
 		setHeight(ref.current.clientHeight);
 	}, []);
 
 	useEffect(() => {
 		if (limit > 0) getResources();
-	}, [page, limit]);
+	}, [page, filter, limit]);
 
 	const getResources = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/resource`, {params: {exclude: "deleted", p:page, i:limit}});
+			let response = await SeaCatAuthAPI.get(`/resource`, {params: {exclude: "deleted", p:page, i:limit, f: filter}});
 			setResources(response.data.data);
 			setCount(response.data.count || 0);
 			setLoading(false);
@@ -151,6 +157,8 @@ function ResourcesListContainer(props) {
 					count={count}
 					currentPage={page}
 					setPage={setPage}
+					search={{ icon: 'cil-magnifying-glass', placeholder: t("ResourcesListContainer|Search") }}
+					onSearch={onSearch}
 					limit={limit}
 					setLimit={setLimit}
 					customComponent={customComponent}

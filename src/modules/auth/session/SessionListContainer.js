@@ -14,6 +14,7 @@ const SessionListContainer = (props) => {
 	const [page, setPage] = useState(1);
 	const [data, setData] = useState([]);
 	const [count, setCount] = useState(0);
+	const [filter, setFilter] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [show, setShow] = useState(false);
 	const [limit, setLimit] = useState(15);
@@ -79,7 +80,12 @@ const SessionListContainer = (props) => {
 			}
 		}
 
-	]
+	];
+
+	// Filter the value
+	const onSearch = (value) => {
+		setFilter(value);
+	};
 
 	useEffect(() => {
 		setShow(false);
@@ -88,11 +94,11 @@ const SessionListContainer = (props) => {
 			setTimeout(() => setShow(true), 500);
 		};
 		retrieveData();
-	}, [page, limit]);
+	}, [page, filter, limit]);
 
 	const retrieveData = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get("/session", {params: {p:page, i:limit}});
+			let response = await SeaCatAuthAPI.get("/session", {params: {p:page, i:limit, f: filter}});
 			setData(response.data.data);
 			setCount(response.data.count);
 			setLoading(false);
@@ -182,6 +188,8 @@ const SessionListContainer = (props) => {
 				setLimit={setLimit}
 				currentPage={page}
 				setPage={setPage}
+				search={{ icon: 'cil-magnifying-glass', placeholder: t("SessionListContainer|Search") }}
+				onSearch={onSearch}
 				buttonWithAuthz={terminateAllSessionsButton}
 				isLoading={loading}
 				contentLoader={show}
