@@ -7,7 +7,12 @@
 ### Features
 
 - Select all feature for credentials in bulk assignment screen. (INDIGO Sprint 230713, [!47](https://github.com/TeskaLabs/seacat-admin-webui/pull/47))
+
 - Add new cookie- and session-related client attributes. (PLUM Sprint 230714, [!55](https://github.com/TeskaLabs/seacat-admin-webui/pull/55))
+
+### Refactoring
+
+- Add search for TenantList, SessionList, RoleList and ResourceList (INDIGO Sprint 230721, [!46](https://github.com/TeskaLabs/seacat-admin-webui/pull/56))
 
 ## v23.29-alpha
 
