@@ -2,6 +2,10 @@
 
 ## Release Candidate
 
+### Refactoring
+
+- Add titles for buttons and locales for it (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
+
 ## v23.30-alpha
 
 ### Features
