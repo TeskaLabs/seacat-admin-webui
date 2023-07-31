@@ -52,7 +52,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={credential.assigned}
 						>
-							<i className="at-arrow-right-circle"></i>
+							<i className="at-arrow-right"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -97,7 +97,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={tenant.assigned}
 						>
-							<i className="at-arrow-right-circle"></i>
+							<i className="at-arrow-right"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -346,7 +346,7 @@ const BulkAssignmentContainer = (props) => {
 					title={t("BulkAssignmentContainer|Select all displayed credentials")}
 					disabled={allSelected}
 				>
-					<i class="cil-chevron-double-right"/>
+					<i class="at-double-arrow-right"/>
 				</Button>
 				<Button
 					primary
@@ -355,7 +355,7 @@ const BulkAssignmentContainer = (props) => {
 					title={t("BulkAssignmentContainer|Remove from selection")}
 					disabled={(selectedCredentials.length === 0)}
 				>
-					<i class="cil-chevron-double-left"/>
+					<i class="at-double-arrow-left"/>
 				</Button>
 			</div>
 
@@ -377,7 +377,7 @@ const BulkAssignmentContainer = (props) => {
 									size="sm"
 									onClick={() => unselectCredential(idx)}
 								>
-									<i className='at-arrow-left-circle'/>
+									<i className='at-arrow-left'/>
 								</Button>
 								<i className="at-account mr-1 ml-3"/>{obj.username ?? obj._id}
 							</div>
@@ -455,7 +455,7 @@ const BulkAssignmentContainer = (props) => {
 										className="tenant-unselect-btn"
 										onClick={() => unselectTenant(idx)}
 									>
-										<i className='at-arrow-right-circle'/>
+										<i className='at-arrow-right'/>
 									</Button>
 									<span className="ml-3">{obj._id}</span>
 									<RoleDropdown
