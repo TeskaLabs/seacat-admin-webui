@@ -9,6 +9,9 @@ function HomeContainer(props) {
 
 	const { t, i18n } = useTranslation();
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	return (
 		<Container fluid className="mt-5 sc-home-container">
 			<Row className="justify-content-md-center">

@@ -6,6 +6,63 @@
 
 - Changed icons from coreui.io icons to atlasicons. (INDIGO Sprint 230428, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
 
+## v23.30-alpha
+
+### Features
+
+- Select all feature for credentials in bulk assignment screen. (INDIGO Sprint 230713, [!47](https://github.com/TeskaLabs/seacat-admin-webui/pull/47))
+- Add new cookie- and session-related client attributes. (PLUM Sprint 230714, [!55](https://github.com/TeskaLabs/seacat-admin-webui/pull/55))
+
+## v23.29-alpha
+
+### Breaking change
+
+- All service names need to be updaded in nginx configuration according following example: `seacat_auth` -> `seacat-auth`
+
+### Features
+
+- ASAB WebUI submodule version bump [[31b7bb5](https://github.com/TeskaLabs/asab-webui/commit/31b7bb5519f7b8fa6f71853ba83f71e9dabc0ef4)] commit (INDIGO Sprint 230713, [!51](https://github.com/TeskaLabs/seacat-admin-webui/pull/51))
+
+### Refactoring
+
+- Replace all underscores in names/api's with dashes (INDIGO Sprint 230713, [!51](https://github.com/TeskaLabs/seacat-admin-webui/pull/51))
+
+- Add styles for primary dropdown-toggle (INDIGO Sprint 230623, [!428](https://github.com/TeskaLabs/asab-webui/pull/428))
+
+- Refactored dynamic locales (INDIGO Sprint 230623, [!432](https://github.com/TeskaLabs/asab-webui/pull/432))
+
+- Favicon update with new TeskaLabs logo (INDIGO Sprint 230623, [!43](https://github.com/TeskaLabs/seacat-admin-webui/pull/43))
+
+- Refactor HelpComponent, remove HelpService (INDIGO Sprint 230609, [!418](https://github.com/TeskaLabs/asab-webui/pull/418))
+
+- Add addHelpButton method for all screens in the Seacat-admin-webui app (INDIGO Sprint 230713, [!52](https://github.com/TeskaLabs/seacat-admin-webui/pull/52))
+
+### Bugfix
+
+- Add missing locales for HelpButton (INDIGO Sprint 230623, [!50](https://github.com/TeskaLabs/seacat-admin-webui/pull/50))
+
+## v23.27-beta
+
+### Compatibility
+
+To display last successful and unsuccessful login information, Seacat Auth service [v23.27-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.27-beta) and newer must be used.
+
+### Features
+
+- ASAB WebUI submodule version bump [[3a35738](https://github.com/TeskaLabs/asab-webui/commit/3a3573806e2964efbf5e5bb02c15acc9af41c8ac)] commit (INDIGO Sprint 230609, [!40](https://github.com/TeskaLabs/seacat-admin-webui/pull/40))
+
+### Refactoring
+
+- Changed button title from "Create New Credentials" to "New Credentials". (INDIGO 230609, [!42](https://github.com/TeskaLabs/seacat-admin-webui/pull/42))
+
+- Add parameter `last_login=yes` to `GET /credentials/{cred_id}` endpoint to retrieve last login info. (INDIGO 230623, [!45](https://github.com/TeskaLabs/seacat-admin-webui/pull/45))
+
+### Bugfix
+
+- Fix CredentialsInfoCard, card will not resize when an error occurs in an input, disable `Save` button if hint about wrong input is present, error hint message be cleaned when user click on `Cancel` button (INDIGO 230623, [!41](https://github.com/TeskaLabs/seacat-admin-webui/pull/41))
+
+- CustomDataContainer inital render in edit mode bug. The container only rendered the first item in the list of custom data. (INDIGO Sprint 230623, [!44](https://github.com/TeskaLabs/seacat-admin-webui/pull/44))
+
 ## v23.23-alpha2
 
 Tested with Seacat Auth service [v23.23-beta](https://github.com/TeskaLabs/seacat-auth/releases/tag/v23.23-beta)

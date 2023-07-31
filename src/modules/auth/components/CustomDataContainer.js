@@ -23,7 +23,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 		control,
 		name: 'customData'
 	});
-	let SeaCatAuthAPI = app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = app.axiosCreate('seacat-auth');
 
 	useEffect(() => {
 		let formattedPrevData = { customData: [customData] }
@@ -162,7 +162,10 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 						title={t("CustomDataContainer|Edit data")}
 						color="primary"
 						outline
-						onClick={() => setEdit(true)}
+						onClick={() => {
+							setEdit(true);
+							append({key: '', value: ''});
+						}}
 						resource={resource}
 						resources={resources}
 						hideOnUnauthorizedAccess={false}

@@ -7,7 +7,7 @@ import { Container } from 'reactstrap';
 
 const RolesListcontainer = (props) => {
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const [roles, setRoles] = useState([]);
 	const [count, setCount] = useState(0);
@@ -23,6 +23,9 @@ const RolesListcontainer = (props) => {
 	const tenant = useSelector(state => state.tenant?.current);
 
 	const { t } = useTranslation();
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const title = {
 		text: `${t("RolesListContainer|Roles overview")} (${tenant})`,

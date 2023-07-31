@@ -7,7 +7,7 @@ import { Container } from 'reactstrap';
 import { DataTable, ButtonWithAuthz } from 'asab-webui';
 
 function TenantListContainer(props) {
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const { t } = useTranslation();
 
@@ -23,6 +23,9 @@ function TenantListContainer(props) {
 	// TODO: Resource "seacat:tenant:create" will be implemented in future iterations
 	const resource = "authz:superuser"; //"seacat:tenant:create";
 	const resources = useSelector(state => state.auth?.resources);
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const headers = [
 		{

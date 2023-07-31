@@ -1,9 +1,10 @@
-import React, { useState }  from 'react';
+import React, {useState}  from 'react';
 import {
 	FormGroup, Input, Label,
-	Button, InputGroupAddon, InputGroup, FormFeedback, FormText
+	Button, InputGroupAddon, InputGroup,
+	FormFeedback, FormText
 } from 'reactstrap';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 // TODO: Validation on phone number
 export function PhoneField(props) {
@@ -12,14 +13,21 @@ export function PhoneField(props) {
 	if (props.getValues("phone") == undefined) {
 		props.setValue("phone", "");
 	}
+
+	const validatePhone = (value) => {
+		if (!props.emailValue) {
+			return value !== "" || t("FormFields|Phone cannot be empty!");
+		} else {
+			return value !== "" || props.emailValue !== "" || t("FormFields|Phone cannot be empty!");
+		}
+	};
+
+
 	const reg = props.register(
 		"phone",
 		{
 			validate: {
-				emptyInput: value => (
-					props.getValues("email") === undefined ?
-					props.getValues("phone") !== "" :
-					props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Phone cannot be empty!"),
+				emptyInput: validatePhone,
 				regexValidation: value => (/^(?=.*[0-9])[+ 0-9]+$/).test(value) || value.length < 1 || t('FormFields|Invalid phone number format'),
 				lengthValidation: value => value.length >= 9 || value.length < 1 || t('FormFields|Phone number is too short')
 			},
@@ -39,7 +47,11 @@ export function PhoneField(props) {
 				maxLength="17"
 				disabled={disable}
 				invalid={props.errors.phone}
-				onChange={reg.onChange}
+				onChange={(e) => {
+					reg.onChange(e);
+					props.trigger("email");
+					props.trigger("phone");
+				}}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
 			/>
@@ -51,14 +63,20 @@ export function PhoneField(props) {
 export function EmailField(props) {
 	const { t } = useTranslation();
 	const disable = props.disable == undefined ? false : props.disable;
+
+	const validateEmail = (value) => {
+		if (!props.phoneValue) {
+			return value !== "" || t("FormFields|Email cannot be empty!");
+		} else {
+			return value !== "" || props.phoneValue !== "" || t("FormFields|Email cannot be empty!");
+		}
+	};
+
 	const reg = props.register(
 		"email", {
 			required: props.required ? t("FormFields|Email cannot be empty!") : false,
 			validate: {
-				emptyInput: value => (
-					props.getValues("phone") === undefined ?
-					props.getValues("email") !== "" :
-					props.getValues("phone") !== "" || props.getValues("email") !== "") || t("FormFields|Email cannot be empty!"),
+				emptyInput: validateEmail,
 			}
 		}
 	);
@@ -80,7 +98,11 @@ export function EmailField(props) {
 				autoComplete="email"
 				disabled={disable}
 				invalid={props.errors.email}
-				onChange={reg.onChange}
+				onChange={(e) => {
+					reg.onChange(e);
+					props.trigger("email");
+					props.trigger("phone");
+				}}
 				onBlur={reg.onBlur}
 				innerRef={reg.ref}
 			/>
@@ -240,3 +262,4 @@ export function PasswordLinkField(props) {
 		</FormGroup>
 	)
 }
+

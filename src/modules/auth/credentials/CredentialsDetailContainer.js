@@ -15,7 +15,7 @@ import {
 } from './FormFields';
 
 import ReactJson from 'react-json-view';
-import { DateTime, ButtonWithAuthz, CellContentLoader } from 'asab-webui';
+import { DateTime, ButtonWithAuthz } from 'asab-webui';
 
 import CredentialsRolesCard from './CredentialsRolesCard';
 import CredentialsTenantsCard from './CredentialsTenantsCard';
@@ -24,7 +24,7 @@ import { CustomDataContainer } from '../components/CustomDataContainer';
 
 function CredentialsDetailContainer(props) {
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { t, i18n } = useTranslation();
 
 	const [data, setData] = useState(null);
@@ -46,6 +46,9 @@ function CredentialsDetailContainer(props) {
 	const displaySessions = resources ? ((resources.indexOf("seacat:session:access") != -1) || (resources.indexOf("authz:superuser") != -1)) : false;
 	const credentials_id = props.match.params.credentials_id;
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	useEffect(() => {
 		retrieveData();
 		if (displaySessions) {
@@ -62,7 +65,7 @@ function CredentialsDetailContainer(props) {
 
 	const retrieveData = async () => {
 		try {
-			let response = await SeaCatAuthAPI.get(`/credentials/${credentials_id}`);
+			let response = await SeaCatAuthAPI.get(`/credentials/${credentials_id}?last_login=yes`);
 			setData(response.data);
 			setSuspended(response.data.suspended);
 			setProviderID(response.data._provider_id);
@@ -407,12 +410,16 @@ export default CredentialsDetailContainer;
 
 
 function CredentialsInfoCard(props) {
-	const { handleSubmit, register, formState: { errors }, getValues, setValue } = useForm();
-	const { t, i18n } = useTranslation();
+	const { handleSubmit, register, formState: { errors }, getValues, setValue, clearErrors, watch, trigger } = useForm();
+	const { t } = useTranslation();
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
 	const disableEmail = props.updateFeatures.some(feature => feature.type === "email") ? false : true;
 	const disablePhone = props.updateFeatures.some(feature => feature.type === "phone") ? false : true;
+	const disableSaveButton = errors.email || errors.phone;
+
+	const emailValue = watch('email');
+	const phoneValue = watch('phone');
 
 	if (props.data != null && onUpdate === false) {
 		setValue("email", props.data.email);
@@ -422,7 +429,7 @@ function CredentialsInfoCard(props) {
 
 	// Update user
 	const onSubmit = async (values) => {
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 		// If one of the fields (phone or email) is not met, it will be sent 'null' to the body
 		if (values.phone === "") {
@@ -476,10 +483,10 @@ function CredentialsInfoCard(props) {
 					</div>
 				</CardHeader>
 
-				<CardBody>
+				<CardBody className="card-body-height">
 					<fieldset disabled={editMode ? "": "disabled"}>
-						<EmailField register={register} getValues={getValues} errors={errors} disable={disableEmail}/>
-						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disable={disablePhone}/>
+						<EmailField register={register} getValues={getValues} errors={errors} disable={disableEmail} phoneValue={phoneValue} trigger={trigger}/>
+						<PhoneField register={register} getValues={getValues} setValue={setValue} errors={errors} disable={disablePhone} emailValue={emailValue} trigger={trigger}/>
 					</fieldset>
 				</CardBody>
 
@@ -487,8 +494,18 @@ function CredentialsInfoCard(props) {
 				{editMode ?
 					<React.Fragment>
 						<ButtonGroup>
-							<Button color="primary" type="submit">{t("Save")}</Button>
-							<Button color="outline-primary" type="button" onClick={(e) => (setEditMode(false), setOnUpdate(false))}>{t("Cancel")}</Button>
+							<Button color="primary" type="submit" disabled={disableSaveButton}>{t("Save")}</Button>
+							<Button
+								color="outline-primary"
+								type="button"
+								onClick={(e) => (
+									setEditMode(false),
+									setOnUpdate(false),
+									clearErrors(["email", "phone"])
+								)}
+							>
+								{t("Cancel")}
+							</Button>
 						</ButtonGroup>
 					</React.Fragment>
 				:
@@ -511,3 +528,4 @@ function CredentialsInfoCard(props) {
 
 	);
 }
+

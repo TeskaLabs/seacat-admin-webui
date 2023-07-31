@@ -16,7 +16,7 @@ import { ButtonWithAuthz } from 'asab-webui';
 function TenantCreateContainer(props) {
 
 	const { handleSubmit, register, formState: { errors, isSubmitting }, setValue, getValues } = useForm();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const { t } = useTranslation();
 	// TODO: Resource "seacat:tenant:create" will be implemented in future iterations
 	const resource = "authz:superuser"; //"seacat:tenant:create";
@@ -35,6 +35,9 @@ function TenantCreateContainer(props) {
 			}
 		}
 	);
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const onSubmit = async (values) => {
 		try {

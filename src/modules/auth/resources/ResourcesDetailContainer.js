@@ -16,7 +16,7 @@ import { DateTime, ButtonWithAuthz } from 'asab-webui';
 const ResourceDetailContainer = (props) =>  {
 	const { handleSubmit, register, setValue } = useForm();
 	const { t } = useTranslation();
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const [ resource, setResource ] = useState(undefined);
 	const [ editMode, setEditMode ] = useState(false);
 	const [ onUpdate, setOnUpdate ] = useState(false);
@@ -29,6 +29,9 @@ const ResourceDetailContainer = (props) =>  {
 
 	const registerDescription = register("resource_description");
 	const registerName = register("resource_name");
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const getResourceDetail = async (resourceId) => {
 		try {

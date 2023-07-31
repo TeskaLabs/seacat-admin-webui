@@ -17,7 +17,7 @@ function ResetPasswordContainer(props) {
 	const [ data, setData ] = useState(null);
 	const [ config, setConfig ] = useState(undefined);
 	const [ specifyPassword, setSpecifyPassword ] = useState(false);
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const credentials_id = props.match.params.credentials_id;
 
 	useEffect(() => {

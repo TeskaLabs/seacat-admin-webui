@@ -21,7 +21,7 @@ const ClientCreateContainer = (props) => {
 	const { client_id } = props.match.params;
 	const location = useLocation(); // tracking method in URL
 
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const resource = "seacat:client:edit";
 	const resources = useSelector(state => state.auth?.resources);
 	const theme = useSelector(state => state.theme);
@@ -37,6 +37,9 @@ const ClientCreateContainer = (props) => {
 			urlHash: value => (value && new URL(value).hash.length === 0) || t("ClientCreateContainer|URL hash has to be empty"),
 		}
 	});
+
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
 
 	const { fields, append, remove, update } = useFieldArray({ control, name: "redirect_uris" });
 
@@ -71,8 +74,8 @@ const ClientCreateContainer = (props) => {
 			let response = await SeaCatAuthAPI.get('/client/features');
 			setMetaData(response.data["metadata_schema"]);
 		} catch (e) {
-			console.error("Failed to retrieve providers from server: ", e);
-			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, failed to fetch clients")}. ${e?.response?.data?.message}`, 30);
+			console.error("Failed to retrieve client features: ", e);
+			props.app.addAlert("warning", `${t("ClientCreateContainer|Something went wrong, failed to fetch client features")}. ${e?.response?.data?.message}`, 30);
 		}
 	};
 
@@ -133,10 +136,6 @@ const ClientCreateContainer = (props) => {
 			setValue(`redirect_uris[${idx}].value`, item);
 		})
 
-		if (obj?.cookie_domain?.length > 0) {
-			setValue("cookie_domain", obj.cookie_domain);
-		}
-
 		setValue("client_name", obj?.client_name);
 		setValue("client_uri", obj?.client_uri);
 		setValue("login_uri", obj?.login_uri);
@@ -144,6 +143,10 @@ const ClientCreateContainer = (props) => {
 		setValue("authorize_anonymous_users", obj?.authorize_anonymous_users);
 		setValue("code_challenge_method", obj?.code_challenge_method);
 		setValue("redirect_uri_validation_method", obj?.redirect_uri_validation_method);
+		setValue("cookie_entry_uri", obj?.cookie_entry_uri);
+		setValue("cookie_webhook_uri", obj?.cookie_webhook_uri);
+		setValue("cookie_domain", obj?.cookie_domain);
+		setValue("session_expiration", obj?.session_expiration);
 	}
 
 	const refactorSubmitData = (values, type) => {
@@ -181,6 +184,15 @@ const ClientCreateContainer = (props) => {
 			}
 			if (body?.authorize_uri == "") {
 				delete body.authorize_uri;
+			}
+			if (body?.session_expiration == "") {
+				delete body.session_expiration;
+			}
+			if (body?.cookie_entry_uri == "") {
+				delete body.cookie_entry_uri;
+			}
+			if (body?.cookie_webhook_uri == "") {
+				delete body.cookie_webhook_uri;
 			}
 		}
 
@@ -309,18 +321,43 @@ const ClientCreateContainer = (props) => {
 							labelName={t('ClientCreateContainer|Login URI')}
 						/>
 						<TextInput
-							name="cookie_domain"
-							register={register}
-							errors={errors}
-							disabled={disabled}
-							labelName={t('ClientCreateContainer|Cookie domain')}
-						/>
-						<TextInput
 							name="authorize_uri"
 							register={register}
 							errors={errors}
 							disabled={disabled}
 							labelName={t('ClientCreateContainer|Authorize URI')}
+						/>
+					</CardBody>
+				</Card>
+
+				<Card className="client-cookie-card">
+					<CardHeader className="border-bottom">
+						<div className="card-header-title">
+							<i className="cil-blur-circular  pr-2"></i>
+							{t("ClientDetailContainer|Cookie")}
+						</div>
+					</CardHeader>
+					<CardBody>
+						<TextInput
+							name="cookie_entry_uri"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Cookie entry URI')}
+						/>
+						<TextInput
+							name="cookie_webhook_uri"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Cookie webhook URI')}
+						/>
+						<TextInput
+							name="cookie_domain"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Cookie domain')}
 						/>
 					</CardBody>
 				</Card>
@@ -343,6 +380,13 @@ const ClientCreateContainer = (props) => {
 								labelName={t('ClientCreateContainer|Code challenge method (PKCE)')}
 								editing={(client != undefined)}
 							/>}
+						<TextInput
+							name="session_expiration"
+							register={register}
+							errors={errors}
+							disabled={disabled}
+							labelName={t('ClientCreateContainer|Session expiration')}
+						/>
 					</CardBody>
 				</Card>
 

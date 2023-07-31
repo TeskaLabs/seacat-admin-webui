@@ -23,7 +23,7 @@ function CredentialsSessionCard(props) {
 
 	// Terminate users sessions
 	const terminateSessions = async () => {
-		let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+		let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 		try {
 			let response = await SeaCatAuthAPI.delete(`/sessions/${props.credentials_id}`);
 			if (response.data.result !== "OK") {

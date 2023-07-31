@@ -7,7 +7,7 @@ import { Container, Button } from 'reactstrap';
 
 const ResourcesDeletedListContainer = (props) => {
 
-	let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 
 	const [resources, setResources] = useState([]);
 	const [count, setCount] = useState(0);

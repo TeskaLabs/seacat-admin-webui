@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardHeader,
 	CardFooter, Button, ButtonGroup } from "reactstrap";
-import {DataTable, ButtonWithAuthz } from 'asab-webui';
+import { DataTable, ButtonWithAuthz } from 'asab-webui';
 import RoleDropdown from "../components/RoleDropdown";
 import { useSelector } from "react-redux";
 
@@ -31,6 +31,9 @@ const BulkAssignmentContainer = (props) => {
 	const resource = "authz:superuser";
 	const resources = useSelector(state => state.auth?.resources);
 
+	// Display a modal window with description
+	props.app.addHelpButton("https://docs.teskalabs.com/seacat-auth/");
+
 	// headers for Credentails List
 	const headers = [
 		{
@@ -49,7 +52,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={credential.assigned}
 						>
-							<i className="at-plus-circle"></i>
+							<i className="at-arrow-right-circle"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -94,7 +97,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={tenant.assigned}
 						>
-							<i className="at-plus-circle"></i>
+							<i className="at-arrow-right-circle"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -139,8 +142,8 @@ const BulkAssignmentContainer = (props) => {
 				} else {
 					dataObj['assigned'] = false;
 					tableData.push(dataObj);
-				}
-			})
+				};
+			});
 		};
 		return tableData;
 	};
@@ -155,11 +158,20 @@ const BulkAssignmentContainer = (props) => {
 		return matchAssigned(tenants, selectedTenants);
 	}, [tenants, selectedTenants]);
 
+	const allSelected = useMemo(() => {
+		for (let i = 0; i < datatableCredentialsData.length; i++) {
+			if (datatableCredentialsData[i].assigned === false) {
+				return false;
+			}
+		}
+		return true;
+	}, [datatableCredentialsData]);
+
 	// fetches Credentials Data from server
 	const retrieveData = async () => {
 		setLoading(true);
 		try {
-			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 			let response = await SeaCatAuthAPI.get("/credentials", {params: {p:page, i: limit, f: credentialsFilter}});
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to fetch credentials"));
@@ -183,7 +195,7 @@ const BulkAssignmentContainer = (props) => {
 	const retrieveTenants = async () => {
 		setLoadingTenants(true);
 		try {
-			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 			let response = await SeaCatAuthAPI.get("/tenants", {params: {p: tenantsPage, i: tenantsLimit, f: tenantsFilter}});
 			setTenants(response.data.data);
 			setTenantsCount(response.data.count);
@@ -219,7 +231,7 @@ const BulkAssignmentContainer = (props) => {
 			tenantObj['*'] = globalRoles[0].selectedRole
 		};
 		try {
-			let SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+			let SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 			let response = await SeaCatAuthAPI.put(actionType, {"credential_ids": credential_ids, "tenants": tenantObj });
 			if (response.data.result !== "OK") {
 				throw new Error(t("BulkAssignmentContainer|Failed to perform bulk operation"));
@@ -231,6 +243,29 @@ const BulkAssignmentContainer = (props) => {
 		} catch (e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("BulkAssignmentContainer|Failed to perform bulk operation")}. ${e?.response?.data?.message}`, 30);
+		}
+	};
+
+	// selects all data visible in the CredentialsList DataTable or removes all already selected data shown in Credentials list from Selected Credentials Card
+	const bulkSelection = (action) => {
+		let items = [];
+		if(action === 'add') {
+			datatableCredentialsData.map((item) => {
+				if (item['assigned'] !== true) {
+					items.push(item);
+				}
+			})
+			setSelectedCredentials([...selectedCredentials, ...items]);
+		} else {
+			datatableCredentialsData.map((item) => {
+				let matchedIdx = selectedCredentials.findIndex(obj => obj._id === item._id);
+				if (matchedIdx > -1) {
+					// removes items from selection
+					let selectedData = selectedCredentials;
+					selectedData.splice(matchedIdx, 1);
+					setSelectedCredentials([...selectedData]);
+				}
+			})
 		}
 	};
 
@@ -303,12 +338,34 @@ const BulkAssignmentContainer = (props) => {
 					/>
 			</div>
 
+			<div className='credentials-actions'>
+				<Button
+					primary
+					outline
+					onClick={() => bulkSelection('add')}
+					title={t("BulkAssignmentContainer|Select all displayed credentials")}
+					disabled={allSelected}
+				>
+					<i class="cil-chevron-double-right"/>
+				</Button>
+				<Button
+					primary
+					outline
+					onClick={bulkSelection}
+					title={t("BulkAssignmentContainer|Remove from selection")}
+					disabled={(selectedCredentials.length === 0)}
+				>
+					<i class="cil-chevron-double-left"/>
+				</Button>
+			</div>
+
 			<Card className="credentials-selection">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
 						<i className="at-users mr-2" />
 						{t("BulkAssignmentContainer|Selected credentials")}
 					</div>
+					<Button outline secondary disabled={(selectedCredentials.length === 0)} onClick={() => setSelectedCredentials([])}>{t("BulkAssignmentContainer|Clear selection")}</Button>
 				</CardHeader>
 				<CardBody>
 					{selectedCredentials.map((obj, idx) => {
@@ -320,7 +377,7 @@ const BulkAssignmentContainer = (props) => {
 									size="sm"
 									onClick={() => unselectCredential(idx)}
 								>
-									<i className='at-xmark-circle'/>
+									<i className='at-arrow-left-circle'/>
 								</Button>
 								<i className="at-account mr-1 ml-3"/>{obj.username ?? obj._id}
 							</div>
@@ -398,7 +455,7 @@ const BulkAssignmentContainer = (props) => {
 										className="tenant-unselect-btn"
 										onClick={() => unselectTenant(idx)}
 									>
-										<i className='at-xmark-circle'/>
+										<i className='at-arrow-right-circle'/>
 									</Button>
 									<span className="ml-3">{obj._id}</span>
 									<RoleDropdown

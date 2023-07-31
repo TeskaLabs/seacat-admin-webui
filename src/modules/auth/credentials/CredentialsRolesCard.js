@@ -23,7 +23,7 @@ function CredentialsRolesCard(props) {
 
 	const [dropdownAddRoleOpen, setDropdownAddRoleOpen] = useState(false);
 	const toggleAddRole = () => setDropdownAddRoleOpen(prevState => !prevState);
-	const SeaCatAuthAPI = props.app.axiosCreate('seacat_auth');
+	const SeaCatAuthAPI = props.app.axiosCreate('seacat-auth');
 	const tenant = useSelector(state => state.tenant?.current);
 
 	const resources = props.resources;
