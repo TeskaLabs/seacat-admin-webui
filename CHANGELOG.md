@@ -4,11 +4,13 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[1091d60](https://github.com/TeskaLabs/asab-webui/commit/1091d6032e0e3298e92ea4dca6c56dc46030a493)] commit (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
+- ASAB WebUI submodule version bump [[7802fff](https://github.com/TeskaLabs/asab-webui/commit/7802fff00a46d7c13fecae8247e123b1bfef8423)] commit (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
 
 ### Refactoring
 
 - Change "?" in HelpButton to word "Help" (INDIGO Sprint 230721, [!439](https://github.com/TeskaLabs/asab-webui/pull/439))
+
+- Add a condition that will allow users with the right resource to see hidden tree-menu-items, add docs for TreeMenu (INDIGO Sprint 230721, [!437](https://github.com/TeskaLabs/asab-webui/pull/437))
 
 - Add titles for buttons and locales for it (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
 
