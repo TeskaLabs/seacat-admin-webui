@@ -2,7 +2,13 @@
 
 ## Release Candidate
 
+### Features
+
+- ASAB WebUI submodule version bump [[1091d60](https://github.com/TeskaLabs/asab-webui/commit/1091d6032e0e3298e92ea4dca6c56dc46030a493)] commit (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
+
 ### Refactoring
+
+- Change "?" in HelpButton to word "Help" (INDIGO Sprint 230721, [!439](https://github.com/TeskaLabs/asab-webui/pull/439))
 
 - Add titles for buttons and locales for it (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
 
