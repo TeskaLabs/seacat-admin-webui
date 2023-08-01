@@ -113,7 +113,8 @@ function TenantCreateContainer(props) {
 										color="primary"
 										outline
 										type="button"
-										onClick={() => proposeName() }
+										onClick={() => proposeName()}
+										title={t("TenantCreateContainer|Propose a name")}
 									>{t("TenantCreateContainer|Propose a name")}</Button>
 								</ButtonGroup>
 							</CardFooter>
