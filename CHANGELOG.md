@@ -6,7 +6,7 @@
 
 - ASAB WebUI submodule version bump [[7802fff](https://github.com/TeskaLabs/asab-webui/commit/7802fff00a46d7c13fecae8247e123b1bfef8423)] commit (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
 
-- Add search for TenantList, SessionList, RolesList, ResourcesList (INDIGO Sprint 230721, [!58](https://github.com/TeskaLabs/seacat-admin-webui/pull/58))
+- Added functionality that disallows readOnly editing to the provider (INDIGO Sprint 230721, [!58](https://github.com/TeskaLabs/seacat-admin-webui/pull/58))
 
 ### Refactoring
 
