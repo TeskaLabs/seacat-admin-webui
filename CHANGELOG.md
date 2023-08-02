@@ -14,7 +14,7 @@
 
 - Add titles for buttons and locales for it (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
 
-- Changed icons from coreui.io icons to atlasicons. (INDIGO Sprint 230428, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
+- Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230721, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
 
 ## v23.30-alpha
 
