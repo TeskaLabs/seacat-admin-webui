@@ -118,6 +118,7 @@ const RolesResourcesCard = (props) => {
 										color="danger"
 										outline
 										className="mr-2"
+										title={t('RolesResourcesCard|Remove resource')}
 										onClick={() => unassignResource(resource)}>
 									<span className="at-minus-circle" />
 									</Button>

@@ -178,6 +178,7 @@ const ResourceDetailContainer = (props) =>  {
 										color="danger"
 										resources={resources}
 										resource={resourceEdit}
+										title={t("ResourcesDetailContainer|Delete resource")}
 										onClick={() => terminateResourceForm(resource._id)}
 									>
 										{t("ResourcesDetailContainer|Delete resource")}

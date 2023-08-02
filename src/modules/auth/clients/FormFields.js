@@ -151,6 +151,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 						outline
 						color="primary"
 						size="sm"
+						title={t("ClientFormField|Add new input")}
 						onClick={() => append({ value: ""})}
 					>
 						<span className="at-plus-circle" />
@@ -194,7 +195,7 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 				invalid={errors[name]?.[index]?.value && true}
 			/>
 			<InputGroupAddon addonType="append" className="ml-0">
-				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)}>
+				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)} title={t("ClientFormField|Remove input")}>
 					<span className="at-minus-circle" />
 				</Button>
 			</InputGroupAddon>
