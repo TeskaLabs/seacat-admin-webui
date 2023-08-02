@@ -417,7 +417,8 @@
 		"More": "Více...",
 		"Search": "Hledat",
 		"Resource": "Zdroj",
-		"already selected": "byl již zvolen"
+		"already selected": "byl již zvolen",
+		"Remove resource": "Odebrat zdroj"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Zdroj byl úspěšně vytvořen",

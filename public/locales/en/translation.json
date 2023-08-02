@@ -416,7 +416,8 @@
 		"More": "More...",
 		"Search": "Search",
 		"Resource": "Resource",
-		"already selected": "already selected"
+		"already selected": "already selected",
+		"Remove resource": "Remove resource"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Resource has been created",
