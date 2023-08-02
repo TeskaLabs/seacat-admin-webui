@@ -206,7 +206,7 @@
 		"Redirect URIs": "Seznam přesměrovacích URI",
 		"Redirect URI validation method": "Metoda ověření přesměrování URI",
 		"Code challenge method (PKCE)": "Metoda ověření kódu (PKCE)",
-		"Login URi": "URI přihlašovací stránky",
+		"Login URI": "URI přihlašovací stránky",
 		"Authorize URI": "Autorizační URI",
 		"Authorize anonymous users": "Autorizace anonymních uživatelů",
 		"Session expiration": "Expirace relace",
