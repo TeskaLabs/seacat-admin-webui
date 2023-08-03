@@ -6,7 +6,7 @@ import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody, CardTitle,
 	Form, Label,
-	Button, Input, InputGroup, InputGroupAddon,
+	Button, Input, InputGroup,
 } from 'reactstrap';
 
 function ResetPasswordContainer(props) {
@@ -164,11 +164,9 @@ function ResetPasswordField(props){
 						onBlur={reg.onBlur}
 						innerRef={reg.ref}
 					/>
-					<InputGroupAddon addonType="append">
-						<Button color="secondary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="cil-low-vision" />
-						</Button>
-					</InputGroupAddon>
+					<Button color="secondary" className="ms-0" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
+						<span className="cil-low-vision" />
+					</Button>
 					{props.errors.newpassword && <p>{props.errors.newpassword.message}</p>}
 				</InputGroup>
 			</Col>

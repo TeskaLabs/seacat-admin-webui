@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
 	Input, Label, Button,
-	InputGroupAddon, InputGroup, FormFeedback
+	InputGroup, FormFeedback
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
@@ -192,11 +192,9 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 				innerRef={regMail.ref}
 				invalid={errors[name]?.[index]?.value && true}
 			/>
-			{/* <InputGroupAddon addonType="append" className="ms-0"> */}
-				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)}>
-					<span className="cil-minus" />
-				</Button>
-			{/* </InputGroupAddon> */}
+			<Button outline color="danger" size="sm" className="ms-0" onClick={() => remove(`${index}`)}>
+				<span className="cil-minus" />
+			</Button>
 			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}
 		</InputGroup>
 	)

@@ -1,7 +1,7 @@
 import React, {useState}  from 'react';
 import {
 	Input, Label,
-	Button, InputGroupAddon, InputGroup,
+	Button, InputGroup,
 	FormFeedback, FormText
 } from 'reactstrap';
 import {useTranslation} from 'react-i18next';
@@ -197,50 +197,41 @@ export function PasswordField(props) {
 	};
 	return (
 		<React.Fragment>
-			{/* <> */}
-				<Label for="password" className='form-label'>{label}</Label>
-				<InputGroup>
-					<Input
-						id="password"
-						name="password"
-						type={type}
-						invalid={props.errors.password}
-						autoComplete="new-password"
-						onChange={regPwd1.onChange}
-						onBlur={regPwd1.onBlur}
-						innerRef={regPwd1.ref}
-					/>
-					{/* <InputGroupAddon addonType="append" style={{ marginLeft: 0 }}> */}
-						<Button outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="cil-low-vision" />
-						</Button>
-					{/* </InputGroupAddon> */}
-					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
-				</InputGroup>
-			{/* </> */}
+			<Label for="password" className='form-label'>{label}</Label>
+			<InputGroup>
+				<Input
+					id="password"
+					name="password"
+					type={type}
+					invalid={props.errors.password}
+					autoComplete="new-password"
+					onChange={regPwd1.onChange}
+					onBlur={regPwd1.onBlur}
+					innerRef={regPwd1.ref}
+				/>
+				<Button className="ms-0" outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
+					<span className="cil-low-vision" />
+				</Button>
+				{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
+			</InputGroup>
 
-			{/* <> */}
-				<Label className='form-label' for="password2">{t("FormFields|Password again")}</Label>
-				<InputGroup>
-					<Input
-						id="password2"
-						name="password2"
-						type={type2}
-						invalid={props.errors.password2}
-						autoComplete="new-password"
-						onChange={regPwd2.onChange}
-						onBlur={regPwd2.onBlur}
-						innerRef={regPwd2.ref}
-					/>
-					{/* <InputGroupAddon addonType="append" style={{ marginLeft: 0 }}> */}
-						<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
-							<span className="cil-low-vision" />
-						</Button>
-					{/* </InputGroupAddon> */}
-					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
-				</InputGroup>
-			{/* </> */}
-
+			<Label className='form-label' for="password2">{t("FormFields|Password again")}</Label>
+			<InputGroup>
+				<Input
+					id="password2"
+					name="password2"
+					type={type2}
+					invalid={props.errors.password2}
+					autoComplete="new-password"
+					onChange={regPwd2.onChange}
+					onBlur={regPwd2.onBlur}
+					innerRef={regPwd2.ref}
+				/>
+				<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
+					<span className="cil-low-vision" />
+				</Button>
+				{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
+			</InputGroup>
 		</React.Fragment>
 	)
 }
