@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardBody, CardFooter,
-	Button, ButtonGroup, Input, FormGroup
+	Button, ButtonGroup, Input
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';
