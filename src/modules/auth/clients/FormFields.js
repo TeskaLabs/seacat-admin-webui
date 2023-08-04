@@ -19,7 +19,7 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 		:
 		(name === "cookie_domain") && {
 			validate: {
-				validation: value => (/^[a-z0-9\.-]{1,61}\.[a-z]{2,}$|^$/).test(value) || t("ClientFormField|Invalid format for cookie_domain"),
+				validation: value => value === undefined || (/^[a-z0-9\.-]{1,61}\.[a-z]{2,}$|^$/).test(value) || t("ClientFormField|Invalid format for cookie_domain"),
 			}
 		}
 	);
@@ -151,6 +151,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					color="primary"
 					size="sm"
 					className='ms-0'
+					title={t("ClientFormField|Add new input")}
 					onClick={() => append({ value: ""})}
 				>
 					<span className="cil-plus" />
@@ -192,7 +193,7 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 				innerRef={regMail.ref}
 				invalid={errors[name]?.[index]?.value && true}
 			/>
-			<Button outline color="danger" size="sm" className="ms-0" onClick={() => remove(`${index}`)}>
+			<Button outline color="danger" size="sm" className="ms-0" onClick={() => remove(`${index}`)} title={t("ClientFormField|Remove input")}>
 				<span className="cil-minus" />
 			</Button>
 			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}
