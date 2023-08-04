@@ -68,7 +68,7 @@ function CredentialsSessionCard(props) {
 					onClick={() => {terminateSessionsForm()}}
 					resource="seacat:session:terminate"
 					resources={props.resources}
-					disabled={(data.length == 0) || (props.editable !== true)}
+					disabled={(data.length == 0) || !props.editable}
 				>
 					{t("CredentialsSessionCard|Log out")}
 				</ButtonWithAuthz>

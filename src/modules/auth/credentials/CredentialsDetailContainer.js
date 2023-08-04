@@ -254,7 +254,7 @@ function CredentialsDetailContainer(props) {
 										color="link"
 										resource={resourceManageCredentials}
 										resources={resources}
-										disabled={(editable !== true)}
+										disabled={!editable}
 									>
 										{(suspended === false) || (suspended === undefined) ?
 											t('CredentialsDetailContainer|Suspend user')
@@ -297,7 +297,7 @@ function CredentialsDetailContainer(props) {
 									resource={resourceManageCredentials}
 									resources={resources}
 									onClick={() => { resetPwd() }}
-									disabled={(editable !== true)}
+									disabled={!editable}
 								>
 									{t('CredentialsDetailContainer|Reset password')}
 								</ButtonWithAuthz>
@@ -526,7 +526,7 @@ function CredentialsInfoCard(props) {
 						outline
 						type="button"
 						onClick={(e) => (e.preventDefault(), setEditMode(true))}
-						disabled={props.updateFeatures.length === 0 || (props.editable !== true)}
+						disabled={props.updateFeatures.length === 0 || !props.editable}
 						resources={props.resources}
 						resource={props.resource}
 					>
