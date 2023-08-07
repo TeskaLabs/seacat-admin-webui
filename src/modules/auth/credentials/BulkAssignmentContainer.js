@@ -7,7 +7,7 @@ import { DataTable, ButtonWithAuthz } from 'asab-webui';
 import RoleDropdown from "../components/RoleDropdown";
 import { useSelector } from "react-redux";
 
-const BulkAssignmentContainer = (props) => {
+const BulkAssignmentContainer = (props) => {
 
 	const { t } = useTranslation();
 
@@ -152,13 +152,13 @@ const BulkAssignmentContainer = (props) => {
 	disables the "+"" button) to be displayed in Credentials & Tenants list data table */
 	const datatableCredentialsData = useMemo(() => {
 		return matchAssigned(data, selectedCredentials);
-	}, [data, selectedCredentials]);
+	}, [data, selectedCredentials]);
 
 	const datatableTenantsData = useMemo(() => {
 		return matchAssigned(tenants, selectedTenants);
-	}, [tenants, selectedTenants]);
+	}, [tenants, selectedTenants]);
 
-	const allSelected = useMemo(() => {
+	const allSelected = useMemo(() => {
 		for (let i = 0; i < datatableCredentialsData.length; i++) {
 			if (datatableCredentialsData[i].assigned === false) {
 				return false;
@@ -207,7 +207,7 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	// call to assign all selected tenants to all selected credentials
-	const bulkAction = async (actionType) => {
+	const bulkAction = async (actionType) => {
 		let credential_ids = [];
 		let tenantObj = {};
 		// adjustments to data structure. selectedCredentials is an array of objects. Server expects credential_ids to be an array of ids only [ 'id1', 'id2', ..]
@@ -247,10 +247,10 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	// selects all data visible in the CredentialsList DataTable or removes all already selected data shown in Credentials list from Selected Credentials Card
-	const bulkSelection = (action) => {
+	const bulkSelection = (action) => {
 		let items = [];
 		if(action === 'add') {
-			datatableCredentialsData.map((item) => {
+			datatableCredentialsData.map((item) => {
 				if (item['assigned'] !== true) {
 					items.push(item);
 				}
@@ -283,34 +283,34 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	// remove item from selectedCredentials state
-	const unselectCredential = (idx) => {
+	const unselectCredential = (idx) => {
 		let selectedCredData = selectedCredentials;
 		selectedCredData.splice(idx, 1);
 		setSelectedCredentials([...selectedCredData]);
 	};
 
 	// add specific(selected) tenant object to selectedTenants state
-	const saveToSelectedTenants = (tenantObj) => {
+	const saveToSelectedTenants = (tenantObj) => {
 		let arr = [...selectedTenants];
 		arr.push(tenantObj);
 		setSelectedTenants([...arr]);
 	};
 
 	// remove item from selectedTenants state
-	const unselectTenant = (idx) => {
+	const unselectTenant = (idx) => {
 		let tenantData = [...selectedTenants];
 		tenantData.splice(idx, 1);
 		setSelectedTenants([...tenantData]);
 	};
 
 	// removes selected Role
-	const unselectRole = (tenantIndex, roleIndex) => {
+	const unselectRole = (tenantIndex, roleIndex) => {
 		let tenantData = [...selectedTenants];
 		tenantData[tenantIndex].selectedRole.splice(roleIndex, 1);
 		setSelectedTenants([...tenantData]);
 	};
 
-	const unselectGlobalRole = (roleIndex) => {
+	const unselectGlobalRole = (roleIndex) => {
 		let globalCopy = [...globalRoles];
 		globalCopy[0].selectedRole.splice(roleIndex, 1);
 		if (globalCopy[0].selectedRole.length === 0) {
@@ -423,7 +423,7 @@ const BulkAssignmentContainer = (props) => {
 					</div>
 					<div className="role-wrapper ml-2">
 						{globalRoles[0]?.selectedRole ?
-							globalRoles[0]?.selectedRole.map((role, i) => {
+							globalRoles[0]?.selectedRole.map((role, i) => {
 								return (
 									<div className="role-item selected-row ml-4">
 										<Button
@@ -455,7 +455,7 @@ const BulkAssignmentContainer = (props) => {
 										className="tenant-unselect-btn"
 										onClick={() => unselectTenant(idx)}
 									>
-										<i className='at-arrow-right'/>
+										<i className='at-arrow-left'/>
 									</Button>
 									<span className="ml-3">{obj._id}</span>
 									<RoleDropdown
@@ -468,7 +468,7 @@ const BulkAssignmentContainer = (props) => {
 								</div>
 								<div className="role-wrapper ml-2">
 									{obj?.selectedRole ?
-										obj.selectedRole.map((role, i) => {
+										obj.selectedRole.map((role, i) => {
 											return (
 												<div className="role-item selected-row ml-4">
 													<Button
@@ -477,7 +477,7 @@ const BulkAssignmentContainer = (props) => {
 														size="sm"
 														outline
 														color="secondary"
-														onClick={() => unselectRole(idx, i)}
+														onClick={() => unselectRole(idx, i)}
 													>
 														<i className="at-xmark-circle"/>
 													</Button>
