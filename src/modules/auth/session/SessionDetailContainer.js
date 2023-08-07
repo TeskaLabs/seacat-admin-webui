@@ -199,7 +199,7 @@ function SessionDetailContainer(props) {
 				<Card>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-stopwatch pr-2"></i>
+							<i className="at-replay-arrow-left-right pr-2"></i>
 							{t("SessionDetailContainer|Authorization")}
 						</div>
 					</CardHeader>
