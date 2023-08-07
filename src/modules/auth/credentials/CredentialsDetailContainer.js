@@ -93,6 +93,9 @@ function CredentialsDetailContainer(props) {
 			} else {
 				setEditable(false);
 			}
+			if (response.data.editable !== true) {
+				props.app.addAlert("warning", `${t("CredentialsDetailContainer|Editing is disabled for this user")}.`, 30);
+			}
 		} catch(e) {
 			console.error(e);
 			props.app.addAlert("warning", `${t("CredentialsDetailContainer|Something went wrong, failed to fetch provider data")}. ${e?.response?.data?.message}`, 30);

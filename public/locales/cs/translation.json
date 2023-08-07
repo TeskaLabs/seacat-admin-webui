@@ -266,7 +266,8 @@
 		"Invited": "Pozván",
 		"Resend invitation": "Přeposlat pozvánku",
 		"Something went wrong, failed to resend invitation": "Něco je špatně, pozvánka nebyla odeslána",
-		"Invitation sent successfully": "Pozvánka úspěšně odeslána"
+		"Invitation sent successfully": "Pozvánka úspěšně odeslána",
+		"Editing is disabled for this credential": "Editace je pro tohoto uživatele zakázána"
 	},
 	"CredentialsRolesCard": {
 		"More": "Více ...",
