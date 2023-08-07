@@ -230,7 +230,7 @@ function CredentialsListContainer(props) {
 		<div className="h-100" ref={ref}>
 			<Container>
 					<DataTable
-						title={{ text: t("CredentialsListContainer|Credentials"), icon: "at-list-folder" }}
+						title={{ text: t("CredentialsListContainer|Credentials"), icon: "at-users" }}
 						headers={headers}
 						data={data}
 						count={count}
