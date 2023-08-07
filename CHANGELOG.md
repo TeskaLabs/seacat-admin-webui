@@ -4,7 +4,7 @@
 
 ### Features
 
-- ASAB WebUI submodule version bump [[7802fff](https://github.com/TeskaLabs/asab-webui/commit/7802fff00a46d7c13fecae8247e123b1bfef8423)] commit (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
+- ASAB WebUI submodule version bump [[9fc06df](https://github.com/TeskaLabs/asab-webui/commit/9fc06df046dcb114262cfd04506fb0dcef22325b)] commit (INDIGO Sprint 230804, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
 
 ### Refactoring
 
@@ -14,7 +14,7 @@
 
 - Add titles for buttons and locales for it (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
 
-- Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230721, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
+- Changed icons from Coreui.io icons to Atlas icons. (INDIGO Sprint 230804, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
 
 ## v23.30-alpha
 
