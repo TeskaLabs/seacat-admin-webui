@@ -29,7 +29,7 @@ const RolesListcontainer = (props) => {
 
 	const title = {
 		text: `${t("RolesListContainer|Roles overview")} (${tenant})`,
-		icon: "cil-user"
+		icon: "at-hierarchy-account-user"
 	}
 
 	const headers = [

@@ -72,7 +72,7 @@ function TenantCreateContainer(props) {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="cil-apps pr-2"></i>
+									<i className="at-house-key pr-2"></i>
 									{t("TenantCreateContainer|Create new tenant")}
 								</div>
 							</CardHeader>
