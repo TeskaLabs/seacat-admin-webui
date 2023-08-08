@@ -94,7 +94,7 @@ function CredentialsDetailContainer(props) {
 				setEditable(false);
 			}
 			if (response.data.editable !== true) {
-				props.app.addAlert("warning", `${t("CredentialsDetailContainer|Editing is disabled for this credential")}.`, 30);
+				props.app.addAlert("warning", `${t("CredentialsDetailContainer|Credentials do not support editing")}.`, 30);
 			}
 		} catch(e) {
 			console.error(e);
