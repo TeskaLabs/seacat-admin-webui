@@ -4,7 +4,7 @@ import { Dropdown, DropdownToggle,
 	DropdownItem, DropdownMenu, Input,
 	UncontrolledTooltip } from "reactstrap";
 
-const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelectedTenants, idx}) => {
+const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelectedTenants, idx}) => {
 
 	const { t } = useTranslation();
 	const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -20,12 +20,12 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	}, [limit]);
 
 	// this useEffect should match selected roles with the ones we want to display and re-add the ones which were removed from selected roles in BulkAssignmentContainer
-	useEffect(() => {
+	useEffect(() => {
 		if (tenantObj.selectedRole && (tenantObj?.selectedRole?.length > 0)) {
 			let display = {...displayTenantRoles};
 			// newDisplayData will hold roles coming from the service minus the ones we've already assigned
 			let newDisplayData = [];
-			tenantObj?.roles?.data.map((tenantRole) => {
+			tenantObj?.roles?.data.map((tenantRole) => {
 				// we are comparing already selected roles with all roles and keeping only the elements, which are not included in selectedRole(s)
 				let found = tenantObj?.selectedRole.find(el => el === tenantRole._id);
 				if (!found) {
@@ -52,7 +52,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	// 	}, 500);
 	// }, [filter]);
 
-	// const handleFilter = (e) => {
+	// const handleFilter = (e) => {
 	// 	setLimit(5);
 	// 	setFilter(e.target.value);
 	// }
@@ -68,10 +68,10 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 			parameters['exclude_global'] = false;
 			objCopy = {...tenantObj};
 		} else {
-			objCopy = selectedTenants.find(obj => obj._id === tenantId);
+			objCopy = selectedTenants.find(obj => obj._id === tenantId);
 		}
 		try {
-			response = await SeaCatAuthAPI.get(`/role/${id}`, {params: parameters});
+			response = await SeaCatAuthAPI.get(`/role/${id}`, {params: parameters});
 			let selectedTenantsCopy = [...selectedTenants];
 			let tenantsRolesObject = {...objCopy, roles: response.data};
 			selectedTenantsCopy[idx] = tenantsRolesObject;
@@ -85,7 +85,7 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 	}
 
 	// adds role to the list of selected roles
-	const addRole = (roleId, index) => {
+	const addRole = (roleId, index) => {
 		let tenants = [...selectedTenants];
 		let tenant = {...tenantObj};
 		if (roleId.substring(0, 1) === '*') {
@@ -125,13 +125,13 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 
 	return (
 		<>
-			<span href="#" id={`tooltip-${(tenantObj._id === undefined) ? 'global' : idx}`}><i className='cil-info ms-2'></i></span>
+			<span href="#" id={`tooltip-${(tenantObj._id === undefined) ? 'global' : idx}`}><i className='at-info-circle ms-2'></i></span>
 			<UncontrolledTooltip placement="auto" target={`tooltip-${(tenantObj._id === undefined) ? 'global' : idx}`}>
 				{message}
 			</UncontrolledTooltip>
 			<Dropdown className='ms-auto' size="sm" isOpen={dropdownOpen} toggle={() => setDropdownOpen(prev => !prev)}>
 				<DropdownToggle caret outline color="primary">
-					<span className="cil-plus me-2" />
+					<span className="at-plus-circle me-2" />
 					{t("BulkAssignmentContainer|Add role")}
 				</DropdownToggle>
 				<DropdownMenu  style={{maxHeight: "20em", overflowY: "auto"}} >

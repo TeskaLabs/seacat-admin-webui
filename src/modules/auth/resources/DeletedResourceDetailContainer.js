@@ -66,7 +66,7 @@ const DeletedResourceDetailContainer = (props) =>  {
 	}
 
 	// Hard-deletes selected resource. After this action, the resource cannot be retrieved anymore.
-	const hardDelete = async () => {
+	const hardDelete = async () => {
 		try {
 			let response = await SeaCatAuthAPI.delete(`/resource/${resource_id}`, { params: { hard_delete: true } });
 			if (response.data.result !== "OK") {
@@ -85,7 +85,7 @@ const DeletedResourceDetailContainer = (props) =>  {
 			<Card className='resource-detail-description'>
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-lock-locked pe-2"></i>
+						<i className="at-lock-keyhole pe-2"></i>
 						{t("ResourcesDeletedDetailContainer|Resource")}
 					</div>
 				</CardHeader>

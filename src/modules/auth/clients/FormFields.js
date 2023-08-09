@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
 	Input, Label, Button,
-	InputGroup, FormFeedback
+	InputGroup, FormFeedback,
+	FormGroup
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
@@ -31,7 +32,7 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 		return false;
 	}
 	return (
-		<div key={name} className='mb-3'>
+		<FormGroup key={name}>
 			{labelName && <Label className='form-label' for={name} title={(name === "client_name") && t("ClientFormField|Required field")}>{labelName}</Label>}
 			<Input
 				id={name}
@@ -46,7 +47,7 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 			/>
 			{name === "preferred_client_id" && (errors.preferred_client_id != undefined && <FormFeedback>{errors.preferred_client_id?.message}</FormFeedback>)}
 			{name === "cookie_domain" && (errors?.cookie_domain && <FormFeedback>{errors.cookie_domain?.message}</FormFeedback>)}
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -56,7 +57,7 @@ export function SelectInput ({ name, register, valueList, labelName, disabled })
 	const reg = register(name);
 
 	return (
-		<div key={name} className='mb-3'>
+		<FormGroup key={name}>
 			{labelName &&
 				<Label className='form-label' for={name} title={name}>{labelName}</Label>}
 			<Input
@@ -73,7 +74,7 @@ export function SelectInput ({ name, register, valueList, labelName, disabled })
 					<option key={idx} value={optionItem}>{optionItem}</option>
 				))}
 			</Input>
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -83,7 +84,7 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 	const reg = register(name);
 
 	return (
-		<div className='mb-3'>
+		<FormGroup check>
 			<Label className='form-label' for={name}>
 				<Input
 					id={name}
@@ -96,7 +97,7 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 				/>{' '}
 				{checkboxText}
 			</Label>
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -104,7 +105,7 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 export function RadioInput ({ name, valueList, register, labelName, disabled, editing }) {
 
 	return (
-		<div key={name} className='mb-3'>
+		<FormGroup key={name}>
 			{labelName && <Label for={name} title={name} className='form-label'>{labelName}</Label>}
 			<div title={name}>
 				{valueList && valueList?.map((item, key) => (
@@ -124,7 +125,7 @@ export function RadioInput ({ name, valueList, register, labelName, disabled, ed
 					</InputGroup>
 				))}
 			</div>
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -133,7 +134,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 	const { t } = useTranslation();
 
 	return (
-		<div className='mb-3' >
+		<FormGroup>
 			<Label title={t("ClientFormField|Required field")} for={name} className='form-label'>{labelName}</Label>
 			<InputGroup>
 				<Input
@@ -154,7 +155,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					title={t("ClientFormField|Add new input")}
 					onClick={() => append({ value: ""})}
 				>
-					<span className="cil-plus" />
+					<span className="at-plus-circle" />
 				</Button>
 				{errors && errors[name] && <FormFeedback>{errors[name].message}</FormFeedback>}
 			</InputGroup>
@@ -169,7 +170,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					disabled={disabled}
 				/>
 			))}
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -194,7 +195,7 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 				invalid={errors[name]?.[index]?.value && true}
 			/>
 			<Button outline color="danger" size="sm" className="ms-0" onClick={() => remove(`${index}`)} title={t("ClientFormField|Remove input")}>
-				<span className="cil-minus" />
+				<span className="at-minus-circle" />
 			</Button>
 			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}
 		</InputGroup>
@@ -239,7 +240,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 	}
 
 	return (
-		<div key={name} className='mb-3'>
+		<FormGroup key={name}>
 			{labelName && <Label for={name} className='form-label'>{labelName}</Label>}
 			<Controller
 				name={name}
@@ -255,7 +256,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 								<span className="mt-1 pe-2 d-inline-block  selected-item" key={index}>
 									<span>{ optionItem }</span>
 									<span onClick={() => removeItem(optionItem)}>
-										<i className="cil-x"></i>
+										<i className="at-xmark-circle"></i>
 									</span>
 								</span>
 							))}
@@ -276,7 +277,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 				:
 				null
 			}
-		</div>
+		</FormGroup>
 	)
 };
 
@@ -338,7 +339,7 @@ export function MultiCheckbox ({ name, valueList, assignValue, setValue, labelNa
 	};
 
 	return (
-		<div key={name} className='mb-3'>
+		<FormGroup key={name}>
 			{labelName && <Label for={name} title={name} className='form-label'>{labelName}</Label>}
 			<div title={name}>
 				{valueList && valueList?.map((item, key) => (
@@ -358,6 +359,6 @@ export function MultiCheckbox ({ name, valueList, assignValue, setValue, labelNa
 					</InputGroup>
 				))}
 			</div>
-		</div>
+		</FormGroup>
 	)
 };

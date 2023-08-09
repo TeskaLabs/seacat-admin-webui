@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardBody, CardFooter,
-	Button, ButtonGroup, Input
+	Button, ButtonGroup, Input, FormGroup
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';
@@ -85,7 +85,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-main-info-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-layers pe-2"></i>
+						<i className="at-pc pe-2"></i>
 						{t("ClientDetailContainer|Client")}
 					</div>
 				</CardHeader>
@@ -157,7 +157,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-multidomain-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-applications-settings pe-2"></i>
+						<i className="at-sliders pe-2"></i>
 						{t("ClientDetailContainer|Multidomain")}
 					</div>
 				</CardHeader>
@@ -176,7 +176,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-cookie-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-blur-circular  pr-2"></i>
+						<i className="at-cookie  pr-2"></i>
 						{t("ClientDetailContainer|Cookie")}
 					</div>
 				</CardHeader>
@@ -203,7 +203,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-authorization-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-swap-horizontal pe-2"></i>
+						<i className="at-replay-arrow-left-right pe-2"></i>
 						{t("ClientDetailContainer|Authorization")}
 					</div>
 				</CardHeader>
@@ -261,21 +261,21 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-access-control-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-exit-to-app pe-2"></i>
+						<i className="at-arrow-down-to-square pe-2"></i>
 						{t("ClientDetailContainer|Access control")}
 					</div>
 				</CardHeader>
 				<CardBody>
-					<div>
+					<FormGroup check>
 						<Input
 							id="authorize_anonymous_users"
 							name="authorize_anonymous_users"
 							type="checkbox"
 							disabled={true}
 							checked={(client?.authorize_anonymous_users == true) ? true : false}
-							/>{' '}
+						/>{' '}
 						{t('ClientDetailContainer|Authorize anonymous users')}
-					</div>
+					</FormGroup>
 				</CardBody>
 			</Card>
 
@@ -283,7 +283,7 @@ const ClientDetailContainer = (props) =>  {
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-code pe-2"></i>
+							<i className=at-programming pe-2"></i>
 							JSON
 						</div>
 					</CardHeader>

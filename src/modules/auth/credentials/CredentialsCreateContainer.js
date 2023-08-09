@@ -11,7 +11,7 @@ import {
 	Card, CardHeader, CardFooter, CardBody,
 	Form, Input, Label,
 	Nav, NavLink, NavItem, ButtonGroup,
-	TabPane, TabContent
+	TabPane, TabContent, FormGroup
 } from 'reactstrap';
 
 import {
@@ -195,7 +195,7 @@ function CredentialsCreateContainer(props) {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="cil-people pe-2"></i>
+									<i className="at-users pe-2"></i>
 									{activeTab == "create" ? t('CredentialsCreateContainer|Create new credentials') : t('CredentialsCreateContainer|Invite user')}
 								</div>
 								<ButtonGroup className="p-1">
@@ -224,7 +224,7 @@ function CredentialsCreateContainer(props) {
 									<CardBody>
 
 										{Object.keys(providers).length > 1 &&
-											<Col>
+											<FormGroup>
 												<Label for="provider" className='form-label'>{t('CredentialsCreateContainer|Provider')}</Label>
 													<Input
 														id="provider"
@@ -237,7 +237,7 @@ function CredentialsCreateContainer(props) {
 														<option key={index} value={key}>{providers[key]._provider_id} ({providers[key]._type == 'm2m' ? "Machine-to-Machine" : "Human"})</option>
 													))}
 													</Input>
-											</Col>
+											</FormGroup>
 										}
 
 										{(activeTab == "create") && (config !== undefined) && config.creation.map((item, idx) => {

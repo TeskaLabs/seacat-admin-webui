@@ -117,7 +117,7 @@ function CredentialsTenantsCard(props) {
 		<Card className="h-100 credential-tenant-area">
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="cil-apps pe-2"></i>
+					<i className="at-house-key pe-2"></i>
 					{t("CredentialsTenantsCard|Tenants")}
 				</div>
 			</CardHeader>
@@ -135,7 +135,7 @@ function CredentialsTenantsCard(props) {
 									 disabled={!editMode}
 									 size="sm" color="danger"
 									 onClick={(e) => removeTenant(tenant_id)}>
-									 <span className="cil-minus" />
+									 <span className="at-minus-circle" />
 								 </Button>
 							 }
 							<Tenant tenant={tenant_id} lookup={allTenants} />

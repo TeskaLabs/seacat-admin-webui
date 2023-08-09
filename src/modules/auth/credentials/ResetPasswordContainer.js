@@ -85,7 +85,7 @@ function ResetPasswordContainer(props) {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="cil-lock-unlocked pe-2"></i>
+									<i className="at-unlock-keyhole pe-2"></i>
 									{t("ResetPasswordContainer|Reset password")}
 								</div>
 							</CardHeader>
@@ -165,7 +165,7 @@ function ResetPasswordField(props){
 						innerRef={reg.ref}
 					/>
 					<Button color="secondary" className="ms-0" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-						<span className="cil-low-vision" />
+						<span className="at-eye-minus" />
 					</Button>
 					{props.errors.newpassword && <p>{props.errors.newpassword.message}</p>}
 				</InputGroup>

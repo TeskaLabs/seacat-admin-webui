@@ -1,13 +1,13 @@
 import {useTranslation} from "react-i18next";
-import {Button, FormFeedback, Input, InputGroup, Label} from "reactstrap";
+import {Button, FormFeedback, Input, InputGroup, Label, FormGroup} from "reactstrap";
 import {Controller} from "react-hook-form";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function CustomDataInput ({name, control, errors, append, remove, fields, replace, labelName}) {
 	const { t } = useTranslation();
 
 	return (
-		<>
+		<FormGroup>
 			{labelName && <Label for={name} title={name} className='form-label'>{labelName}</Label>}
 			{fields && fields.map((item, idx) => {
 				if (fields[idx].key === "undefined") {
@@ -45,7 +45,7 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 							disabled={(fields.length === 1) && ((fields[0].key === ""))} // Disable button if he number of inputs is 1  and no text added
 							onClick={() => {(fields.length === 1) ? replace({key: '', value: ''}) : remove(idx)}}
 						>
-							<span className="cil-minus" />
+							<span className="at-minus-circle" />
 						</Button>
 					</InputGroup>
 				);
@@ -59,8 +59,8 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 				type="button"
 				onClick={() => {append({key: '', value: ''})}}
 			>
-				<span className="cil-plus" />
+				<span className="at-plus-circle" />
 			</Button>
-		</>
+		</FormGroup>
 	)
 }

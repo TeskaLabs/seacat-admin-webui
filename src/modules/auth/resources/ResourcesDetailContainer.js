@@ -106,7 +106,7 @@ const ResourceDetailContainer = (props) =>  {
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-lock-unlocked pe-2"></i>
+							<i className="at-unlock-keyhole pe-2"></i>
 							{t("ResourcesDetailContainer|Resource")}
 						</div>
 					</CardHeader>
@@ -205,7 +205,7 @@ const ResourceDetailContainer = (props) =>  {
 					<Card>
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-code pe-2"></i>
+								<i className="at-programming pe-2"></i>
 								JSON
 							</div>
 						</CardHeader>

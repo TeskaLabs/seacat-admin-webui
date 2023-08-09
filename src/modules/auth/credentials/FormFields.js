@@ -2,7 +2,8 @@ import React, {useState}  from 'react';
 import {
 	Input, Label,
 	Button, InputGroup,
-	FormFeedback, FormText
+	FormFeedback, FormText,
+	FormGroup
 } from 'reactstrap';
 import {useTranslation} from 'react-i18next';
 
@@ -35,7 +36,7 @@ export function PhoneField(props) {
 		}
 	);
 	return (
-		<>
+		<FormGroup>
 			<Label title={props.required && t("FormFields|Required field")} for="phone" className='mb-2 form-label'>
 				{t("FormFields|Phone")}{props.required && '*'}
 			</Label>
@@ -57,7 +58,7 @@ export function PhoneField(props) {
 				innerRef={reg.ref}
 			/>
 			{props.errors.phone && <FormFeedback>{props.errors.phone.message}</FormFeedback>}
-		</>
+		</FormGroup>
 	)
 }
 
@@ -87,7 +88,7 @@ export function EmailField(props) {
 		config.item [from site])
 	*/
 	return (
-		<>
+		<FormGroup>
 			<Label title={props.required && t("FormFields|Required field")} for="email" className='mb-2 form-label'>
 				{t("FormFields|Email")}{props.required && '*'}
 			</Label>
@@ -109,7 +110,7 @@ export function EmailField(props) {
 				innerRef={reg.ref}
 			/>
 			{props.errors.email && <FormFeedback>{props.errors.email.message}</FormFeedback>}
-		</>
+		</FormGroup>
 	)
 }
 
@@ -126,7 +127,7 @@ export function UserNameField(props) {
 		}
 	);
 	return (
-		<div className='pb-3'>
+		<FormGroup>
 			<Label title={props.required && t("FormFields|Required field")} for="username" className='form-label'>
 				{t("FormFields|Username")}{props.required && '*'}
 			</Label>
@@ -144,7 +145,7 @@ export function UserNameField(props) {
 				:
 				<FormText>{t("FormFields|Only lower-case letters, numbers, dash and underscore are allowed")}</FormText>
 			}
-		</div>
+		</FormGroup>
 	)
 }
 
@@ -197,41 +198,44 @@ export function PasswordField(props) {
 	};
 	return (
 		<React.Fragment>
-			<Label for="password" className='form-label'>{label}</Label>
-			<InputGroup>
-				<Input
-					id="password"
-					name="password"
-					type={type}
-					invalid={props.errors.password}
-					autoComplete="new-password"
-					onChange={regPwd1.onChange}
-					onBlur={regPwd1.onBlur}
-					innerRef={regPwd1.ref}
-				/>
-				<Button className="ms-0" outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-					<span className="cil-low-vision" />
-				</Button>
-				{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
-			</InputGroup>
-
-			<Label className='form-label' for="password2">{t("FormFields|Password again")}</Label>
-			<InputGroup>
-				<Input
-					id="password2"
-					name="password2"
-					type={type2}
-					invalid={props.errors.password2}
-					autoComplete="new-password"
-					onChange={regPwd2.onChange}
-					onBlur={regPwd2.onBlur}
-					innerRef={regPwd2.ref}
-				/>
-				<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
-					<span className="cil-low-vision" />
-				</Button>
-				{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
-			</InputGroup>
+			<FormGroup>
+				<Label for="password" className='form-label'>{label}</Label>
+				<InputGroup>
+					<Input
+						id="password"
+						name="password"
+						type={type}
+						invalid={props.errors.password}
+						autoComplete="new-password"
+						onChange={regPwd1.onChange}
+						onBlur={regPwd1.onBlur}
+						innerRef={regPwd1.ref}
+					/>
+					<Button className="ms-0" outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
+						<span className="at-eye-minus" />
+					</Button>
+					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
+				</InputGroup>
+			</FormGroup>
+			<FormGroup>
+				<Label className='form-label' for="password2">{t("FormFields|Password again")}</Label>
+				<InputGroup>
+					<Input
+						id="password2"
+						name="password2"
+						type={type2}
+						invalid={props.errors.password2}
+						autoComplete="new-password"
+						onChange={regPwd2.onChange}
+						onBlur={regPwd2.onBlur}
+						innerRef={regPwd2.ref}
+					/>
+					<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
+						<span className="at-eye-minus" />
+					</Button>
+					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
+				</InputGroup>
+			</FormGroup>
 		</React.Fragment>
 	)
 }
