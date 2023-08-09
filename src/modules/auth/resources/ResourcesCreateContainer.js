@@ -8,8 +8,8 @@ import { ButtonWithAuthz } from 'asab-webui';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Button, Form, FormGroup,
-	Input, Label, FormText, FormFeedback
+	Form, Input, Label, FormText, FormFeedback,
+	FormGroup
 } from 'reactstrap';
 
 const ResourceCreateContainer = (props) => {
@@ -65,14 +65,14 @@ const ResourceCreateContainer = (props) => {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="at-unlock-keyhole pr-2"></i>
+									<i className="at-unlock-keyhole pe-2"></i>
 									{t("ResourcesCreateContainer|Create new resource")}
 								</div>
 							</CardHeader>
 
 							<CardBody>
 								<FormGroup>
-									<Label for="resource_id">{t("Name")}</Label>
+									<Label for="resource_id" className="form-label">{t("Name")}</Label>
 									<Input
 										id="resource_id"
 										name="resource_id"
@@ -92,7 +92,7 @@ const ResourceCreateContainer = (props) => {
 								</FormGroup>
 
 								<FormGroup>
-									<Label for="resource_description">{t("Description")}</Label>
+									<Label for="resource_description" className="form-label">{t("Description")}</Label>
 									<Input
 										id="resource_description"
 										name="resource_description"

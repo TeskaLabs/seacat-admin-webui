@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, FormGroup, FormText,
+	Form, FormText, FormGroup
 	Input, Label, FormFeedback
 } from 'reactstrap';
 
@@ -57,14 +57,14 @@ const RolesCreateContainer = (props) => {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className="card-header-title">
-									<i className="at-hierarchy-account-user pr-2"></i>
+									<i className="at-hierarchy-account-user pe-2"></i>
 									{t("RolesCreateContainer|Create new role")}
 								</div>
 							</CardHeader>
 
 							<CardBody>
 								<FormGroup>
-									<Label for="roleName">{t("Name")}</Label>
+									<Label className="form-label" for="roleName">{t("Name")}</Label>
 									<Input
 										id="roleName"
 										name="roleName"
@@ -87,7 +87,7 @@ const RolesCreateContainer = (props) => {
 								{resources.includes("authz:superuser") && (
 									<FormGroup check>
 										<Label
-											check
+											className="form-label"
 											for="global"
 										>
 											<Input

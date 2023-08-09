@@ -69,7 +69,7 @@ const RolesResourcesCard = (props) => {
 
 	const assignResource = (resource) => {
 		// checks if the resource is already assigned to prevent selecting the same resource twice
-		if (assignedResources.indexOf(resource) === -1 ) {
+		if (assignedResources.indexOf(resource) === -1 ) {
 			setAssignedResources([...assignedResources, resource]);
 		} else {
 			setDropdown(prev => !prev);
@@ -92,7 +92,7 @@ const RolesResourcesCard = (props) => {
 		}
 	}
 
-	const onCancel = () => {
+	const onCancel = () => {
 		fetchAssignedResources();
 	}
 
@@ -100,13 +100,13 @@ const RolesResourcesCard = (props) => {
 		<Card>
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="at-unlock-keyhole pr-2"></i>
+					<i className="at-unlock-keyhole pe-2"></i>
 					{t("RolesResourcesCard|Assigned resources")}
 				</div>
 			</CardHeader>
 
 			<CardBody className="card-body-scroll">
-				{assignedResources.length === 0 && !editMode && <Label className="mb-0">{t('RolesResourcesCard|No data')}</Label>}
+				{assignedResources.length === 0 && !editMode && <Label className="mb-0 form-label">{t('RolesResourcesCard|No data')}</Label>}
 				{assignedResources.map((resource, idx) => (
 					<Row key={idx}>
 						<Col style={{overflow: "hidden", marginLeft: "15px", paddingLeft: "0"}}>
@@ -117,7 +117,7 @@ const RolesResourcesCard = (props) => {
 										size="sm"
 										color="danger"
 										outline
-										className="mr-2"
+										className="me-2"
 										title={t('RolesResourcesCard|Remove resource')}
 										onClick={() => unassignResource(resource)}>
 									<span className="at-minus-circle" />
@@ -151,7 +151,7 @@ const RolesResourcesCard = (props) => {
 						</ButtonGroup>
 						<Dropdown isOpen={dropdownOpen} toggle={() => setDropdown(prev => !prev)}>
 							<DropdownToggle caret outline color="primary">
-								<span className="at-plus-circle mr-2" />
+								<span className="at-plus-circle me-2" />
 								{t("RolesResourcesCard|Add resource")}
 							</DropdownToggle>
 							<DropdownMenu style={{maxHeight: "20em", overflowY: "auto"}} >

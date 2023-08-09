@@ -85,7 +85,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-main-info-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="at-pc pr-2"></i>
+						<i className="at-pc pe-2"></i>
 						{t("ClientDetailContainer|Client")}
 					</div>
 				</CardHeader>
@@ -157,7 +157,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-multidomain-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="at-sliders pr-2"></i>
+						<i className="at-sliders pe-2"></i>
 						{t("ClientDetailContainer|Multidomain")}
 					</div>
 				</CardHeader>
@@ -203,7 +203,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-authorization-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="at-replay-arrow-left-right pr-2"></i>
+						<i className="at-replay-arrow-left-right pe-2"></i>
 						{t("ClientDetailContainer|Authorization")}
 					</div>
 				</CardHeader>
@@ -261,7 +261,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-access-control-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="at-arrow-down-to-square pr-2"></i>
+						<i className="at-arrow-down-to-square pe-2"></i>
 						{t("ClientDetailContainer|Access control")}
 					</div>
 				</CardHeader>
@@ -283,7 +283,7 @@ const ClientDetailContainer = (props) =>  {
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-programming pr-2"></i>
+							<i className=at-programming pe-2"></i>
 							JSON
 						</div>
 					</CardHeader>

@@ -7,7 +7,7 @@ import {
 	Container, Row, Col,
 	Card, Input, CardHeader,
 	CardBody, Form, Button,
-	CardFooter, FormGroup, ButtonGroup
+	CardFooter, ButtonGroup
 } from 'reactstrap';
 
 import ReactJson from 'react-json-view';
@@ -106,7 +106,7 @@ const ResourceDetailContainer = (props) =>  {
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-unlock-keyhole pr-2"></i>
+							<i className="at-unlock-keyhole pe-2"></i>
 							{t("ResourcesDetailContainer|Resource")}
 						</div>
 					</CardHeader>
@@ -139,23 +139,23 @@ const ResourceDetailContainer = (props) =>  {
 							<Col><DateTime value={resource?._m} /></Col>
 						</Row>
 
-							<FormGroup row className="mt-3">
-								<Col sm={3}>{t("Description")}</Col>
-								<Col sm={6} className="resource-detail-description">
-									{editMode ?
-										<Input
-											id="resource_description"
-											name="resource_description"
-											type="textarea"
-											rows={3}
-											autoComplete="off"
-											onChange={registerDescription.onChange}
-											onBlur={registerDescription.onBlur}
-											innerRef={registerDescription.ref}
-										/>
-									: resource?.description }
-								</Col>
-							</FormGroup>
+						<Row className="mt-3">
+							<Col sm={3}>{t("Description")}</Col>
+							<Col sm={9}>
+								{editMode ?
+									<Input
+										id="resource_description"
+										name="resource_description"
+										type="textarea"
+										rows={3}
+										autoComplete="off"
+										onChange={registerDescription.onChange}
+										onBlur={registerDescription.onBlur}
+										innerRef={registerDescription.ref}
+									/>
+								: resource?.description }
+							</Col>
+						</Row>
 					</CardBody>
 
 					<CardFooter>
@@ -205,7 +205,7 @@ const ResourceDetailContainer = (props) =>  {
 					<Card>
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="at-programming pr-2"></i>
+								<i className="at-programming pe-2"></i>
 								JSON
 							</div>
 						</CardHeader>

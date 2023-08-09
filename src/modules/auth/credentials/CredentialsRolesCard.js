@@ -99,7 +99,7 @@ function CredentialsRolesCard(props) {
 		<Card className="h-100 credential-role-area">
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="at-hierarchy-account-user pr-2"></i>
+					<i className="at-hierarchy-account-user pe-2"></i>
 					{t("CredentialsRolesCard|Roles")}
 				</div>
 			</CardHeader>
@@ -113,7 +113,7 @@ function CredentialsRolesCard(props) {
 								{editMode &&
 									<Button
 										outline
-										className="mr-2"
+										className="me-2"
 										disabled={!editMode}
 										size="sm"
 										color="danger"
@@ -138,7 +138,7 @@ function CredentialsRolesCard(props) {
 					</ButtonGroup>
 					<Dropdown isOpen={dropdownAddRoleOpen} toggle={toggleAddRole}>
 						<DropdownToggle caret outline color="primary">
-							<span className="at-plus-circle mr-2" />
+							<span className="at-plus-circle me-2" />
 							{t("CredentialsRolesCard|Assign a new role")}
 						</DropdownToggle>
 						<DropdownMenu style={{maxHeight: "20em", overflowY: "auto"}} >

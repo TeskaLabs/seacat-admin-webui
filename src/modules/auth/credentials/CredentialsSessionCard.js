@@ -41,7 +41,7 @@ function CredentialsSessionCard(props) {
 		<Card className="h-100 credential-session-area">
 			<CardHeader className="border-bottom">
 				<div className="card-header-title">
-					<i className="at-stopwatch pr-2"></i>
+					<i className="at-stopwatch pe-2"></i>
 					{t("CredentialsSessionCard|Sessions")}
 				</div>
 			</CardHeader>

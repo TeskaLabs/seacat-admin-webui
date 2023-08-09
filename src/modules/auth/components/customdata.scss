@@ -1,4 +1,4 @@
-.input-group .input-group-append{
+.input-group{
     margin-left: 0;
 }
 
@@ -8,11 +8,11 @@
         margin-left: 0.25rem;
     }
     &-value {
-        width: 60%;
-        margin-left: 0.25rem;
+        width: 58%;
+        margin-left: 0.25rem !important;
     }
-    &-remove-button {
-        margin: 2px 0px 1px 1px;
+    &-remove-btn {
+        margin-left: 0.25rem !important;
     }
 }
 

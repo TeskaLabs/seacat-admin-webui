@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
-	FormGroup, Input, Label, Button,
-	InputGroupAddon, InputGroup, FormFeedback
+	Input, Label, Button,
+	InputGroup, FormFeedback,
+	FormGroup
 } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
 import { Controller } from "react-hook-form";
@@ -32,7 +33,7 @@ export function TextInput ({ name, register, errors, labelName, disabled, requir
 	}
 	return (
 		<FormGroup key={name}>
-			{labelName && <Label for={name} title={(name === "client_name") && t("ClientFormField|Required field")}>{labelName}</Label>}
+			{labelName && <Label className='form-label' for={name} title={(name === "client_name") && t("ClientFormField|Required field")}>{labelName}</Label>}
 			<Input
 				id={name}
 				name={name}
@@ -58,7 +59,7 @@ export function SelectInput ({ name, register, valueList, labelName, disabled })
 	return (
 		<FormGroup key={name}>
 			{labelName &&
-				<Label for={name} title={name}>{labelName}</Label>}
+				<Label className='form-label' for={name} title={name}>{labelName}</Label>}
 			<Input
 				id={name}
 				name={name}
@@ -84,7 +85,7 @@ export function SingleCheckboxInput ({ name, register, checkboxText, disabled })
 
 	return (
 		<FormGroup check>
-			<Label for={name}>
+			<Label className='form-label' for={name}>
 				<Input
 					id={name}
 					name={name}
@@ -105,7 +106,7 @@ export function RadioInput ({ name, valueList, register, labelName, disabled, ed
 
 	return (
 		<FormGroup key={name}>
-			{labelName && <Label for={name} title={name}>{labelName}</Label>}
+			{labelName && <Label for={name} title={name} className='form-label'>{labelName}</Label>}
 			<div title={name}>
 				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
@@ -114,13 +115,13 @@ export function RadioInput ({ name, valueList, register, labelName, disabled, ed
 							name={item}
 							title={item}
 							type="radio"
-							className="ml-0 client-radio-input"
+							className="ms-0 client-radio-input"
 							value={item}
 							disabled={disabled}
 							{...register(name)}
 							defaultChecked={!editing && (key == 0)}
 						/>
-						<div className="ml-4">{item}</div>
+						<div className="ms-2">{item}</div>
 					</InputGroup>
 				))}
 			</div>
@@ -134,7 +135,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 
 	return (
 		<FormGroup>
-			<Label title={t("ClientFormField|Required field")} for={name}>{labelName}</Label>
+			<Label title={t("ClientFormField|Required field")} for={name} className='form-label'>{labelName}</Label>
 			<InputGroup>
 				<Input
 					id={name}
@@ -146,17 +147,16 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 					invalid={invalid}
 					disabled={disabled}
 				/>
-				<InputGroupAddon addonType="append" className="ml-0">
-					<Button
-						outline
-						color="primary"
-						size="sm"
-						title={t("ClientFormField|Add new input")}
-						onClick={() => append({ value: ""})}
-					>
-						<span className="at-plus-circle" />
-					</Button>
-				</InputGroupAddon>
+				<Button
+					outline
+					color="primary"
+					size="sm"
+					className='ms-0'
+					title={t("ClientFormField|Add new input")}
+					onClick={() => append({ value: ""})}
+				>
+					<span className="at-plus-circle" />
+				</Button>
 				{errors && errors[name] && <FormFeedback>{errors[name].message}</FormFeedback>}
 			</InputGroup>
 			{fields && fields.map((item, i) => (
@@ -194,11 +194,9 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 				innerRef={regMail.ref}
 				invalid={errors[name]?.[index]?.value && true}
 			/>
-			<InputGroupAddon addonType="append" className="ml-0">
-				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)} title={t("ClientFormField|Remove input")}>
-					<span className="at-minus-circle" />
-				</Button>
-			</InputGroupAddon>
+			<Button outline color="danger" size="sm" className="ms-0" onClick={() => remove(`${index}`)} title={t("ClientFormField|Remove input")}>
+				<span className="at-minus-circle" />
+			</Button>
 			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}
 		</InputGroup>
 	)
@@ -243,7 +241,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 
 	return (
 		<FormGroup key={name}>
-			{labelName && <Label for={name}>{labelName}</Label>}
+			{labelName && <Label for={name} className='form-label'>{labelName}</Label>}
 			<Controller
 				name={name}
 				control={control}
@@ -255,7 +253,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 								<button className="cursor-pointer custom-dropdown-btn"></button>
 							</div>
 							{selectedItems && selectedItems.map((optionItem, index) => (
-								<span className="mt-1 pr-2 d-inline-block  selected-item" key={index}>
+								<span className="mt-1 pe-2 d-inline-block  selected-item" key={index}>
 									<span>{ optionItem }</span>
 									<span onClick={() => removeItem(optionItem)}>
 										<i className="at-xmark-circle"></i>
@@ -342,17 +340,17 @@ export function MultiCheckbox ({ name, valueList, assignValue, setValue, labelNa
 
 	return (
 		<FormGroup key={name}>
-			{labelName && <Label for={name} title={name}>{labelName}</Label>}
+			{labelName && <Label for={name} title={name} className='form-label'>{labelName}</Label>}
 			<div title={name}>
 				{valueList && valueList?.map((item, key) => (
 					<InputGroup key={key}>
-						<div className="ml-4">{item}</div>
+						<div className="ms-2">{item}</div>
 						<Input
 							id={item}
 							name={item}
 							title={item}
 							type="checkbox"
-							className="ml-0"
+							className="ms-0"
 							value={item}
 							disabled={disabled}
 							checked={checkedState[key]}

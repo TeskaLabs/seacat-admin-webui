@@ -1,8 +1,9 @@
 import React, {useState}  from 'react';
 import {
-	FormGroup, Input, Label,
-	Button, InputGroupAddon, InputGroup,
-	FormFeedback, FormText
+	Input, Label,
+	Button, InputGroup,
+	FormFeedback, FormText,
+	FormGroup
 } from 'reactstrap';
 import {useTranslation} from 'react-i18next';
 
@@ -36,11 +37,12 @@ export function PhoneField(props) {
 	);
 	return (
 		<FormGroup>
-			<Label title={props.required && t("FormFields|Required field")} for="phone">
+			<Label title={props.required && t("FormFields|Required field")} for="phone" className='mb-2 form-label'>
 				{t("FormFields|Phone")}{props.required && '*'}
 			</Label>
 			<Input
 				title={disable && t("FormFields|Phone editing is not allowed within these credentials")}
+				className='mb-3'
 				id="phone"
 				name="phone"
 				type="text"
@@ -87,11 +89,12 @@ export function EmailField(props) {
 	*/
 	return (
 		<FormGroup>
-			<Label title={props.required && t("FormFields|Required field")} for="email">
+			<Label title={props.required && t("FormFields|Required field")} for="email" className='mb-2 form-label'>
 				{t("FormFields|Email")}{props.required && '*'}
 			</Label>
 			<Input
 				title={disable && t("FormFields|Email editing is not allowed within these credentials")}
+				className='mb-3'
 				id="email"
 				name="email"
 				type="email"
@@ -125,7 +128,7 @@ export function UserNameField(props) {
 	);
 	return (
 		<FormGroup>
-			<Label title={props.required && t("FormFields|Required field")} for="username">
+			<Label title={props.required && t("FormFields|Required field")} for="username" className='form-label'>
 				{t("FormFields|Username")}{props.required && '*'}
 			</Label>
 			<Input
@@ -196,7 +199,7 @@ export function PasswordField(props) {
 	return (
 		<React.Fragment>
 			<FormGroup>
-				<Label for="password">{label}</Label>
+				<Label for="password" className='form-label'>{label}</Label>
 				<InputGroup>
 					<Input
 						id="password"
@@ -208,17 +211,14 @@ export function PasswordField(props) {
 						onBlur={regPwd1.onBlur}
 						innerRef={regPwd1.ref}
 					/>
-					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
-						<Button outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="at-eye-minus" />
-						</Button>
-					</InputGroupAddon>
+					<Button className="ms-0" outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
+						<span className="at-eye-minus" />
+					</Button>
 					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
 				</InputGroup>
 			</FormGroup>
-
 			<FormGroup>
-				<Label for="password2">{t("FormFields|Password again")}</Label>
+				<Label className='form-label' for="password2">{t("FormFields|Password again")}</Label>
 				<InputGroup>
 					<Input
 						id="password2"
@@ -230,15 +230,12 @@ export function PasswordField(props) {
 						onBlur={regPwd2.onBlur}
 						innerRef={regPwd2.ref}
 					/>
-					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
-						<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
-							<span className="at-eye-minus" />
-						</Button>
-					</InputGroupAddon>
+					<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
+						<span className="at-eye-minus" />
+					</Button>
 					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}
 				</InputGroup>
 			</FormGroup>
-
 		</React.Fragment>
 	)
 }
@@ -247,8 +244,8 @@ export function PasswordLinkField(props) {
 	const { t, i18n } = useTranslation();
 	const reg = props.register("passwordlink");
 	return (
-		<FormGroup check>
-			<Label for="passwordlink">
+		<>
+			<Label for="passwordlink" className='form-label'>
 				<Input
 					id="passwordlink"
 					name="passwordlink"
@@ -259,7 +256,7 @@ export function PasswordLinkField(props) {
 				/>{' '}
 				{t("FormFields|Send instructions to set password")}
 			</Label>
-		</FormGroup>
+		</>
 	)
 }
 

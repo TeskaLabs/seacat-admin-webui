@@ -7,7 +7,7 @@ import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter,
 	CardBody, Button, Form,
-	FormGroup, Input, Label,
+	Input, Label, FormGroup,
 	ButtonGroup, FormFeedback, FormText
 } from 'reactstrap';
 
@@ -72,14 +72,14 @@ function TenantCreateContainer(props) {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="at-house-key pr-2"></i>
+									<i className="at-house-key pe-2"></i>
 									{t("TenantCreateContainer|Create new tenant")}
 								</div>
 							</CardHeader>
 
 							<CardBody>
 								<FormGroup>
-									<Label for="id">{t("TenantCreateContainer|Name")}</Label>
+									<Label className='form-label' for="id">{t("TenantCreateContainer|Name")}</Label>
 									<Input
 										id="id"
 										name="id"

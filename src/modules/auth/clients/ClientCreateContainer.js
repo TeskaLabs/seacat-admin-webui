@@ -212,7 +212,7 @@ const ClientCreateContainer = (props) => {
 				<Card className='client-main-info-card'>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-pc pr-2"></i>
+							<i className="at-pc pe-2"></i>
 							{((client != undefined) && (editClient == true)) ?
 								t("ClientCreateContainer|Edit client")
 							:
@@ -308,7 +308,7 @@ const ClientCreateContainer = (props) => {
 				<Card className='client-multidomain-card'>
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-sliders pr-2"></i>
+							<i className="at-sliders pe-2"></i>
 							{t("ClientCreateContainer|Multidomain")}
 						</div>
 					</CardHeader>
@@ -365,7 +365,7 @@ const ClientCreateContainer = (props) => {
 				<Card className="client-authorization-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-replay-arrow-left-right pr-2"></i>
+							<i className="at-replay-arrow-left-right pe-2"></i>
 							{t("ClientCreateContainer|Authorization")}
 						</div>
 					</CardHeader>
@@ -393,7 +393,7 @@ const ClientCreateContainer = (props) => {
 				<Card className="client-access-control-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-arrow-down-to-square pr-2"></i>
+							<i className="at-arrow-down-to-square pe-2"></i>
 							{t("ClientCreateContainer|Access control")}
 						</div>
 					</CardHeader>
@@ -413,7 +413,7 @@ const ClientCreateContainer = (props) => {
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-programming pr-2"></i>
+							<i className="at-programming pe-2"></i>
 							JSON
 						</div>
 					</CardHeader>

@@ -65,8 +65,8 @@ function TenantDetailContainer(props) {
 						}}
 					>
 						{obj.suspended === true ?
-							<span className="at-user-xmark text-muted mr-1" title={t("TenantDetailContainer|Credentials suspended")} />
-							: <span className="at-account mr-1" />}
+							<span className="at-user-xmark text-muted me-1" title={t("TenantDetailContainer|Credentials suspended")} />
+							: <span className="at-account me-1" />}
 						<Link
 							style={{ color: obj.suspended === true && '#73818f' }}
 							to={{
@@ -127,7 +127,7 @@ function TenantDetailContainer(props) {
 		retrieveAssignedCredentials();
 	}, [page]);
 
-	useEffect(() => {
+	useEffect(() => {
 		retrieveCredentialsForDropdown();
 	}, [dropdownLimit]);
 
@@ -323,7 +323,7 @@ function TenantDetailContainer(props) {
 				<Card className="tenant-general-info">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-house-key pr-2"></i>
+							<i className="at-house-key pe-2"></i>
 							{t("TenantDetailContainer|Tenant")}
 						</div>
 					</CardHeader>
@@ -403,7 +403,7 @@ function TenantDetailContainer(props) {
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-programming pr-2"></i>
+							<i className="at-programming pe-2"></i>
 							JSON
 						</div>
 					</CardHeader>

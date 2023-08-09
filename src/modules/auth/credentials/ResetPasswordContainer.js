@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody, CardTitle,
-	Form, FormGroup, Label,
-	Button, Input, InputGroup, InputGroupAddon,
+	Form, Label,
+	Button, Input, InputGroup,
 } from 'reactstrap';
 
 function ResetPasswordContainer(props) {
@@ -85,7 +85,7 @@ function ResetPasswordContainer(props) {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="at-unlock-keyhole pr-2"></i>
+									<i className="at-unlock-keyhole pe-2"></i>
 									{t("ResetPasswordContainer|Reset password")}
 								</div>
 							</CardHeader>
@@ -151,8 +151,8 @@ function ResetPasswordField(props){
 	};
 
 	return(
-		<FormGroup row >
-			<Label sm={3} for="newpassword">{t("ResetPasswordContainer|Password")}</Label>
+		<Row>
+			<Label sm={3} className='form-label' for="newpassword">{t("ResetPasswordContainer|Password")}</Label>
 			<Col sm={6}>
 				<InputGroup>
 					<Input
@@ -164,15 +164,13 @@ function ResetPasswordField(props){
 						onBlur={reg.onBlur}
 						innerRef={reg.ref}
 					/>
-					<InputGroupAddon addonType="append">
-						<Button color="secondary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="at-eye-minus" />
-						</Button>
-					</InputGroupAddon>
+					<Button color="secondary" className="ms-0" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
+						<span className="at-eye-minus" />
+					</Button>
 					{props.errors.newpassword && <p>{props.errors.newpassword.message}</p>}
 				</InputGroup>
 			</Col>
-		</FormGroup>
+		</Row>
 	);
 
 }

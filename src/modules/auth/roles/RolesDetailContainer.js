@@ -58,8 +58,8 @@ const RolesDetailContainer = (props) =>  {
 							marginBottom: 0}}
 						>
 						{obj.suspended === true ?
-							<span className="at-user-xmark text-muted mr-1" title={t("RolesDetailContainer|Credentials suspended")}/>
-							: <span className="at-account mr-1" />}
+							<span className="at-user-xmark text-muted me-1" title={t("RolesDetailContainer|Credentials suspended")}/>
+							: <span className="at-account me-1" />}
 						<Link
 							style={{color: obj.suspended === true && '#73818f'}}
 							to={{
@@ -122,7 +122,7 @@ const RolesDetailContainer = (props) =>  {
 		getRoleDetail();
 	}, []);
 
-	useEffect(() => {
+	useEffect(() => {
 		retrieveCredentialsForDropdown();
 	}, [dropdownLimit]);
 
@@ -306,7 +306,7 @@ const RolesDetailContainer = (props) =>  {
 					<Card className="w-100">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="at-hierarchy-account-user pr-2"></i>
+								<i className="at-hierarchy-account-user pe-2"></i>
 								{t("RolesDetailContainer|Role")}
 							</div>
 						</CardHeader>
@@ -326,7 +326,7 @@ const RolesDetailContainer = (props) =>  {
 						</CardBody>
 						<CardFooter>
 							<ButtonWithAuthz
-								className="mr-3"
+								className="me-3"
 								title={t("RolesDetailContainer|Remove role")}
 								color="danger"
 								outline
@@ -368,7 +368,7 @@ const RolesDetailContainer = (props) =>  {
 					<Card  className="mb-4 w-100 role-detail-json-area">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="at-programming pr-2"></i>
+								<i className="at-programming pe-2"></i>
 								JSON
 							</div>
 						</CardHeader>

@@ -9,9 +9,9 @@ import { ButtonWithAuthz } from 'asab-webui';
 import {
 	Container, Row, Col,
 	Card, CardHeader, CardFooter, CardBody,
-	Form, FormGroup, Input, Label,
+	Form, Input, Label,
 	Nav, NavLink, NavItem, ButtonGroup,
-	TabPane, TabContent
+	TabPane, TabContent, FormGroup
 } from 'reactstrap';
 
 import {
@@ -195,7 +195,7 @@ function CredentialsCreateContainer(props) {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="at-users pr-2"></i>
+									<i className="at-users pe-2"></i>
 									{activeTab == "create" ? t('CredentialsCreateContainer|Create new credentials') : t('CredentialsCreateContainer|Invite user')}
 								</div>
 								<ButtonGroup className="p-1">
@@ -225,7 +225,7 @@ function CredentialsCreateContainer(props) {
 
 										{Object.keys(providers).length > 1 &&
 											<FormGroup>
-												<Label for="provider">{t('CredentialsCreateContainer|Provider')}</Label>
+												<Label for="provider" className='form-label'>{t('CredentialsCreateContainer|Provider')}</Label>
 													<Input
 														id="provider"
 														type="select"
