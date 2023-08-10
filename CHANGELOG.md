@@ -6,7 +6,7 @@
 
 - ASAB WebUI submodule version bump [[9fc06df](https://github.com/TeskaLabs/asab-webui/commit/9fc06df046dcb114262cfd04506fb0dcef22325b)] commit (INDIGO Sprint 230804, [!32](https://github.com/TeskaLabs/seacat-admin-webui/pull/32))
 
-- Added functionality that disallows readOnly editing to the provider (INDIGO Sprint 230721, [!58](https://github.com/TeskaLabs/seacat-admin-webui/pull/58))
+- Added functionality that disallows readOnly editing to the provider (INDIGO Sprint 230804, [!58](https://github.com/TeskaLabs/seacat-admin-webui/pull/58))
 
 ### Refactoring
 
