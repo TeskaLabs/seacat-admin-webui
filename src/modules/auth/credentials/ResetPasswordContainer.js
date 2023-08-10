@@ -85,7 +85,7 @@ function ResetPasswordContainer(props) {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="cil-lock-unlocked pr-2"></i>
+									<i className="at-unlock-keyhole pr-2"></i>
 									{t("ResetPasswordContainer|Reset password")}
 								</div>
 							</CardHeader>
@@ -166,7 +166,7 @@ function ResetPasswordField(props){
 					/>
 					<InputGroupAddon addonType="append">
 						<Button color="secondary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="cil-low-vision" />
+							<span className="at-eye-minus" />
 						</Button>
 					</InputGroupAddon>
 					{props.errors.newpassword && <p>{props.errors.newpassword.message}</p>}

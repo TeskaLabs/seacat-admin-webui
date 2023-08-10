@@ -85,7 +85,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-main-info-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-layers pr-2"></i>
+						<i className="at-pc pr-2"></i>
 						{t("ClientDetailContainer|Client")}
 					</div>
 				</CardHeader>
@@ -157,7 +157,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-multidomain-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-applications-settings pr-2"></i>
+						<i className="at-sliders pr-2"></i>
 						{t("ClientDetailContainer|Multidomain")}
 					</div>
 				</CardHeader>
@@ -176,7 +176,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-cookie-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-blur-circular  pr-2"></i>
+						<i className="at-cookie  pr-2"></i>
 						{t("ClientDetailContainer|Cookie")}
 					</div>
 				</CardHeader>
@@ -203,7 +203,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-authorization-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-swap-horizontal pr-2"></i>
+						<i className="at-replay-arrow-left-right pr-2"></i>
 						{t("ClientDetailContainer|Authorization")}
 					</div>
 				</CardHeader>
@@ -261,7 +261,7 @@ const ClientDetailContainer = (props) =>  {
 			<Card className="client-access-control-card">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-exit-to-app pr-2"></i>
+						<i className="at-arrow-down-to-square pr-2"></i>
 						{t("ClientDetailContainer|Access control")}
 					</div>
 				</CardHeader>
@@ -283,7 +283,7 @@ const ClientDetailContainer = (props) =>  {
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="cil-code pr-2"></i>
+							<i className="at-programming pr-2"></i>
 							JSON
 						</div>
 					</CardHeader>

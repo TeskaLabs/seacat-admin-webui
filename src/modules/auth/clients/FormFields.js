@@ -154,7 +154,7 @@ export function URiInput ({name, errors, append, remove, fields, labelName, reg,
 						title={t("ClientFormField|Add new input")}
 						onClick={() => append({ value: ""})}
 					>
-						<span className="cil-plus" />
+						<span className="at-plus-circle" />
 					</Button>
 				</InputGroupAddon>
 				{errors && errors[name] && <FormFeedback>{errors[name].message}</FormFeedback>}
@@ -196,7 +196,7 @@ function InputTemplate({index, errors, remove, register, name, disabled}){
 			/>
 			<InputGroupAddon addonType="append" className="ml-0">
 				<Button outline color="danger" size="sm" onClick={() => remove(`${index}`)} title={t("ClientFormField|Remove input")}>
-					<span className="cil-minus" />
+					<span className="at-minus-circle" />
 				</Button>
 			</InputGroupAddon>
 			{errors && errors[name]?.[index]?.value && <FormFeedback>{errors[name]?.[index]?.value.message}</FormFeedback>}
@@ -258,7 +258,7 @@ export function Multiselect ({ name, value, control, setValue, labelName }) {
 								<span className="mt-1 pr-2 d-inline-block  selected-item" key={index}>
 									<span>{ optionItem }</span>
 									<span onClick={() => removeItem(optionItem)}>
-										<i className="cil-x"></i>
+										<i className="at-xmark-circle"></i>
 									</span>
 								</span>
 							))}

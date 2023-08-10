@@ -209,7 +209,7 @@ function CredentialsDetailContainer(props) {
 					<Card className="general-info-card">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-people pr-2"></i>
+								<i className="at-users pr-2"></i>
 								{t("CredentialsDetailContainer|Credentials")}
 							</div>
 						</CardHeader>
@@ -312,7 +312,7 @@ function CredentialsDetailContainer(props) {
 					<Card className="login-info-card">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-people pr-2"></i>
+								<i className="at-users pr-2"></i>
 								{t('CredentialsDetailContainer|Last logins')}
 							</div>
 						</CardHeader>
@@ -397,7 +397,7 @@ function CredentialsDetailContainer(props) {
 				{(advmode == true) && <Card className="h-100">
 						<CardHeader className="border-bottom">
 							<div className="card-header-title">
-								<i className="cil-code pr-2"></i>
+								<i className="at-programming pr-2"></i>
 								JSON
 							</div>
 						</CardHeader>
@@ -492,7 +492,7 @@ function CredentialsInfoCard(props) {
 			<Card className="h-100">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="cil-info pr-2"></i>
+						<i className="at-info-circle pr-2"></i>
 						{t("CredentialsDetailContainer|Information")}
 					</div>
 				</CardHeader>

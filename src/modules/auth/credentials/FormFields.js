@@ -210,7 +210,7 @@ export function PasswordField(props) {
 					/>
 					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
 						<Button outline color="primary" size="sm" onClick={() => changeType()} onMouseDown={() => changeType()}>
-							<span className="cil-low-vision" />
+							<span className="at-eye-minus" />
 						</Button>
 					</InputGroupAddon>
 					{props.errors.password && <FormFeedback>{props.errors.password.message}</FormFeedback>}
@@ -232,7 +232,7 @@ export function PasswordField(props) {
 					/>
 					<InputGroupAddon addonType="append" style={{ marginLeft: 0 }}>
 						<Button outline color="primary" size="sm" onClick={() => changeType2()} onMouseDown={() => changeType2()}>
-							<span className="cil-low-vision" />
+							<span className="at-eye-minus" />
 						</Button>
 					</InputGroupAddon>
 					{props.errors.password2 && <FormFeedback>{props.errors.password2.message}</FormFeedback>}

@@ -125,13 +125,13 @@ const RoleDropdown = React.memo(({props, tenantObj, selectedTenants, setSelected
 
 	return (
 		<>
-			<span href="#" id={`tooltip-${(tenantObj._id === undefined) ? 'global' : idx}`}><i className='cil-info ml-2'></i></span>
+			<span href="#" id={`tooltip-${(tenantObj._id === undefined) ? 'global' : idx}`}><i className='at-info-circle ml-2'></i></span>
 			<UncontrolledTooltip placement="auto" target={`tooltip-${(tenantObj._id === undefined) ? 'global' : idx}`}>
 				{message}
 			</UncontrolledTooltip>
 			<Dropdown className='ml-auto' size="sm" isOpen={dropdownOpen} toggle={() => setDropdownOpen(prev => !prev)}>
 				<DropdownToggle caret outline color="primary">
-					<span className="cil-plus mr-2" />
+					<span className="at-plus-circle mr-2" />
 					{t("BulkAssignmentContainer|Add role")}
 				</DropdownToggle>
 				<DropdownMenu  style={{maxHeight: "20em", overflowY: "auto"}} >
