@@ -77,7 +77,7 @@ $svg-arrow: var(--svg-arrow);
 }
 
 .selected-item {
-	& [class^="at-"] {
+	& [class^="cil-"] {
 		cursor: pointer;
 		padding-left: 2px;
 		color: $close-button;

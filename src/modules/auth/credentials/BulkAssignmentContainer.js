@@ -7,7 +7,7 @@ import { DataTable, ButtonWithAuthz } from 'asab-webui';
 import RoleDropdown from "../components/RoleDropdown";
 import { useSelector } from "react-redux";
 
-const BulkAssignmentContainer = (props) => {
+const BulkAssignmentContainer = (props) => {
 
 	const { t } = useTranslation();
 
@@ -52,7 +52,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={credential.assigned}
 						>
-							<i className="at-arrow-right"></i>
+							<i className="cil-chevron-right"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -64,8 +64,8 @@ const BulkAssignmentContainer = (props) => {
 				generate: (obj) => (
 					<div className="no-wrap-40ch">
 						{(obj.suspended === true) ?
-							<span className="at-user-xmark text-muted mr-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
-							: <span className="at-account mr-1" />}
+							<span className="cil-user-unfollow text-muted mr-1" title={(obj.registered === false) ? t("BulkAssignmentContainer|Credentials invited") : t("BulkAssignmentContainer|Credentials suspended")}/>
+							: <span className="cil-user mr-1" />}
 						<Link
 							className={obj.suspended ? 'credentials-suspended' : null}
 							onClick={() => confirmForm(`/auth/credentials/${obj._id}`)}
@@ -97,7 +97,7 @@ const BulkAssignmentContainer = (props) => {
 							resources={resources}
 							disabled={tenant.assigned}
 						>
-							<i className="at-arrow-right"></i>
+							<i className="cil-chevron-right"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -152,13 +152,13 @@ const BulkAssignmentContainer = (props) => {
 	disables the "+"" button) to be displayed in Credentials & Tenants list data table */
 	const datatableCredentialsData = useMemo(() => {
 		return matchAssigned(data, selectedCredentials);
-	}, [data, selectedCredentials]);
+	}, [data, selectedCredentials]);
 
 	const datatableTenantsData = useMemo(() => {
 		return matchAssigned(tenants, selectedTenants);
-	}, [tenants, selectedTenants]);
+	}, [tenants, selectedTenants]);
 
-	const allSelected = useMemo(() => {
+	const allSelected = useMemo(() => {
 		for (let i = 0; i < datatableCredentialsData.length; i++) {
 			if (datatableCredentialsData[i].assigned === false) {
 				return false;
@@ -207,7 +207,7 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	// call to assign all selected tenants to all selected credentials
-	const bulkAction = async (actionType) => {
+	const bulkAction = async (actionType) => {
 		let credential_ids = [];
 		let tenantObj = {};
 		// adjustments to data structure. selectedCredentials is an array of objects. Server expects credential_ids to be an array of ids only [ 'id1', 'id2', ..]
@@ -247,10 +247,10 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	// selects all data visible in the CredentialsList DataTable or removes all already selected data shown in Credentials list from Selected Credentials Card
-	const bulkSelection = (action) => {
+	const bulkSelection = (action) => {
 		let items = [];
 		if(action === 'add') {
-			datatableCredentialsData.map((item) => {
+			datatableCredentialsData.map((item) => {
 				if (item['assigned'] !== true) {
 					items.push(item);
 				}
@@ -283,34 +283,34 @@ const BulkAssignmentContainer = (props) => {
 	};
 
 	// remove item from selectedCredentials state
-	const unselectCredential = (idx) => {
+	const unselectCredential = (idx) => {
 		let selectedCredData = selectedCredentials;
 		selectedCredData.splice(idx, 1);
 		setSelectedCredentials([...selectedCredData]);
 	};
 
 	// add specific(selected) tenant object to selectedTenants state
-	const saveToSelectedTenants = (tenantObj) => {
+	const saveToSelectedTenants = (tenantObj) => {
 		let arr = [...selectedTenants];
 		arr.push(tenantObj);
 		setSelectedTenants([...arr]);
 	};
 
 	// remove item from selectedTenants state
-	const unselectTenant = (idx) => {
+	const unselectTenant = (idx) => {
 		let tenantData = [...selectedTenants];
 		tenantData.splice(idx, 1);
 		setSelectedTenants([...tenantData]);
 	};
 
 	// removes selected Role
-	const unselectRole = (tenantIndex, roleIndex) => {
+	const unselectRole = (tenantIndex, roleIndex) => {
 		let tenantData = [...selectedTenants];
 		tenantData[tenantIndex].selectedRole.splice(roleIndex, 1);
 		setSelectedTenants([...tenantData]);
 	};
 
-	const unselectGlobalRole = (roleIndex) => {
+	const unselectGlobalRole = (roleIndex) => {
 		let globalCopy = [...globalRoles];
 		globalCopy[0].selectedRole.splice(roleIndex, 1);
 		if (globalCopy[0].selectedRole.length === 0) {
@@ -323,7 +323,7 @@ const BulkAssignmentContainer = (props) => {
 		<div className='bulk-actions-wraper'>
 			<div className='credentials-list'>
 					<DataTable
-						title={{ text: t("BulkAssignmentContainer|Credentials"), icon: "at-users" }}
+						title={{ text: t("BulkAssignmentContainer|Credentials"), icon: "cil-people" }}
 						headers={headers}
 						data={datatableCredentialsData}
 						count={count}
@@ -331,7 +331,7 @@ const BulkAssignmentContainer = (props) => {
 						setLimit={setLimit}
 						currentPage={page}
 						setPage={setPage}
-						search={{ icon: 'at-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
+						search={{ icon: 'cil-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
 						onSearch={(value) => setCredentialsFilter(value)}
 						isLoading={loading}
 						contentLoader={loading}
@@ -346,7 +346,7 @@ const BulkAssignmentContainer = (props) => {
 					title={t("BulkAssignmentContainer|Select all displayed credentials")}
 					disabled={allSelected}
 				>
-					<i class="at-double-arrow-right"/>
+					<i class="cil-chevron-double-right"/>
 				</Button>
 				<Button
 					primary
@@ -355,14 +355,14 @@ const BulkAssignmentContainer = (props) => {
 					title={t("BulkAssignmentContainer|Remove from selection")}
 					disabled={(selectedCredentials.length === 0)}
 				>
-					<i class="at-double-arrow-left"/>
+					<i class="cil-chevron-double-left"/>
 				</Button>
 			</div>
 
 			<Card className="credentials-selection">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="at-users mr-2" />
+						<i className="cil-people mr-2" />
 						{t("BulkAssignmentContainer|Selected credentials")}
 					</div>
 					<Button outline secondary disabled={(selectedCredentials.length === 0)} onClick={() => setSelectedCredentials([])}>{t("BulkAssignmentContainer|Clear selection")}</Button>
@@ -377,9 +377,9 @@ const BulkAssignmentContainer = (props) => {
 									size="sm"
 									onClick={() => unselectCredential(idx)}
 								>
-									<i className='at-arrow-left'/>
+									<i className='cil-chevron-left'/>
 								</Button>
-								<i className="at-account mr-1 ml-3"/>{obj.username ?? obj._id}
+								<i className="cil-user mr-1 ml-3"/>{obj.username ?? obj._id}
 							</div>
 						)
 					})}
@@ -388,7 +388,7 @@ const BulkAssignmentContainer = (props) => {
 
 			<div className='tenant-list'>
 				<DataTable
-					title={{ text: t("BulkAssignmentContainer|Tenants"), icon: "at-house-key" }}
+					title={{ text: t("BulkAssignmentContainer|Tenants"), icon: "cil-apps" }}
 					headers={tenantHeaders}
 					data={datatableTenantsData}
 					count={tenantsCount}
@@ -396,7 +396,7 @@ const BulkAssignmentContainer = (props) => {
 					setLimit={setTenantsLimit}
 					currentPage={tenantsPage}
 					setPage={setTenantsPage}
-					search={{ icon: 'at-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
+					search={{ icon: 'cil-magnifying-glass', placeholder: t("BulkAssignmentContainer|Search") }}
 					onSearch={(value) => setTenantsFilter(value)}
 					isLoading={loadingTenants}
 					contentLoader={loadingTenants}
@@ -406,7 +406,7 @@ const BulkAssignmentContainer = (props) => {
 			<Card className="tenant-selection">
 				<CardHeader className="border-bottom">
 					<div className="card-header-title">
-						<i className="at-house-key mr-2" />
+						<i className="cil-apps mr-2" />
 						{t("BulkAssignmentContainer|Selected tenants and roles")}
 					</div>
 				</CardHeader>
@@ -423,7 +423,7 @@ const BulkAssignmentContainer = (props) => {
 					</div>
 					<div className="role-wrapper ml-2">
 						{globalRoles[0]?.selectedRole ?
-							globalRoles[0]?.selectedRole.map((role, i) => {
+							globalRoles[0]?.selectedRole.map((role, i) => {
 								return (
 									<div className="role-item selected-row ml-4">
 										<Button
@@ -434,7 +434,7 @@ const BulkAssignmentContainer = (props) => {
 											color="secondary"
 											onClick={() => unselectGlobalRole(i)}
 										>
-											<i className="at-xmark-circle"/>
+											<i className="cil-x"/>
 										</Button>
 										<span className="pl-2">{role}</span>
 									</div>
@@ -455,7 +455,7 @@ const BulkAssignmentContainer = (props) => {
 										className="tenant-unselect-btn"
 										onClick={() => unselectTenant(idx)}
 									>
-										<i className='at-arrow-left'/>
+										<i className='cil-chevron-left'/>
 									</Button>
 									<span className="ml-3">{obj._id}</span>
 									<RoleDropdown
@@ -468,7 +468,7 @@ const BulkAssignmentContainer = (props) => {
 								</div>
 								<div className="role-wrapper ml-2">
 									{obj?.selectedRole ?
-										obj.selectedRole.map((role, i) => {
+										obj.selectedRole.map((role, i) => {
 											return (
 												<div className="role-item selected-row ml-4">
 													<Button
@@ -477,9 +477,9 @@ const BulkAssignmentContainer = (props) => {
 														size="sm"
 														outline
 														color="secondary"
-														onClick={() => unselectRole(idx, i)}
+														onClick={() => unselectRole(idx, i)}
 													>
-														<i className="at-xmark-circle"/>
+														<i className="cil-x"/>
 													</Button>
 													<span className="pl-2">{role}</span>
 												</div>
