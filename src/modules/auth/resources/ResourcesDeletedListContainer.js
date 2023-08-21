@@ -55,7 +55,7 @@ const ResourcesDeletedListContainer = (props) => {
 							resource={retrieveResource}
 							resources={credentialsResources}
 						>
-							<i className="at-u-turn-arrow-left"></i>
+							<i className="cil-action-undo"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -126,7 +126,7 @@ const ResourcesDeletedListContainer = (props) => {
 		<div className="h-100" ref={ref}>
 			<Container>
 				<DataTable
-					title={{ text: t('ResourcesDeletedListContainer|Deleted resources'), icon: 'at-lock-keyhole'}}
+					title={{ text: t('ResourcesDeletedListContainer|Deleted resources'), icon: 'cil-lock-locked'}}
 					data={resources}
 					headers={headers}
 					count={count}

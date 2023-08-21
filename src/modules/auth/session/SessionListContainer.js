@@ -72,7 +72,7 @@ const SessionListContainer = (props) => {
 							resource={resource}
 							resources={resources}
 						>
-							<i className="at-xmark-circle"></i>
+							<i className="cil-x"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -174,7 +174,7 @@ const SessionListContainer = (props) => {
 					key: "_id",
 					sublistKey: "children"
 				}}
-				title={{ text: t("SessionListContainer|Sessions"), icon: "at-stopwatch" }}
+				title={{ text: t("SessionListContainer|Sessions"), icon: "cil-link" }}
 				headers={headers}
 				data={data}
 				count={count}

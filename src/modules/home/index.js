@@ -14,7 +14,7 @@ export default class HomeModule extends Module {
 
 		app.Navigation.addItem({
 			name: 'Home',
-			icon: 'at-home',
+			icon: 'cil-home',
 			url: '/home'
 		});
 

@@ -126,7 +126,7 @@ function ClientListContainer(props) {
 		<div className="h-100" ref={ref}>
 			<Container>
 				<DataTable
-					title={{ text: t("ClientListContainer|Clients"), icon: "at-pc" }}
+					title={{ text: t("ClientListContainer|Clients"), icon: "cil-layers" }}
 					headers={headers}
 					data={data}
 					count={count}
@@ -135,7 +135,7 @@ function ClientListContainer(props) {
 					currentPage={page}
 					setPage={setPage}
 					customComponent={createClientComponent}
-					search={{ icon: 'at-magnifying-glass', placeholder: t("ClientListContainer|Search") }}
+					search={{ icon: 'cil-magnifying-glass', placeholder: t("ClientListContainer|Search") }}
 					onSearch={onSearch}
 					isLoading={loading}
 					contentLoader={show}

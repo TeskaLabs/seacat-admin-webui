@@ -220,43 +220,43 @@ export default class SeaCatAuthModule extends Module {
 		// Navigation
 		app.Navigation.addItem({
 			name: 'Auth',
-			icon: 'at-phonebook-contacts',
+			icon: 'cil-address-book',
 			resource: 'seacat:access', // Hide Auth item in sidebar to users without seacat:access rights
 			children: [
 				{
 					name: 'Credentials',
 					url: '/auth/credentials',
-					icon: 'at-users',
+					icon: 'cil-people',
 					resource: "seacat:credentials:access"
 				},
 				{
 					name: 'Tenants',
 					url: '/auth/tenant',
-					icon: 'at-house-key',
+					icon: 'cil-apps',
 					resource: "seacat:tenant:access"
 				},
 				{
 					name: 'Sessions',
 					url: '/auth/session',
-					icon: 'at-stopwatch',
+					icon: 'cil-link',
 					resource: "seacat:session:access"
 				},
 				{
 					name: 'Roles',
 					url: '/auth/roles',
-					icon: 'at-hierarchy-account-user',
+					icon: 'cil-user',
 					resource: "seacat:role:access"
 				},
 				{
 					name: 'Resources',
 					url: '/auth/resources',
-					icon: 'at-unlock-keyhole',
+					icon: 'cil-lock-unlocked',
 					resource: "seacat:resource:access"
 				},
 				{
 					name: 'Clients',
 					url: '/auth/clients',
-					icon: 'at-pc',
+					icon: 'cil-layers',
 					resource: "seacat:client:access"
 				},
 			]

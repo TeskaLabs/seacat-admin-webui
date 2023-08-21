@@ -65,8 +65,8 @@ function TenantDetailContainer(props) {
 						}}
 					>
 						{obj.suspended === true ?
-							<span className="at-user-xmark text-muted mr-1" title={t("TenantDetailContainer|Credentials suspended")} />
-							: <span className="at-account mr-1" />}
+							<span className="cil-user-unfollow text-muted mr-1" title={t("TenantDetailContainer|Credentials suspended")} />
+							: <span className="cil-user mr-1" />}
 						<Link
 							style={{ color: obj.suspended === true && '#73818f' }}
 							to={{
@@ -94,7 +94,7 @@ function TenantDetailContainer(props) {
 							resource={resourceUnassign}
 							resources={resources}
 						>
-							<i className="at-xmark-circle"></i>
+							<i className="cil-x"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -323,7 +323,7 @@ function TenantDetailContainer(props) {
 				<Card className="tenant-general-info">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-house-key pr-2"></i>
+							<i className="cil-apps pr-2"></i>
 							{t("TenantDetailContainer|Tenant")}
 						</div>
 					</CardHeader>
@@ -385,7 +385,7 @@ function TenantDetailContainer(props) {
 				<DataTable
 					title={{
 						text: t("TenantDetailContainer|Assigned credentials"),
-						icon: "at-user-clipboard"
+						icon: "cil-storage"
 					}}
 					headers={headers}
 					data={credentialsList}
@@ -403,7 +403,7 @@ function TenantDetailContainer(props) {
 				<Card className="w-100 adv-card">
 					<CardHeader className="border-bottom">
 						<div className="card-header-title">
-							<i className="at-programming pr-2"></i>
+							<i className="cil-code pr-2"></i>
 							JSON
 						</div>
 					</CardHeader>

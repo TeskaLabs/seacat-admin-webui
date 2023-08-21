@@ -57,7 +57,7 @@ function ResourcesListContainer(props) {
 							resource={resourceEdit}
 							resources={credentialsResources}
 						>
-							<i className="at-xmark-circle"></i>
+							<i className="cil-x"></i>
 						</ButtonWithAuthz>
 					</div>
 				)
@@ -145,7 +145,7 @@ function ResourcesListContainer(props) {
 		<div className="h-100" ref={ref}>
 			<Container>
 				<DataTable
-					title={{ text: t('ResourcesListContainer|Resources list'), icon: 'at-unlock-keyhole'}}
+					title={{ text: t('ResourcesListContainer|Resources list'), icon: 'cil-lock-unlocked'}}
 					data={resources}
 					headers={headers}
 					count={count}

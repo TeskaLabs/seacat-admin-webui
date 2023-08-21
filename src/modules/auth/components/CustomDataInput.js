@@ -45,7 +45,7 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 								disabled={(fields.length === 1) && ((fields[0].key === ""))} // Disable button if he number of inputs is 1  and no text added
 								onClick={() => {(fields.length === 1) ? replace({key: '', value: ''}) : remove(idx)}}
 							>
-								<span className="at-minus-circle" />
+								<span className="cil-minus" />
 							</Button>
 						</InputGroupAddon>
 					</InputGroup>
@@ -60,7 +60,7 @@ export default function CustomDataInput ({name, control, errors, append, remove,
 				type="button"
 				onClick={() => {append({key: '', value: ''})}}
 			>
-				<span className="at-plus-circle" />
+				<span className="cil-plus" />
 			</Button>
 		</FormGroup>
 	)

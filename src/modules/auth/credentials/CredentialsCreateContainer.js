@@ -195,7 +195,7 @@ function CredentialsCreateContainer(props) {
 						<Card>
 							<CardHeader className="border-bottom">
 								<div className='card-header-title'>
-									<i className="at-users pr-2"></i>
+									<i className="cil-people pr-2"></i>
 									{activeTab == "create" ? t('CredentialsCreateContainer|Create new credentials') : t('CredentialsCreateContainer|Invite user')}
 								</div>
 								<ButtonGroup className="p-1">
