@@ -271,7 +271,8 @@
 		"Invited": "Invited",
 		"Resend invitation": "Resend invitation",
 		"Something went wrong, failed to resend invitation": "Something went wrong, failed to resend invitation",
-		"Invitation sent successfully": "Invitation sent successfully"
+		"Invitation sent successfully": "Invitation sent successfully",
+		"Credentials do not support editing": "Credentials do not support editing"
 	},
 	"CredentialsRolesCard": {
 		"More": "More...",

@@ -35,6 +35,7 @@ function CredentialsDetailContainer(props) {
 	const [customCredentialData, setCustomCredentialData] = useState({'': ''});
 	const [loadingCustomData, setLoadingCustomData] = useState(true);
 	const [rolesRefresh, setRolesRefresh] = useState(true);
+	const [editable, setEditable] = useState(false);
 
 	const resources = useSelector(state => state.auth?.resources);
 	const advmode = useSelector(state => state.advmode?.enabled);
@@ -86,6 +87,14 @@ function CredentialsDetailContainer(props) {
 			}
 			if (response.data.update) {
 				setUpdateFeatures(response.data.update);
+			}
+			if (response.data.editable) {
+				setEditable(response.data.editable);
+			} else {
+				setEditable(false);
+			}
+			if (response.data.editable !== true) {
+				props.app.addAlert("warning", `${t("CredentialsDetailContainer|Credentials do not support editing")}.`, 30);
 			}
 		} catch(e) {
 			console.error(e);
@@ -248,6 +257,7 @@ function CredentialsDetailContainer(props) {
 										color="link"
 										resource={resourceManageCredentials}
 										resources={resources}
+										disabled={!editable}
 									>
 										{(suspended === false) || (suspended === undefined) ?
 											t('CredentialsDetailContainer|Suspend user')
@@ -290,6 +300,7 @@ function CredentialsDetailContainer(props) {
 									resource={resourceManageCredentials}
 									resources={resources}
 									onClick={() => { resetPwd() }}
+									disabled={!editable}
 								>
 									{t('CredentialsDetailContainer|Reset password')}
 								</ButtonWithAuthz>
@@ -354,6 +365,7 @@ function CredentialsDetailContainer(props) {
 						updateFeatures={updateFeatures}
 						resources={resources}
 						resource={resourceManageCredentials}
+						editable={editable}
 					/>
 					<CustomDataContainer
 						resource={resourceManageCredentials}
@@ -363,20 +375,22 @@ function CredentialsDetailContainer(props) {
 						app={props.app}
 						loading={loadingCustomData}
 						uri={`credentials/${credentials_id}`}
+						editable={editable}
 					/>
 				</div>
 			</div>
 			<div className="credential-detail-resource-area credential-resources-wrapper">
-				<CredentialsTenantsCard app={props.app} credentials_id={credentials_id} resource={resourceAssignTenant} resources={resources} setRolesRefresh={setRolesRefresh}/>
+				<CredentialsTenantsCard app={props.app} credentials_id={credentials_id} resource={resourceAssignTenant} resources={resources} setRolesRefresh={setRolesRefresh} editable={editable}/>
 
 				{displaySessions && <CredentialsSessionCard
 					app={props.app}
 					credentials_id={credentials_id}
 					data={sessions}
 					resources={resources}
-					retrieveSessions={retrieveSessions}/>
+					retrieveSessions={retrieveSessions}
+					editable={editable}/>
 				}
-				<CredentialsRolesCard app={props.app} credentials_id={credentials_id} resource={resourceAssignRole} resources={resources} rolesRefresh={rolesRefresh}/>
+				<CredentialsRolesCard app={props.app} credentials_id={credentials_id} resource={resourceAssignRole} resources={resources} rolesRefresh={rolesRefresh} editable={editable}/>
 			</div>
 
 			<div className="credential-detail-json-area">
@@ -515,7 +529,7 @@ function CredentialsInfoCard(props) {
 						outline
 						type="button"
 						onClick={(e) => (e.preventDefault(), setEditMode(true))}
-						disabled={props.updateFeatures.length === 0}
+						disabled={props.updateFeatures.length === 0 || !props.editable}
 						resources={props.resources}
 						resource={props.resource}
 					>

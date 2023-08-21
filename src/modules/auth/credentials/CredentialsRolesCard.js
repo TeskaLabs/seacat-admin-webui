@@ -176,6 +176,7 @@ function CredentialsRolesCard(props) {
 					onClick={(e) => (setEditMode(true))}
 					resource={resource}
 					resources={resources}
+					disabled={!props.editable}
 				>
 					{t("Edit")}
 				</ButtonWithAuthz>
