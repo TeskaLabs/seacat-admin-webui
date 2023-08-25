@@ -496,8 +496,7 @@
 		"Something went wrong when terminating all sessions": "Něco se pokazilo při ukončování všech relací",
 		"Failed to terminate all sessions": "Nepodařilo se ukončit všechny relace",
 		"Access denied, you do not have a right to perform this action": "Přístup odepřen, nemáte dostatečná oprávnění",
-		"Session": "Relace",
-		"Search": "Vyhledat"
+		"Session": "Relace"
 	},
 	"SessionDetailContainer": {
 		"Failed to fetch details": "Nepodařilo se načíst relace",

@@ -494,8 +494,7 @@
 		"Something went wrong when terminating all sessions": "Something went wrong when terminating all sessions",
 		"Failed to terminate all sessions": "Failed to terminate all sessions",
 		"Access denied, you do not have a right to perform this action": "Access denied, you do not have a right to perform this action",
-		"Session": "Session",
-		"Search": "Search"
+		"Session": "Session"
 	},
 	"SessionDetailContainer": {
 		"Failed to fetch details": "Failed to fetch details",
