@@ -163,14 +163,17 @@
 		"Application type": "Application type",
 		"Token endpoint authentication method": "Token endpoint authentication method",
 		"Cookie domain": "Cookie domain",
+		"Cookie entry URI": "Cookie entry URI",
+		"Cookie webhook URI": "Cookie webhook URI",
 		"Redirect URIs": "Redirect URIs",
 		"Redirect URI validation method": "Redirect URI validation method",
 		"Create client": "Create client",
 		"Unknown item": "Unknown item",
 		"Code challenge method (PKCE)": "Code challenge method (PKCE)",
-		"Login URi": "Login URi",
+		"Login URI": "Login URI",
 		"Authorize URI": "Authorize URI",
 		"Authorize anonymous users": "Authorize anonymous users",
+		"Session expiration": "Session expiration",
 		"URI can't be empty": "URI can't be empty",
 		"URL hash has to be empty": "URL hash has to be empty"
 	},
@@ -268,7 +271,8 @@
 		"Invited": "Invited",
 		"Resend invitation": "Resend invitation",
 		"Something went wrong, failed to resend invitation": "Something went wrong, failed to resend invitation",
-		"Invitation sent successfully": "Invitation sent successfully"
+		"Invitation sent successfully": "Invitation sent successfully",
+		"Credentials do not support editing": "Credentials do not support editing"
 	},
 	"CredentialsRolesCard": {
 		"More": "More...",
@@ -414,7 +418,8 @@
 		"More": "More...",
 		"Search": "Search",
 		"Resource": "Resource",
-		"already selected": "already selected"
+		"already selected": "already selected",
+		"Remove resource": "Remove resource"
 	},
 	"ResourcesCreateContainer": {
 		"Resource created": "Resource has been created",

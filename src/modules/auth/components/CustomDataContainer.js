@@ -10,7 +10,7 @@ import {
 	Label, ButtonGroup, Form
 } from 'reactstrap';
 
-export function CustomDataContainer({app, resources, customData, setCustomData, loading, resource = "authz:superuser", uri}) {
+export function CustomDataContainer({app, resources, customData, setCustomData, loading, resource = "authz:superuser", uri, editable}) {
 	const { t } = useTranslation();
 	const [data, setData] = useState([]);
 	const [edit, setEdit] = useState(false);
@@ -169,6 +169,7 @@ export function CustomDataContainer({app, resources, customData, setCustomData, 
 						resource={resource}
 						resources={resources}
 						hideOnUnauthorizedAccess={false}
+						disabled={(editable != undefined) && (editable !== true)}
 						>
 							{t("Edit")}
 						</ButtonWithAuthz>
