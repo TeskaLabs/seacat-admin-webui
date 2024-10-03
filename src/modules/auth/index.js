@@ -38,9 +38,9 @@ import './clients/clients.scss';
 import './components/customdata.scss';
 import './session/session.scss';
 
-export default class SeaCatAuthModule extends Module {
+export default class SeaCatAdminModule extends Module {
 	constructor(app, name){
-		super(app, "SeaCatAuthModule");
+		super(app, "SeaCatAdminModule");
 
 		// Resources
 		app.Router.addRoute({
