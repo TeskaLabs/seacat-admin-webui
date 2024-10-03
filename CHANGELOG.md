@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## Release Candidate
+## v24.40
+
+### Releases
+
+- v24.40-alpha
 
 ### Features
 
@@ -15,6 +19,10 @@
 - Add a condition that will allow users with the right resource to see hidden tree-menu-items, add docs for TreeMenu (INDIGO Sprint 230721, [!437](https://github.com/TeskaLabs/asab-webui/pull/437))
 
 - Add titles for buttons and locales for it (INDIGO Sprint 230721, [!57](https://github.com/TeskaLabs/seacat-admin-webui/pull/57))
+
+### Fix
+
+- Fix on Help button, rename the module to SeaCatAdminModule (#61, v24.40-alpha, INDIGO Sprint 240913)
 
 ## v23.30-alpha
 
