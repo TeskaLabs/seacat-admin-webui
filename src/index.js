@@ -78,8 +78,8 @@ import AboutModule from 'asab-webui/modules/about';
 modules.push(AboutModule);
 
 // Add SeaCat Admin auth module
-import SeaCatAuthModule from './modules/auth';
-modules.push(SeaCatAuthModule);
+import SeaCatAdminModule from './modules/auth';
+modules.push(SeaCatAdminModule);
 
 // Specify dynamic modules in a config file
 /*
